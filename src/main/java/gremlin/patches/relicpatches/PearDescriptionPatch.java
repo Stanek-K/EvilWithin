@@ -14,7 +14,7 @@ import gremlin.characters.GremlinCharacter;
         method="getUpdatedDescription"
 )
 public class PearDescriptionPatch {
-    private static final RelicStrings strings = CardCrawlGame.languagePack.getRelicStrings("Gremlin:PatchFixes");
+    private static final RelicStrings strings = CardCrawlGame.languagePack.getRelicStrings("gremlin:PatchFixes");
 
     public static SpireReturn<String> Prefix(Pear __instance){
         if(AbstractDungeon.player instanceof GremlinCharacter){

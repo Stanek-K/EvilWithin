@@ -14,7 +14,7 @@ public abstract class AbstractGremlinPower extends AbstractPower {
     private Color renderColor = null;
 
     static String getID(String ID){
-        return "Gremlin:"+ID;
+        return "gremlin:"+ID;
     }
 
     @Override

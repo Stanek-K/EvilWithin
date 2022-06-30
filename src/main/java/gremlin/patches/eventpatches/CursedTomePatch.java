@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import gremlin.characters.GremlinCharacter;
 
 public class CursedTomePatch {
-    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("Gremlin:CursedTome");
+    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("gremlin:CursedTome");
 
     @SpirePatch(clz = CursedTome.class, method = SpirePatch.CONSTRUCTOR)
     public static class TomeConstructior

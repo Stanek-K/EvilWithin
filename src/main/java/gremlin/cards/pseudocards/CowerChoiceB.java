@@ -4,12 +4,9 @@ import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.AlwaysRetai
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.EscapeAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.city.GremlinLeader;
 import gremlin.actions.LoseRearmostGremlinAction;
@@ -21,19 +18,9 @@ import static automaton.AutomatonMod.GOOD_STATUS;
 
 public class CowerChoiceB extends AbstractGremlinCard {
     public static final String ID = getID("CowerChoiceB");
-    private static final CardStrings strings = CardCrawlGame.languagePack.getCardStrings(ID);
-    private static final String NAME = strings.NAME;
-    private static final String IMG_PATH = "cards/cower.png";
 
-    private static final AbstractCard.CardType TYPE = CardType.STATUS;
-    private static final AbstractCard.CardRarity RARITY = CardRarity.SPECIAL;
-    private static final AbstractCard.CardTarget TARGET = AbstractCard.CardTarget.NONE;
-
-    private static final int COST = -2;
-
-    public CowerChoiceB()
-    {
-        super(ID, NAME, IMG_PATH, COST, strings.DESCRIPTION, TYPE, RARITY, TARGET);
+    public CowerChoiceB() {
+        super(ID, -2, CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE);
         this.dontTriggerOnUseCard = true;
         AlwaysRetainField.alwaysRetain.set(this, true);
         // To not break with Bronze Idol
@@ -54,7 +41,7 @@ public class CowerChoiceB extends AbstractGremlinCard {
         for (final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (!mo.isDeadOrEscaped()) {
                 if(mo instanceof GremlinLeader) {
-                    AbstractDungeon.actionManager.addToBottom(new TalkAction(mo, strings.EXTENDED_DESCRIPTION[0]));
+                    AbstractDungeon.actionManager.addToBottom(new TalkAction(mo, cardStrings.EXTENDED_DESCRIPTION[0]));
                     break;
                 }
             }
@@ -69,7 +56,7 @@ public class CowerChoiceB extends AbstractGremlinCard {
             }
         }
         if(lastNonLeader != null){
-            AbstractDungeon.actionManager.addToBottom(new TalkAction(lastNonLeader, strings.EXTENDED_DESCRIPTION[1]));
+            AbstractDungeon.actionManager.addToBottom(new TalkAction(lastNonLeader, cardStrings.EXTENDED_DESCRIPTION[1]));
         }
         for (final AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
             if (!mo.isDeadOrEscaped()) {
@@ -81,20 +68,12 @@ public class CowerChoiceB extends AbstractGremlinCard {
         }
     }
 
-    public void upgrade()
-    {
-        if (!this.upgraded)
-        {
-            upgradeName();
-        }
+    public void upp() {
+        upgradeName();
     }
 
     @Override
-    public boolean canUse(AbstractPlayer p, AbstractMonster m)
-    {
+    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         return true;
     }
 }
-
-
-

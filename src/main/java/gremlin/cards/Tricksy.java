@@ -1,58 +1,50 @@
 package gremlin.cards;
 
-import com.megacrit.cardcrawl.actions.defect.ScrapeAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gremlin.actions.GremlinSwapAction;
-import gremlin.actions.TricksyFollowUpAction;
 import gremlin.orbs.SneakyGremlin;
 
 import static gremlin.GremlinMod.SNEAKY_GREMLIN;
 
 public class Tricksy extends AbstractGremlinCard {
     public static final String ID = getID("Tricksy");
-    private static final CardStrings strings = CardCrawlGame.languagePack.getCardStrings(ID);
-    private static final String NAME = strings.NAME;
-    private static final String IMG_PATH = "cards/tricksy.png";
 
-    private static final AbstractCard.CardType TYPE = AbstractCard.CardType.SKILL;
-    private static final AbstractCard.CardRarity RARITY = CardRarity.COMMON;
-    private static final AbstractCard.CardTarget TARGET = AbstractCard.CardTarget.SELF;
-
-    private static final int COST = 1;
-    private static final int MAGIC = 4;
-    private static final int UPGRADE_BONUS = 2;
-
-    public Tricksy()
-    {
-        super(ID, NAME, IMG_PATH, COST, strings.DESCRIPTION, TYPE, RARITY, TARGET);
-
-        this.baseMagicNumber = MAGIC;
-        this.magicNumber = baseMagicNumber;
+    public Tricksy() {
+        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        this.baseMagicNumber = this.magicNumber = 4;
         this.tags.add(SNEAKY_GREMLIN);
         setBackgrounds();
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m)
-    {
-        AbstractDungeon.actionManager.addToBottom(new ScrapeAction(p, this.magicNumber));
-        AbstractDungeon.actionManager.addToBottom(new WaitAction(0.4f));
-        AbstractDungeon.actionManager.addToBottom(new TricksyFollowUpAction());
-        AbstractDungeon.actionManager.addToBottom(new GremlinSwapAction(new SneakyGremlin(0)));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        atb(new DrawCardAction(this.magicNumber, new AbstractGameAction() {
+            @Override
+            public void update() {
+                AbstractDungeon.actionManager.addToTop(new WaitAction(0.4F));
+                this.tickDuration();
+                if (this.isDone) {
+                    for (AbstractCard c : DrawCardAction.drawnCards) {
+                        if (c.type != CardType.ATTACK) {
+                            AbstractDungeon.player.hand.moveToDiscardPile(c);
+                            c.triggerOnManualDiscard();
+                            GameActionManager.incrementDiscard(false);
+                        }
+                    }
+                }
+            }
+        }));
+        atb(new GremlinSwapAction(new SneakyGremlin(0)));
     }
 
-    public void upgrade()
-    {
-        if (!this.upgraded)
-        {
-            upgradeName();
-            upgradeMagicNumber(UPGRADE_BONUS);
-        }
+    public void upp() {
+        upgradeMagicNumber(2);
     }
 }
 

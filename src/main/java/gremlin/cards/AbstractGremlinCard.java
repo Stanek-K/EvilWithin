@@ -1,35 +1,32 @@
 package gremlin.cards;
 
-import basemod.abstracts.CustomCard;
-import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import expansioncontent.cards.AbstractDownfallCard;
 import gremlin.GremlinMod;
 import gremlin.patches.AbstractCardEnum;
-import hermit.util.TextureLoader;
-
 import static gremlin.GremlinMod.*;
 
-public abstract class AbstractGremlinCard extends CustomCard {
+public abstract class AbstractGremlinCard extends AbstractDownfallCard {
     protected static String getID(String ID) {
-        return "Gremlin:" + ID;
+        return "gremlin:" + ID;
     }
 
     public boolean wizardry = false;
     public boolean sorcery = false;
 
-    public boolean isBlamageModifed = false;
-    public int baseBlamage = 0;
-    public int blamage = 0;
-    public boolean upgradedBlamage = false;
+    protected AbstractGremlinCard(String id, int cost, CardType type, CardRarity rarity, CardTarget target) {
+        super(GremlinMod.getModID(), id, cost, type, rarity, target, AbstractCardEnum.GREMLIN);
+        setBackgrounds();
+    }
 
-    public String betaArtPath;
+    protected AbstractGremlinCard(String id, int cost, CardType type, CardRarity rarity, CardTarget target, CardColor color) {
+        super(GremlinMod.getModID(), id, cost, type, rarity, target, color);
+        setBackgrounds();
+    }
 
     protected AbstractGremlinCard(String id, String name, String img, int cost, String rawDescription, CardType type,
                                   CardRarity rarity, CardTarget target) {
-        super(id, name, GremlinMod.getResourcePath(img), cost, rawDescription, type,
-                AbstractCardEnum.GREMLIN, rarity, target);
+        super(GremlinMod.getModID(), id, cost, type, rarity, target, AbstractCardEnum.GREMLIN);
         setBackgrounds();
     }
 
@@ -37,15 +34,6 @@ public abstract class AbstractGremlinCard extends CustomCard {
     }
 
     public void onGremlinSwapInDeck() {
-    }
-
-    public void displayUpgrades() {
-        super.displayUpgrades();
-        if (upgradedBlamage) {
-            blamage = baseBlamage;
-            isBlamageModifed = true;
-        }
-
     }
 
     public void setBackgrounds() {
@@ -116,24 +104,5 @@ public abstract class AbstractGremlinCard extends CustomCard {
     }
 
     @Override
-    protected Texture getPortraitImage() {
-        if (Settings.PLAYTESTER_ART_MODE || UnlockTracker.betaCardPref.getBoolean(this.cardID, false)) {
-            if (this.textureImg == null) {
-                return null;
-            } else {
-                if (betaArtPath != null) {
-                    int endingIndex = betaArtPath.lastIndexOf(".");
-                    String newPath = betaArtPath.substring(0, endingIndex) + "_p" + betaArtPath.substring(endingIndex);
-                    newPath = "gremlinResources/images/cards/betacards/" + newPath;
-                    System.out.println("Finding texture: " + newPath);
-
-                    Texture portraitTexture;
-                    portraitTexture = TextureLoader.getTexture(newPath);
-
-                    return portraitTexture;
-                }
-            }
-        }
-        return super.getPortraitImage();
-    }
+    public void upp() { }
 }

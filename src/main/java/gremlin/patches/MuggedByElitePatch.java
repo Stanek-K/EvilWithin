@@ -14,7 +14,7 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.lastCombatMetricKe
 @SpirePatch(clz = MonsterRoomElite.class, method = "dropReward")
 public class MuggedByElitePatch
 {
-    private static final String TEXT = CardCrawlGame.languagePack.getUIString("Gremlin:BonusGold").TEXT[0];
+    private static final String TEXT = CardCrawlGame.languagePack.getUIString("gremlin:BonusGold").TEXT[0];
 
     @SpireInsertPatch(
             rloc=10

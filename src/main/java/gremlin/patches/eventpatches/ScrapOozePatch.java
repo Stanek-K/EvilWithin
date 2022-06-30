@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import gremlin.characters.GremlinCharacter;
 
 public class ScrapOozePatch {
-    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("Gremlin:ScrapOoze");
+    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("gremlin:ScrapOoze");
     private static int realDmg = 0;
 
     @SpirePatch(clz = ScrapOoze.class, method = SpirePatch.CONSTRUCTOR)

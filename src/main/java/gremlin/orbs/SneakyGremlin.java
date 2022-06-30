@@ -8,7 +8,7 @@ public class SneakyGremlin extends GremlinStandby{
     public static final int DAMAGE = 3;
 
     public SneakyGremlin(int hp) {
-        super(hp, "Gremlin:SneakyGremlin", "sneak", "animation", 25);
+        super(hp, "gremlin:SneakyGremlin", "sneak", "animation", 25);
     }
 
     @Override

@@ -1,5 +1,5 @@
 {
-  "Gremlin:NobFight": {
+  "gremlin:NobFight": {
     "TEXT": [
       "보잘것 없는 그렘린들. NL 영혼을 내놔라!",
       "화난 녀석. 넌 이제 내 거다.",
@@ -11,14 +11,14 @@
       "선택을 해야만 한다."
     ]
   },
-  "Gremlin:GremFight": {
+  "gremlin:GremFight": {
     "TEXT": [
       "뒷통수를 쳐라!",
       "모두 죽여라!",
       "물건을 뺏어라!"
     ]
   },
-  "Gremlin:ResurrectOption": {
+  "gremlin:ResurrectOption": {
     "TEXT": [
       "부활",
       "(자유 행동) 무작위 죽은 그렘린을 되살립니다.",
@@ -29,7 +29,7 @@
       "더 많이 훔치려고 돌아왔다!"
     ]
   },
-  "Gremlin:RestOption": {
+  "gremlin:RestOption": {
     "TEXT": [
       "휴식",
       "최대 체력의 100% 만큼 모든 그렘린이 회복합니다 (",
@@ -38,30 +38,30 @@
       "만약 죽은 그렘린이 있다면 무작위로 한 마리를 살립니다."
     ]
   },
-  "Gremlin:Swap": {
+  "gremlin:Swap": {
     "TEXT": [
       "교체 못한다!",
       "귀족은 선봉이어야만 한다!",
       "귀족은 항상 선두다!"
     ]
   },
-  "Gremlin:ArtMode": {
+  "gremlin:ArtMode": {
     "TEXT": [
       "그렘린 그림 모드",
       "카드 틀에 그렘린들이 보입니다. 외형만 변경됩니다. 시너지 카드를 더 쉽게 찾을 수 있습니다."
     ]
   },
-  "Gremlin:BonusGold": {
+  "gremlin:BonusGold": {
     "TEXT": [
        " 골드 (추가)"
     ]
   },
-  "Gremlin:MakeEchoAction": {
+  "gremlin:MakeEchoAction": {
     "TEXT": [
       "메아리: "
     ]
   },
-  "Gremlin:EventReplacementStrings": {
+  "gremlin:EventReplacementStrings": {
     "TEXT": [
       "#r체력을 #r",
       " #r잃습니다.",

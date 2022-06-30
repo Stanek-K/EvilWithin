@@ -7,7 +7,7 @@ import gremlin.GremlinMod;
 
 public abstract class AbstractGremlinRelic extends CustomRelic{
     static String getID(String ID){
-        return "Gremlin:"+ID;
+        return "gremlin:"+ID;
     }
 
     AbstractGremlinRelic(String id, String img, RelicTier tier, LandingSound sfx) {

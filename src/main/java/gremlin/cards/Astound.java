@@ -1,40 +1,22 @@
 package gremlin.cards;
 
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gremlin.GremlinMod;
-import gremlin.actions.AstoundAction;
 import gremlin.powers.WizPower;
 
 import static gremlin.GremlinMod.WIZARD_GREMLIN;
 
 public class Astound extends AbstractGremlinCard {
     public static final String ID = getID("Astound");
-    private static final CardStrings strings = CardCrawlGame.languagePack.getCardStrings(ID);
-    private static final String NAME = strings.NAME;
-    private static final String IMG_PATH = "cards/astound.png";
-
-    private static final AbstractCard.CardType TYPE = AbstractCard.CardType.SKILL;
-    private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final AbstractCard.CardTarget TARGET = AbstractCard.CardTarget.SELF;
-
-    private static final int COST = 0;
-    private static final int BLOCK = 3;
-    private static final int MAGIC = 2;
-    private static final int UPGRADE_BONUS = 2;
 
     public Astound() {
-        super(ID, NAME, IMG_PATH, COST, strings.DESCRIPTION, TYPE, RARITY, TARGET);
-
-        this.baseBlock = BLOCK;
-
-        this.baseMagicNumber = MAGIC;
-        this.magicNumber = baseMagicNumber;
+        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        this.baseBlock = 3;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.cardsToPreview = new Ward();
         this.tags.add(WIZARD_GREMLIN);
         setBackgrounds();
@@ -42,20 +24,28 @@ public class Astound extends AbstractGremlinCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, block));
-        AbstractDungeon.actionManager.addToBottom(new AstoundAction(p, magicNumber, upgraded));
+        blck();
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                if (p.hasPower(WizPower.POWER_ID) && p.getPower(WizPower.POWER_ID).amount >= 3) {
+                    AbstractCard c = new Ward();
+                    if (upgraded)
+                        c.upgrade();
+                    makeInHand(c, magicNumber);
+                }
+                this.isDone = true;
+            }
+        });
     }
 
-    public void upgrade() {
-        if (!this.upgraded) {
-            upgradeName();
-            upgradeBlock(UPGRADE_BONUS);
-            this.rawDescription = strings.UPGRADE_DESCRIPTION;
-            initializeDescription();
-            AbstractCard c = new Ward();
-            c.upgrade();
-            this.cardsToPreview = c;
-        }
+    public void upp(){
+        upgradeBlock(2);
+        this.rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
+        AbstractCard c = new Ward();
+        c.upgrade();
+        this.cardsToPreview = c;
     }
 
     @Override

@@ -4,16 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import gremlin.actions.ShackleAction;
 import gremlin.characters.GremlinCharacter;
 import gremlin.powers.WizPower;
 import sneckomod.SneckoMod;
@@ -24,52 +20,34 @@ import static gremlin.GremlinMod.*;
 
 public class GremlinDance extends AbstractGremlinCard {
     public static final String ID = getID("GremlinDance");
-    private static final CardStrings strings = CardCrawlGame.languagePack.getCardStrings(ID);
-    private static final String NAME = strings.NAME;
-    private static final String IMG_PATH = "cards/gremlin_dance.png";
-
-    private static final AbstractCard.CardType TYPE = AbstractCard.CardType.ATTACK;
-    private static final AbstractCard.CardRarity RARITY = AbstractCard.CardRarity.BASIC;
-    private static final AbstractCard.CardTarget TARGET = AbstractCard.CardTarget.ENEMY;
-
-    private static final int COST = 1;
-    private static final int POWER = 6;
-    private static final int BLOCK = 6;
-    private static final int MAGIC = 2;
-    private static final int UPGRADE_BONUS = 3;
 
     private String gremlin;
     private float rotationTimer;
     private int previewIndex;
     private ArrayList<AbstractCard> cardsList = new ArrayList<>();
 
-    public GremlinDance()
-    {
-        super(ID, NAME, IMG_PATH, COST, strings.DESCRIPTION, TYPE, RARITY, TARGET);
+    public GremlinDance() {
+        super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
+        this.baseDamage = 6;
+        this.baseBlock = 4;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
 
-        this.baseDamage = POWER;
-        this.baseBlock = BLOCK;
-        this.baseMagicNumber = MAGIC;
-        this.magicNumber = this.baseMagicNumber;
         this.gremlin = "";
-
         cardsList.add(new GremlinDance("angry"));
         cardsList.add(new GremlinDance("fat"));
         cardsList.add(new GremlinDance("shield"));
         cardsList.add(new GremlinDance("sneak"));
         cardsList.add(new GremlinDance("wizard"));
-        this.tags.add(SneckoMod.BANNEDFORSNECKO);
     }
 
     public GremlinDance(String gremlin) {
-        super(ID, NAME, IMG_PATH, COST, strings.DESCRIPTION, TYPE, RARITY, TARGET);
+        super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
 
-        this.baseDamage = POWER;
-        this.baseBlock = BLOCK;
-        this.baseMagicNumber = MAGIC;
-        this.magicNumber = this.baseMagicNumber;
+        this.baseDamage = 6;
+        this.baseBlock = 4;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.gremlin = gremlin;
         updateContents();
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
@@ -88,36 +66,34 @@ public class GremlinDance extends AbstractGremlinCard {
         }
 
         if(gremlin.equals("shield")){
-            AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, block));
+            blck();
         }
 
         if(gremlin.equals("angry")){
-            AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage,
-                    this.damageTypeForTurn, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+            allDmg(AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         } else if(gremlin.equals("wizard")){
-            AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage,
-                    this.damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+            dmg(m, AbstractGameAction.AttackEffect.FIRE);
         } else {
-            AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage,
-                    this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+            dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         }
 
         if(gremlin.equals("fat")){
-            AbstractDungeon.actionManager.addToBottom(new ShackleAction(m, magicNumber));
+            applyToEnemy(m, new StrengthPower(m, -this.magicNumber));
+            if (m != null && !m.hasPower("Artifact")) {
+                applyToEnemy(m, new GainStrengthPower(m, this.magicNumber));
+            }
         }
 
         if(gremlin.equals("sneak")){
-            AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, this.magicNumber));
+            atb(new DrawCardAction(p, this.magicNumber));
         }
 
         if(gremlin.equals("wizard")){
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p,
-                    new WizPower(p, this.magicNumber), this.magicNumber));
+            applyToSelf(new WizPower(p, this.magicNumber));
         }
 
         if(isNob){
-            AbstractDungeon.actionManager.addToBottom(
-                    new ApplyPowerAction(p, p, new StrengthPower(p, this.magicNumber), this.magicNumber));
+            applyToSelf(new StrengthPower(p, this.magicNumber));
         }
     }
 
@@ -165,10 +141,10 @@ public class GremlinDance extends AbstractGremlinCard {
         this.tags.remove(SNEAKY_GREMLIN);
         this.tags.remove(WIZARD_GREMLIN);
         this.tags.remove(NOB_GREMLIN);
-        this.rawDescription = strings.EXTENDED_DESCRIPTION[0];
+        this.rawDescription = EXTENDED_DESCRIPTION[0];
         if(!this.gremlin.equals("") || AbstractDungeon.player instanceof GremlinCharacter){
             if(this.gremlin.equals("") && ((GremlinCharacter) AbstractDungeon.player).nob){
-                rawDescription += strings.EXTENDED_DESCRIPTION[6];
+                rawDescription += EXTENDED_DESCRIPTION[6];
                 this.isMultiDamage = false;
                 this.target = CardTarget.ENEMY;
                 this.wizardry = false;
@@ -181,7 +157,7 @@ public class GremlinDance extends AbstractGremlinCard {
                 }
                 switch (gremlin) {
                     case "angry":
-                        rawDescription += strings.EXTENDED_DESCRIPTION[1];
+                        rawDescription += EXTENDED_DESCRIPTION[1];
                         this.isMultiDamage = true;
                         this.target = CardTarget.ALL_ENEMY;
                         this.wizardry = false;
@@ -189,7 +165,7 @@ public class GremlinDance extends AbstractGremlinCard {
                         setBackgrounds();
                         break;
                     case "fat":
-                        rawDescription += strings.EXTENDED_DESCRIPTION[2];
+                        rawDescription += EXTENDED_DESCRIPTION[2];
                         this.isMultiDamage = false;
                         this.target = CardTarget.ENEMY;
                         this.wizardry = false;
@@ -197,7 +173,7 @@ public class GremlinDance extends AbstractGremlinCard {
                         setBackgrounds();
                         break;
                     case "shield":
-                        rawDescription += strings.EXTENDED_DESCRIPTION[3];
+                        rawDescription += EXTENDED_DESCRIPTION[3];
                         this.isMultiDamage = false;
                         this.target = CardTarget.ENEMY;
                         this.wizardry = false;
@@ -205,7 +181,7 @@ public class GremlinDance extends AbstractGremlinCard {
                         setBackgrounds();
                         break;
                     case "sneak":
-                        rawDescription += strings.EXTENDED_DESCRIPTION[4];
+                        rawDescription += EXTENDED_DESCRIPTION[4];
                         this.isMultiDamage = false;
                         this.target = CardTarget.ENEMY;
                         this.wizardry = false;
@@ -213,7 +189,7 @@ public class GremlinDance extends AbstractGremlinCard {
                         setBackgrounds();
                         break;
                     case "wizard":
-                        rawDescription += strings.EXTENDED_DESCRIPTION[5];
+                        rawDescription += EXTENDED_DESCRIPTION[5];
                         this.isMultiDamage = false;
                         this.target = CardTarget.ENEMY;
                         this.wizardry = false;
@@ -233,11 +209,7 @@ public class GremlinDance extends AbstractGremlinCard {
     }
 
     @Override
-    public void upgrade() {
-        if (!this.upgraded)
-        {
-            upgradeName();
-            upgradeDamage(UPGRADE_BONUS);
-        }
+    public void upp() {
+        upgradeDamage(3);
     }
 }

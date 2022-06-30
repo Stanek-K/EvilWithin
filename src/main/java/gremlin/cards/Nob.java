@@ -3,13 +3,9 @@ package gremlin.cards;
 import basemod.helpers.BaseModCardTags;
 import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gremlin.GremlinMod;
 import gremlin.patches.SuperRare;
@@ -22,29 +18,15 @@ import static gremlin.GremlinMod.NOB_GREMLIN;
 
 public class Nob extends AbstractGremlinCard implements SuperRare {
     public static final String ID = getID("Nob");
-    private static final CardStrings strings = CardCrawlGame.languagePack.getCardStrings(ID);
-    private static final String NAME = strings.NAME;
-    private static final String IMG_PATH = "cards/nob.png";
-
-    private static final AbstractCard.CardType TYPE = CardType.POWER;
-    private static final AbstractCard.CardRarity RARITY = CardRarity.RARE;
-    private static final AbstractCard.CardTarget TARGET = AbstractCard.CardTarget.SELF;
-
-    private static final int COST = 4;
-
-    private static final int MAGIC = 20;
-    private static final int UPGRADE_BONUS = 10;
 
     private float rotationTimer;
     private int previewIndex;
     private ArrayList<AbstractCard> cardsList = new ArrayList<>();
 
-    public Nob()
-    {
-        super(ID, NAME, IMG_PATH, COST, strings.DESCRIPTION, TYPE, RARITY, TARGET);
+    public Nob() {
+        super(ID, 4, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
 
-        this.baseMagicNumber = MAGIC;
-        this.magicNumber = baseMagicNumber;
+        this.baseMagicNumber = this.magicNumber = 20;
 
         cardsList.add(new Bellow());
         cardsList.add(new SkullBash());
@@ -57,20 +39,13 @@ public class Nob extends AbstractGremlinCard implements SuperRare {
         GremlinMod.loadJokeCardImage(this, "Nob.png");
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m)
-    {
-        AbstractDungeon.actionManager.addToBottom(new AddTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player, magicNumber));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p,
-                new GremlinNobPower(1), 1));
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        atb(new AddTemporaryHPAction(p, p, magicNumber));
+        applyToSelf(new GremlinNobPower(1));
     }
 
-    public void upgrade()
-    {
-        if (!this.upgraded)
-        {
-            upgradeName();
-            upgradeMagicNumber(UPGRADE_BONUS);
-        }
+    public void upp() {
+        upgradeMagicNumber(10);
     }
 
     @Override

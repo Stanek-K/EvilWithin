@@ -3,39 +3,19 @@ package gremlin.cards;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static gremlin.GremlinMod.SHIELD_GREMLIN;
 
 public class GremlinToss extends AbstractGremlinCard {
     public static final String ID = getID("GremlinToss");
-    private static final CardStrings strings = CardCrawlGame.languagePack.getCardStrings(ID);
-    private static final String NAME = strings.NAME;
-    private static final String IMG_PATH = "cards/gremlin_toss.png";
 
-    private static final AbstractCard.CardType TYPE = AbstractCard.CardType.ATTACK;
-    private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final AbstractCard.CardTarget TARGET = AbstractCard.CardTarget.ENEMY;
-
-    private static final int COST = 1;
-    private static final int POWER = 0;
-    private static final int MAGIC = 0;
-    private static final int UPGRADE_BONUS = 3;
-
-    public GremlinToss()
-    {
-        super(ID, NAME, IMG_PATH, COST, strings.DESCRIPTION, TYPE, RARITY, TARGET);
-
-        this.baseDamage = POWER;
-        this.baseMagicNumber = MAGIC;
-        this.magicNumber = baseMagicNumber;
+    public GremlinToss() {
+        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        this.baseDamage = 0;
+        this.baseMagicNumber = this.magicNumber = 0;
         this.tags.add(SHIELD_GREMLIN);
         setBackgrounds();
     }
@@ -43,39 +23,36 @@ public class GremlinToss extends AbstractGremlinCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         if(upgraded) {
-            AbstractDungeon.actionManager.addToBottom(new AddTemporaryHPAction(p, p, magicNumber));
+            atb(new AddTemporaryHPAction(p, p, magicNumber));
         }
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage,
-                this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
     }
 
     @Override
     public void applyPowers() {
-        if(upgraded){
+        if(upgraded) {
             this.baseDamage = AbstractDungeon.player.currentBlock +
                     TempHPField.tempHp.get(AbstractDungeon.player) +
                     magicNumber;
-        }else{
+        } else {
             this.baseDamage = AbstractDungeon.player.currentBlock + TempHPField.tempHp.get(AbstractDungeon.player);
         }
         super.applyPowers();
-        if(upgraded)
-        {
-            this.rawDescription = strings.UPGRADE_DESCRIPTION;
+        if(upgraded) {
+            this.rawDescription = UPGRADE_DESCRIPTION;
         } else {
-            this.rawDescription = strings.DESCRIPTION;
+            this.rawDescription = DESCRIPTION;
         }
-        this.rawDescription += strings.EXTENDED_DESCRIPTION[0];
+        this.rawDescription += EXTENDED_DESCRIPTION[0];
         this.initializeDescription();
     }
 
     @Override
     public void onMoveToDiscard() {
-        if(upgraded)
-        {
-            this.rawDescription = strings.UPGRADE_DESCRIPTION;
+        if(upgraded) {
+            this.rawDescription = UPGRADE_DESCRIPTION;
         } else {
-            this.rawDescription = strings.DESCRIPTION;
+            this.rawDescription = DESCRIPTION;
         }
         this.initializeDescription();
     }
@@ -83,24 +60,19 @@ public class GremlinToss extends AbstractGremlinCard {
     @Override
     public void calculateCardDamage(final AbstractMonster mo) {
         super.calculateCardDamage(mo);
-        if(upgraded)
-        {
-            this.rawDescription = strings.UPGRADE_DESCRIPTION;
+        if(upgraded) {
+            this.rawDescription = UPGRADE_DESCRIPTION;
         } else {
-            this.rawDescription = strings.DESCRIPTION;
+            this.rawDescription = DESCRIPTION;
         }
-        this.rawDescription += strings.EXTENDED_DESCRIPTION[0];
+        this.rawDescription += EXTENDED_DESCRIPTION[0];
         this.initializeDescription();
     }
 
     @Override
-    public void upgrade() {
-        if (!this.upgraded)
-        {
-            upgradeName();
-            upgradeMagicNumber(UPGRADE_BONUS);
-            this.rawDescription = strings.UPGRADE_DESCRIPTION;
-            this.initializeDescription();
-        }
+    public void upp() {
+        upgradeMagicNumber(3);
+        this.rawDescription = UPGRADE_DESCRIPTION;
+        this.initializeDescription();
     }
 }

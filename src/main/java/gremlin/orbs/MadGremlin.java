@@ -8,7 +8,7 @@ public class MadGremlin extends GremlinStandby{
     public static final int STRENGTH = 2;
 
     public MadGremlin(int hp) {
-        super(hp,"Gremlin:MadGremlin", "angry", "idle", 25);
+        super(hp,"gremlin:MadGremlin", "angry", "idle", 25);
     }
 
     @Override

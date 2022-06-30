@@ -1,5 +1,5 @@
 {
-  "Gremlin:NobFight": {
+  "gremlin:NobFight": {
     "TEXT": [
       "DIABLOTINS CHÉTIFS DONNENT ÂMES!",
       "Toi, le Coléreux. Tu es à moi maintenant.",
@@ -11,14 +11,14 @@
       "Je dois choisir."
     ]
   },
-  "Gremlin:GremFight": {
+  "gremlin:GremFight": {
     "TEXT": [
       "Écrasez leurs têtes!",
       "Tuez-les !",
       "Prenez leurs affaires!"
     ]
   },
-  "Gremlin:ResurrectOption": {
+  "gremlin:ResurrectOption": {
     "TEXT": [
       "Ressuciter",
       "(Action gratuite) Faites revenir d'entre les morts un Diablotin au hasard.",
@@ -29,7 +29,7 @@
       "JE SUIS DE RETOUR POUR PLUS DE PILLAGE!"
     ]
   },
-  "Gremlin:RestOption": {
+  "gremlin:RestOption": {
     "TEXT": [
       "Se reposer",
       "Soignez chaque Diablotin pour 100% de vos PV Max (",
@@ -38,30 +38,30 @@
       "Si n'importe quel Diablotin est mort, un ressuscitera au hasard."
     ]
   },
-  "Gremlin:Swap": {
+  "gremlin:Swap": {
     "TEXT": [
       "PAS D'ÉCHANGE!",
       "NOB MENEUR MAINTENANT!",
       "NOB MÈNE POUR TOUJOURS!"
     ]
   },
-  "Gremlin:ArtMode": {
+  "gremlin:ArtMode": {
     "TEXT": [
       "Art Diablotin",
       "Les diablotins sont sur les cartes. N'impacte que l'esthétique. Permet de trouver des synergies plus facilement."
     ]
   },
-  "Gremlin:BonusGold": {
+  "gremlin:BonusGold": {
     "TEXT": [
        " Or (Bonus)"
     ]
   },
-  "Gremlin:MakeEchoAction": {
+  "gremlin:MakeEchoAction": {
     "TEXT": [
       "Écho: "
     ]
   },
-  "Gremlin:EventReplacementStrings": {
+  "gremlin:EventReplacementStrings": {
     "TEXT": [
       "#rPerdez #r",
       " #rPV",

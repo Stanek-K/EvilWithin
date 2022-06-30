@@ -8,7 +8,7 @@ public class ShieldGremlin extends GremlinStandby{
     public static final int BLOCK = 2;
 
     public ShieldGremlin(int hp) {
-        super(hp, "Gremlin:ShieldGremlin", "shield", "idle", 25);
+        super(hp, "gremlin:ShieldGremlin", "shield", "idle", 25);
     }
 
     @Override

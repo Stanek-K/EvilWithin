@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BackToBasicsGremlin extends AbstractImageEvent {
-    public static final String ID = "Gremlin:BackToBasics";
+    public static final String ID = "gremlin:BackToBasics";
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
     public static final String[] OPTIONS;
@@ -38,7 +38,7 @@ public class BackToBasicsGremlin extends AbstractImageEvent {
         DIALOG_1 = DESCRIPTIONS[0];
         DIALOG_2 = DESCRIPTIONS[1];
         DIALOG_3 = DESCRIPTIONS[2];
-        eventStringsGuardian = CardCrawlGame.languagePack.getEventString("Gremlin:BackToBasics");
+        eventStringsGuardian = CardCrawlGame.languagePack.getEventString("gremlin:BackToBasics");
         DESCRIPTIONSGUARDIAN = eventStringsGuardian.DESCRIPTIONS;
         OPTIONSGUARDIAN = eventStringsGuardian.OPTIONS;
     }

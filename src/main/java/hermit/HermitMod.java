@@ -46,34 +46,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Properties;
 
-//TODO: DON'T MASS RENAME/REFACTOR
-//TODO: DON'T MASS RENAME/REFACTOR
-//TODO: DON'T MASS RENAME/REFACTOR
-//TODO: DON'T MASS RENAME/REFACTOR
-// Please don't just mass replace "theDefault" with "yourMod" everywhere.
-// It'll be a bigger pain for you. You only need to replace it in 3 places.
-// I comment those places below, under the place where you set your ID.
-
-//TODO: FIRST THINGS FIRST: RENAME YOUR PACKAGE AND ID NAMES FIRST-THING!!!
-// Right click the package (Open the project pane on the left. Folder with black dot on it. The name's at the very top) -> Refactor -> Rename, and name it whatever you wanna call your mod.
-// Scroll down in this file. Change the ID from "hermit:" to "yourModName:" or whatever your heart desires (don't use spaces). Dw, you'll see it.
-// In the JSON strings (resources>localization>eng>[all them files] make sure they all go "yourModName:" rather than "theDefault". You can ctrl+R to replace in 1 file, or ctrl+shift+r to mass replace in specific files/directories (Be careful.).
-// Start with the DefaultCommon cards - they are the most commented cards since I don't feel it's necessary to put identical comments on every card.
-// After you sorta get the hang of how to make cards, check out the card template which will make your life easier
-
-/*
- * With that out of the way:
- * Welcome to this super over-commented Slay the Spire modding base.
- * Use it to make your own mod of any type. - If you want to add any standard in-game content (character,
- * cards, relics), this is a good starting point.
- * It features 1 character with a minimal set of things: 1 card of each type, 1 debuff, couple of relics, etc.
- * If you're new to modding, you basically *need* the BaseMod wiki for whatever you wish to add
- * https://github.com/daviscook477/BaseMod/wiki - work your way through with this base.
- * Feel free to use this in any way you like, of course. MIT licence applies. Happy modding!
- *
- * And pls. Read the comments.
- */
-
 @SpireInitializer
 public class HermitMod implements
         EditCardsSubscriber,
@@ -180,43 +152,14 @@ public class HermitMod implements
     public static CardGroup deadList;
 
 
-    // =============== /MAKE IMAGE PATHS/ =================
-
-    // =============== /INPUT TEXTURE LOCATION/ =================
-
-
     // =============== SUBSCRIBE, CREATE THE COLOR_GRAY, INITIALIZE =================
 
     public HermitMod() {
         System.out.println("Subscribe to BaseMod hooks");
 
         BaseMod.subscribe(this);
-        
-      /*
-           (   ( /(  (     ( /( (            (  `   ( /( )\ )    )\ ))\ )
-           )\  )\()) )\    )\()))\ )   (     )\))(  )\()|()/(   (()/(()/(
-         (((_)((_)((((_)( ((_)\(()/(   )\   ((_)()\((_)\ /(_))   /(_))(_))
-         )\___ _((_)\ _ )\ _((_)/(_))_((_)  (_()((_) ((_|_))_  _(_))(_))_
-        ((/ __| || (_)_\(_) \| |/ __| __| |  \/  |/ _ \|   \  |_ _||   (_)
-         | (__| __ |/ _ \ | .` | (_ | _|  | |\/| | (_) | |) |  | | | |) |
-          \___|_||_/_/ \_\|_|\_|\___|___| |_|  |_|\___/|___/  |___||___(_)
-      */
 
         modID = ("hermit");
-        // cool
-        // TODO: NOW READ THIS!!!!!!!!!!!!!!!:
-
-        // 1. Go to your resources folder in the project panel, and refactor> rename hermitResources to
-        // yourModIDResources.
-
-        // 2. Click on the localization > eng folder and press ctrl+shift+r, then select "Directory" (rather than in Project)
-        // replace all instances of theDefault with yourModID.
-        // Because your mod ID isn't the default. Your cards (and everything else) should have Your mod id. Not mine.
-
-        // 3. FINALLY and most importantly: Scroll up a bit. You may have noticed the image locations above don't use getModID()
-        // Change their locations to reflect your actual ID rather than theDefault. They get loaded before getID is a thing.
-
-        System.out.println("Done subscribing");
 
         System.out.println("Creating the color " + hermit.Enums.COLOR_YELLOW.toString());
 
@@ -225,67 +168,11 @@ public class HermitMod implements
                 ATTACK_DEFAULT_GRAY, SKILL_DEFAULT_GRAY, POWER_DEFAULT_GRAY, ENERGY_ORB_DEFAULT_GRAY,
                 ATTACK_DEFAULT_GRAY_PORTRAIT, SKILL_DEFAULT_GRAY_PORTRAIT, POWER_DEFAULT_GRAY_PORTRAIT,
                 ENERGY_ORB_DEFAULT_GRAY_PORTRAIT, CARD_ENERGY_ORB);
-
-        System.out.println("Done creating the color");
-
-
-        System.out.println("Adding mod settings");
-        // This loads the mod settings.
-        // The actual mod Button is added below in receivePostInitialize()
-
-
     }
 
-
-    // ====== NO EDIT AREA ======
-    // DON'T TOUCH THIS STUFF. IT IS HERE FOR STANDARDIZATION BETWEEN MODS AND TO ENSURE GOOD CODE PRACTICES.
-    // IF YOU MODIFY THIS I WILL HUNT YOU DOWN AND DOWNVOTE YOUR MOD ON WORKSHOP
-
-    /*
-    public static void setModID(String ID) { // DON'T EDIT
-        Gson coolG = new Gson(); // EY DON'T EDIT THIS
-        //   String IDjson = Gdx.files.internal("IDCheckStringsDONT-EDIT-AT-ALL.json").readString(String.valueOf(StandardCharsets.UTF_8)); // i hate u Gdx.files
-        InputStream in = HermitMod.class.getResourceAsStream("/IDCheckStringsDONT-EDIT-AT-ALL.json"); // DON'T EDIT THIS ETHER
-        IDCheckDontTouchPls EXCEPTION_STRINGS = coolG.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), IDCheckDontTouchPls.class); // OR THIS, DON'T EDIT IT
-        System.out.println("You are attempting to set your mod ID as: " + ID); // NO WHY
-        if (ID.equals(EXCEPTION_STRINGS.DEFAULTID)) { // DO *NOT* CHANGE THIS ESPECIALLY, TO EDIT YOUR MOD ID, SCROLL UP JUST A LITTLE, IT'S JUST ABOVE
-            throw new RuntimeException(EXCEPTION_STRINGS.EXCEPTION); // THIS ALSO DON'T EDIT
-        } else if (ID.equals(EXCEPTION_STRINGS.DEVID)) { // NO
-            modID = EXCEPTION_STRINGS.DEFAULTID; // DON'T
-        } else { // NO EDIT AREA
-            modID = ID; // DON'T WRITE OR CHANGE THINGS HERE NOT EVEN A LITTLE
-        } // NO
-        System.out.println("Success! ID is " + modID); // WHY WOULD U WANT IT NOT TO LOG?? DON'T EDIT THIS.
-    } // NO
-    */
-
-
-    public static String getModID() { // NO
-        return modID; // DOUBLE NO
-    } // NU-UH
-
-    /*
-    private static void pathCheck() { // ALSO NO
-        Gson coolG = new Gson(); // NNOPE DON'T EDIT THIS
-        //   String IDjson = Gdx.files.internal("IDCheckStringsDONT-EDIT-AT-ALL.json").readString(String.valueOf(StandardCharsets.UTF_8)); // i still hate u btw Gdx.files
-        InputStream in = HermitMod.class.getResourceAsStream("/IDCheckStringsDONT-EDIT-AT-ALL.json"); // DON'T EDIT THISSSSS
-        IDCheckDontTouchPls EXCEPTION_STRINGS = coolG.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), IDCheckDontTouchPls.class); // NAH, NO EDIT
-        String packageName = HermitMod.class.getPackage().getName(); // STILL NO EDIT ZONE
-        FileHandle resourcePathExists = Gdx.files.internal(getModID() + "Resources"); // PLEASE DON'T EDIT THINGS HERE, THANKS
-        if (!modID.equals(EXCEPTION_STRINGS.DEVID)) { // LEAVE THIS EDIT-LESS
-            if (!packageName.equals(getModID())) { // NOT HERE ETHER
-                throw new RuntimeException(EXCEPTION_STRINGS.PACKAGE_EXCEPTION + getModID()); // THIS IS A NO-NO
-            } // WHY WOULD U EDIT THIS
-            if (!resourcePathExists.exists()) { // DON'T CHANGE THIS
-                throw new RuntimeException(EXCEPTION_STRINGS.RESOURCE_FOLDER_EXCEPTION + getModID() + "Resources"); // NOT THIS
-            }// NO
-        }// NO
-    }// NO
-
-     */
-
-    // ====== YOU CAN EDIT AGAIN ======
-
+    public static String getModID() {
+        return modID;
+    }
 
     private static boolean alreadyInitialized = false;
 
@@ -296,19 +183,8 @@ public class HermitMod implements
             return;
         }
         alreadyInitialized = true;
-        // ...
 
         HermitMod hermitMod = new HermitMod();
-
-        /*
-
-        try {
-            for (int i = 0; i < activeTutorials.length; i++) { HermitModDefaultSettings.setProperty("activeTutorials" + i, "true"); }
-            SpireConfig config = new SpireConfig("hermit", "HermitModConfig", HermitModDefaultSettings);
-            for (int j = 0; j < activeTutorials.length; j++) { activeTutorials[j] = config.getBool("activeTutorials" + j); }
-        } catch (IOException e) { e.printStackTrace(); }
-
-         */
     }
 
     // ============== /SUBSCRIBE, CREATE THE COLOR_GRAY, INITIALIZE/ =================
@@ -392,9 +268,6 @@ public class HermitMod implements
     public void receiveEditPotions() {
         System.out.println("Beginning to edit potions");
 
-        // Class Specific Potion. If you want your potion to not be class-specific,
-        // just remove the player class at the end (in this case the "TheDefaultEnum.THE_DEFAULT".
-        // Remember, you can press ctrl+P inside parentheses like addPotions)
         BaseMod.addPotion(Tonic.class, null, null, null, Tonic.POTION_ID, hermit.Enums.HERMIT);
         BaseMod.addPotion(BlackBile.class, null, null, null, BlackBile.POTION_ID, hermit.Enums.HERMIT);
         BaseMod.addPotion(Eclipse.class, Color.SCARLET.cpy(), Color.BLACK.cpy(), null, Eclipse.POTION_ID, hermit.Enums.HERMIT);
@@ -453,26 +326,17 @@ public class HermitMod implements
     @Override
     public void receiveEditCards() {
         System.out.println("Adding variables");
-        //Ignore this
-        //pathCheck();
         // Add the Custom Dynamic Variables
         System.out.println("Add variabls");
         // Add the Custom Dynamic variabls
         BaseMod.addDynamicVariable(new DefaultCustomVariable());
         BaseMod.addDynamicVariable(new DefaultSecondMagicNumber());
 
-        System.out.println("Adding cards");
-        // Add the cards
-        // Don't comment out/delete these cards (yet). You need 1 of each type and rarity (technically) for your game not to crash
-        // when generating card rewards/shop screen items.
-
-
         try {
             autoAddCards();
         } catch (URISyntaxException | IllegalAccessException | InstantiationException | NotFoundException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
 
         System.out.println("Done adding cards!");
     }
@@ -516,94 +380,9 @@ public class HermitMod implements
             System.out.println(classInfo.getClassName());
             AbstractCard card = (AbstractCard) Loader.getClassPool().getClassLoader().loadClass(cls.getName()).newInstance();
             BaseMod.addCard(card);
-//            UnlockTracker.unlockCard(card.cardID);
-            // if (cls.hasAnnotation(CardNoSeen.class)) {
-            //     UnlockTracker.hardUnlockOverride(card.cardID);
-            // }
 
         }
     }
-
-    // There are better ways to do this than listing every single individual card, but I do not want to complicate things
-    // in a "tutorial" mod. This will do and it's completely ok to use. If you ever want to clean up and
-    // shorten all the imports, go look take a look at other mods, such as Hubris.
-
-    // ================ /ADD CARDS/ ===================
-
-
-    // ================ LOAD THE TEXT ===================
-
-    /*
-    @Override
-    public void receiveEditKeywords() {
-        loadKeywords("eng");
-        if (Settings.language != Settings.GameLanguage.ENG)
-        {
-            loadKeywords(Settings.language.toString().toLowerCase());
-        }
-    }
-
-
-    private void loadKeywords(String langKey)
-    {
-        if (!Gdx.files.internal(getModID() + "Resources/localization/" + langKey).exists())
-        {
-            System.out.println("Hermit: Language not found: " + langKey);
-            return;
-        }
-
-        for (KeywordWithProper keyword : gson.fromJson(GetLocString(langKey, "Keyword-Strings"), KeywordWithProper[].class))
-        {
-            BaseMod.addKeyword(modID, keyword.PROPER_NAME, keyword.NAMES, keyword.DESCRIPTION);
-
-            if (keyword.ID.equals("rugged")) {
-                Tonic.keyword_name = keyword.PROPER_NAME;
-                Tonic.keyword_description = keyword.DESCRIPTION;
-            }
-
-            if (keyword.ID.equals("bruise")) {
-                BlackBile.keyword_name = keyword.PROPER_NAME;
-                BlackBile.keyword_description = keyword.DESCRIPTION;
-            }
-        }
-    }
-
-
-
-
-    @Override
-    public void receiveEditStrings() {
-        loadStrings("eng");
-        if (Settings.language != Settings.GameLanguage.ENG)
-        {
-            loadStrings(Settings.language.toString().toLowerCase());
-        }
-    }
-
-    private void loadStrings(String langKey)
-    {
-        if (!Gdx.files.internal(getModID() + "Resources/localization/" + langKey).exists())
-        {
-            System.out.println("Hermit: Language not found: " + langKey);
-            return;
-        }
-
-        loadCustomStrings(CardStrings.class, GetLocString(langKey, "Card-Strings"));
-        loadCustomStrings(RelicStrings.class, GetLocString(langKey, "Relic-Strings"));
-        loadCustomStrings(PowerStrings.class, GetLocString(langKey, "Power-Strings"));
-        loadCustomStrings(CharacterStrings.class, GetLocString(langKey, "Character-Strings"));
-        loadCustomStrings(UIStrings.class, GetLocString(langKey, "UI-Strings"));
-        loadCustomStrings(PotionStrings.class, GetLocString(langKey, "Potion-Strings"));
-        loadCustomStrings(TutorialStrings.class, GetLocString(langKey, "Tutorial-Strings"));
-    }
-
-
-    private static String GetLocString(String locCode, String name) {
-        return Gdx.files.internal(getModID() + "Resources/localization/" + locCode + "/HermitMod-" + name + ".json").readString(
-                String.valueOf(StandardCharsets.UTF_8));
-    }
-
-     */
 
     public void receiveOnBattleStart(AbstractRoom room) {
         tackybypass = true;
@@ -616,12 +395,6 @@ public class HermitMod implements
 
 
     public static void saveData() throws IOException {
-            /*
-        SpireConfig config = new SpireConfig("hermit", "HermitModConfig");
-        int i;
-        for (i = 0; i < activeTutorials.length; i++) { config.setBool("activeTutorials" + i, activeTutorials[i]); }
-        config.save();
-    */
     }
 
 
@@ -641,8 +414,6 @@ public class HermitMod implements
 
     // ================ /LOAD THE KEYWORDS/ ===================    
 
-    // this adds "ModName:" before the ID of any card/relic/power etc.
-    // in order to avoid conflicts if any other mod uses the same ID.
     public static String makeID(String idText) {
         return getModID() + ":" + idText;
     }
@@ -659,27 +430,27 @@ public class HermitMod implements
     @Override
     public void receiveSetUnlocks() {
         downfallMod.registerUnlockSuiteAlternating(
-                LoneWolf.ID,
-                FullyLoaded.ID,
-                Showdown.ID,
+            LoneWolf.ID,
+            FullyLoaded.ID,
+            Showdown.ID,
 
-                BartenderGlass.ID,
-                Spyglass.ID,
-                RedScarf.ID,
+            BartenderGlass.ID,
+            Spyglass.ID,
+            RedScarf.ID,
 
-                CursedWeapon.ID,
-                BlackWind.ID,
-                Purgatory.ID,
+            CursedWeapon.ID,
+            BlackWind.ID,
+            Purgatory.ID,
 
-                Horseshoe.ID,
-                CharredGlove.ID,
-                PetGhost.ID,
+            Horseshoe.ID,
+            CharredGlove.ID,
+            PetGhost.ID,
 
-                Reprieve.ID,
-                FromBeyond.ID,
-                DeadMansHand.ID,
+            Reprieve.ID,
+            FromBeyond.ID,
+            DeadMansHand.ID,
 
-                hermit.Enums.HERMIT
+            hermit.Enums.HERMIT
         );
     }
 }

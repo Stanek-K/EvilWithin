@@ -17,7 +17,7 @@ public class GremBtnPatch {
     public static final Hitbox challengeDownHitbox = new Hitbox(40.0f * Settings.scale * (0.01f + (1.0f - 0.019f)), 40.0f * Settings.scale);
 
     public static final ArrayList<PowerTip> challengeTips = new ArrayList<>();
-    public static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("Gremlin:ArtMode");
+    public static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("gremlin:ArtMode");
 
     @SpirePatch(clz = CharacterOption.class, method = "renderRelics")
     public static class RenderBtn {

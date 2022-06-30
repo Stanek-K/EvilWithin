@@ -7,7 +7,7 @@ import gremlin.powers.GremlinWizardPower;
 public class GremlinWizard extends GremlinStandby{
 
     public GremlinWizard(int hp) {
-        super(hp,"Gremlin:GremlinWizard", "wizard", "animation", 25);
+        super(hp,"gremlin:GremlinWizard", "wizard", "animation", 25);
     }
 
     @Override

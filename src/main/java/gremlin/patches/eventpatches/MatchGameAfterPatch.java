@@ -11,7 +11,7 @@ import gremlin.characters.GremlinCharacter;
 @SpirePatch(clz = GremlinMatchGame.class, method = "update")
 public class MatchGameAfterPatch
 {
-    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("Gremlin:MatchingGame");
+    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("gremlin:MatchingGame");
     private static final String TEXT = strings.DESCRIPTIONS[1];
 
     @SpireInsertPatch(

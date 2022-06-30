@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
@@ -31,7 +32,7 @@ public class MadGremlinPower extends GremlinPower {
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(owner, owner,
                     new StrengthPower(owner, this.pot), this.pot));
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(owner, owner,
-                    new ModifiedLoseStrengthPower(owner, this.pot), this.pot));
+                    new LoseStrengthPower(owner, this.pot), this.pot));
         }
         return damageAmount;
     }

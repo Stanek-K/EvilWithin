@@ -38,7 +38,6 @@ import gremlin.events.GremlinTrenchcoat;
 import gremlin.events.ScrapOozeGremlins;
 import gremlin.orbs.*;
 import gremlin.patches.AbstractCardEnum;
-import gremlin.patches.BlamageVar;
 import gremlin.patches.GremlinModSaveState;
 import gremlin.potions.GremlinPotion;
 import gremlin.potions.NecromancyPotion;
@@ -48,7 +47,6 @@ import gremlin.powers.AbstractGremlinPower;
 import gremlin.relics.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import slimebound.cards.AbstractSlimeboundCard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -197,7 +195,6 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
     @Override
     public void receiveEditCards() {
         logger.info("Adding Gremlin Cards.");
-        BaseMod.addDynamicVariable(new BlamageVar());
 
         //Basic
         BaseMod.addCard(new Strike());
@@ -523,7 +520,7 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
             ((AbstractGremlinCard) card).betaArtPath = img;
         }
         Texture cardTexture;
-        cardTexture = hermit.util.TextureLoader.getTexture("gremlinResources/images/cards/betacards/" + img);
+        cardTexture = hermit.util.TextureLoader.getTexture("gremlinResources/images/betacards/" + img);
         cardTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         int tw = cardTexture.getWidth();
         int th = cardTexture.getHeight();

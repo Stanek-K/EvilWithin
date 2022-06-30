@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import java.util.ArrayList;
 
 public class GremlinTrenchcoat extends AbstractImageEvent {
-    public static final String ID = "Gremlin:Trenchcoat";
+    public static final String ID = "gremlin:Trenchcoat";
     private static final EventStrings eventStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
@@ -104,7 +104,7 @@ public class GremlinTrenchcoat extends AbstractImageEvent {
     }
 
     static {
-        eventStrings = CardCrawlGame.languagePack.getEventString("Gremlin:Trenchcoat");
+        eventStrings = CardCrawlGame.languagePack.getEventString("gremlin:Trenchcoat");
         NAME = eventStrings.NAME;
         DESCRIPTIONS = eventStrings.DESCRIPTIONS;
         OPTIONS = eventStrings.OPTIONS;

@@ -7,7 +7,7 @@ import gremlin.powers.GremlinPower;
 public class FatGremlin extends GremlinStandby{
 
     public FatGremlin(int hp) {
-        super(hp, "Gremlin:FatGremlin", "fat", "animation", 25);
+        super(hp, "gremlin:FatGremlin", "fat", "animation", 25);
     }
 
     @Override

@@ -16,7 +16,6 @@ import basemod.interfaces.EditCardsSubscriber;
 import basemod.interfaces.EditRelicsSubscriber;
 import basemod.interfaces.OnPowersModifiedSubscriber;
 import basemod.interfaces.PostUpdateSubscriber;
-import champ.cards.AbstractChampCard;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -37,6 +36,9 @@ import expansioncontent.cards.AbstractExpansionCard;
 import expansioncontent.patches.CardColorEnumPatch;
 import expansioncontent.relics.StudyCardRelic;
 import expansioncontent.util.CardFilter;
+import expansioncontent.util.CharacterMagic;
+import expansioncontent.util.DownfallMagic;
+import expansioncontent.util.SecondDownfallMagic;
 import javassist.CtClass;
 import javassist.Modifier;
 import javassist.NotFoundException;
@@ -200,6 +202,10 @@ public class expansionContentMod implements
 
     @Override
     public void receiveEditCards() {
+        BaseMod.addDynamicVariable(new DownfallMagic());
+        BaseMod.addDynamicVariable(new SecondDownfallMagic());
+        BaseMod.addDynamicVariable(new CharacterMagic());
+
         try {
             autoAddCards();
         } catch (URISyntaxException | IllegalAccessException | InstantiationException | NotFoundException | ClassNotFoundException e) {

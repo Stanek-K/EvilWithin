@@ -45,7 +45,7 @@ public class CampfireRestDescriptionPatch {
     }
 
     static {
-        uiStrings = CardCrawlGame.languagePack.getUIString("Gremlin:RestOption");
+        uiStrings = CardCrawlGame.languagePack.getUIString("gremlin:RestOption");
         TEXT = CampfireRestDescriptionPatch.uiStrings.TEXT;
     }
 }

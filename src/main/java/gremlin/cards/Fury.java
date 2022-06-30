@@ -1,13 +1,8 @@
 package gremlin.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
@@ -15,37 +10,22 @@ import static gremlin.GremlinMod.MAD_GREMLIN;
 
 public class Fury extends AbstractGremlinCard {
     public static final String ID = getID("Fury");
-    private static final CardStrings strings = CardCrawlGame.languagePack.getCardStrings(ID);
-    private static final String NAME = strings.NAME;
-    private static final String IMG_PATH = "cards/fury.png";
-
-    private static final AbstractCard.CardType TYPE = AbstractCard.CardType.ATTACK;
-    private static final AbstractCard.CardRarity RARITY = CardRarity.RARE;
-    private static final AbstractCard.CardTarget TARGET = AbstractCard.CardTarget.ENEMY;
 
     private static final int COST = 3;
-    private static final int POWER = 5;
-    private static final int UPGRADE_BONUS = 2;
-
     private int prevDiscount = 0;
 
-    public Fury()
-    {
-        super(ID, NAME, IMG_PATH, COST, strings.DESCRIPTION, TYPE, RARITY, TARGET);
-
-        this.baseDamage = POWER;
+    public Fury() {
+        super(ID, 3, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        this.baseDamage = 5;
         this.tags.add(MAD_GREMLIN);
         setBackgrounds();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage,
-                this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage,
-                this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage,
-                this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
     }
 
     @Override
@@ -89,11 +69,7 @@ public class Fury extends AbstractGremlinCard {
     }
 
     @Override
-    public void upgrade() {
-        if (!this.upgraded)
-        {
-            upgradeName();
-            upgradeDamage(UPGRADE_BONUS);
-        }
+    public void upp() {
+        upgradeDamage(2);
     }
 }

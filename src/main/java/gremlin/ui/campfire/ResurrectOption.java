@@ -109,7 +109,7 @@ public class ResurrectOption extends AbstractCampfireOption {
     }
 
     static {
-        uiStrings = CardCrawlGame.languagePack.getUIString("Gremlin:ResurrectOption");
+        uiStrings = CardCrawlGame.languagePack.getUIString("gremlin:ResurrectOption");
         TEXT = ResurrectOption.uiStrings.TEXT;
     }
 }

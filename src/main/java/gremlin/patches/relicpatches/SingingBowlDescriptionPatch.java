@@ -13,7 +13,7 @@ import gremlin.characters.GremlinCharacter;
         method="getUpdatedDescription"
 )
 public class SingingBowlDescriptionPatch {
-    private static final RelicStrings strings = CardCrawlGame.languagePack.getRelicStrings("Gremlin:PatchFixes");
+    private static final RelicStrings strings = CardCrawlGame.languagePack.getRelicStrings("gremlin:PatchFixes");
 
     public static SpireReturn<String> Prefix(SingingBowl __instance){
         if(AbstractDungeon.player instanceof GremlinCharacter){

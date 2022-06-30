@@ -1,6 +1,5 @@
 package gremlin.potions;
 
-import basemod.abstracts.CustomPotion;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -15,12 +14,12 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import gremlin.orbs.MadGremlin;
 import gremlin.orbs.ShieldGremlin;
 import gremlin.orbs.SneakyGremlin;
-import gremlin.powers.ModifiedLoseStrengthPower;
 import gremlin.powers.WizPower;
 
 public class GremlinPotion extends AbstractPotion {
@@ -54,7 +53,7 @@ public class GremlinPotion extends AbstractPotion {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p,
                 new StrengthPower(p, MadGremlin.STRENGTH * this.potency)));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p,
-                new ModifiedLoseStrengthPower(p, MadGremlin.STRENGTH * this.potency)));
+                new LoseStrengthPower(p, MadGremlin.STRENGTH * this.potency)));
 
         for (int i = 0; i < this.potency; i++) {
             AbstractDungeon.actionManager.addToBottom(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, ShieldGremlin.BLOCK));

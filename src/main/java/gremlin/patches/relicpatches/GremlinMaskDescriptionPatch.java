@@ -13,7 +13,7 @@ import gremlin.characters.GremlinCharacter;
         method="getUpdatedDescription"
 )
 public class GremlinMaskDescriptionPatch {
-    private static final RelicStrings strings = CardCrawlGame.languagePack.getRelicStrings("Gremlin:GremlinMask");
+    private static final RelicStrings strings = CardCrawlGame.languagePack.getRelicStrings("gremlin:GremlinMask");
 
     public static SpireReturn<String> Prefix(GremlinMask __instance){
         if(AbstractDungeon.player instanceof GremlinCharacter){

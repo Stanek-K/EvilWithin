@@ -1,5 +1,5 @@
 {
-  "Gremlin:NobFight": {
+  "gremlin:NobFight": {
     "TEXT": [
       "弱小的地精交出金币!",
       "你， 火大地精。 你现在是我的了。",
@@ -11,14 +11,14 @@
       "我需要做出选择。"
     ]
   },
-  "Gremlin:GremFight": {
+  "gremlin:GremFight": {
     "TEXT": [
       "砸他们的头！",
       "杀死他们！",
       "拿走他们的东西！"
     ]
   },
-  "Gremlin:ResurrectOption": {
+  "gremlin:ResurrectOption": {
     "TEXT": [
       "复活",
       "（自由行动）从死亡中随机召唤一个地精。",
@@ -29,7 +29,7 @@
       "我回来抢东西啦！"
     ]
   },
-  "Gremlin:RestOption": {
+  "gremlin:RestOption": {
     "TEXT": [
       "休息",
       "每个地精回复 100% 你的最大生命 （",
@@ -38,30 +38,30 @@
 	  "如果有地精死了，其中一个将会随机复活。"
     ]
   },
-  "Gremlin:Swap": {
+  "gremlin:Swap": {
     "TEXT": [
       "不能切换！",
       "大块头现在是领队！",
       "大块头永远领队！！！"
     ]
   },
-    "Gremlin:ArtMode": {
+    "gremlin:ArtMode": {
     "TEXT": [
      "地精美术模式",
       "地精将加到卡图上。单纯影响外观。"
     ]
   },
-  "Gremlin:BonusGold": {
+  "gremlin:BonusGold": {
     "TEXT": [
        " 金币（额外）"
     ]
   },
-  "Gremlin:MakeEchoAction": {
+  "gremlin:MakeEchoAction": {
     "TEXT": [
       "回响："
     ]
   },
-  "Gremlin:EventReplacementStrings": {
+  "gremlin:EventReplacementStrings": {
     "TEXT": [
       "#r失去 #r",
       " #r点生命。",

@@ -5,10 +5,10 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.GremlinMask;
 import gremlin.characters.GremlinCharacter;
-import gremlin.powers.ModifiedLoseStrengthPower;
 
 @SpirePatch(
         clz= GremlinMask.class,
@@ -24,7 +24,7 @@ public class GremlinMaskPatch {
                             new StrengthPower(AbstractDungeon.player, 1), 1));
             AbstractDungeon.actionManager.addToBottom(
                     new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player,
-                        new ModifiedLoseStrengthPower(AbstractDungeon.player, 1), 1));
+                        new LoseStrengthPower(AbstractDungeon.player, 1), 1));
             return SpireReturn.Return(null);
         }
         return SpireReturn.Continue();

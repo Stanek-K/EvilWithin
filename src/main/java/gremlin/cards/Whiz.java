@@ -1,11 +1,6 @@
 package gremlin.cards;
 
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gremlin.powers.MakingMagicPower;
 import gremlin.powers.MakingMoreMagicPower;
@@ -15,70 +10,38 @@ import static gremlin.GremlinMod.WIZARD_GREMLIN;
 
 public class Whiz extends AbstractGremlinCard {
     public static final String ID = getID("Whiz");
-    private static final CardStrings strings = CardCrawlGame.languagePack.getCardStrings(ID);
-    private static final String NAME = strings.NAME;
-    private static final String IMG_PATH = "cards/whiz.png";
 
-    private static final AbstractCard.CardType TYPE = AbstractCard.CardType.SKILL;
-    private static final AbstractCard.CardRarity RARITY = CardRarity.UNCOMMON;
-    private static final AbstractCard.CardTarget TARGET = AbstractCard.CardTarget.SELF;
+    private final boolean real;
 
-    private static final int COST = 1;
-    private static final int MAGIC = 1;
-    private static final int UPGRADE_BONUS = 1;
-
-    private boolean real = true;
-
-    public Whiz()
-    {
-        super(ID, NAME, IMG_PATH, COST, strings.DESCRIPTION, TYPE, RARITY, TARGET);
-
-        this.baseMagicNumber = MAGIC;
-        this.magicNumber = baseMagicNumber;
-
-        this.exhaust = true;
-        this.cardsToPreview = new Bang(false);
-        this.tags.add(WIZARD_GREMLIN);
-        setBackgrounds();
+    public Whiz() {
+        this(true);
     }
 
-    public Whiz(boolean real)
-    {
-        super(ID, NAME, IMG_PATH, COST, strings.DESCRIPTION, TYPE, RARITY, TARGET);
-
-        this.baseMagicNumber = MAGIC;
-        this.magicNumber = baseMagicNumber;
-
+    public Whiz(boolean real) {
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        this.baseMagicNumber = this.magicNumber = 1;
         this.exhaust = true;
         this.real = real;
         this.tags.add(WIZARD_GREMLIN);
         setBackgrounds();
+        if (this.real)
+            this.cardsToPreview = new Bang(false);
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m)
-    {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p,
-                new WizPower(p, this.magicNumber), this.magicNumber));
-        if(upgraded){
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p,
-                    new MakingMoreMagicPower(p, 1), 1));
-        } else {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p,
-                    new MakingMagicPower(p, 1), 1));
-        }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        applyToSelf(new WizPower(p, this.magicNumber));
+        if(upgraded)
+            applyToSelf(new MakingMoreMagicPower(p, 1));
+        else
+            applyToSelf(new MakingMagicPower(p, 1));
     }
 
-    public void upgrade()
-    {
-        if (!this.upgraded)
-        {
-            upgradeName();
-            upgradeMagicNumber(UPGRADE_BONUS);
-            this.rawDescription = strings.UPGRADE_DESCRIPTION;
-            initializeDescription();
-            if(real) {
-                this.cardsToPreview.upgrade();
-            }
+    public void upp() {
+        upgradeMagicNumber(1);
+        this.rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
+        if (real) {
+            this.cardsToPreview.upgrade();
         }
     }
 }

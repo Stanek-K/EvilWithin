@@ -1,12 +1,12 @@
 {
-  "Gremlin:ImpeccablePecs": {
+  "gremlin:ImpeccablePecs": {
     "NAME": "完美胸肌",
     "FLAVOR": "完美！",
     "DESCRIPTIONS": [
       "每当你获得 #y力量 时，获得等量 #y临时生命 。每场战斗开始时获得 #b1 点 #y力量 。"
     ]
   },
-  "Gremlin:FragmentationGrenade": {
+  "gremlin:FragmentationGrenade": {
     "NAME": "破片手雷",
     "FLAVOR": "没人敢问这玩意地精到底是从哪里搞来的。",
     "DESCRIPTIONS": [
@@ -14,7 +14,7 @@
       " 点。"
     ]
   },
-  "Gremlin:GremlinBomb": {
+  "gremlin:GremlinBomb": {
     "NAME": "地精炸弹",
     "FLAVOR": "地精有察觉危险的能力。 有时这能让他们劫后余生。",
     "DESCRIPTIONS": [
@@ -22,21 +22,21 @@
       " 点伤害。"
     ]
   },
-  "Gremlin:GremlinGravestone": {
+  "gremlin:GremlinGravestone": {
     "NAME": "地精墓碑",
     "FLAVOR": "地精死后去了哪里呢？",
     "DESCRIPTIONS": [
       "死亡的地精能在休息处复活（自由行动）。"
     ]
   },
-  "Gremlin:GremlinKnob": {
+  "gremlin:GremlinKnob": {
     "NAME": "首领之角",
     "FLAVOR": "在地精小队这种，谁有这个角，谁就是首领。直到这玩意下一次被人偷走。",
     "DESCRIPTIONS": [
       "每场战斗开始时，获得 [E] 并抽 #b1 张牌。 NL #ygremlin:切换 至下只地精。"
     ]
   },
-  "Gremlin:GremlinKnobUpgrade": {
+  "gremlin:GremlinKnobUpgrade": {
     "NAME": "首领之冠",
     "FLAVOR": "标志越华丽，越容易被偷走。",
     "DESCRIPTIONS": [
@@ -44,14 +44,14 @@
       " 。 NL 每回合首次洗牌时，获得 [E] 并抽 #b1 张牌。 #ygremlin:切换 至下只地精。"
     ]
   },
-  "Gremlin:GremlinMask": {
+  "gremlin:GremlinMask": {
     "NAME": "地精面具",
     "FLAVOR": "地精暴民地位的标志。",
     "DESCRIPTIONS": [
       "每场战斗开始时获得 #b1 点 #y临时 #y力量 。"
     ]
   },
-  "Gremlin:LeaderVoucher": {
+  "gremlin:LeaderVoucher": {
     "NAME": "领头代付",
     "FLAVOR": "欠一只地精",
     "DESCRIPTIONS": [
@@ -63,14 +63,14 @@
       " NL （ #r卑鄙地精 ）"
     ]
   },
-  "Gremlin:MagicalMallet": {
+  "gremlin:MagicalMallet": {
     "NAME": "魔槌",
     "FLAVOR": "手柄翻倍加固。",
     "DESCRIPTIONS": [
       "每当你给予 #y虚弱 时，获得 #b1 点 #y法力 。每回合最多 #b3 次。"
     ]
   },
-  "Gremlin:PricklyShields": {
+  "gremlin:PricklyShields": {
     "NAME": "多刺盾牌",
     "FLAVOR": "地精可以找到任何残片充当武器和铠甲。有时候两者都可以。",
     "DESCRIPTIONS": [
@@ -78,7 +78,7 @@
       " 点伤害。"
     ]
   },
-  "Gremlin:ShortStature": {
+  "gremlin:ShortStature": {
     "NAME": "小个子",
     "FLAVOR": "身材小才不容易引起注意。",
     "DESCRIPTIONS": [
@@ -86,7 +86,7 @@
       "本场战斗已触发。"
     ]
   },
-  "Gremlin:StolenMerchandise": {
+  "gremlin:StolenMerchandise": {
     "NAME": "被盗商品",
     "FLAVOR": "“诅咒你，可恶的小偷！”",
     "DESCRIPTIONS": [
@@ -97,35 +97,35 @@
       "我劝年轻地精们，好自为之。"
     ]
   },
-  "Gremlin:SupplyScroll": {
+  "gremlin:SupplyScroll": {
     "NAME": "支援卷轴",
     "FLAVOR": "一份十分详尽的关于地精暴徒武器装甲素材的物品清单。",
     "DESCRIPTIONS": [
       "第三回合开始时， NL 将 #b1 张 #y支援卷轴 加入手牌。"
     ]
   },
-  "Gremlin:TagTeamwork": {
+  "gremlin:TagTeamwork": {
     "NAME": "团队协作",
     "FLAVOR": "团队合作让梦想成真。",
     "DESCRIPTIONS": [
       "抽到 #y配合 时，再抽 #b1 张牌。 NL 拾起时，将 #b2 张 #y配合 加入牌组。"
     ]
   },
-  "Gremlin:WizardHat": {
+  "gremlin:WizardHat": {
     "NAME": "巫师帽",
     "FLAVOR": "配套的长袍早就不知道什么时候被偷了。",
     "DESCRIPTIONS": [
       "使用 #ygremlin:法力 时，随机失去 #b1 种 #r负面效果 。"
     ]
   },
-  "Gremlin:WizardStaff": {
+  "gremlin:WizardStaff": {
     "NAME": "法师杖",
     "FLAVOR": "每个地精法师的骄傲和快乐，敌方法师经常想偷走这根法杖。",
     "DESCRIPTIONS": [
       " #ygremlin:法力 效果额外造成 #b7 点伤害 。"
     ]
   },
-  "Gremlin:WoundPoker": {
+  "gremlin:WoundPoker": {
     "NAME": "烧火棍",
     "FLAVOR": "我这样做会疼吗？。",
     "DESCRIPTIONS": [
@@ -133,7 +133,7 @@
       " 点伤害。"
     ]
   },
-  "Gremlin:PatchFixes": {
+  "gremlin:PatchFixes": {
     "NAME": "",
     "FLAVOR": "",
     "DESCRIPTIONS": [

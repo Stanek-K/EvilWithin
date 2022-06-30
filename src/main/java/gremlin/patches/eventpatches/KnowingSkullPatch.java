@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import gremlin.characters.GremlinCharacter;
 
 public class KnowingSkullPatch {
-    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("Gremlin:KnowingSkull");
+    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("gremlin:KnowingSkull");
 
     @SpirePatch(clz = KnowingSkull.class, method = SpirePatch.CONSTRUCTOR)
     public static class SkullConstructior

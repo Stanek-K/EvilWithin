@@ -1,14 +1,9 @@
 package gremlin.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gremlin.actions.ShivPerCardPlayedAction;
 
@@ -16,22 +11,10 @@ import static gremlin.GremlinMod.SNEAKY_GREMLIN;
 
 public class SecondVolley extends AbstractGremlinCard {
     public static final String ID = getID("SecondVolley");
-    private static final CardStrings strings = CardCrawlGame.languagePack.getCardStrings(ID);
-    private static final String NAME = strings.NAME;
-    private static final String IMG_PATH = "cards/second_volley.png";
 
-    private static final AbstractCard.CardType TYPE = AbstractCard.CardType.ATTACK;
-    private static final AbstractCard.CardRarity RARITY = CardRarity.RARE;
-    private static final AbstractCard.CardTarget TARGET = AbstractCard.CardTarget.ENEMY;
-
-    private static final int COST = 2;
-    private static final int POWER = 6;
-
-    public SecondVolley()
-    {
-        super(ID, NAME, IMG_PATH, COST, strings.DESCRIPTION, TYPE, RARITY, TARGET);
-
-        this.baseDamage = POWER;
+    public SecondVolley() {
+        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        this.baseDamage = 6;
         this.cardsToPreview = new Shiv();
         this.tags.add(SNEAKY_GREMLIN);
         setBackgrounds();
@@ -39,14 +22,13 @@ public class SecondVolley extends AbstractGremlinCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage,
-                this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-        AbstractDungeon.actionManager.addToBottom(new ShivPerCardPlayedAction(upgraded));
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        atb(new ShivPerCardPlayedAction(upgraded));
         if(upgraded){
-            this.rawDescription = strings.UPGRADE_DESCRIPTION;
+            this.rawDescription = UPGRADE_DESCRIPTION;
         }
         else {
-            this.rawDescription = strings.DESCRIPTION;
+            this.rawDescription = DESCRIPTION;
         }
         this.initializeDescription();
     }
@@ -56,17 +38,17 @@ public class SecondVolley extends AbstractGremlinCard {
         super.applyPowers();
         int count = AbstractDungeon.actionManager.cardsPlayedThisTurn.size();
         if(upgraded){
-            this.rawDescription = strings.UPGRADE_DESCRIPTION;
+            this.rawDescription = UPGRADE_DESCRIPTION;
         }
         else {
-            this.rawDescription = strings.DESCRIPTION;
+            this.rawDescription = DESCRIPTION;
         }
-        this.rawDescription = this.rawDescription + strings.EXTENDED_DESCRIPTION[0] + count;
+        this.rawDescription = this.rawDescription + EXTENDED_DESCRIPTION[0] + count;
         if (count == 1) {
-            this.rawDescription += strings.EXTENDED_DESCRIPTION[1];
+            this.rawDescription += EXTENDED_DESCRIPTION[1];
         }
         else {
-            this.rawDescription += strings.EXTENDED_DESCRIPTION[2];
+            this.rawDescription += EXTENDED_DESCRIPTION[2];
         }
         this.initializeDescription();
     }
@@ -74,22 +56,18 @@ public class SecondVolley extends AbstractGremlinCard {
     @Override
     public void onMoveToDiscard() {
         if(upgraded){
-            this.rawDescription = strings.UPGRADE_DESCRIPTION;
+            this.rawDescription = UPGRADE_DESCRIPTION;
         }
         else {
-            this.rawDescription = strings.DESCRIPTION;
+            this.rawDescription = DESCRIPTION;
         }
         this.initializeDescription();
     }
 
     @Override
-    public void upgrade() {
-        if (!this.upgraded)
-        {
-            upgradeName();
-            this.rawDescription = strings.UPGRADE_DESCRIPTION;
-            initializeDescription();
-            this.cardsToPreview.upgrade();
-        }
+    public void upp() {
+        this.rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
+        this.cardsToPreview.upgrade();
     }
 }

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import downfall.cards.curses.Scatterbrained;
 
 public class ScrapOozeGremlins extends AbstractImageEvent {
-    public static final String ID = "Gremlin:ScrapOozeReplacement";
+    public static final String ID = "gremlin:ScrapOozeReplacement";
     private static final EventStrings eventStrings;
     public static final String NAME;
     public static final String[] DESCRIPTIONS;
@@ -94,7 +94,7 @@ public class ScrapOozeGremlins extends AbstractImageEvent {
     }
 
     static {
-        eventStrings = CardCrawlGame.languagePack.getEventString("Gremlin:ScrapOozeReplacement");
+        eventStrings = CardCrawlGame.languagePack.getEventString("gremlin:ScrapOozeReplacement");
         NAME = eventStrings.NAME;
         DESCRIPTIONS = eventStrings.DESCRIPTIONS;
         OPTIONS = eventStrings.OPTIONS;

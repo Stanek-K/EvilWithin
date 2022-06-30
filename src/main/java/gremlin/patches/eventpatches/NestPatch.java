@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import gremlin.characters.GremlinCharacter;
 
 public class NestPatch {
-    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("Gremlin:Nest");
+    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("gremlin:Nest");
     private static final int DMG = 2;
 
     @SpirePatch(clz = Nest.class, method = "buttonEffect")

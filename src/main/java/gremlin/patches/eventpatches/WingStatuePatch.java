@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import gremlin.characters.GremlinCharacter;
 
 public class WingStatuePatch {
-    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("Gremlin:WingStatue");
+    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("gremlin:WingStatue");
 
     @SpirePatch(clz = GoldenWing.class, method = SpirePatch.CONSTRUCTOR)
     public static class WingConstructior

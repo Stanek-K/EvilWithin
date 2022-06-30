@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import gremlin.characters.GremlinCharacter;
 
 public class SensoryStonePatch {
-    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("Gremlin:SensoryStone");
+    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("gremlin:SensoryStone");
     private static final int DMG_A = 1;
     private static final int DMG_B = 2;
 

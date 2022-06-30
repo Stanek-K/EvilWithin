@@ -13,7 +13,7 @@ import java.lang.reflect.Field;
 @SpirePatch(clz = GremlinMatchGame.class, method = SpirePatch.CONSTRUCTOR)
 public class MatchGameConstructorPatch
 {
-    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("Gremlin:MatchingGame");
+    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("gremlin:MatchingGame");
     private static final String TEXT = strings.DESCRIPTIONS[2];
 
     public static void Postfix(GremlinMatchGame __instance) {

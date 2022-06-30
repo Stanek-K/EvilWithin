@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import gremlin.characters.GremlinCharacter;
 
 public class WorldOfGoopPatch {
-    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("Gremlin:WorldOfGoop");
+    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("gremlin:WorldOfGoop");
 
     @SpirePatch(clz = GoopPuddle.class, method = SpirePatch.CONSTRUCTOR)
     public static class GoopConstructior

@@ -94,8 +94,8 @@ public class GremlinCharacter extends CustomPlayer {
     private boolean cowering = false;
     private int enemyGremTalk = 0;
 
-    private static String[] NOBUITEXT = CardCrawlGame.languagePack.getUIString("Gremlin:NobFight").TEXT;
-    private static String[] GREMUITEXT = CardCrawlGame.languagePack.getUIString("Gremlin:GremFight").TEXT;
+    private static String[] NOBUITEXT = CardCrawlGame.languagePack.getUIString("gremlin:NobFight").TEXT;
+    private static String[] GREMUITEXT = CardCrawlGame.languagePack.getUIString("gremlin:GremFight").TEXT;
 
     public GremlinCharacter(String name) {
         super(name, GremlinEnum.GREMLIN, orbTextures,
@@ -161,24 +161,24 @@ public class GremlinCharacter extends CustomPlayer {
     @Override
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add("Gremlin:Strike");
-        retVal.add("Gremlin:Strike");
-        retVal.add("Gremlin:Strike");
-        retVal.add("Gremlin:Strike");
-        retVal.add("Gremlin:Defend");
-        retVal.add("Gremlin:Defend");
-        retVal.add("Gremlin:Defend");
-        retVal.add("Gremlin:Defend");
-        retVal.add("Gremlin:TagTeam");
-        retVal.add("Gremlin:GremlinDance");
+        retVal.add("gremlin:Strike");
+        retVal.add("gremlin:Strike");
+        retVal.add("gremlin:Strike");
+        retVal.add("gremlin:Strike");
+        retVal.add("gremlin:Defend");
+        retVal.add("gremlin:Defend");
+        retVal.add("gremlin:Defend");
+        retVal.add("gremlin:Defend");
+        retVal.add("gremlin:TagTeam");
+        retVal.add("gremlin:GremlinDance");
         return retVal;
     }
 
     @Override
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add("Gremlin:GremlinKnob");
-        UnlockTracker.markRelicAsSeen("Gremlin:GremlinKnob");
+        retVal.add("gremlin:GremlinKnob");
+        UnlockTracker.markRelicAsSeen("gremlin:GremlinKnob");
         return retVal;
     }
 

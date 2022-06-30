@@ -12,7 +12,7 @@ import gremlin.characters.GremlinCharacter;
 @SpirePatch(clz = GremlinWheelGame.class, method = "preApplyResult")
 public class WheelGameOptionPatch
 {
-    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("Gremlin:WheelGame");
+    private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("gremlin:WheelGame");
     private static final String TEXT = strings.OPTIONS[0];
 
     @SpireInsertPatch(
