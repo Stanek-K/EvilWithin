@@ -37,12 +37,8 @@ public class SlimeTackle extends AbstractExpansionCard {
 
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeDamage(UPGRADE_DAMAGE);
-        }
+    public void upp() {
+        upgradeDamage(UPGRADE_DAMAGE);
     }
-
 }
 

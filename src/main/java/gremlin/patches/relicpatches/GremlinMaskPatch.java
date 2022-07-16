@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.GremlinMask;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 @SpirePatch(
         clz= GremlinMask.class,

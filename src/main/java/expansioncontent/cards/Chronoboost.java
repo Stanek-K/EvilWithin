@@ -6,14 +6,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import expansioncontent.expansionContentMod;
-import expansioncontent.powers.ChronoBoostPlusPower;
 import expansioncontent.powers.ChronoBoostPower;
 
 
 public class Chronoboost extends AbstractExpansionCard {
     public final static String ID = makeID("Chronoboost");
-
-    private static final int MAGIC = 1;
 
     public Chronoboost() {
         super(ID, 2, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
@@ -28,14 +25,10 @@ public class Chronoboost extends AbstractExpansionCard {
         atb(new ApplyPowerAction(p, p, new ChronoBoostPower(p, p, 1), 1));
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
-        }
+    public void upp() {
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
-
 }
 
 

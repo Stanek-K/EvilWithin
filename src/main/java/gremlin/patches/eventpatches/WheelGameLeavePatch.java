@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.events.shrines.GremlinWheelGame;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 @SpirePatch(clz = GremlinWheelGame.class, method = "buttonEffect")
 public class WheelGameLeavePatch

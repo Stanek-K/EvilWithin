@@ -2,14 +2,15 @@ package gremlin.patches;
 
 import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import gremlin.GremlinHelper;
 import gremlin.GremlinMod;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
-public class GremlinModSaveState implements CustomSavable<GremlinMobState> {
+public class GremlinModSaveState implements CustomSavable<GremlinHelper> {
     @Override
-    public GremlinMobState onSave() {
+    public GremlinHelper onSave() {
         if(AbstractDungeon.player instanceof GremlinCharacter) {
-            GremlinMobState state = ((GremlinCharacter)(AbstractDungeon.player)).mobState;
+            GremlinHelper state = ((GremlinCharacter)(AbstractDungeon.player)).mobState;
             GremlinMod.logger.info("Saving: " + state.toString());
             return state;
         }
@@ -17,7 +18,7 @@ public class GremlinModSaveState implements CustomSavable<GremlinMobState> {
     }
 
     @Override
-    public void onLoad(GremlinMobState gremlinMobState) {
+    public void onLoad(GremlinHelper gremlinMobState) {
         if(AbstractDungeon.player instanceof GremlinCharacter) {
             GremlinMod.logger.info("Loading: " + gremlinMobState.toString());
             ((GremlinCharacter)(AbstractDungeon.player)).mobState = gremlinMobState;

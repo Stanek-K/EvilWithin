@@ -15,7 +15,7 @@ public class ShowStopper extends AbstractGremlinCard {
 
     public ShowStopper() {
         super(ID, 0, CardType.ATTACK, CardRarity.RARE, CardTarget.ALL_ENEMY);
-        this.baseDamage = 0;
+        this.baseDamage = 5;
         this.baseMagicNumber = this.magicNumber = 5;
         this.baseDownfallMagic = this.downfallMagic = 7;
         this.isMultiDamage = true;

@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import gremlin.cards.Bellow;
 import gremlin.cards.Rush;
 import gremlin.cards.SkullBash;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 public class GremlinNobPower extends GremlinPower implements OnLoseTempHpPower {
     public static final String POWER_ID = getID("GremlinNob");

@@ -8,13 +8,17 @@ public class Patsy extends AbstractGremlinCard {
     public static final String ID = getID("Patsy");
 
     public Patsy() {
-        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 0, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
         this.baseBlock = 4;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
-        atb(new GremlinSwapAction());
+    }
+
+    @Override
+    public void triggerWhenDrawn() {
+        att(new GremlinSwapAction());
     }
 
     public void upp() {

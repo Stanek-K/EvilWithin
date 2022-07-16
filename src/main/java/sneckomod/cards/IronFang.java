@@ -19,7 +19,7 @@ public class IronFang extends AbstractSneckoCard {
         baseDamage = 8;
         baseBlock = 8;
         baseMagicNumber = magicNumber = 3;
-        baseSilly = silly = 3;
+        baseDownfallMagic = downfallMagic = 3;
         tags.add(SneckoMod.RNG);
     }
 
@@ -37,12 +37,12 @@ public class IronFang extends AbstractSneckoCard {
 
     @Override
     public void applyPowers() {
-        int CURRENT_SILLY = baseSilly;
+        int CURRENT_SILLY = baseDownfallMagic;
         int CURRENT_DAMAGE = baseDamage;
         baseDamage = CURRENT_SILLY;
         super.applyPowers();
-        silly = damage;
-        isSillyModified = damage != baseDamage;
+        downfallMagic = damage;
+        isDownfallModified = damage != baseDamage;
 
         baseDamage = CURRENT_DAMAGE;
         super.applyPowers();
@@ -50,12 +50,12 @@ public class IronFang extends AbstractSneckoCard {
 
     @Override
     public void calculateCardDamage(final AbstractMonster m) {
-        int CURRENT_SILLY = baseSilly;
+        int CURRENT_SILLY = baseDownfallMagic;
         int CURRENT_DAMAGE = baseDamage;
         baseDamage = CURRENT_SILLY;
         super.calculateCardDamage(m);
-        silly = damage;
-        isSillyModified = damage != baseDamage;
+        downfallMagic = damage;
+        isDownfallModified = damage != baseDamage;
 
         baseDamage = CURRENT_DAMAGE;
         super.calculateCardDamage(m);
@@ -63,14 +63,14 @@ public class IronFang extends AbstractSneckoCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         atb(new VFXAction(new BiteEffect(m.hb.cX, m.hb.cY), 0.3F));// 117
-        atb(new NoApplyRandomDamageAction(m, silly, damage, 1, AbstractGameAction.AttackEffect.NONE, this, DamageInfo.DamageType.NORMAL));
+        atb(new NoApplyRandomDamageAction(m, downfallMagic, damage, 1, AbstractGameAction.AttackEffect.NONE, this, DamageInfo.DamageType.NORMAL));
         atb(new GainBlockAction(p, getRandomNum(magicNumber, block, this)));
     }
 
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeSilly(2);
+            upgradeDownfall(2);
             upgradeDamage(2);
             upgradeMagicNumber(2);
             upgradeBlock(2);

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.relics.Strawberry;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 @SpirePatch(
         clz= Strawberry.class,

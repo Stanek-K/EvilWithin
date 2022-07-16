@@ -1,7 +1,6 @@
 package gremlin.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -22,17 +21,11 @@ public class TwistTheKnife extends AbstractGremlinCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        AbstractCard s = new Shiv();
-        if(this.upgraded)
-            s.upgrade();
-        makeInHand(s);
+        makeInHand(new Shiv());
     }
 
     @Override
     public void upp() {
-        upgradeDamage(1);
-        this.rawDescription = UPGRADE_DESCRIPTION;
-        initializeDescription();
-        this.cardsToPreview.upgrade();
+        upgradeDamage(3);
     }
 }

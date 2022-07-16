@@ -83,9 +83,5 @@ public class KnowingSkullWish extends AbstractExpansionCard implements OctopusCa
         }
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-        }
-    }
+    public void upp() {}
 }

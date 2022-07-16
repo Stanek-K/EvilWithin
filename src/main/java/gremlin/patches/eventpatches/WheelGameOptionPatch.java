@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.shrines.GremlinWheelGame;
 import com.megacrit.cardcrawl.localization.EventStrings;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 @SpirePatch(clz = GremlinWheelGame.class, method = "preApplyResult")
 public class WheelGameOptionPatch

@@ -3,7 +3,7 @@
     "NAME": "Impeccable Pecs",
     "FLAVOR": "Glorious.",
     "DESCRIPTIONS": [
-      "Whenever you gain #yStrength, gain an equal amount of #yTemporary_HP. NL Start each combat with #b1 #yStrength."
+      "Whenever you are attacked, gain #b1 temporary #yStrength."
     ]
   },
   "gremlin:FragmentationGrenade": {
@@ -31,7 +31,8 @@
     "NAME": "Mob Leader's Staff",
     "FLAVOR": "Among gremlin mobs, the one with the best horn maintains complete command over the troupe, until another one manages to steal it.",
     "DESCRIPTIONS": [
-      "At the start of each combat, gain [E] , draw #b1 card, and #ySwap to the next Gremlin."
+      "At the start of each combat, gain #b",
+      " #ygremlin:Temp_HP."
     ]
   },
   "gremlin:GremlinKnobUpgrade": {
@@ -46,7 +47,7 @@
     "NAME": "Gremlin Mask",
     "FLAVOR": "A sign of status among the Gremlin Mobs.",
     "DESCRIPTIONS": [
-      "Start each combat with #b1 #ytemporary #yStrength."
+      "Start each combat with #b1 temporary #yStrength."
     ]
   },
   "gremlin:LeaderVoucher": {
@@ -119,7 +120,7 @@
     "NAME": "Wizard Staff",
     "FLAVOR": "The pride and joy of every Gremlin Wizard, this staff is a frequent target of theft by rival mobs.",
     "DESCRIPTIONS": [
-      "#yWiz deals #b7 additional damage."
+      "Your Attacks deal additional damage equal to amount of #yWiz you have."
     ]
   },
   "gremlin:WoundPoker": {

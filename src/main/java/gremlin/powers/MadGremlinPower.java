@@ -1,13 +1,12 @@
 package gremlin.powers;
 
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 public class MadGremlinPower extends GremlinPower {
     static final String POWER_ID = getID("MadGremlin");
@@ -26,14 +25,10 @@ public class MadGremlinPower extends GremlinPower {
     }
 
     @Override
-    public int onAttacked(final DamageInfo info, final int damageAmount) {
-        if((AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) &&
-                (info.owner != null) && (info.type != DamageInfo.DamageType.HP_LOSS) && (info.type != DamageInfo.DamageType.THORNS)) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(owner, owner,
-                    new StrengthPower(owner, this.pot), this.pot));
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(owner, owner,
-                    new LoseStrengthPower(owner, this.pot), this.pot));
+    public void onUseCard(final AbstractCard card, final UseCardAction action) {
+        if (card.type == AbstractCard.CardType.ATTACK) {
+            addToBot(new ApplyPowerAction(owner, owner, new StrengthPower(owner, this.pot), this.pot));
+            addToBot(new ApplyPowerAction(owner, owner,  new LoseStrengthPower(owner, this.pot), this.pot));
         }
-        return damageAmount;
     }
 }

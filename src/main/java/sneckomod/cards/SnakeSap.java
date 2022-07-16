@@ -22,7 +22,7 @@ public class SnakeSap extends AbstractSneckoCard {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
         baseDamage = DAMAGE;
         baseMagicNumber = magicNumber = MAGIC;
-        baseSilly = silly = 1;
+        baseDownfallMagic = 1;
         exhaust = true;
         tags.add(SneckoMod.SNEKPROOF);
         tags.add(SneckoMod.RNG);
@@ -30,12 +30,12 @@ public class SnakeSap extends AbstractSneckoCard {
 
     @Override
     public void applyPowers() {
-        int CURRENT_SILLY = baseSilly;
+        int CURRENT_SILLY = baseDownfallMagic;
         int CURRENT_DAMAGE = baseDamage;
         baseDamage = CURRENT_SILLY;
         super.applyPowers();
-        silly = damage;
-        isSillyModified = damage != baseDamage;
+        downfallMagic = damage;
+        isDownfallModified = damage != baseDamage;
 
         baseDamage = CURRENT_DAMAGE;
         super.applyPowers();
@@ -43,19 +43,19 @@ public class SnakeSap extends AbstractSneckoCard {
 
     @Override
     public void calculateCardDamage(final AbstractMonster m) {
-        int CURRENT_SILLY = baseSilly;
+        int CURRENT_SILLY = baseDownfallMagic;
         int CURRENT_DAMAGE = baseDamage;
         baseDamage = CURRENT_SILLY;
         super.calculateCardDamage(m);
-        silly = damage;
-        isSillyModified = damage != baseDamage;
+        downfallMagic = damage;
+        isDownfallModified = damage != baseDamage;
 
         baseDamage = CURRENT_DAMAGE;
         super.calculateCardDamage(m);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new NoApplyRandomDamageAction(m, silly, damage, 1, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, this, DamageInfo.DamageType.NORMAL));
+        atb(new NoApplyRandomDamageAction(m, downfallMagic, damage, 1, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, this, DamageInfo.DamageType.NORMAL));
         int x = getRandomNum(1, magicNumber, this);
         if (x > 0)
             atb(new GainEnergyAction(x));

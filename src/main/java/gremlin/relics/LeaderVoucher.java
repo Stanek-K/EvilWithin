@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 public class LeaderVoucher extends AbstractGremlinRelic {
     public static final String ID = getID("LeaderVoucher");

@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.exordium.GoopPuddle;
 import com.megacrit.cardcrawl.localization.EventStrings;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 public class WorldOfGoopPatch {
     private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("gremlin:WorldOfGoop");

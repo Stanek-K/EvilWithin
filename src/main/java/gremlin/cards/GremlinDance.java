@@ -8,9 +8,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 import gremlin.powers.WizPower;
 import sneckomod.SneckoMod;
 
@@ -26,9 +25,13 @@ public class GremlinDance extends AbstractGremlinCard {
     private int previewIndex;
     private ArrayList<AbstractCard> cardsList = new ArrayList<>();
 
+    public static int WEAK_AMOUNT = 1;
+    public static int WIZ_AMOUNT = 2;
+    public static int DRAW_AMOUNT = 2;
+
     public GremlinDance() {
         super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
-        this.baseDamage = 6;
+        this.baseDamage = 5;
         this.baseBlock = 4;
         this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
@@ -45,7 +48,7 @@ public class GremlinDance extends AbstractGremlinCard {
         super(ID, 1, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
 
-        this.baseDamage = 6;
+        this.baseDamage = 5;
         this.baseBlock = 4;
         this.baseMagicNumber = this.magicNumber = 2;
         this.gremlin = gremlin;
@@ -78,10 +81,7 @@ public class GremlinDance extends AbstractGremlinCard {
         }
 
         if(gremlin.equals("fat")){
-            applyToEnemy(m, new StrengthPower(m, -this.magicNumber));
-            if (m != null && !m.hasPower("Artifact")) {
-                applyToEnemy(m, new GainStrengthPower(m, this.magicNumber));
-            }
+            applyToEnemy(m, autoWeak(m, this.downfallMagic));
         }
 
         if(gremlin.equals("sneak")){
@@ -119,8 +119,7 @@ public class GremlinDance extends AbstractGremlinCard {
         }
     }
 
-    public AbstractCard makeCopy()
-    {
+    public AbstractCard makeCopy() {
         if (this.gremlin.equals("")) {
             return new GremlinDance();
         } else {
@@ -147,7 +146,6 @@ public class GremlinDance extends AbstractGremlinCard {
                 rawDescription += EXTENDED_DESCRIPTION[6];
                 this.isMultiDamage = false;
                 this.target = CardTarget.ENEMY;
-                this.wizardry = false;
                 this.tags.add(NOB_GREMLIN);
                 setBackgrounds();
             } else {
@@ -160,15 +158,14 @@ public class GremlinDance extends AbstractGremlinCard {
                         rawDescription += EXTENDED_DESCRIPTION[1];
                         this.isMultiDamage = true;
                         this.target = CardTarget.ALL_ENEMY;
-                        this.wizardry = false;
                         this.tags.add(MAD_GREMLIN);
                         setBackgrounds();
                         break;
                     case "fat":
                         rawDescription += EXTENDED_DESCRIPTION[2];
+                        this.baseMagicNumber = this.magicNumber = WEAK_AMOUNT;
                         this.isMultiDamage = false;
                         this.target = CardTarget.ENEMY;
-                        this.wizardry = false;
                         this.tags.add(FAT_GREMLIN);
                         setBackgrounds();
                         break;
@@ -176,23 +173,22 @@ public class GremlinDance extends AbstractGremlinCard {
                         rawDescription += EXTENDED_DESCRIPTION[3];
                         this.isMultiDamage = false;
                         this.target = CardTarget.ENEMY;
-                        this.wizardry = false;
                         this.tags.add(SHIELD_GREMLIN);
                         setBackgrounds();
                         break;
                     case "sneak":
                         rawDescription += EXTENDED_DESCRIPTION[4];
+                        this.baseMagicNumber = this.magicNumber = DRAW_AMOUNT;
                         this.isMultiDamage = false;
                         this.target = CardTarget.ENEMY;
-                        this.wizardry = false;
                         this.tags.add(SNEAKY_GREMLIN);
                         setBackgrounds();
                         break;
                     case "wizard":
                         rawDescription += EXTENDED_DESCRIPTION[5];
+                        this.baseMagicNumber = this.magicNumber = WIZ_AMOUNT;
                         this.isMultiDamage = false;
                         this.target = CardTarget.ENEMY;
-                        this.wizardry = false;
                         this.tags.add(WIZARD_GREMLIN);
                         setBackgrounds();
                         break;

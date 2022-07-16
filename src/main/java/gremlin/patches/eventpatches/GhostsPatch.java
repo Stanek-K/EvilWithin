@@ -5,7 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.colorless.Apparition;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.Ghosts;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 public class GhostsPatch {
     @SpirePatch(clz = Ghosts.class, method = SpirePatch.CONSTRUCTOR)

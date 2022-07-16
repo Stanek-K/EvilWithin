@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.relics.RegalPillow;
 import com.megacrit.cardcrawl.ui.campfire.RestOption;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 @SpirePatch(clz = RestOption.class, method = SpirePatch.CONSTRUCTOR)
 public class CampfireRestDescriptionPatch {

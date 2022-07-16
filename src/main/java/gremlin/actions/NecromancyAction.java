@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import gremlin.GremlinMod;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 import gremlin.orbs.GremlinStandby;
 
 import java.util.ArrayList;

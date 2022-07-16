@@ -26,7 +26,7 @@ import java.util.Iterator;
 import downfall.downfallMod;
 import downfall.events.HeartEvent;
 import downfall.relics.HeartsMalice;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

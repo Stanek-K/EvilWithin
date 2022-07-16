@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import expansioncontent.expansionContentMod;
 import expansioncontent.powers.VexVinciblePower;
 
-import static expansioncontent.expansionContentMod.loadJokeCardImage;
+import static expansioncontent.expansionContentMod.getModID;
 
 public class InvincibleStrength extends AbstractExpansionCard {
     public final static String ID = makeID("InvincibleStrength");
@@ -16,18 +16,15 @@ public class InvincibleStrength extends AbstractExpansionCard {
         this.setBackgroundTexture("expansioncontentResources/images/512/bg_boss_heart.png", "expansioncontentResources/images/1024/bg_boss_heart.png");
 
         tags.add(expansionContentMod.STUDY);
-        loadJokeCardImage(this, "InvincibleStrength.png");
+        loadJokeCardImage(this, getModID(), "InvincibleStrength.png");
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         applyToSelf(new VexVinciblePower(p, 1));
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(1);
-        }
+    public void upp() {
+        upgradeBaseCost(1);
     }
 }
 

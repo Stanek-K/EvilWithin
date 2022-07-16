@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.lastCombatMetricKey;
 

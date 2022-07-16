@@ -1,9 +1,11 @@
 package gremlin.cards;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.unique.LimitBreakAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.FlameAnimationEffect;
 
 import static gremlin.GremlinMod.MAD_GREMLIN;
@@ -13,7 +15,8 @@ public class RageBreak extends AbstractGremlinCard {
 
     public RageBreak() {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        this.baseBlock = 5;
+        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseDownfallMagic = downfallMagic = 2;
         this.exhaust = true;
         this.tags.add(MAD_GREMLIN);
         setBackgrounds();
@@ -21,14 +24,16 @@ public class RageBreak extends AbstractGremlinCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         atb(new VFXAction(new FlameAnimationEffect(p.hb)));
-        if (this.upgraded)
-            blck();
-        atb(new LimitBreakAction());
+        applyToSelf(new StrengthPower(p, this.magicNumber));
+    }
+
+    public void triggerWhenDrawn() {
+        att(new AddTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player, this.downfallMagic));
     }
 
     public void upp() {
-        this.rawDescription = UPGRADE_DESCRIPTION;
-        initializeDescription();
+        upgradeMagicNumber(1);
+        upgradeDownfall(1);
     }
 }
 

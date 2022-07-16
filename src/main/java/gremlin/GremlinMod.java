@@ -32,7 +32,6 @@ import downfall.downfallMod;
 import downfall.patches.BanSharedContentPatch;
 import gremlin.cards.*;
 import gremlin.cards.SharpenBlades;
-import gremlin.characters.GremlinCharacter;
 import gremlin.events.BackToBasicsGremlin;
 import gremlin.events.GremlinTrenchcoat;
 import gremlin.events.ScrapOozeGremlins;
@@ -200,14 +199,14 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
         BaseMod.addCard(new Strike());
         BaseMod.addCard(new Defend());
         BaseMod.addCard(new GremlinDance());
-        BaseMod.addCard(new TagTeam());
+        BaseMod.addCard(new Patsy());
 
         //Common Attacks
         BaseMod.addCard(new CatScratch());
         BaseMod.addCard(new DaggerDance());
+        BaseMod.addCard(new FollowThrough());
         BaseMod.addCard(new Glimmer());
         BaseMod.addCard(new Jeer());
-        BaseMod.addCard(new Pinprick());
         BaseMod.addCard(new PourSalt());
         BaseMod.addCard(new Presto());
         BaseMod.addCard(new Pretaliation());
@@ -220,10 +219,10 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
         BaseMod.addCard(new Changeo());
         BaseMod.addCard(new GlitterGuard());
         BaseMod.addCard(new GremlinArms());
-        BaseMod.addCard(new GremlinMeal());
-        BaseMod.addCard(new Irritability());
-        BaseMod.addCard(new Patsy());
-        BaseMod.addCard(new Tadah());
+        //BaseMod.addCard(new Irritability());
+        BaseMod.addCard(new ShankStone());
+        //BaseMod.addCard(new Tadah());
+        BaseMod.addCard(new TagTeam());
         BaseMod.addCard(new Tricksy());
 
         //Uncommon Attacks
@@ -233,10 +232,9 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
         BaseMod.addCard(new Dazzle());
         BaseMod.addCard(new SleeveOfAces());
         BaseMod.addCard(new FeelTheAudience());
-        BaseMod.addCard(new Flurry());
-        BaseMod.addCard(new FollowThrough());
+        //BaseMod.addCard(new Flurry());
         BaseMod.addCard(new GremlinOffensive());
-        BaseMod.addCard(new GremlinToss());
+        //BaseMod.addCard(new GremlinToss());
         BaseMod.addCard(new IrksomeBlow());
         BaseMod.addCard(new Kablamo());
         BaseMod.addCard(new Pickpocket());
@@ -248,6 +246,7 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
         BaseMod.addCard(new ArmsTheft());
         BaseMod.addCard(new Astound());
         BaseMod.addCard(new EdibleArmor());
+        BaseMod.addCard(new GremlinMeal());
         BaseMod.addCard(new Mockery());
         BaseMod.addCard(new PartyStick());
         BaseMod.addCard(new RageBreak());
@@ -255,7 +254,6 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
         BaseMod.addCard(new Revel());
         BaseMod.addCard(new Rhythm());
         BaseMod.addCard(new Scatter());
-        BaseMod.addCard(new ShankStone());
         BaseMod.addCard(new SharpenBlades());
         BaseMod.addCard(new ShowOfHands());
         BaseMod.addCard(new Whiz());
@@ -269,7 +267,7 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
         BaseMod.addCard(new Wizardry());
 
         //Rare Attacks
-        BaseMod.addCard(new Exacerbate());
+        //BaseMod.addCard(new Exacerbate());
         BaseMod.addCard(new FlipOut());
         BaseMod.addCard(new Fury());
         BaseMod.addCard(new SecondVolley());
@@ -285,15 +283,12 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
         //Rare Powers
         BaseMod.addCard(new CongaLine());
         BaseMod.addCard(new Encore());
-        BaseMod.addCard(new Nob());
+        //BaseMod.addCard(new Nob());
         BaseMod.addCard(new ShadowShiv());
         BaseMod.addCard(new TargetWeakness());
         BaseMod.addCard(new Unforgiving());
 
         //Special
-//        BaseMod.addCard(new Bellow());
-//        BaseMod.addCard(new Rush());
-//        BaseMod.addCard(new SkullBash());
         BaseMod.addCard(new Ward());
 
     }

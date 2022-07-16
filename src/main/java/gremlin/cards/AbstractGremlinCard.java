@@ -11,16 +11,18 @@ public abstract class AbstractGremlinCard extends AbstractDownfallCard {
         return "gremlin:" + ID;
     }
 
-    public boolean wizardry = false;
-    public boolean sorcery = false;
-
-    protected AbstractGremlinCard(String id, int cost, CardType type, CardRarity rarity, CardTarget target) {
+    protected AbstractGremlinCard(final String id, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
         super(GremlinMod.getModID(), id, cost, type, rarity, target, AbstractCardEnum.GREMLIN);
         setBackgrounds();
     }
 
     protected AbstractGremlinCard(String id, int cost, CardType type, CardRarity rarity, CardTarget target, CardColor color) {
         super(GremlinMod.getModID(), id, cost, type, rarity, target, color);
+        setBackgrounds();
+    }
+
+    protected AbstractGremlinCard(final String id, final String img, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
+        super(GremlinMod.getModID(), id, img, cost, type, rarity, target, color);
         setBackgrounds();
     }
 
@@ -102,7 +104,4 @@ public abstract class AbstractGremlinCard extends AbstractDownfallCard {
         }
         return ART_GREMLIN.NONE;
     }
-
-    @Override
-    public void upp() { }
 }

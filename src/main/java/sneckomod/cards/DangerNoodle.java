@@ -27,7 +27,7 @@ public class DangerNoodle extends AbstractSneckoCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, makeInfo(), AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         atb(new AbstractGameAction() {
             @Override
             public void update() {

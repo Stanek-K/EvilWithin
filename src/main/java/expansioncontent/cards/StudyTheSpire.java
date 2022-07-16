@@ -49,15 +49,12 @@ public class StudyTheSpire extends AbstractExpansionCard {
         applyToSelf(new StudyTheSpirePower(p, magicNumber, upgraded));
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            rawDescription = UPGRADE_DESCRIPTION;
-            for (AbstractCard q : this.dupeListForPrev) {
-                q.upgrade();
-            }
-            initializeDescription();
+    public void upp() {
+        rawDescription = UPGRADE_DESCRIPTION;
+        for (AbstractCard q : this.dupeListForPrev) {
+            q.upgrade();
         }
+        initializeDescription();
     }
 
 

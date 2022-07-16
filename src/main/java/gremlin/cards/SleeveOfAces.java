@@ -26,19 +26,11 @@ public class SleeveOfAces extends AbstractGremlinCard {
         if(p.hasPower(WizPower.POWER_ID))
             amount = p.getPower(WizPower.POWER_ID).amount;
         dmg(m, AbstractGameAction.AttackEffect.FIRE);
-        if(amount > 0){
-            AbstractCard c = new Shiv();
-            if(upgraded)
-                c.upgrade();
-           makeInHand(c, amount);
-        }
+        if(amount > 0) makeInHand(new Shiv(), amount);
     }
 
     @Override
     public void upp() {
-        upgradeDamage(1);
-        this.rawDescription = UPGRADE_DESCRIPTION;
-        initializeDescription();
-        this.cardsToPreview.upgrade();
+        upgradeDamage(3);
     }
 }

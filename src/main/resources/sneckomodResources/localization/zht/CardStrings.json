@@ -265,7 +265,7 @@
   },
   "sneckomod:RainOfDice": {
     "NAME": "骰子雨",
-    "DESCRIPTION": "對隨機一名敵人造成 !qqq! - !D! 點傷害。 NL sneckomod:混淆 本牌並返回手牌。"
+    "DESCRIPTION": "對隨機一名敵人造成 !DM! - !D! 點傷害。 NL sneckomod:混淆 本牌並返回手牌。"
   },
   "sneckomod:DiceCrush": {
     "NAME": "骰子撞擊",
@@ -273,7 +273,7 @@
   },
   "sneckomod:SnakeSap": {
     "NAME": "蛇液",
-    "DESCRIPTION": "sneckomod:蛇證 。 NL 造成 !qqq! - !D! 點傷害。 NL 獲得 0 - !M! [E] 。 NL 消耗 。"
+    "DESCRIPTION": "sneckomod:蛇證 。 NL 造成 !DM! - !D! 點傷害。 NL 獲得 0 - !M! [E] 。 NL 消耗 。"
   },
   "sneckomod:DiceBoulder": {
     "NAME": "巨型骰子",
@@ -281,7 +281,7 @@
   },
   "sneckomod:IronFang": {
     "NAME": "鐵齒",
-    "DESCRIPTION": "造成 !qqq! - !D! 點傷害。 NL 獲得 !M! - !B! 點 格擋 。"
+    "DESCRIPTION": "造成 !DM! - !D! 點傷害。 NL 獲得 !M! - !B! 點 格擋 。"
   },
   "sneckomod:Mudshield": {
     "NAME": "泥濘護盾",

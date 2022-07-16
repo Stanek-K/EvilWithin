@@ -50,8 +50,20 @@ abstract public class AbstractDownfallCard extends CustomCard {
 
 
     public AbstractDownfallCard(final String modID, final String id, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
-        super(id, "ERROR", getCorrectPlaceholderImage(type, id, modID),
-                cost, "ERROR", type, color, rarity, target);
+        super(id, "ERROR", getCorrectPlaceholderImage(type, id, modID), cost, "ERROR", type, color, rarity, target);
+        this.modID = modID;
+        cardStrings = CardCrawlGame.languagePack.getCardStrings(id);
+        name = NAME = cardStrings.NAME;
+        originalName = NAME;
+        rawDescription = DESCRIPTION = cardStrings.DESCRIPTION;
+        UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+        EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
+        initializeTitle();
+        initializeDescription();
+    }
+
+    public AbstractDownfallCard(final String modID, final String id, String img, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
+        super(id, "ERROR", img, cost, "ERROR", type, color, rarity, target);
         this.modID = modID;
         cardStrings = CardCrawlGame.languagePack.getCardStrings(id);
         name = NAME = cardStrings.NAME;
@@ -103,10 +115,10 @@ abstract public class AbstractDownfallCard extends CustomCard {
             switch (type) {
                 case ATTACK:
                     return "expansioncontentResources/images/cards/Placeholder/Attack.png";
-                case SKILL:
-                    return "expansioncontentResources/images/cards/Placeholder/Skill.png";
                 case POWER:
                     return "expansioncontentResources/images/cards/Placeholder/Power.png";
+                default:
+                    return "expansioncontentResources/images/cards/Placeholder/Skill.png";
             }
         return img;
     }
@@ -139,19 +151,19 @@ abstract public class AbstractDownfallCard extends CustomCard {
         }
     }
 
-    void upgradeDownfall(int amount) {
+    public void upgradeDownfall(int amount) {
         baseDownfallMagic += amount;
         downfallMagic = baseDownfallMagic;
         upgradedDownfall = true;
     }
 
-    void upgradeSecondDownfall(int amount) {
+    public void upgradeSecondDownfall(int amount) {
         baseSecondDownfall += amount;
         secondDownfall = baseSecondDownfall;
         upgradedSecondDownfall = true;
     }
 
-    void upgradeCharacterMagic(int amount) {
+    public void upgradeCharacterMagic(int amount) {
         baseCharacterMagic += amount;
         characterMagic = baseCharacterMagic;
         upgradedCharacterMagic = true;
@@ -203,6 +215,13 @@ abstract public class AbstractDownfallCard extends CustomCard {
 
     public void makeInHand(AbstractCard c) {
         makeInHand(c, 1);
+    }
+    public void makeInHandTop(AbstractCard c, int i) {
+        att(new MakeTempCardInHandAction(c, i));
+    }
+
+    public void makeInHandTop(AbstractCard c) {
+        makeInHandTop(c, 1);
     }
 
     public void shuffleIn(AbstractCard c, int i) {

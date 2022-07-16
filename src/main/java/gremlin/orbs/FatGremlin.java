@@ -5,6 +5,7 @@ import gremlin.powers.FatGremlinPower;
 import gremlin.powers.GremlinPower;
 
 public class FatGremlin extends GremlinStandby{
+    public static final int DAMAGE_PER_WEAK = 3;
 
     public FatGremlin(int hp) {
         super(hp, "gremlin:FatGremlin", "fat", "animation", 25);
@@ -12,7 +13,7 @@ public class FatGremlin extends GremlinStandby{
 
     @Override
     public void updateDescription() {
-        this.description = this.descriptions[0] + 1 + this.descriptions[1];
+        this.description = this.descriptions[0] + DAMAGE_PER_WEAK + this.descriptions[1];
     }
 
     @Override
@@ -27,6 +28,6 @@ public class FatGremlin extends GremlinStandby{
 
     @Override
     public GremlinPower getPower() {
-        return new FatGremlinPower(1);
+        return new FatGremlinPower(DAMAGE_PER_WEAK);
     }
 }

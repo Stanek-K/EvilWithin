@@ -10,8 +10,7 @@ public class ToeStub extends AbstractGremlinCard {
     public static final String ID = getID("ToeStub");
 
     public ToeStub() {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-
+        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
         this.baseDamage = 4;
         this.baseDownfallMagic = this.downfallMagic = 1;
         this.baseMagicNumber = this.magicNumber = 1;

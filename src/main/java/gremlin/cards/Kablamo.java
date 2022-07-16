@@ -13,7 +13,6 @@ public class Kablamo extends AbstractGremlinCard {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
         this.baseDamage = 13;
         this.isMultiDamage = true;
-        this.wizardry = true;
         this.tags.add(WIZARD_GREMLIN);
         setBackgrounds();
     }

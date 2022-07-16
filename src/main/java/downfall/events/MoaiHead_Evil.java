@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.ScreenShake.ShakeDur;
 import com.megacrit.cardcrawl.helpers.ScreenShake.ShakeIntensity;
 import com.megacrit.cardcrawl.localization.EventStrings;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 public class MoaiHead_Evil extends AbstractImageEvent {
     public static final String ID = "downfall:MoaiHead";

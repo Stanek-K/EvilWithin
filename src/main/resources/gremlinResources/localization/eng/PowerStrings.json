@@ -11,7 +11,7 @@
   "gremlin:Bang": {
     "NAME": "Bang",
     "DESCRIPTIONS": [
-      "The next attack you play consumes all stacks of #yWiz and deals #b", " additional damage."
+      "The next attack you play consumes all stacks of #yWiz and double damage."
     ]
   },
   "gremlin:Bashed": {
@@ -93,7 +93,7 @@
     "NAME": "Heckle",
     "DESCRIPTIONS": [
       "Whenever you apply a debuff to an enemy, gain #b",
-      " #yTemporary #yHP."
+      " #yBlock."
     ]
   },
   "gremlin:InfiniteBlocks": {
@@ -107,8 +107,8 @@
   "gremlin:MadGremlin": {
     "NAME": "Mad Gremlin",
     "DESCRIPTIONS": [
-      "Gain #b",
-      " #yTemporary #yStrength when attacked."
+      "Whenever you play an Attack, gain #b",
+      " temporary #yStrength."
     ]
   },
   "gremlin:MakeshiftArmor": {

@@ -1,10 +1,8 @@
-package gremlin.patches;
+package gremlin;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import gremlin.GremlinMod;
-import gremlin.characters.GremlinCharacter;
 import gremlin.orbs.GremlinStandby;
 import gremlin.relics.LeaderVoucher;
 
@@ -12,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class GremlinMobState {
+public class GremlinHelper { //TODO Rebuild me! and do it without Orbs!!
     public ArrayList<String> gremlins;
     public ArrayList<Integer> gremlinHP;
     private ArrayList<String> enslaved;
@@ -21,7 +19,7 @@ public class GremlinMobState {
     // Workaround for not have ascension available at creation
     public boolean unset = false;
 
-    public GremlinMobState() {
+    public GremlinHelper() {
         gremlins = new ArrayList<>();
         gremlinHP = new ArrayList<>();
         enslaved = new ArrayList<>();
@@ -45,7 +43,7 @@ public class GremlinMobState {
 
     public void setAll(int hp) {
         unset = false;
-        for(int i = 0; i<5; i++ ){
+        for(int i = 0; i < 5; i++ ){
             gremlinHP.set(i, hp);
         }
     }
@@ -243,12 +241,13 @@ public class GremlinMobState {
         for(int i=0;i<gremlins.size();i++){
             s.add(gremlins.get(i) + ": " + gremlinHP.get(i).toString());
         }
-        return s.toString() + " <" + enslaved.toString() + ">" + "[" + voucher + "]";
+        return s + " <" + enslaved.toString() + ">" + "[" + voucher + "]";
     }
 
     public String getGremlinName(int index) {
         return GremlinMod.getGremlinOrb(gremlins.get(index)).name;
     }
+
     public int getGremlinHP(int index) {
         String grem = gremlins.get(index);
         if (enslaved.contains(grem)) {

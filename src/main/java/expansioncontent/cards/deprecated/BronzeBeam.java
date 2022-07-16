@@ -44,13 +44,9 @@ public class BronzeBeam extends AbstractExpansionCard {
 
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBlock(UPGRADE_BLOCK);
-            upgradeDamage(UPGRADE_DAMAGE);
-        }
+    public void upp() {
+        upgradeBlock(UPGRADE_BLOCK);
+        upgradeDamage(UPGRADE_DAMAGE);
     }
-
 }
 

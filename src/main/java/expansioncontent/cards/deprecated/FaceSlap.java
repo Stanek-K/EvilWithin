@@ -42,13 +42,9 @@ public class FaceSlap extends AbstractExpansionCard {
 
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeDamage(UPGRADE_DAMAGE);
-            upgradeMagicNumber(UPGRADE_MAGIC);
-        }
+    public void upp() {
+        upgradeDamage(UPGRADE_DAMAGE);
+        upgradeMagicNumber(UPGRADE_MAGIC);
     }
-
 }
 

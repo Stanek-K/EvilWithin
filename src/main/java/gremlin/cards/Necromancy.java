@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import gremlin.actions.NecromancyAction;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 import gremlin.orbs.GremlinStandby;
 import gremlin.powers.BangPower;
 import gremlin.powers.WizPower;
@@ -16,12 +16,12 @@ import static gremlin.GremlinMod.WIZARD_GREMLIN;
 
 public class Necromancy extends AbstractGremlinCard {
     public static final String ID = getID("Necromancy");
-    private static final int VOODOO = 3;
 
     public Necromancy() {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
 
         this.baseMagicNumber = this.magicNumber = 10;
+        this.baseDownfallMagic = this.downfallMagic = 4;
         this.exhaust = true;
         this.tags.add(CardTags.HEALING);
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
@@ -41,14 +41,13 @@ public class Necromancy extends AbstractGremlinCard {
         if (!canUse) {
             return false;
         }
-        if (!p.hasPower(WizPower.POWER_ID) || p.getPower(WizPower.POWER_ID).amount < VOODOO)
-        {
+        if (!p.hasPower(WizPower.POWER_ID) || p.getPower(WizPower.POWER_ID).amount < downfallMagic) {
             this.cantUseMessage = EXTENDED_DESCRIPTION[0];
             return false;
-        } else if(!deadGrem()){
+        } else if(!deadGrem()) {
             this.cantUseMessage = EXTENDED_DESCRIPTION[1];
             return false;
-        } else if(!hasRoom()){
+        } else if(!hasRoom()) {
             this.cantUseMessage = EXTENDED_DESCRIPTION[2];
             return false;
         }
@@ -75,6 +74,6 @@ public class Necromancy extends AbstractGremlinCard {
 
     @Override
     public void upp() {
-        upgradeMagicNumber(3);
+        upgradeMagicNumber(4);
     }
 }

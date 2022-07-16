@@ -25,7 +25,6 @@ public class CrippledPower extends AbstractGremlinPower implements HealthBarRend
         this.ID = POWER_ID;
         this.owner = owner;
         this.source = source;
-
         this.img = IMG;
         this.type = PowerType.DEBUFF;
         this.amount = -1;

@@ -51,7 +51,6 @@ import sneckomod.potions.DiceRollPotion;
 import sneckomod.potions.MuddlingPotion;
 import sneckomod.potions.OffclassReductionPotion;
 import sneckomod.relics.*;
-import sneckomod.util.SneckoSilly;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -315,7 +314,6 @@ public class SneckoMod implements
 
     @Override
     public void receiveEditCards() {
-        BaseMod.addDynamicVariable(new SneckoSilly());
         try {
             autoAddCards();
         } catch (URISyntaxException | IllegalAccessException | InstantiationException | NotFoundException | ClassNotFoundException e) {

@@ -3,12 +3,13 @@ package gremlin.cards;
 import basemod.helpers.BaseModCardTags;
 import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
+import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.SpawnModificationCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gremlin.GremlinMod;
-import gremlin.patches.SuperRare;
 import gremlin.powers.GremlinNobPower;
 import sneckomod.SneckoMod;
 
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 import static gremlin.GremlinMod.NOB_GREMLIN;
 
-public class Nob extends AbstractGremlinCard implements SuperRare {
+public class Nob extends AbstractGremlinCard implements SpawnModificationCard {
     public static final String ID = getID("Nob");
 
     private float rotationTimer;
@@ -68,6 +69,11 @@ public class Nob extends AbstractGremlinCard implements SuperRare {
                 rotationTimer -= Gdx.graphics.getDeltaTime();
             }
         }
+    }
+
+    // Fun Fact: NOB has a 50% chance to actually spawn.
+    public boolean canSpawn(ArrayList<AbstractCard> currentRewardCards) {
+        return AbstractDungeon.cardRng.randomBoolean();
     }
 }
 

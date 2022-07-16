@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import downfall.downfallMod;
 import downfall.potions.CursedFountainPotion;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 import java.util.Collections;
 

@@ -8,18 +8,16 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gremlin.actions.GremlinSwapAction;
-import gremlin.orbs.SneakyGremlin;
 
-import static gremlin.GremlinMod.SNEAKY_GREMLIN;
+import static gremlin.GremlinMod.MAD_GREMLIN;
 
 public class Tricksy extends AbstractGremlinCard {
     public static final String ID = getID("Tricksy");
 
     public Tricksy() {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        this.baseMagicNumber = this.magicNumber = 4;
-        this.tags.add(SNEAKY_GREMLIN);
+        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.NONE);
+        this.baseMagicNumber = this.magicNumber = 2;
+        this.tags.add(MAD_GREMLIN);
         setBackgrounds();
     }
 
@@ -40,11 +38,10 @@ public class Tricksy extends AbstractGremlinCard {
                 }
             }
         }));
-        atb(new GremlinSwapAction(new SneakyGremlin(0)));
     }
 
     public void upp() {
-        upgradeMagicNumber(2);
+        upgradeMagicNumber(1);
     }
 }
 

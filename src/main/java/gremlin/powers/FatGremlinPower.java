@@ -1,6 +1,8 @@
 package gremlin.powers;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -8,6 +10,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 
 import java.util.HashSet;
@@ -28,27 +31,14 @@ public class FatGremlinPower extends GremlinPower {
         this.alreadyHit = new HashSet<>();
     }
 
-    public void updateDescription()
-    {
+    public void updateDescription() {
         this.description = (strings.DESCRIPTIONS[0] + this.pot + strings.DESCRIPTIONS[1]);
     }
 
-    public void onUseCard(final AbstractCard card, final UseCardAction action) {
-        this.alreadyHit = new HashSet<>(); // New card. Reset limits.
-    }
-
-    @Override
-    public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-        if(target.equals(AbstractDungeon.player)){
-            return;
-        }
-        if(alreadyHit.contains(target)){
-            return;
-        }
-        if(info.type == DamageInfo.DamageType.NORMAL){
-            alreadyHit.add(target);
-            AbstractDungeon.actionManager.addToTop(new ApplyPowerAction(target, owner,
-                    new WeakPower(target, this.pot, false), this.pot));
+    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
+        if (power.type == PowerType.DEBUFF && !power.ID.equals("Shackled") && source == this.owner && target != this.owner && !target.hasPower("Artifact")) {
+            this.flash();
+            this.addToBot(new DamageAction(target, new DamageInfo(this.owner, this.pot, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
         }
     }
 }

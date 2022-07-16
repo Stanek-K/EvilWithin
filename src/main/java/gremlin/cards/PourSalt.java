@@ -1,11 +1,12 @@
 package gremlin.cards;
 
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.tempCards.Shiv;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import gremlin.GremlinMod;
-import gremlin.actions.PourSaltOuterAction;
 
 import static gremlin.GremlinMod.FAT_GREMLIN;
 
@@ -14,9 +15,7 @@ public class PourSalt extends AbstractGremlinCard {
 
     public PourSalt() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        this.baseDamage = 4;
-        this.baseMagicNumber = this.magicNumber = 2;
-        this.cardsToPreview = new Shiv();
+        this.baseDamage = 7;
         this.tags.add(FAT_GREMLIN);
         setBackgrounds();
         GremlinMod.loadJokeCardImage(this, "PourSalt.png");
@@ -24,12 +23,19 @@ public class PourSalt extends AbstractGremlinCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new PourSaltOuterAction(m, new DamageInfo(p, this.damage,
-                this.damageTypeForTurn), this.magicNumber));
+        dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                this.isDone = true;
+                if (m.hasPower(WeakPower.POWER_ID))
+                    att(new GainEnergyAction(1));
+            }
+        });
     }
 
     @Override
     public void upp() {
-        upgradeMagicNumber(1);
+        upgradeDamage(3);
     }
 }

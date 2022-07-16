@@ -61,7 +61,7 @@ public class GremlinPotion extends AbstractPotion {
 
         for (int i = 0; i < this.potency; i++) {
             AbstractDungeon.actionManager.addToBottom(
-                    new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, SneakyGremlin.DAMAGE, DamageInfo.DamageType.THORNS),
+                    new DamageRandomEnemyAction(new DamageInfo(AbstractDungeon.player, SneakyGremlin.POTENCY, DamageInfo.DamageType.THORNS),
                             AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
         }
 

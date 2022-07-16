@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 import gremlin.orbs.GremlinStandby;
 
 import java.util.Collections;

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.daily.mods.NightTerrors;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.vfx.campfire.CampfireSleepEffect;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 @SpirePatch(
         clz= CampfireSleepEffect.class,

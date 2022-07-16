@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import gremlin.GremlinMod;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 import gremlin.orbs.GremlinStandby;
 import gremlin.powers.GremlinNobPower;
 

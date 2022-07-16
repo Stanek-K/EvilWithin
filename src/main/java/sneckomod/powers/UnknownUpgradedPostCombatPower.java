@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import sneckomod.SneckoMod;
-import sneckomod.util.UpgradedUnknownReward;
+import sneckomod.util.UpgradedOffclassReward;
 import downfall.util.TextureLoader;
 
 public class UnknownUpgradedPostCombatPower extends AbstractPower implements CloneablePowerInterface {
@@ -47,7 +47,7 @@ public class UnknownUpgradedPostCombatPower extends AbstractPower implements Clo
     @Override
     public void onVictory() {
         for (int i = 0; i < this.amount; i++)
-            AbstractDungeon.getCurrRoom().addCardReward(new UpgradedUnknownReward());
+            AbstractDungeon.getCurrRoom().addCardReward(new UpgradedOffclassReward());
     }
 
     @Override

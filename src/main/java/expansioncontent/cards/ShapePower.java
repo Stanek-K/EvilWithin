@@ -22,9 +22,16 @@ public class ShapePower extends AbstractExpansionCard implements OctopusCard {
         tags.add(expansionContentMod.STUDY_SHAPES);
         tags.add(expansionContentMod.STUDY);
         baseMagicNumber = magicNumber = 2;
-        baseBlock = block = 5;
-        //partner is null until this card is played in combat
+        baseDownfallMagic = downfallMagic = 5;
         //expansionContentMod.loadJokeCardImage(this, "PolyBeam.png");
+    }
+
+    @Override
+    public void upp() {
+        upgradeMagicNumber(1);
+        upgradeDownfall(3);
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -52,31 +59,8 @@ public class ShapePower extends AbstractExpansionCard implements OctopusCard {
                  break;
             }
             case "expansioncontent:DecaShield": {
-                if (upgraded){
-                    atb(new ApplyPowerAction(p, p, new PlatedArmorPower(p, 8)));
-                } else {
-                    atb(new ApplyPowerAction(p, p, new PlatedArmorPower(p, 5)));
-                }
+                atb(new ApplyPowerAction(p, p, new PlatedArmorPower(p, downfallMagic), downfallMagic));
             }
         }
     }
-
-    @Override
-    public void applyPowers() {
-        super.applyPowers();
-        block = baseBlock;
-        isBlockModified = false;
-    }
-
-    @Override
-    public void upgrade() {
-
-        if (!upgraded) {
-            upgradeName();
-            upgradeMagicNumber(1);
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
-        }
-    }
-
 }

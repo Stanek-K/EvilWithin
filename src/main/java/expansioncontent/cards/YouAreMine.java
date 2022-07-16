@@ -16,9 +16,6 @@ import expansioncontent.expansionContentMod;
 public class YouAreMine extends AbstractExpansionCard {
     public final static String ID = makeID("YouAreMine");
 
-    private static final int MAGIC = 3;
-    private static final int UPGRADE_MAGIC = 2;
-
     public YouAreMine() {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
         this.setBackgroundTexture("expansioncontentResources/images/512/bg_boss_collector.png", "expansioncontentResources/images/1024/bg_boss_collector.png");
@@ -26,13 +23,11 @@ public class YouAreMine extends AbstractExpansionCard {
         tags.add(expansionContentMod.STUDY_COLLECTOR);
         tags.add(expansionContentMod.STUDY);
 
-        baseMagicNumber = magicNumber = MAGIC;
+        baseMagicNumber = magicNumber = 3;
         this.exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-
         if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             flash();
             for (AbstractMonster monster : AbstractDungeon.getMonsters().monsters) {
@@ -42,21 +37,12 @@ public class YouAreMine extends AbstractExpansionCard {
 
                     atb(new ApplyPowerAction(monster, p, new WeakPower(monster, this.magicNumber, false), this.magicNumber, true, AbstractGameAction.AttackEffect.NONE));
                     atb(new ApplyPowerAction(monster, p, new VulnerablePower(monster, this.magicNumber, false), this.magicNumber, true, AbstractGameAction.AttackEffect.NONE));
-
-
                 }
-
             }
         }
-
-
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeMagicNumber(UPGRADE_MAGIC);
-        }
+    public void upp() {
+        upgradeMagicNumber(2);
     }
-
 }

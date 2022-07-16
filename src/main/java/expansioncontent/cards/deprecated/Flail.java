@@ -52,12 +52,8 @@ public class Flail extends AbstractExpansionCard {
 
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeDamage(UPGRADE_DAMAGE);
-            upgradeMagicNumber(1);
-        }
+    public void upp() {
+        upgradeDamage(UPGRADE_DAMAGE);
+        upgradeMagicNumber(1);
     }
-
 }

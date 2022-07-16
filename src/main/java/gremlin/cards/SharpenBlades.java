@@ -24,7 +24,7 @@ public class SharpenBlades extends AbstractGremlinCard {
                 isDone = true;
                 for (AbstractCard c : p.hand.group) {
                     if (c.type == CardType.ATTACK)
-                        c.damage += magicNumber;
+                        c.baseDamage += magicNumber;
                 }
             }
         });

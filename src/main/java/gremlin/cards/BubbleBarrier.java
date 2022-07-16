@@ -10,7 +10,7 @@ public class BubbleBarrier extends AbstractGremlinCard {
     public static final String ID = getID("BubbleBarrier");
 
     public BubbleBarrier() {
-        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(SHIELD_GREMLIN);
         setBackgrounds();

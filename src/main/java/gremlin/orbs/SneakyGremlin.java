@@ -5,7 +5,7 @@ import gremlin.powers.GremlinPower;
 import gremlin.powers.SneakyGremlinPower;
 
 public class SneakyGremlin extends GremlinStandby{
-    public static final int DAMAGE = 3;
+    public static final int POTENCY = 1;
 
     public SneakyGremlin(int hp) {
         super(hp, "gremlin:SneakyGremlin", "sneak", "animation", 25);
@@ -13,7 +13,7 @@ public class SneakyGremlin extends GremlinStandby{
 
     @Override
     public void updateDescription() {
-        this.description = this.descriptions[0] + DAMAGE + this.descriptions[1];
+        this.description = this.descriptions[0] + POTENCY + this.descriptions[1];
     }
 
     @Override
@@ -28,6 +28,6 @@ public class SneakyGremlin extends GremlinStandby{
 
     @Override
     public GremlinPower getPower() {
-        return new SneakyGremlinPower(DAMAGE);
+        return new SneakyGremlinPower(POTENCY);
     }
 }

@@ -6,13 +6,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.events.shrines.Bonfire;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.Circlet;
 import com.megacrit.cardcrawl.relics.SpiritPoop;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 public class BonfireSpirits_Evil extends AbstractImageEvent {
     public static final String ID = "downfall:BonfireSpirits";

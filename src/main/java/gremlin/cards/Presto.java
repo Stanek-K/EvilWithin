@@ -11,8 +11,8 @@ public class Presto extends AbstractGremlinCard {
     public static final String ID = getID("Presto");
 
     public Presto() {
-        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        this.baseDamage = 8;
+        super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        this.baseDamage = 4;
         this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(WIZARD_GREMLIN);
         setBackgrounds();

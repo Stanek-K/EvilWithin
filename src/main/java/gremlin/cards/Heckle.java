@@ -10,7 +10,7 @@ public class Heckle extends AbstractGremlinCard {
     public static final String ID = getID("Heckle");
 
     public Heckle() {
-        super(ID, 3, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
         this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(FAT_GREMLIN);
         setBackgrounds();
@@ -21,7 +21,7 @@ public class Heckle extends AbstractGremlinCard {
     }
 
     public void upp() {
-        upgradeBaseCost(2);
+        upgradeMagicNumber(1);
     }
 }
 

@@ -258,7 +258,7 @@
   },
   "sneckomod:RainOfDice": {
     "NAME": "Rain of Dice",
-    "DESCRIPTION": "Deal !qqq! - !D! damage to a random enemy 2 - !M! times. NL sneckomod:Muddle the next 2 - !M! cards you draw."
+    "DESCRIPTION": "Deal !DM! - !D! damage to a random enemy 2 - !M! times. NL sneckomod:Muddle the next 2 - !M! cards you draw."
   },
   "sneckomod:DiceCrush": {
     "NAME": "Dice Crush",
@@ -266,7 +266,7 @@
   },
   "sneckomod:SnakeSap": {
     "NAME": "Snake Sap",
-    "DESCRIPTION": "sneckomod:Snekproof. NL Deal !qqq! - !D! damage. NL Gain 1 - !M! [E] . NL Exhaust."
+    "DESCRIPTION": "sneckomod:Snekproof. NL Deal !DM! - !D! damage. NL Gain 1 - !M! [E] . NL Exhaust."
   },
   "sneckomod:DiceBoulder": {
     "NAME": "Dice Boulder",
@@ -274,7 +274,7 @@
   },
   "sneckomod:IronFang": {
     "NAME": "Iron Fang",
-    "DESCRIPTION": "Deal !qqq! - !D! damage. NL Gain !M! - !B! Block."
+    "DESCRIPTION": "Deal !DM! - !D! damage. NL Gain !M! - !B! Block."
   },
   "sneckomod:Mudshield": {
     "NAME": "Mud Shield",

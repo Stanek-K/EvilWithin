@@ -39,12 +39,8 @@ public class ManipulateTime extends AbstractExpansionCard {
 
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBlock(UPGRADE_BLOCK);
-        }
+    public void upp() {
+        upgradeBlock(UPGRADE_BLOCK);
     }
-
 }
 

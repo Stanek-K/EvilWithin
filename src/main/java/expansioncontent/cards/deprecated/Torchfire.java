@@ -53,13 +53,9 @@ public class Torchfire extends AbstractExpansionCard {
         this.isDamageModified = this.damage != this.baseDamage;
     }// 79
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeMagicNumber(UPGRADE_MAGIC);
-            upgradeDamage(UPGRADE_DAMAGE);
-        }
+    public void upp() {
+        upgradeMagicNumber(UPGRADE_MAGIC);
+        upgradeDamage(UPGRADE_DAMAGE);
     }
-
 }
 

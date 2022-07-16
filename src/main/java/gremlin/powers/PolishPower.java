@@ -31,8 +31,7 @@ public class PolishPower extends AbstractGremlinPower {
         return card instanceof Ward || card instanceof CrystalWard ? blockAmount + this.amount : blockAmount;
     }
 
-    public void updateDescription()
-    {
+    public void updateDescription() {
         this.description = strings.DESCRIPTIONS[0] + this.amount + strings.DESCRIPTIONS[1];
     }
 }

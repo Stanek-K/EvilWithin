@@ -14,12 +14,14 @@ public class PartyStick extends AbstractGremlinCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new GainEnergyAction(1));
+        if (!this.upgraded)
+            atb(new GainEnergyAction(1));
+        else
+            atb(new GainEnergyAction(2));
         atb(new GremlinSwapAction());
     }
 
     public void upp() {
-        exhaust = false;
         this.rawDescription = UPGRADE_DESCRIPTION;
         initializeDescription();
     }

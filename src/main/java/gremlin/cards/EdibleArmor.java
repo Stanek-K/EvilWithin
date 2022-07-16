@@ -1,8 +1,9 @@
 package gremlin.cards;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gremlin.actions.EatArmorAction;
+import com.megacrit.cardcrawl.powers.ThornsPower;
 
 import static gremlin.GremlinMod.SHIELD_GREMLIN;
 
@@ -10,17 +11,22 @@ public class EdibleArmor extends AbstractGremlinCard {
     public static final String ID = getID("EdibleArmor");
 
     public EdibleArmor() {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseDownfallMagic = this.downfallMagic = 6;
+        this.exhaust = true;
         this.tags.add(SHIELD_GREMLIN);
         setBackgrounds();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new EatArmorAction(p));
+        applyToSelf(new ThornsPower(p, this.magicNumber));
+        atb(new AddTemporaryHPAction(p, p, this.downfallMagic));
     }
 
     public void upp() {
-        upgradeBaseCost(0);
+        upgradeMagicNumber(2);
+        upgradeDownfall(2);
     }
 }
 

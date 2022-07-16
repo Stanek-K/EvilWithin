@@ -37,14 +37,10 @@ public class DefensiveStance extends AbstractExpansionCard {
 
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBlock(UPGRADE_BLOCK);
-            upgradeMagicNumber(UPGRADE_MAGIC);
-        }
+    public void upp() {
+        upgradeBlock(UPGRADE_BLOCK);
+        upgradeMagicNumber(UPGRADE_MAGIC);
     }
-
 }
 
 

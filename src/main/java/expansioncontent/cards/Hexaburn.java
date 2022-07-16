@@ -23,11 +23,8 @@ public class Hexaburn extends AbstractExpansionCard {
         applyToSelf(new PretendHexWheelPower(magicNumber));
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeMagicNumber(-1);
-        }
+    public void upp() {
+        upgradeMagicNumber(-1);
     }
 }
 

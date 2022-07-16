@@ -26,8 +26,7 @@ public class TargetWeaknessPower extends AbstractGremlinPower implements DamageC
         this.updateDescription();
     }
 
-    public void updateDescription()
-    {
+    public void updateDescription() {
         this.description = (strings.DESCRIPTIONS[0] + this.amount + strings.DESCRIPTIONS[1]);
     }
 

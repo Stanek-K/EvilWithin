@@ -26,35 +26,35 @@
       "fat gremlin", "fat_gremlin"
     ],
     "PROPER_NAME": "Fat Gremlin",
-    "DESCRIPTION": "After you play an attack, apply #b1 #yWeak to all targets."
+    "DESCRIPTION": "After you apply a debuff to an enemy, deal #b3 damage to it."
   },
   {
     "NAMES": [
       "gremlin wizard", "gremlin_wizard"
     ],
     "PROPER_NAME": "Gremlin Wizard",
-    "DESCRIPTION": "After you play a skill, gain #b1 #yWiz."
+    "DESCRIPTION": "After you play a Skill, gain #b1 #yWiz."
   },
   {
     "NAMES": [
       "mad gremlin", "mad_gremlin"
     ],
     "PROPER_NAME": "Mad Gremlin",
-    "DESCRIPTION": "Gain #b2 #yTemporary #yStrength when attacked."
+    "DESCRIPTION": "After you play an Attack, gain #b1 temporary #yStrength when attacked."
   },
   {
     "NAMES": [
       "shield gremlin", "shield_gremlin"
     ],
     "PROPER_NAME": "Shield Gremlin",
-    "DESCRIPTION": "After you play a skill, gain #b2 #yBlock."
+    "DESCRIPTION": "After you play a Skill, gain #b2 #yBlock."
   },
   {
     "NAMES": [
       "sneaky gremlin", "sneaky_gremlin"
     ],
     "PROPER_NAME": "Sneaky Gremlin",
-    "DESCRIPTION": "After you play an attack, deal #b3 damage to a random enemy."
+    "DESCRIPTION": "At the end of the turn, you may #yRetain #b1 card."
   },
   {
     "NAMES": [
@@ -64,18 +64,20 @@
     "DESCRIPTION": "Switch places with another character. Does nothing if there is no valid target."
   },
   {
+    "PROPER_NAME": "Temporary HP",
+    "NAMES": [
+      "temp hp",
+      "temp_hp",
+      "Temp_HP"
+    ],
+    "DESCRIPTION": "Temporary HP lasts until the end of combat."
+  },
+  {
     "NAMES": [
       "wiz"
     ],
     "PROPER_NAME": "Wiz",
-    "DESCRIPTION": "When you have at least three stacks of Wiz, Attacks will consume all stacks to deal #b10 additional damage."
-  },
-  {
-    "NAMES": [
-      "steal"
-    ],
-    "PROPER_NAME": "Steal",
-    "DESCRIPTION": "Target loses specified amount of resource. You gain the amount that was lost."
+    "DESCRIPTION": "When you have at least #b4 stacks of Wiz, Attacks will consume all stacks to deal double damage."
   },
   {
     "NAMES": [

@@ -39,7 +39,7 @@
   },
   "sneckomod:IronFang": {
     "NAME": "Iron Fang",
-    "DESCRIPTION": "Deal !qqq! - !D! damage. NL Gain !M! - !B! Block."
+    "DESCRIPTION": "Deal !DM! - !D! damage. NL Gain !M! - !B! Block."
   },
   "sneckomod:ImprovisedAttack": {
     "NAME": "Improvised Attack",
@@ -90,7 +90,7 @@
   },
   "sneckomod:QuickBite": {
     "NAME": "Snake Rake",
-    "DESCRIPTION": "Deal !D! damage. NL Draw !M! - 2 cards. NL sneckomod:Muddle the highest-cost card in your hand."
+    "DESCRIPTION": "Deal !D! damage. NL Draw !M! cards, them sneckomod:Muddle them."
   },
   "sneckomod:QuickMove": {
     "NAME": "Quick Move",
@@ -99,7 +99,7 @@
   },
   "sneckomod:RainOfDice": {
     "NAME": "Rain of Dice",
-    "DESCRIPTION": "Deal !qqq! - !D! damage to a random enemy. NL sneckomod:Muddle this, then return this to your hand."
+    "DESCRIPTION": "Deal !DM! - !D! damage to a random enemy. NL sneckomod:Muddle this, then return this to your hand."
   },
   "sneckomod:Restock": {
     "NAME": "Restock",
@@ -124,7 +124,7 @@
   },
   "sneckomod:SnakeSap": {
     "NAME": "Snake Sap",
-    "DESCRIPTION": "sneckomod:Snekproof. NL Deal !qqq! - !D! damage. NL Gain 1 - !M! [E] . NL Exhaust."
+    "DESCRIPTION": "sneckomod:Snekproof. NL Deal !DM! - !D! damage. NL Gain 1 - !M! [E] . NL Exhaust."
   },
   "sneckomod:SnekBeam": {
     "NAME": "Snek Beam",
@@ -299,6 +299,10 @@
     "NAME": "Unlimited Rolls",
     "DESCRIPTION": "At the start of your turn, gain an gremlin:Echo of *Soul *Roll.",
     "UPGRADE_DESCRIPTION": "Innate. NL At the start of your turn, gain an gremlin:Echo of *Soul *Roll."
+  },
+  "sneckomod:Warcry": {
+    "NAME": "Warcry",
+    "DESCRIPTION": "Draw !M! cards. NL Put a card on top of your draw pile."
   },
   "sneckomod:WideSting": {
     "NAME": "Wide Sting",

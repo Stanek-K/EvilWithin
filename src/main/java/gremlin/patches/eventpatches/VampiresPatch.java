@@ -5,7 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.colorless.Bite;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.Vampires;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 public class VampiresPatch {
     @SpirePatch(clz = Vampires.class, method = SpirePatch.CONSTRUCTOR)

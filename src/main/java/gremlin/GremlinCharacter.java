@@ -1,4 +1,4 @@
-package gremlin.characters;
+package gremlin;
 
 import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
@@ -32,17 +32,16 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import gremlin.GremlinMod;
 import gremlin.actions.DisableEndTurnButtonAction;
 import gremlin.actions.ThinkAction;
-import gremlin.cards.GremlinDance;
+import gremlin.cards.*;
 import gremlin.cards.pseudocards.LeaderChoice;
 import gremlin.cards.pseudocards.NobChoice;
 import gremlin.orbs.*;
 import gremlin.patches.AbstractCardEnum;
 import gremlin.patches.GremlinEnum;
-import gremlin.patches.GremlinMobState;
 import gremlin.powers.GremlinPower;
+import gremlin.relics.GremlinKnob;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -86,7 +85,7 @@ public class GremlinCharacter extends CustomPlayer {
     public String currentGremlin;
     public String currentAnimation;
 
-    public GremlinMobState mobState;
+    public GremlinHelper mobState;
 
     public boolean nob = false;
 
@@ -114,7 +113,7 @@ public class GremlinCharacter extends CustomPlayer {
 
         initializeSlotPositions();
 
-        mobState = new GremlinMobState();
+        mobState = new GremlinHelper();
         mobState.initialRandom(16);
 
         swapBody(mobState.getFrontGremlin(), mobState.getFrontAnimation());
@@ -161,33 +160,28 @@ public class GremlinCharacter extends CustomPlayer {
     @Override
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add("gremlin:Strike");
-        retVal.add("gremlin:Strike");
-        retVal.add("gremlin:Strike");
-        retVal.add("gremlin:Strike");
-        retVal.add("gremlin:Defend");
-        retVal.add("gremlin:Defend");
-        retVal.add("gremlin:Defend");
-        retVal.add("gremlin:Defend");
-        retVal.add("gremlin:TagTeam");
-        retVal.add("gremlin:GremlinDance");
+        for (int i = 0; i < 4; i++)
+            retVal.add(Strike.ID);
+        for (int i = 0; i < 4; i++)
+            retVal.add(Defend.ID);
+        retVal.add(Patsy.ID);
+        retVal.add(GremlinDance.ID);
         return retVal;
     }
 
     @Override
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
-        retVal.add("gremlin:GremlinKnob");
-        UnlockTracker.markRelicAsSeen("gremlin:GremlinKnob");
+        retVal.add(GremlinKnob.ID);
+        UnlockTracker.markRelicAsSeen(GremlinKnob.ID);
         return retVal;
     }
 
     @Override
     public CharSelectInfo getLoadout() {
-        return new CharSelectInfo(characterStrings.NAMES[0],
-                characterStrings.TEXT[0],
-                16, 16, 4, 99,
-                5, this, getStartingRelics(), getStartingDeck(), false);
+        return new CharSelectInfo(characterStrings.NAMES[0], characterStrings.TEXT[0],
+                16, 16, 4, 99, 5,
+                this, getStartingRelics(), getStartingDeck(), false);
     }
 
     @Override

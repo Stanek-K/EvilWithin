@@ -3,9 +3,7 @@ package gremlin.cards;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gremlin.actions.MakeEchoAction;
 
 import static gremlin.GremlinMod.SNEAKY_GREMLIN;
 
@@ -14,7 +12,7 @@ public class Pinprick extends AbstractGremlinCard {
 
     public Pinprick() {
         super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        this.baseDamage = 1;
+        this.baseDamage = 3;
         this.exhaust = true;
         this.tags.add(SNEAKY_GREMLIN);
         setBackgrounds();
@@ -28,13 +26,6 @@ public class Pinprick extends AbstractGremlinCard {
 
     @Override
     public void upp() {
-        this.rawDescription = UPGRADE_DESCRIPTION;
-        initializeDescription();
-    }
-
-    @Override
-    public void triggerWhenDrawn() {
-        if(upgraded)
-            AbstractDungeon.actionManager.addToBottom(new MakeEchoAction(this));
+        upgradeDamage(3);
     }
 }

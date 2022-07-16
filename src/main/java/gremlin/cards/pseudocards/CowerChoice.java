@@ -12,15 +12,17 @@ import com.megacrit.cardcrawl.monsters.exordium.GremlinNob;
 import gremlin.actions.LoseAllGoldAction;
 import gremlin.actions.SetCardTargetCoordinatesAction;
 import gremlin.cards.AbstractGremlinCard;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
+import gremlin.patches.AbstractCardEnum;
 
 import static automaton.AutomatonMod.GOOD_STATUS;
 
 public class CowerChoice extends AbstractGremlinCard {
     public static final String ID = getID("CowerChoice");
+    final static String img = "gremlinResources/images/cards/Cower.png";
 
     public CowerChoice() {
-        super(ID, -2, CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE);
+        super(ID, img, -2,  CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE, AbstractCardEnum.GREMLIN);
         this.dontTriggerOnUseCard = true;
         AlwaysRetainField.alwaysRetain.set(this, true);
         // To not break with Bronze Idol

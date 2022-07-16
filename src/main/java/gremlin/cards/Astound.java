@@ -16,11 +16,16 @@ public class Astound extends AbstractGremlinCard {
     public Astound() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         this.baseBlock = 3;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseMagicNumber = this.magicNumber = 3;
         this.cardsToPreview = new Ward();
         this.tags.add(WIZARD_GREMLIN);
         setBackgrounds();
         GremlinMod.loadJokeCardImage(this, "Astound.png");
+    }
+
+    public void upp(){
+        upgradeBlock(2);
+        upgradeMagicNumber(-1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -28,29 +33,18 @@ public class Astound extends AbstractGremlinCard {
         atb(new AbstractGameAction() {
             @Override
             public void update() {
-                if (p.hasPower(WizPower.POWER_ID) && p.getPower(WizPower.POWER_ID).amount >= 3) {
+                if (p.hasPower(WizPower.POWER_ID) && p.getPower(WizPower.POWER_ID).amount >= magicNumber) {
                     AbstractCard c = new Ward();
-                    if (upgraded)
-                        c.upgrade();
-                    makeInHand(c, magicNumber);
+                    makeInHand(c);
                 }
                 this.isDone = true;
             }
         });
     }
 
-    public void upp(){
-        upgradeBlock(2);
-        this.rawDescription = UPGRADE_DESCRIPTION;
-        initializeDescription();
-        AbstractCard c = new Ward();
-        c.upgrade();
-        this.cardsToPreview = c;
-    }
-
     @Override
     public void triggerOnGlowCheck() {
-        if (AbstractDungeon.player.hasPower(WizPower.POWER_ID) && AbstractDungeon.player.getPower(WizPower.POWER_ID).amount >= 3) {
+        if (AbstractDungeon.player.hasPower(WizPower.POWER_ID) && AbstractDungeon.player.getPower(WizPower.POWER_ID).amount >= magicNumber) {
             this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
         } else {
             this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();

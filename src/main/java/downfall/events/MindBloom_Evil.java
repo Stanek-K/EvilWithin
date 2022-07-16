@@ -34,7 +34,7 @@ import downfall.patches.ui.campfire.AddBustKeyButtonPatches;
 import downfall.relics.HeartBlessingBlue;
 import downfall.relics.HeartBlessingGreen;
 import downfall.relics.HeartBlessingRed;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 import guardian.characters.GuardianCharacter;
 import slimebound.characters.SlimeboundCharacter;
 import sneckomod.TheSnecko;
@@ -42,7 +42,6 @@ import theHexaghost.TheHexaghost;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 

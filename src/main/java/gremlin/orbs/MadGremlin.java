@@ -5,7 +5,7 @@ import gremlin.powers.GremlinPower;
 import gremlin.powers.MadGremlinPower;
 
 public class MadGremlin extends GremlinStandby{
-    public static final int STRENGTH = 2;
+    public static final int STRENGTH = 1;
 
     public MadGremlin(int hp) {
         super(hp,"gremlin:MadGremlin", "angry", "idle", 25);

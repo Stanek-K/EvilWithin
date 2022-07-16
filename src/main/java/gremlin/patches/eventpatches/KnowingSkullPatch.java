@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.KnowingSkull;
 import com.megacrit.cardcrawl.localization.EventStrings;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 public class KnowingSkullPatch {
     private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("gremlin:KnowingSkull");

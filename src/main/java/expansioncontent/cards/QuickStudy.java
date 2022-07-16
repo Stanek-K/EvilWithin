@@ -18,8 +18,6 @@ public class QuickStudy extends AbstractExpansionCard {
 
     public final static String ID = makeID("QuickStudy");
 
-    //stupid intellij stuff SKILL, SELF, RARE
-
     private ArrayList<AbstractCard> getList() {
         ArrayList<AbstractCard> myList = new ArrayList<>();
         for (AbstractCard q : CardLibrary.getAllCards()) {
@@ -59,15 +57,12 @@ public class QuickStudy extends AbstractExpansionCard {
     }
 
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            for (AbstractCard q : this.dupeListForPrev) {
-                q.upgrade();
-            }
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
+    public void upp() {
+        for (AbstractCard q : this.dupeListForPrev) {
+            q.upgrade();
         }
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
 
 

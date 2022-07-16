@@ -20,9 +20,6 @@ import expansioncontent.expansionContentMod;
 public class LastStand extends AbstractExpansionCard {
     public final static String ID = makeID("LastStand");
 
-    private static final int MAGIC = 10;
-    private static final int UPGRADE_MAGIC = 10;
-
     public LastStand() {
         super(ID, 2, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
         this.setBackgroundTexture("expansioncontentResources/images/512/bg_boss_champ.png", "expansioncontentResources/images/1024/bg_boss_champ.png");
@@ -30,14 +27,11 @@ public class LastStand extends AbstractExpansionCard {
         tags.add(expansionContentMod.STUDY_CHAMP);
         tags.add(expansionContentMod.STUDY);
 
-        baseMagicNumber = magicNumber = MAGIC;
+        baseMagicNumber = magicNumber = 10;
         this.exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-
-        //if (upgraded) this.poison = this.magicNumber +3; else {this.poison = this.magicNumber +2;}
         atb(new ShakeScreenAction(0.3F, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.LOW));
 
         atb(new VFXAction(p, new InflameEffect(p), 0.15F));
@@ -62,14 +56,10 @@ public class LastStand extends AbstractExpansionCard {
         this.glowColor = AbstractDungeon.player.currentHealth < AbstractDungeon.player.maxHealth / 2 ? GOLD_BORDER_GLOW_COLOR : BLUE_BORDER_GLOW_COLOR;
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
-        }
+    public void upp() {
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
-
 }
 
 

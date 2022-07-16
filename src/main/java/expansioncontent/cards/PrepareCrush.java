@@ -13,17 +13,11 @@ import com.megacrit.cardcrawl.monsters.exordium.SlimeBoss;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.vfx.MegaSpeechBubble;
 import expansioncontent.expansionContentMod;
-import guardian.cards.SentryWave;
 import slimebound.cards.SlimeCrush;
 import slimebound.powers.NextTurnGainSlimeCrush;
 
 public class PrepareCrush extends AbstractExpansionCard {
     public final static String ID = makeID("PrepareCrush");
-
-
-    private static final int BLOCK = 10;
-    private static final int UPGRADE_BLOCK = 5;
-    private static final int MAGIC = 3;
 
     public PrepareCrush() {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
@@ -32,8 +26,8 @@ public class PrepareCrush extends AbstractExpansionCard {
         tags.add(expansionContentMod.STUDY_SLIMEBOSS);
         tags.add(expansionContentMod.STUDY);
 
-        baseBlock = BLOCK;
-        baseMagicNumber = magicNumber = MAGIC;
+        baseBlock = 10;
+        baseMagicNumber = magicNumber = 3;
         this.exhaust = true;
         cardsToPreview = new SlimeCrush();
     }
@@ -47,17 +41,13 @@ public class PrepareCrush extends AbstractExpansionCard {
         atb(new ApplyPowerAction(p, p, new NextTurnGainSlimeCrush(p, p, 1, this.upgraded), 1));
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            this.rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
-            upgradeBlock(UPGRADE_BLOCK);
+    public void upp() {
+        this.rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
+        upgradeBlock(5);
 
-            AbstractCard q = new SlimeCrush();
-            q.upgrade();
-            cardsToPreview = q;
-        }
+        AbstractCard q = new SlimeCrush();
+        q.upgrade();
+        cardsToPreview = q;
     }
-
 }

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import downfall.actions.WaitForEscapeAction;
 import downfall.downfallMod;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 public class HeartsMalice extends CustomRelic {
 

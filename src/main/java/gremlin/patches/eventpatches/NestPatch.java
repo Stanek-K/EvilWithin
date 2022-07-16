@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.Nest;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 public class NestPatch {
     private static final EventStrings strings = CardCrawlGame.languagePack.getEventString("gremlin:Nest");

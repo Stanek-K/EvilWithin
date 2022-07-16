@@ -72,10 +72,8 @@ public class WideSting extends AbstractSneckoCard {
         });
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(1);
-        }
+    public void upp() {
+        upgradeDamage(3);
+        upgradeMagicNumber(5);
     }
 }

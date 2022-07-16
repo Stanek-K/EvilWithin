@@ -21,11 +21,6 @@ import java.util.ArrayList;
 public class DashGenerateEvil extends AbstractExpansionCard {
     public final static String ID = makeID("DashGenerateEvil");
 
-    private static final int BLOCK = 10;
-    private static final int UPGRADE_BLOCK = 2;
-    private static final int DAMAGE = 10;
-    private static final int UPGRADE_DAMAGE = 2;
-
     private ArrayList<AbstractCard> getList() {
         ArrayList<AbstractCard> myList = new ArrayList<>();
         for (AbstractCard q : CardLibrary.getAllCards()) {
@@ -47,35 +42,24 @@ public class DashGenerateEvil extends AbstractExpansionCard {
     public DashGenerateEvil() {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
         this.setBackgroundTexture("expansioncontentResources/images/512/bg_boss_attack.png", "expansioncontentResources/images/1024/bg_boss_attack.png");
-        baseBlock = BLOCK;
-        baseDamage = DAMAGE;
+        baseDamage = 10;
         this.exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-
         this.addToBot(new VFXAction(new HemokinesisEffect(p.hb.cX, p.hb.cY, m.hb.cX, m.hb.cY), 0.5F));
-
-      //  atb(new GainBlockAction(p, p, this.block));
-        atb(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+       dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
 
         atb(new RandomCardWithTagAction(upgraded, expansionContentMod.STUDY, true));
-
-
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBlock(UPGRADE_BLOCK);
-            upgradeDamage(UPGRADE_DAMAGE);
-            rawDescription = UPGRADE_DESCRIPTION;
-            for (AbstractCard q : this.dupeListForPrev) {
-                q.upgrade();
-            }
-            initializeDescription();
+    public void upp() {
+        upgradeDamage(2);
+        rawDescription = UPGRADE_DESCRIPTION;
+        for (AbstractCard q : this.dupeListForPrev) {
+            q.upgrade();
         }
+        initializeDescription();
     }
 
     @Override

@@ -33,9 +33,8 @@ public class MixItUp extends AbstractSneckoCard {
             }
         });
         for (int i = 0; i < this.magicNumber; i++) {
-            dmg(m, makeInfo(), AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+            dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         }
-
     }
 
     public void upgrade() {

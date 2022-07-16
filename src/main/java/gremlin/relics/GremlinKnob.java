@@ -1,12 +1,9 @@
 package gremlin.relics;
 
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
+import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.RelicStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import gremlin.actions.GremlinSwapAction;
 
@@ -17,6 +14,7 @@ public class GremlinKnob extends AbstractGremlinRelic {
     private static final String IMG = "relics/gremlinKnob.png";
     private static final AbstractRelic.LandingSound SOUND = LandingSound.FLAT;
 
+    public static final int AMOUNT = 6;
 
     public GremlinKnob() {
         super(ID, IMG, TIER, SOUND);
@@ -24,26 +22,13 @@ public class GremlinKnob extends AbstractGremlinRelic {
 
     @Override
     public String getUpdatedDescription() {
-        return strings.DESCRIPTIONS[0];
+        return strings.DESCRIPTIONS[0] + AMOUNT + strings.DESCRIPTIONS[1];
     }
 
     @Override
     public void atBattleStart() {
         this.flash();
-        AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(1));
-        AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, 1));
-        AbstractDungeon.actionManager.addToBottom(new GremlinSwapAction(true));
+        AbstractDungeon.actionManager.addToBottom(new AddTemporaryHPAction(AbstractDungeon.player, AbstractDungeon.player, AMOUNT));
     }
-
-//    @Override
-//    public void onMonsterDeath(final AbstractMonster m) {
-//        if (m.currentHealth == 0 && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
-//            this.flash();
-//            AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction(m, this));
-//            AbstractDungeon.actionManager.addToBottom(new GainEnergyAction(1));
-//            AbstractDungeon.actionManager.addToBottom(new DrawCardAction(AbstractDungeon.player, 1));
-//            AbstractDungeon.actionManager.addToBottom(new GremlinSwapAction(true));
-//        }
-//    }
 }
 

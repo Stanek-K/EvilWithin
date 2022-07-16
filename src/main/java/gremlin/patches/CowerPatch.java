@@ -3,7 +3,7 @@ package gremlin.patches;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.actions.common.EnableEndTurnButtonAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 @SpirePatch(clz = EnableEndTurnButtonAction.class, method = "update")
 public class CowerPatch

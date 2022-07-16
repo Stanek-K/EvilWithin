@@ -9,12 +9,13 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import gremlin.GremlinMod;
 import gremlin.relics.WizardHat;
-import gremlin.relics.WizardStaff;
 
 public class WizPower extends AbstractGremlinPower {
     public static final String POWER_ID = getID("Wiz");
     private static final PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     private static final Texture IMG = new Texture(GremlinMod.getResourcePath("powers/wiz.png"));
+
+    public static final int AMOUNT_TO_FIRE = 4;
 
     public WizPower(AbstractCreature owner, int amount) {
         this.name = strings.NAME;
@@ -27,59 +28,37 @@ public class WizPower extends AbstractGremlinPower {
         this.updateDescription();
     }
 
-    public void updateDescription()
-    {
-        if(this.amount < 3) {
-            if(this.amount == 2) {
-                this.description = (strings.DESCRIPTIONS[0] + (3 - this.amount) + strings.DESCRIPTIONS[1]);
-            }
-            else {
-                this.description = (strings.DESCRIPTIONS[0] + (3 - this.amount) + strings.DESCRIPTIONS[2]);
-            }
-        } else {
+    public void updateDescription() {
+        if (this.amount < AMOUNT_TO_FIRE) {
+            if (this.amount == AMOUNT_TO_FIRE - 1)
+                this.description = (strings.DESCRIPTIONS[0] + (AMOUNT_TO_FIRE - this.amount) + strings.DESCRIPTIONS[1]);
+            else
+                this.description = (strings.DESCRIPTIONS[0] + (AMOUNT_TO_FIRE - this.amount) + strings.DESCRIPTIONS[2]);
+        } else
             this.description = strings.DESCRIPTIONS[3];
-        }
     }
 
     @Override
     public void onInitialApplication() {
-        if(amount >= 3){
-            if(AbstractDungeon.player.hasRelic(WizardStaff.ID))
-            {
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.owner, this.owner,
-                        new BangPower(this.owner, 10 + WizardStaff.OOMPH), 1));
-            } else {
-                AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.owner, this.owner,
-                        new BangPower(this.owner, 10), 1));
-            }
-        }
+        if (amount >= AMOUNT_TO_FIRE)
+            addToBot(new ApplyPowerAction(this.owner, this.owner, new BangPower(this.owner)));
     }
 
     @Override
     public void stackPower(int stackAmount) {
         super.stackPower(stackAmount);
-        if(amount >= 3){
-            if(!this.owner.hasPower(BangPower.POWER_ID)) {
-                if(AbstractDungeon.player.hasRelic(WizardStaff.ID))
-                {
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.owner, this.owner,
-                            new BangPower(this.owner, 10 + WizardStaff.OOMPH), 1));
-                } else {
-                    AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this.owner, this.owner,
-                            new BangPower(this.owner, 10), 1));
-                }
-            }
+        if (amount >= AMOUNT_TO_FIRE) {
+            if (!this.owner.hasPower(BangPower.POWER_ID))
+                addToBot(new ApplyPowerAction(this.owner, this.owner, new BangPower(this.owner)));
         }
     }
 
     @Override
     public void onRemove() {
-        if(this.owner.hasPower(EncorePower.POWER_ID)){
+        if(this.owner.hasPower(EncorePower.POWER_ID))
             this.owner.getPower(EncorePower.POWER_ID).onSpecificTrigger();
-        }
-        if(AbstractDungeon.player.hasRelic(WizardHat.ID)) {
+        if(AbstractDungeon.player.hasRelic(WizardHat.ID))
             AbstractDungeon.player.getRelic(WizardHat.ID).onTrigger();
-        }
     }
 }
 

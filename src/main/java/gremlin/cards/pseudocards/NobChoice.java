@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gremlin.cards.AbstractGremlinCard;
+import gremlin.patches.AbstractCardEnum;
 import gremlin.patches.Unmovable;
 
 import java.util.ArrayList;
@@ -15,9 +16,10 @@ import static automaton.AutomatonMod.GOOD_STATUS;
 
 public class NobChoice extends AbstractGremlinCard implements Unmovable {
     public static final String ID = getID("NobChoice");
+    final static String img = "gremlinResources/images/cards/Choice.png";
 
     public NobChoice() {
-        super(ID, 0, CardType.STATUS, CardRarity.SPECIAL, CardTarget.SELF);
+        super(ID, img, 0, CardType.STATUS, CardRarity.SPECIAL, CardTarget.SELF, AbstractCardEnum.GREMLIN);
         this.dontTriggerOnUseCard = true;
         this.purgeOnUse = true;
         // To not break with Bronze Idol

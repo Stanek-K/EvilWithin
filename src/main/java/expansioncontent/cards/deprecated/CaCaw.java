@@ -37,13 +37,9 @@ public class CaCaw extends AbstractExpansionCard {
 
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(2);
-        }
+    public void upp() {
+        upgradeBaseCost(2);
     }
-
 }
 
 

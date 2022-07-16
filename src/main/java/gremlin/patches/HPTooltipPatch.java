@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 import javassist.CtBehavior;
 
 import java.util.Map;

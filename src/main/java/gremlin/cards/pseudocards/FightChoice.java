@@ -11,15 +11,17 @@ import com.megacrit.cardcrawl.monsters.exordium.GremlinNob;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import gremlin.actions.SetCardTargetCoordinatesAction;
 import gremlin.cards.AbstractGremlinCard;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
+import gremlin.patches.AbstractCardEnum;
 
 import static automaton.AutomatonMod.GOOD_STATUS;
 
 public class FightChoice extends AbstractGremlinCard {
     public static final String ID = getID("FightChoice");
+    final static String img = "gremlinResources/images/cards/RageBreak.png";
 
     public FightChoice() {
-        super(ID, -2, CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE);
+        super(ID, img, -2, CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE, AbstractCardEnum.GREMLIN);
         this.dontTriggerOnUseCard = true;
 
         this.baseMagicNumber = this.magicNumber = 3;

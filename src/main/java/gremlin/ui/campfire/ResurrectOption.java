@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import gremlin.GremlinMod;
-import gremlin.characters.GremlinCharacter;
+import gremlin.GremlinCharacter;
 
 public class ResurrectOption extends AbstractCampfireOption {
     private static final UIStrings uiStrings;
