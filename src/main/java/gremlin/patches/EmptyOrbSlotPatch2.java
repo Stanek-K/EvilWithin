@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 @SpirePatch(clz = AbstractOrb.class, method = "update")
 public class EmptyOrbSlotPatch2 {
     public static SpireReturn Prefix(AbstractOrb __instance) {
-        if (AbstractDungeon.player.chosenClass == GremlinEnum.GREMLIN && __instance instanceof EmptyOrbSlot) {
+        if (AbstractDungeon.player.chosenClass == Enums.GremlinEnum.GREMLIN && __instance instanceof EmptyOrbSlot) {
             return SpireReturn.Return(null);
         }
         return SpireReturn.Continue();

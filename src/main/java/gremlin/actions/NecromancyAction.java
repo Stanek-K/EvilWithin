@@ -29,9 +29,6 @@ public class NecromancyAction extends AbstractGameAction
                     grems.remove(((GremlinStandby) orb).assetFolder);
                 }
             }
-            if(AbstractDungeon.player instanceof GremlinCharacter){
-                grems.removeIf(grem -> ((GremlinCharacter) AbstractDungeon.player).mobState.isEnslaved(grem));
-            }
             if(grems.size() > 0){
                 String zombie = grems.get(AbstractDungeon.miscRng.random(0, grems.size() - 1));
                 AbstractDungeon.actionManager.addToTop(new ChannelAction(

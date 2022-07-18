@@ -13,16 +13,16 @@ import gremlin.actions.LoseAllGoldAction;
 import gremlin.actions.SetCardTargetCoordinatesAction;
 import gremlin.cards.AbstractGremlinCard;
 import gremlin.GremlinCharacter;
-import gremlin.patches.AbstractCardEnum;
+import gremlin.patches.Enums;
 
 import static automaton.AutomatonMod.GOOD_STATUS;
 
 public class CowerChoice extends AbstractGremlinCard {
     public static final String ID = getID("CowerChoice");
-    final static String img = "gremlinResources/images/cards/Cower.png";
+    final static String img = "gremlinResources/images/cards/cower.png";
 
     public CowerChoice() {
-        super(ID, img, -2,  CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE, AbstractCardEnum.GREMLIN);
+        super(ID, img, -2,  CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE, Enums.AbstractCardEnum.GREMLIN);
         this.dontTriggerOnUseCard = true;
         AlwaysRetainField.alwaysRetain.set(this, true);
         // To not break with Bronze Idol

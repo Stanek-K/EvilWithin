@@ -31,7 +31,6 @@ public class LoseRearmostGremlinAction extends AbstractGameAction {
 
         GremlinStandby grem = (GremlinStandby) AbstractDungeon.player.orbs.get(position);
         ((GremlinCharacter) AbstractDungeon.player).gremlinDeathSFX(grem.assetFolder);
-        ((GremlinCharacter) AbstractDungeon.player).enslave(grem.assetFolder);
 
         final AbstractOrb orbSlot = new EmptyOrbSlot();
         for (int i = position + 1; i < AbstractDungeon.player.orbs.size(); ++i) {

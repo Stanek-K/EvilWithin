@@ -9,6 +9,7 @@ import gremlin.GremlinMod;
 import gremlin.powers.WizPower;
 
 import static gremlin.GremlinMod.WIZARD_GREMLIN;
+import static gremlin.GremlinMod.getModID;
 
 public class Astound extends AbstractGremlinCard {
     public static final String ID = getID("Astound");
@@ -20,7 +21,7 @@ public class Astound extends AbstractGremlinCard {
         this.cardsToPreview = new Ward();
         this.tags.add(WIZARD_GREMLIN);
         setBackgrounds();
-        GremlinMod.loadJokeCardImage(this, "Astound.png");
+        loadJokeCardImage(this, getModID(), "Astound.png");
     }
 
     public void upp(){

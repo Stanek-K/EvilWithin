@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.ui.buttons.ReturnToMenuButton;
 import com.megacrit.cardcrawl.unlock.AbstractUnlock;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import downfall.unlocks.*;
-import gremlin.patches.GremlinEnum;
+import gremlin.patches.Enums;
 import guardian.patches.GuardianEnum;
 import javassist.CtBehavior;
 import slimebound.patches.SlimeboundEnum;
@@ -71,7 +71,7 @@ public class DeathScreenUnlockPatch {
                         AbstractDungeon.unlockScreen.open((AbstractUnlock) AbstractDungeon.unlocks.remove(0));
                         ////SlimeboundMod.logger.info("Triggered Gremlin Unlock screen!");
                         return SpireReturn.Return(null);
-                    } else if ((UnlockTracker.isCharacterLocked("Snecko")) && (AbstractDungeon.player.chosenClass == GremlinEnum.GREMLIN)) {
+                    } else if ((UnlockTracker.isCharacterLocked("Snecko")) && (AbstractDungeon.player.chosenClass == Enums.GremlinEnum.GREMLIN)) {
                         AbstractDungeon.unlocks.add(new SneckoUnlock());
                         AbstractDungeon.unlockScreen.open((AbstractUnlock) AbstractDungeon.unlocks.remove(0));
                         ////SlimeboundMod.logger.info("Triggered Snecko Unlock screen!");

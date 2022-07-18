@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import gremlin.GremlinMod;
 
 import static gremlin.GremlinMod.FAT_GREMLIN;
+import static gremlin.GremlinMod.getModID;
 
 public class ArmsTheft extends AbstractGremlinCard {
     public static final String ID = getID("ArmsTheft");
@@ -17,7 +18,7 @@ public class ArmsTheft extends AbstractGremlinCard {
         this.exhaust = true;
         this.tags.add(FAT_GREMLIN);
         setBackgrounds();
-        GremlinMod.loadJokeCardImage(this, "ArmsTheft.png");
+        loadJokeCardImage(this, getModID(), "ArmsTheft.png");
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

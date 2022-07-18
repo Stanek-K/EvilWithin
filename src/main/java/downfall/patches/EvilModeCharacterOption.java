@@ -2,7 +2,6 @@ package downfall.patches;
 
 import automaton.AutomatonChar;
 import champ.ChampChar;
-import champ.ChampMod;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,7 +11,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import downfall.downfallMod;
-import gremlin.patches.GremlinEnum;
+import gremlin.patches.Enums;
 import guardian.patches.GuardianEnum;
 import sneckomod.TheSnecko;
 import theHexaghost.TheHexaghost;
@@ -52,7 +51,7 @@ public class EvilModeCharacterOption {
                 } else {
                     TipHelper.renderGenericTip(InputHelper.mX + 70.0F * Settings.scale, InputHelper.mY - 10.0F * Settings.scale, __instance.TEXT[0], TEXT[6] + TEXT[11]);
                 }
-            } else if (__instance.c.chosenClass == GremlinEnum.GREMLIN) {
+            } else if (__instance.c.chosenClass == Enums.GremlinEnum.GREMLIN) {
                 if (UnlockTracker.isCharacterLocked("Automaton")) {
                     TipHelper.renderGenericTip(InputHelper.mX + 70.0F * Settings.scale, InputHelper.mY - 10.0F * Settings.scale, __instance.TEXT[0], TEXT[7] + TEXT[11]);
                 } else {

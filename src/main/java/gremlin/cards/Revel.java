@@ -11,7 +11,7 @@ public class Revel extends AbstractGremlinCard {
 
     public Revel() {
         super(ID, -2, CardType.SKILL, CardRarity.RARE, CardTarget.NONE);
-        GremlinMod.loadJokeCardImage(this, "Revel.png");
+        loadJokeCardImage(this, modID, "Revel.png");
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {}

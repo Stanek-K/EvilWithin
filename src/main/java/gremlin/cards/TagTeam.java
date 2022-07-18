@@ -23,7 +23,7 @@ public class TagTeam extends AbstractGremlinCard {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.NONE);
         this.baseMagicNumber = this.magicNumber = 2;
         updateModal();
-        GremlinMod.loadJokeCardImage(this, "TagTeam.png");
+        loadJokeCardImage(this, modID, "TagTeam.png");
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -9,9 +9,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.ui.buttons.ReturnToMenuButton;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import gremlin.patches.GremlinEnum;
+import gremlin.patches.Enums;
 import guardian.patches.GuardianEnum;
-import slimebound.SlimeboundMod;
 import theHexaghost.TheHexaghost;
 
 
@@ -56,7 +55,7 @@ public class DeathScreenCharUnlockPatch {
                     !(UnlockTracker.isCharacterLocked("Champ")) &&
                     !(UnlockTracker.isCharacterLocked("Automaton")) &&
                     !(UnlockTracker.isCharacterLocked("Gremlin")) &&
-                    EvilModeCharacterSelect.evilMode && AbstractDungeon.player.chosenClass == GremlinEnum.GREMLIN){
+                    EvilModeCharacterSelect.evilMode && AbstractDungeon.player.chosenClass == Enums.GremlinEnum.GREMLIN){
              //   //SlimeboundMod.logger.info("third if");
                 __instance.appear(Settings.WIDTH / 2.0F, Settings.HEIGHT * 0.15F, TEXT[40]);
                 __instance.label = TEXT[40];

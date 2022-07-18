@@ -1,10 +1,8 @@
 package gremlin.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
@@ -13,10 +11,8 @@ import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import gremlin.GremlinMod;
 import gremlin.GremlinCharacter;
 import gremlin.orbs.GremlinStandby;
-import gremlin.powers.GremlinNobPower;
 
 import java.util.Collections;
-import java.util.Random;
 
 public class GremlinSwapAction extends AbstractGameAction {
     private static UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("gremlin:Swap");
@@ -40,23 +36,6 @@ public class GremlinSwapAction extends AbstractGameAction {
     @Override
     public void update() {
         if (!(AbstractDungeon.player instanceof GremlinCharacter)) {
-            this.isDone = true;
-            return;
-        }
-        if(AbstractDungeon.player.hasPower(GremlinNobPower.POWER_ID)){
-            if(!fromRelic) {
-                Random r = new Random();
-                int roll = r.nextInt(3);
-                if (roll == 0) {
-                    AbstractDungeon.actionManager.addToBottom(new SFXAction("VO_GREMLINNOB_1A"));
-                } else if (roll == 1) {
-                    AbstractDungeon.actionManager.addToBottom(new SFXAction("VO_GREMLINNOB_1B"));
-                } else {
-                    AbstractDungeon.actionManager.addToBottom(new SFXAction("VO_GREMLINNOB_1C"));
-                }
-                String talk = uiStrings.TEXT[roll];
-                AbstractDungeon.actionManager.addToBottom(new TalkAction(true, talk, 1.0F, 2.0F));
-            }
             this.isDone = true;
             return;
         }

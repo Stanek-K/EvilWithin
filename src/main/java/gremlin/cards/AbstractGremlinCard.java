@@ -3,7 +3,8 @@ package gremlin.cards;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import expansioncontent.cards.AbstractDownfallCard;
 import gremlin.GremlinMod;
-import gremlin.patches.AbstractCardEnum;
+import gremlin.patches.Enums;
+
 import static gremlin.GremlinMod.*;
 
 public abstract class AbstractGremlinCard extends AbstractDownfallCard {
@@ -11,8 +12,8 @@ public abstract class AbstractGremlinCard extends AbstractDownfallCard {
         return "gremlin:" + ID;
     }
 
-    protected AbstractGremlinCard(final String id, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
-        super(GremlinMod.getModID(), id, cost, type, rarity, target, AbstractCardEnum.GREMLIN);
+    protected AbstractGremlinCard(String id, int cost, CardType type, CardRarity rarity, CardTarget target) {
+        super(GremlinMod.getModID(), id, cost, type, rarity, target, Enums.AbstractCardEnum.GREMLIN);
         setBackgrounds();
     }
 
@@ -21,14 +22,8 @@ public abstract class AbstractGremlinCard extends AbstractDownfallCard {
         setBackgrounds();
     }
 
-    protected AbstractGremlinCard(final String id, final String img, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
+    protected AbstractGremlinCard(String id, String img, int cost, CardType type, CardRarity rarity, CardTarget target, CardColor color) {
         super(GremlinMod.getModID(), id, img, cost, type, rarity, target, color);
-        setBackgrounds();
-    }
-
-    protected AbstractGremlinCard(String id, String name, String img, int cost, String rawDescription, CardType type,
-                                  CardRarity rarity, CardTarget target) {
-        super(GremlinMod.getModID(), id, cost, type, rarity, target, AbstractCardEnum.GREMLIN);
         setBackgrounds();
     }
 

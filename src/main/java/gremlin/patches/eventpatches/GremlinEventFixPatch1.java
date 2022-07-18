@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
-import gremlin.patches.GremlinEnum;
+import gremlin.patches.Enums;
 
 @SpirePatch(
         clz = AbstractImageEvent.class,
@@ -20,7 +20,7 @@ public class GremlinEventFixPatch1 {
 
     // Check if an event option involves the player losing HP via their text.
     protected static boolean needs_replacement(String msg) {
-        return AbstractDungeon.player.chosenClass == GremlinEnum.GREMLIN && ((msg.contains(REPLACEMENTSTRINGS[0]) && msg.contains(REPLACEMENTSTRINGS[1])) || (msg.contains(REPLACEMENTSTRINGS[3]) && msg.contains(REPLACEMENTSTRINGS[4])));
+        return AbstractDungeon.player.chosenClass == Enums.GremlinEnum.GREMLIN && ((msg.contains(REPLACEMENTSTRINGS[0]) && msg.contains(REPLACEMENTSTRINGS[1])) || (msg.contains(REPLACEMENTSTRINGS[3]) && msg.contains(REPLACEMENTSTRINGS[4])));
     }
 
     @SpirePatch(

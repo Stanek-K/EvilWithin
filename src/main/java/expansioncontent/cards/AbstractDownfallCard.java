@@ -49,8 +49,8 @@ abstract public class AbstractDownfallCard extends CustomCard {
         protected String[] EXTENDED_DESCRIPTION;
 
 
-    public AbstractDownfallCard(final String modID, final String id, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
-        super(id, "ERROR", getCorrectPlaceholderImage(type, id, modID), cost, "ERROR", type, color, rarity, target);
+    public AbstractDownfallCard(final String modID, final String id, String img, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
+        super(id, "ERROR", Gdx.files.internal(img).exists() ? img : getCorrectPlaceholderImage(type), cost, "ERROR", type, color, rarity, target);
         this.modID = modID;
         cardStrings = CardCrawlGame.languagePack.getCardStrings(id);
         name = NAME = cardStrings.NAME;
@@ -62,17 +62,8 @@ abstract public class AbstractDownfallCard extends CustomCard {
         initializeDescription();
     }
 
-    public AbstractDownfallCard(final String modID, final String id, String img, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
-        super(id, "ERROR", img, cost, "ERROR", type, color, rarity, target);
-        this.modID = modID;
-        cardStrings = CardCrawlGame.languagePack.getCardStrings(id);
-        name = NAME = cardStrings.NAME;
-        originalName = NAME;
-        rawDescription = DESCRIPTION = cardStrings.DESCRIPTION;
-        UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-        EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
-        initializeTitle();
-        initializeDescription();
+    public AbstractDownfallCard(final String modID, final String id, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
+        this(modID, id, generateImagePath(modID, id), cost, type, rarity, target, color);
     }
 
 
@@ -109,18 +100,19 @@ abstract public class AbstractDownfallCard extends CustomCard {
         ReflectionHacks.setPrivate(card, AbstractCard.class, "jokePortrait", cardImg);
     }
 
-    private static String getCorrectPlaceholderImage(CardType type, String id, String modID) {
-        String img = modID + "Resources/images/cards/" + id.replaceAll((modID + ":"), "") + ".png";
-        if ((!Gdx.files.internal(img).exists()))
-            switch (type) {
-                case ATTACK:
-                    return "expansioncontentResources/images/cards/Placeholder/Attack.png";
-                case POWER:
-                    return "expansioncontentResources/images/cards/Placeholder/Power.png";
-                default:
-                    return "expansioncontentResources/images/cards/Placeholder/Skill.png";
-            }
-        return img;
+    private static String generateImagePath(String modID, String id) {
+        return modID + "Resources/images/cards/" + id.replaceAll((modID + ":"), "") + ".png";
+    }
+
+    private static String getCorrectPlaceholderImage(CardType type) {
+        switch (type) {
+            case ATTACK:
+                return "expansioncontentResources/images/cards/Placeholder/Attack.png";
+            case POWER:
+                return "expansioncontentResources/images/cards/Placeholder/Power.png";
+            default:
+                return "expansioncontentResources/images/cards/Placeholder/Skill.png";
+        }
     }
 
     //Variables and upgrades

@@ -11,7 +11,7 @@ public class Ward extends AbstractGremlinCard {
         super(ID, 0, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF, CardColor.COLORLESS);
         this.baseBlock = 3;
         this.exhaust = true;
-        GremlinMod.loadJokeCardImage(this, "Ward.png");
+        loadJokeCardImage(this, modID, "Ward.png");
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

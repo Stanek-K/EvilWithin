@@ -62,9 +62,6 @@ public class Necromancy extends AbstractGremlinCard {
             }
         }
         int total = 4;
-        if(AbstractDungeon.player instanceof GremlinCharacter) {
-            total -= ((GremlinCharacter) AbstractDungeon.player).mobState.numEnslaved();
-        }
         return (count!=total);
     }
 

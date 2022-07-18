@@ -38,8 +38,7 @@ import gremlin.cards.*;
 import gremlin.cards.pseudocards.LeaderChoice;
 import gremlin.cards.pseudocards.NobChoice;
 import gremlin.orbs.*;
-import gremlin.patches.AbstractCardEnum;
-import gremlin.patches.GremlinEnum;
+import gremlin.patches.Enums;
 import gremlin.powers.GremlinPower;
 import gremlin.relics.GremlinKnob;
 
@@ -97,7 +96,7 @@ public class GremlinCharacter extends CustomPlayer {
     private static String[] GREMUITEXT = CardCrawlGame.languagePack.getUIString("gremlin:GremFight").TEXT;
 
     public GremlinCharacter(String name) {
-        super(name, GremlinEnum.GREMLIN, orbTextures,
+        super(name, Enums.GremlinEnum.GREMLIN, orbTextures,
                 "gremlinResources/images/char/orb/vfx.png", (String)null, null);
 
         this.drawX += 5.0F * Settings.scale;
@@ -191,7 +190,7 @@ public class GremlinCharacter extends CustomPlayer {
 
     @Override
     public AbstractCard.CardColor getCardColor() {
-        return AbstractCardEnum.GREMLIN;
+        return Enums.AbstractCardEnum.GREMLIN;
     }
 
     @Override
@@ -320,14 +319,6 @@ public class GremlinCharacter extends CustomPlayer {
             removeCower(false);
         }
         mobState.updateMobState(this);
-    }
-
-    public void enslave(String victim) {
-        mobState.enslave(victim);
-    }
-
-    public void enslave(String victim, boolean isVoucher) {
-        mobState.enslave(victim, isVoucher);
     }
 
     public void resurrect() {
@@ -613,11 +604,7 @@ public class GremlinCharacter extends CustomPlayer {
                         }
                     }
                     if(!found) {
-                        if (!mobState.isEnslaved(grem)) {
-                            hpMap.put(GremlinMod.getGremlinOrb(grem).name, 0);
-                        } else {
-                            hpMap.put(GremlinMod.getGremlinOrb(grem).name, -1);
-                        }
+                        hpMap.put(GremlinMod.getGremlinOrb(grem).name, 0);
                     }
                 }
             }

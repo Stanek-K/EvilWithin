@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import gremlin.GremlinMod;
 
 import static gremlin.GremlinMod.SHIELD_GREMLIN;
+import static gremlin.GremlinMod.getModID;
 
 public class FairyDust extends AbstractGremlinCard {
     public static final String ID = getID("FairyDust");
@@ -17,7 +18,7 @@ public class FairyDust extends AbstractGremlinCard {
         this.cardsToPreview = new Ward();
         this.tags.add(SHIELD_GREMLIN);
         setBackgrounds();
-        GremlinMod.loadJokeCardImage(this, "FairyDust.png");
+        loadJokeCardImage(this, getModID(), "FairyDust.png");
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

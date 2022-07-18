@@ -15,7 +15,7 @@ public class RageBreak extends AbstractGremlinCard {
 
     public RageBreak() {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        this.baseMagicNumber = this.magicNumber = 3;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.baseDownfallMagic = downfallMagic = 2;
         this.exhaust = true;
         this.tags.add(MAD_GREMLIN);

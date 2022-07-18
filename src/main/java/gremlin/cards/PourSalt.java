@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import gremlin.GremlinMod;
 
 import static gremlin.GremlinMod.FAT_GREMLIN;
+import static gremlin.GremlinMod.getModID;
 
 public class PourSalt extends AbstractGremlinCard {
     public static final String ID = getID("PourSalt");
@@ -18,7 +19,7 @@ public class PourSalt extends AbstractGremlinCard {
         this.baseDamage = 7;
         this.tags.add(FAT_GREMLIN);
         setBackgrounds();
-        GremlinMod.loadJokeCardImage(this, "PourSalt.png");
+        loadJokeCardImage(this, getModID(),"PourSalt.png");
     }
 
     @Override

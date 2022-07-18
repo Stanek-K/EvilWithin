@@ -2,7 +2,6 @@ package gremlin.cards;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import gremlin.GremlinMod;
 import gremlin.powers.WizPower;
 import gremlin.powers.WizardryPower;
 
@@ -17,7 +16,7 @@ public class Wizardry extends AbstractGremlinCard {
         this.baseDownfallMagic = this.downfallMagic = 2;
         this.tags.add(WIZARD_GREMLIN);
         setBackgrounds();
-        GremlinMod.loadJokeCardImage(this, "Wizardry.png");
+        loadJokeCardImage(this, modID, "Wizardry.png");
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

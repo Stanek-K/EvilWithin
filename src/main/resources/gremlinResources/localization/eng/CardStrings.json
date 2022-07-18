@@ -280,7 +280,7 @@
   },
   "gremlin:Pretaliation": {
     "NAME": "Pretaliation",
-    "DESCRIPTION": "Deal !D! damage if the enemy intends to attack. NL Deal !M! damage otherwise."
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! temporary Thorns."
   },
   "gremlin:ProperTools": {
     "NAME": "Proper Tools",

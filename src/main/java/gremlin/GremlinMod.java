@@ -36,7 +36,7 @@ import gremlin.events.BackToBasicsGremlin;
 import gremlin.events.GremlinTrenchcoat;
 import gremlin.events.ScrapOozeGremlins;
 import gremlin.orbs.*;
-import gremlin.patches.AbstractCardEnum;
+import gremlin.patches.Enums;
 import gremlin.patches.GremlinModSaveState;
 import gremlin.potions.GremlinPotion;
 import gremlin.potions.NecromancyPotion;
@@ -54,12 +54,12 @@ import java.util.Map;
 import static basemod.BaseMod.addRelic;
 import static basemod.BaseMod.addRelicToCustomPool;
 import static downfall.patches.EvilModeCharacterSelect.evilMode;
-import static gremlin.patches.GremlinEnum.GREMLIN;
+import static gremlin.patches.Enums.GremlinEnum.GREMLIN;
 
 
 @SpireInitializer
-public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscriber,
-        EditRelicsSubscriber, EditCardsSubscriber, OnStartBattleSubscriber, PostBattleSubscriber,
+public class GremlinMod implements EditCharactersSubscriber, EditRelicsSubscriber, EditCardsSubscriber,
+        OnStartBattleSubscriber, PostBattleSubscriber,
         PostInitializeSubscriber, SetUnlocksSubscriber, StartGameSubscriber {
     private static String modID = "gremlin";
 
@@ -107,7 +107,7 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
         logger.info("Loading GremlinMod.");
         BaseMod.subscribe(this);
 
-        BaseMod.addColor(AbstractCardEnum.GREMLIN,
+        BaseMod.addColor(Enums.AbstractCardEnum.GREMLIN,
                 GREMLIN_COLOR, GREMLIN_COLOR, GREMLIN_COLOR, GREMLIN_COLOR, GREMLIN_COLOR, GREMLIN_COLOR, GREMLIN_COLOR,
                 getResourcePath(ATTACK_CARD), getResourcePath(SKILL_CARD), getResourcePath(POWER_CARD),
                 getResourcePath(ENERGY_ORB), getResourcePath(ATTACK_CARD_PORTRAIT),
@@ -163,32 +163,31 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
     public void receiveEditRelics() {
         logger.info("Adding Gremlin relics.");
         // Starter
-        addRelicToCustomPool(new GremlinKnob(), AbstractCardEnum.GREMLIN);
+        addRelicToCustomPool(new GremlinKnob(), Enums.AbstractCardEnum.GREMLIN);
 
         // Common
         addRelic(new SupplyScroll(), RelicType.SHARED);
-        addRelicToCustomPool(new FragmentationGrenade(), AbstractCardEnum.GREMLIN);
-        addRelicToCustomPool(new WizardHat(), AbstractCardEnum.GREMLIN);
+        //addRelicToCustomPool(new FragmentationGrenade(), Enums.AbstractCardEnum.GREMLIN);
+        //addRelicToCustomPool(new WizardHat(), Enums.AbstractCardEnum.GREMLIN);
 
         // Uncommon
         addRelic(new ImpeccablePecs(), RelicType.SHARED);
-        addRelicToCustomPool(new MagicalMallet(), AbstractCardEnum.GREMLIN);
-        addRelicToCustomPool(new WizardStaff(), AbstractCardEnum.GREMLIN);
-        addRelicToCustomPool(new WoundPoker(), AbstractCardEnum.GREMLIN);
+        //addRelicToCustomPool(new MagicalMallet(), Enums.AbstractCardEnum.GREMLIN);
+        //addRelicToCustomPool(new WizardStaff(), Enums.AbstractCardEnum.GREMLIN);
+        //addRelicToCustomPool(new WoundPoker(), Enums.AbstractCardEnum.GREMLIN);
 
         // Rare
         addRelic(new PricklyShields(), RelicType.SHARED);
-        addRelicToCustomPool(new GremlinBomb(), AbstractCardEnum.GREMLIN);
-        addRelicToCustomPool(new GremlinGravestone(), AbstractCardEnum.GREMLIN);
+        //addRelicToCustomPool(new GremlinBomb(), Enums.AbstractCardEnum.GREMLIN);
+        //addRelicToCustomPool(new GremlinGravestone(), Enums.AbstractCardEnum.GREMLIN);
 
         // Boss
-        addRelicToCustomPool(new GremlinKnobUpgrade(), AbstractCardEnum.GREMLIN);
-        addRelicToCustomPool(new LeaderVoucher(), AbstractCardEnum.GREMLIN);
-        addRelicToCustomPool(new ShortStature(), AbstractCardEnum.GREMLIN);
+        //addRelicToCustomPool(new GremlinKnobUpgrade(), Enums.AbstractCardEnum.GREMLIN);
+        //addRelicToCustomPool(new ShortStature(), Enums.AbstractCardEnum.GREMLIN);
 
         // Shop
-        addRelicToCustomPool(new StolenMerchandise(), AbstractCardEnum.GREMLIN);
-        addRelicToCustomPool(new TagTeamwork(), AbstractCardEnum.GREMLIN);
+        //addRelicToCustomPool(new StolenMerchandise(), Enums.AbstractCardEnum.GREMLIN);
+        //addRelicToCustomPool(new TagTeamwork(), Enums.AbstractCardEnum.GREMLIN);
     }
 
     @Override
@@ -283,7 +282,6 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
         //Rare Powers
         BaseMod.addCard(new CongaLine());
         BaseMod.addCard(new Encore());
-        //BaseMod.addCard(new Nob());
         BaseMod.addCard(new ShadowShiv());
         BaseMod.addCard(new TargetWeakness());
         BaseMod.addCard(new Unforgiving());
@@ -291,38 +289,6 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
         //Special
         BaseMod.addCard(new Ward());
 
-    }
-
-    @Override
-    public void receiveEditStrings() {
-        String language = "eng";
-        logger.info("Loading GremlinMod Strings.");
-        // CharacterStrings
-        BaseMod.loadCustomStringsFile(CharacterStrings.class,
-                "gremlinResources/localization/" +language+"/CharacterStrings.json");
-        // CardStrings
-        BaseMod.loadCustomStringsFile(CardStrings.class,
-                "gremlinResources/localization/" +language+"/CardStrings.json");
-
-        // PowerStrings
-        BaseMod.loadCustomStringsFile(PowerStrings.class,
-                "gremlinResources/localization/" +language+"/PowerStrings.json");
-
-        // OrbStrings
-        BaseMod.loadCustomStringsFile(OrbStrings.class,
-                "gremlinResources/localization/" +language+"/OrbStrings.json");
-
-        // RelicStrings
-        BaseMod.loadCustomStringsFile(RelicStrings.class,
-                "gremlinResources/localization/" +language+"/RelicStrings.json");
-
-        // UIStrings
-        BaseMod.loadCustomStringsFile(UIStrings.class,
-                "gremlinResources/localization/" +language+"/UIStrings.json");
-
-        // EventStrings
-        BaseMod.loadCustomStringsFile(EventStrings.class,
-                "gremlinResources/localization/" +language+"/EventStrings.json");
     }
 
     @Override
@@ -475,7 +441,7 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
     }
 
     @Override
-    public void receiveSetUnlocks() {
+    public void receiveSetUnlocks() { //TODO Don't forget about me!
         downfallMod.registerUnlockSuite(
                 Enthusiasm.ID,
                 PartyStick.ID,
@@ -487,7 +453,7 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
 
                 Unforgiving.ID,
                 ShowStopper.ID,
-                Nob.ID,
+                ShowStopper.ID,
 
                 GremlinGravestone.ID,
                 GremlinBomb.ID,
@@ -508,18 +474,5 @@ public class GremlinMod implements EditCharactersSubscriber, EditStringsSubscrib
                 ((GremlinCharacter) AbstractDungeon.player).mobState.setAll(AbstractDungeon.player.currentHealth);
             }
         }
-    }
-
-    public static void loadJokeCardImage(AbstractCard card, String img) {
-        if (card instanceof AbstractGremlinCard) {
-            ((AbstractGremlinCard) card).betaArtPath = img;
-        }
-        Texture cardTexture;
-        cardTexture = hermit.util.TextureLoader.getTexture("gremlinResources/images/betacards/" + img);
-        cardTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-        int tw = cardTexture.getWidth();
-        int th = cardTexture.getHeight();
-        TextureAtlas.AtlasRegion cardImg = new TextureAtlas.AtlasRegion(cardTexture, 0, 0, tw, th);
-        ReflectionHacks.setPrivate(card, AbstractCard.class, "jokePortrait", cardImg);
     }
 }

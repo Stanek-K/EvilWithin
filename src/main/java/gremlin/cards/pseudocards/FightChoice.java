@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import gremlin.actions.SetCardTargetCoordinatesAction;
 import gremlin.cards.AbstractGremlinCard;
 import gremlin.GremlinCharacter;
-import gremlin.patches.AbstractCardEnum;
+import gremlin.patches.Enums;
 
 import static automaton.AutomatonMod.GOOD_STATUS;
 
@@ -21,7 +21,7 @@ public class FightChoice extends AbstractGremlinCard {
     final static String img = "gremlinResources/images/cards/RageBreak.png";
 
     public FightChoice() {
-        super(ID, img, -2, CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE, AbstractCardEnum.GREMLIN);
+        super(ID, img, -2, CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE, Enums.AbstractCardEnum.GREMLIN);
         this.dontTriggerOnUseCard = true;
 
         this.baseMagicNumber = this.magicNumber = 3;

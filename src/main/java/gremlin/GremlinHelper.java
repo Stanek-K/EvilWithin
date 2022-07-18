@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import gremlin.orbs.GremlinStandby;
-import gremlin.relics.LeaderVoucher;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,8 +12,6 @@ import java.util.Random;
 public class GremlinHelper { //TODO Rebuild me! and do it without Orbs!!
     public ArrayList<String> gremlins;
     public ArrayList<Integer> gremlinHP;
-    private ArrayList<String> enslaved;
-    private String voucher;
     public boolean inCombat = false;
     // Workaround for not have ascension available at creation
     public boolean unset = false;
@@ -22,8 +19,6 @@ public class GremlinHelper { //TODO Rebuild me! and do it without Orbs!!
     public GremlinHelper() {
         gremlins = new ArrayList<>();
         gremlinHP = new ArrayList<>();
-        enslaved = new ArrayList<>();
-        voucher = "";
     }
 
     public void initialRandom(int hp){
@@ -71,10 +66,8 @@ public class GremlinHelper { //TODO Rebuild me! and do it without Orbs!!
         for(int i = 0; i<5; i++ ){
             int hp = gremlinHP.get(i);
             if (hp > 0) {
-                if (!enslaved.contains(gremlins.get(i))) {
-                    int heal = MathUtils.round((max - hp) * multiplier);
-                    gremlinHP.set(i, hp + heal);
-                }
+                int heal = MathUtils.round((max - hp) * multiplier);
+                gremlinHP.set(i, hp + heal);
             }
         }
     }
@@ -115,43 +108,10 @@ public class GremlinHelper { //TODO Rebuild me! and do it without Orbs!!
         }
     }
 
-    public void enslave(String victim) {
-        enslave(victim, false);
-    }
-
-    public void enslave(String victim, boolean isVoucher){
-        if(!enslaved.contains(victim)) {
-            enslaved.add(victim);
-            for (int position = 0; position < gremlins.size(); position++) {
-                if (gremlins.get(position).equals(victim)) {
-                    gremlinHP.set(position, 0);
-                    break;
-                }
-            }
-            if (isVoucher) {
-                voucher = victim;
-            }
-        }
-    }
-
-    public int numEnslaved(){
-        return enslaved.size();
-    }
-
-    public boolean isEnslaved(String gremlin){
-        return enslaved.contains(gremlin);
-    }
-
-    public String getVoucher() {
-        return voucher;
-    }
-
     public boolean canRez() {
         for(int i=1; i<5; i++){
             if(gremlinHP.get(i) <= 0){
-                if(!enslaved.contains(gremlins.get(i))) {
-                    return true;
-                }
+                return true;
             }
         }
         return false;
@@ -162,10 +122,8 @@ public class GremlinHelper { //TODO Rebuild me! and do it without Orbs!!
         int firstDead = -1;
         for(int i=1; i<5; i++){
             if(gremlinHP.get(i) <= 0){
-                if(!enslaved.contains(gremlins.get(i))) {
-                    firstDead = i;
-                    break;
-                }
+                firstDead = i;
+                break;
             }
         }
         if(firstDead < 0){
@@ -173,9 +131,7 @@ public class GremlinHelper { //TODO Rebuild me! and do it without Orbs!!
         }
         ArrayList<String> deadGrems = new ArrayList<>();
         for(int i=firstDead; i<5; i++){
-            if(!enslaved.contains(gremlins.get(i))) {
-                deadGrems.add(gremlins.get(i));
-            }
+            deadGrems.add(gremlins.get(i));
         }
         Random rand = new Random();
         String randomGrem = deadGrems.get(rand.nextInt(deadGrems.size()));
@@ -188,7 +144,7 @@ public class GremlinHelper { //TODO Rebuild me! and do it without Orbs!!
         inCombat = true;
         GremlinStandby grem = GremlinMod.getGremlinOrb(gremlins.get(0));
         character.swapBody(grem.assetFolder, grem.animationName);
-        for(int i=4; i>0; i--){
+        for(int i = 4; i > 0; i--){
             if(gremlinHP.get(i) > character.maxHealth){
                 gremlinHP.set(i, character.maxHealth);
             }
@@ -197,9 +153,6 @@ public class GremlinHelper { //TODO Rebuild me! and do it without Orbs!!
                         GremlinMod.getGremlinOrb(gremlins.get(i), gremlinHP.get(i))
                 ));
             }
-        }
-        if(character.hasRelic(LeaderVoucher.ID)) {
-            ((LeaderVoucher)(character.getRelic(LeaderVoucher.ID))).updateEnslavedTooltip();
         }
     }
 
@@ -235,24 +188,12 @@ public class GremlinHelper { //TODO Rebuild me! and do it without Orbs!!
         GremlinMod.logger.debug(this);
     }
 
-    @Override
-    public String toString() {
-        ArrayList<String> s = new ArrayList<>();
-        for(int i=0;i<gremlins.size();i++){
-            s.add(gremlins.get(i) + ": " + gremlinHP.get(i).toString());
-        }
-        return s + " <" + enslaved.toString() + ">" + "[" + voucher + "]";
-    }
-
     public String getGremlinName(int index) {
         return GremlinMod.getGremlinOrb(gremlins.get(index)).name;
     }
 
     public int getGremlinHP(int index) {
         String grem = gremlins.get(index);
-        if (enslaved.contains(grem)) {
-            return -1;
-        }
         if (gremlinHP.get(index) < 0) {
             return 0;
         }
