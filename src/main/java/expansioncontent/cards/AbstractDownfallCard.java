@@ -208,6 +208,7 @@ abstract public class AbstractDownfallCard extends CustomCard {
     public void makeInHand(AbstractCard c) {
         makeInHand(c, 1);
     }
+
     public void makeInHandTop(AbstractCard c, int i) {
         att(new MakeTempCardInHandAction(c, i));
     }

@@ -11,22 +11,22 @@ public class Presto extends AbstractGremlinCard {
     public static final String ID = getID("Presto");
 
     public Presto() {
-        super(ID, 0, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        this.baseDamage = 4;
+        super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
+        this.baseDamage = 6;
         this.baseMagicNumber = this.magicNumber = 1;
+        isMultiDamage = true;
         this.tags.add(WIZARD_GREMLIN);
         setBackgrounds();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.FIRE);
+        allDmg(AbstractGameAction.AttackEffect.FIRE);
         applyToSelf(new WizPower(p, this.magicNumber));
     }
 
     @Override
     public void upp(){
-        upgradeDamage(1);
-        upgradeMagicNumber(1);
+        upgradeDamage(3);
     }
 }

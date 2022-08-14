@@ -10,8 +10,8 @@ public class Changeo extends AbstractGremlinCard {
     public static final String ID = getID("Changeo");
 
     public Changeo() {
-        super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        this.baseBlock = 10;
+        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        this.baseBlock = 11;
         this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(WIZARD_GREMLIN);
         setBackgrounds();

@@ -1,7 +1,6 @@
 package gremlin;
 
 import basemod.BaseMod;
-import basemod.ReflectionHacks;
 import basemod.eventUtil.AddEventParams;
 import basemod.eventUtil.EventUtils;
 import basemod.helpers.RelicType;
@@ -10,7 +9,6 @@ import charbosses.bosses.AbstractCharBoss;
 import charbosses.cards.AbstractBossCard;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.esotericsoftware.spine.*;
 import com.evacipated.cardcrawl.mod.widepotions.WidePotionsMod;
@@ -23,7 +21,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.city.BackToBasics;
 import com.megacrit.cardcrawl.events.exordium.ScrapOoze;
 import com.megacrit.cardcrawl.helpers.CardHelper;
-import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -31,7 +28,6 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import downfall.downfallMod;
 import downfall.patches.BanSharedContentPatch;
 import gremlin.cards.*;
-import gremlin.cards.SharpenBlades;
 import gremlin.events.BackToBasicsGremlin;
 import gremlin.events.GremlinTrenchcoat;
 import gremlin.events.ScrapOozeGremlins;
@@ -201,24 +197,27 @@ public class GremlinMod implements EditCharactersSubscriber, EditRelicsSubscribe
         BaseMod.addCard(new Patsy());
 
         //Common Attacks
-        BaseMod.addCard(new CatScratch());
-        BaseMod.addCard(new DaggerDance());
+        //BaseMod.addCard(new CatScratch());
+        //BaseMod.addCard(new DaggerDance());
         BaseMod.addCard(new FollowThrough());
-        BaseMod.addCard(new Glimmer());
+        //BaseMod.addCard(new Glimmer());
+        BaseMod.addCard(new GoForTheEyes());
+        BaseMod.addCard(new HitAndRun());
         BaseMod.addCard(new Jeer());
         BaseMod.addCard(new PourSalt());
         BaseMod.addCard(new Presto());
-        BaseMod.addCard(new Pretaliation());
-        BaseMod.addCard(new ToeStub());
-        BaseMod.addCard(new TwistTheKnife());
+        //BaseMod.addCard(new Pretaliation());
+        BaseMod.addCard(new Stupend());
 
         //Common Skills
-        BaseMod.addCard(new BubbleBarrier());
+        //BaseMod.addCard(new BubbleBarrier());
         BaseMod.addCard(new BulkUp());
         BaseMod.addCard(new Changeo());
         BaseMod.addCard(new GlitterGuard());
-        BaseMod.addCard(new GremlinArms());
+        //BaseMod.addCard(new GremlinArms());
         //BaseMod.addCard(new Irritability());
+        //BaseMod.addCard(new Mockery());
+        BaseMod.addCard(new Regroup());
         BaseMod.addCard(new ShankStone());
         //BaseMod.addCard(new Tadah());
         BaseMod.addCard(new TagTeam());
@@ -232,58 +231,57 @@ public class GremlinMod implements EditCharactersSubscriber, EditRelicsSubscribe
         BaseMod.addCard(new SleeveOfAces());
         BaseMod.addCard(new FeelTheAudience());
         //BaseMod.addCard(new Flurry());
+        BaseMod.addCard(new Fury());
         BaseMod.addCard(new GremlinOffensive());
         //BaseMod.addCard(new GremlinToss());
         BaseMod.addCard(new IrksomeBlow());
-        BaseMod.addCard(new Kablamo());
         BaseMod.addCard(new Pickpocket());
         BaseMod.addCard(new PinNeedle());
         BaseMod.addCard(new ProperTools());
-        BaseMod.addCard(new Stupend());
 
         //Uncommon Skills
         BaseMod.addCard(new ArmsTheft());
         BaseMod.addCard(new Astound());
         BaseMod.addCard(new EdibleArmor());
         BaseMod.addCard(new GremlinMeal());
-        BaseMod.addCard(new Mockery());
         BaseMod.addCard(new PartyStick());
         BaseMod.addCard(new RageBreak());
-        BaseMod.addCard(new Raid());
-        BaseMod.addCard(new Revel());
-        BaseMod.addCard(new Rhythm());
+        //BaseMod.addCard(new Raid());
+        BaseMod.addCard(new Rhythm()); //TODO Needs changes.
         BaseMod.addCard(new Scatter());
-        BaseMod.addCard(new SharpenBlades());
+        BaseMod.addCard(new SharpenBlades()); //TODO Needs changes.
         BaseMod.addCard(new ShowOfHands());
         BaseMod.addCard(new Whiz());
 
         //Uncommon Powers
         BaseMod.addCard(new Enthusiasm());
-        BaseMod.addCard(new Heckle());
         BaseMod.addCard(new InfiniteBlocks());
-        BaseMod.addCard(new MakeshiftArmor());
+        //BaseMod.addCard(new MakeshiftArmor());
         BaseMod.addCard(new Polish());
+        //BaseMod.addCard(new TargetWeakness()); //TODO Rework Fat Gremlin Passive.
         BaseMod.addCard(new Wizardry());
 
         //Rare Attacks
         //BaseMod.addCard(new Exacerbate());
         BaseMod.addCard(new FlipOut());
-        BaseMod.addCard(new Fury());
+        BaseMod.addCard(new Kablamo());
         BaseMod.addCard(new SecondVolley());
         BaseMod.addCard(new ShowStopper());
+        BaseMod.addCard(new ToeStub());
 
         //Rare Skills
         BaseMod.addCard(new BrokenShin());
         BaseMod.addCard(new Duplicate());
         BaseMod.addCard(new Erupt());
         BaseMod.addCard(new FairyDust());
+        BaseMod.addCard(new Revel());
         BaseMod.addCard(new Necromancy());
 
         //Rare Powers
         BaseMod.addCard(new CongaLine());
         BaseMod.addCard(new Encore());
+        BaseMod.addCard(new Heckle());
         BaseMod.addCard(new ShadowShiv());
-        BaseMod.addCard(new TargetWeakness());
         BaseMod.addCard(new Unforgiving());
 
         //Special

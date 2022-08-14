@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import gremlin.GremlinCharacter;
 import gremlin.powers.WizPower;
 import sneckomod.SneckoMod;
@@ -59,13 +58,8 @@ public class GremlinDance extends AbstractGremlinCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         String gremlin = "";
-        boolean isNob = false;
         if(AbstractDungeon.player instanceof GremlinCharacter) {
-            if(((GremlinCharacter) AbstractDungeon.player).nob){
-                isNob = true;
-            } else {
-                gremlin = ((GremlinCharacter) AbstractDungeon.player).currentGremlin;
-            }
+            gremlin = ((GremlinCharacter) AbstractDungeon.player).currentGremlin;
         }
 
         if(gremlin.equals("shield")){
@@ -80,20 +74,16 @@ public class GremlinDance extends AbstractGremlinCard {
             dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         }
 
-        if(gremlin.equals("fat")){
-            applyToEnemy(m, autoWeak(m, this.downfallMagic));
-        }
-
-        if(gremlin.equals("sneak")){
-            atb(new DrawCardAction(p, this.magicNumber));
-        }
-
-        if(gremlin.equals("wizard")){
-            applyToSelf(new WizPower(p, this.magicNumber));
-        }
-
-        if(isNob){
-            applyToSelf(new StrengthPower(p, this.magicNumber));
+        switch (gremlin) {
+            case "fat":
+                applyToEnemy(m, autoWeak(m, this.magicNumber));
+                break;
+            case "sneak":
+                atb(new DrawCardAction(p, this.magicNumber));
+                break;
+            case "wizard":
+                applyToSelf(new WizPower(p, this.magicNumber));
+                break;
         }
     }
 
@@ -139,60 +129,51 @@ public class GremlinDance extends AbstractGremlinCard {
         this.tags.remove(SHIELD_GREMLIN);
         this.tags.remove(SNEAKY_GREMLIN);
         this.tags.remove(WIZARD_GREMLIN);
-        this.tags.remove(NOB_GREMLIN);
         this.rawDescription = EXTENDED_DESCRIPTION[0];
-        if(!this.gremlin.equals("") || AbstractDungeon.player instanceof GremlinCharacter){
-            if(this.gremlin.equals("") && ((GremlinCharacter) AbstractDungeon.player).nob){
-                rawDescription += EXTENDED_DESCRIPTION[6];
-                this.isMultiDamage = false;
-                this.target = CardTarget.ENEMY;
-                this.tags.add(NOB_GREMLIN);
-                setBackgrounds();
-            } else {
-                String gremlin = this.gremlin;
-                if (gremlin.equals("")) {
-                    gremlin = ((GremlinCharacter) AbstractDungeon.player).currentGremlin;
-                }
-                switch (gremlin) {
-                    case "angry":
-                        rawDescription += EXTENDED_DESCRIPTION[1];
-                        this.isMultiDamage = true;
-                        this.target = CardTarget.ALL_ENEMY;
-                        this.tags.add(MAD_GREMLIN);
-                        setBackgrounds();
-                        break;
-                    case "fat":
-                        rawDescription += EXTENDED_DESCRIPTION[2];
-                        this.baseMagicNumber = this.magicNumber = WEAK_AMOUNT;
-                        this.isMultiDamage = false;
-                        this.target = CardTarget.ENEMY;
-                        this.tags.add(FAT_GREMLIN);
-                        setBackgrounds();
-                        break;
-                    case "shield":
-                        rawDescription += EXTENDED_DESCRIPTION[3];
-                        this.isMultiDamage = false;
-                        this.target = CardTarget.ENEMY;
-                        this.tags.add(SHIELD_GREMLIN);
-                        setBackgrounds();
-                        break;
-                    case "sneak":
-                        rawDescription += EXTENDED_DESCRIPTION[4];
-                        this.baseMagicNumber = this.magicNumber = DRAW_AMOUNT;
-                        this.isMultiDamage = false;
-                        this.target = CardTarget.ENEMY;
-                        this.tags.add(SNEAKY_GREMLIN);
-                        setBackgrounds();
-                        break;
-                    case "wizard":
-                        rawDescription += EXTENDED_DESCRIPTION[5];
-                        this.baseMagicNumber = this.magicNumber = WIZ_AMOUNT;
-                        this.isMultiDamage = false;
-                        this.target = CardTarget.ENEMY;
-                        this.tags.add(WIZARD_GREMLIN);
-                        setBackgrounds();
-                        break;
-                }
+        if(!this.gremlin.equals("") || AbstractDungeon.player instanceof GremlinCharacter) {
+            String gremlin = this.gremlin;
+            if (gremlin.equals("")) {
+                gremlin = ((GremlinCharacter) AbstractDungeon.player).currentGremlin;
+            }
+            switch (gremlin) {
+                case "angry":
+                    rawDescription += EXTENDED_DESCRIPTION[1];
+                    this.isMultiDamage = true;
+                    this.target = CardTarget.ALL_ENEMY;
+                    this.tags.add(MAD_GREMLIN);
+                    setBackgrounds();
+                    break;
+                case "fat":
+                    rawDescription += EXTENDED_DESCRIPTION[2];
+                    this.baseMagicNumber = this.magicNumber = WEAK_AMOUNT;
+                    this.isMultiDamage = false;
+                    this.target = CardTarget.ENEMY;
+                    this.tags.add(FAT_GREMLIN);
+                    setBackgrounds();
+                    break;
+                case "shield":
+                    rawDescription += EXTENDED_DESCRIPTION[3];
+                    this.isMultiDamage = false;
+                    this.target = CardTarget.ENEMY;
+                    this.tags.add(SHIELD_GREMLIN);
+                    setBackgrounds();
+                    break;
+                case "sneak":
+                    rawDescription += EXTENDED_DESCRIPTION[4];
+                    this.baseMagicNumber = this.magicNumber = DRAW_AMOUNT;
+                    this.isMultiDamage = false;
+                    this.target = CardTarget.ENEMY;
+                    this.tags.add(SNEAKY_GREMLIN);
+                    setBackgrounds();
+                    break;
+                case "wizard":
+                    rawDescription += EXTENDED_DESCRIPTION[5];
+                    this.baseMagicNumber = this.magicNumber = WIZ_AMOUNT;
+                    this.isMultiDamage = false;
+                    this.target = CardTarget.ENEMY;
+                    this.tags.add(WIZARD_GREMLIN);
+                    setBackgrounds();
+                    break;
             }
         }
         initializeDescription();

@@ -16,7 +16,7 @@ import static automaton.AutomatonMod.GOOD_STATUS;
 
 public class LeaderChoice extends AbstractGremlinCard implements Unmovable {
     public static final String ID = getID("LeaderChoice");
-    final static String img = "gremlinResources/images/cards/choice.png";
+    final static String img = "gremlinResources/images/cards/Choice.png";
 
     public LeaderChoice() {
         super(ID, img, 0, CardType.STATUS, CardRarity.SPECIAL, CardTarget.SELF, Enums.AbstractCardEnum.GREMLIN);

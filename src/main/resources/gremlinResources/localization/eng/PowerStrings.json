@@ -63,23 +63,17 @@
       " #yWeak to all targets."
     ]
   },
-  "gremlin:Flex": {
-    "NAME": "Strength Down",
-    "DESCRIPTIONS": [
-      "At the end of this turn, lose #b",
-      " #yStrength."
+  "gremlin:FlurryPower": {
+    "NAME": "Flurry",
+    "DESCRIPTIONS" : [
+      "Whenever you play a card this turn, deal #b",
+      " damage to a random enemy."
     ]
   },
   "gremlin:Furious": {
     "NAME": "Furious",
     "DESCRIPTIONS": [
       "Whenever you would gain #yBlock this turn, instead deal that much damage to ALL enemies."
-    ]
-  },
-  "gremlin:GremlinNob": {
-    "NAME": "Gremlin Nob",
-    "DESCRIPTIONS": [
-      "At the start of each turn, gain #b3 Gremlin Nob cards. You can no longer #ySwap. When you would lose all #yTemporary #yHP, prevent further damage and revert back."
     ]
   },
   "gremlin:GremlinWizard": {
@@ -169,8 +163,8 @@
   "gremlin:SneakyGremlin": {
     "NAME": "Sneaky Gremlin",
     "DESCRIPTIONS": [
-      "Whenever you play an attack, deal #b",
-      " damage to a random enemy."
+      "At the end of the turn, you may #yRetain #b",
+      " card."
     ]
   },
   "gremlin:TargetWeakness": {
@@ -189,7 +183,9 @@
   "gremlin:Wiz": {
     "NAME": "Wiz",
     "DESCRIPTIONS": [
-      "Charging up. NL Need #b", " more stack.", " more stacks.",
+      "Charging up. NL Need #b",
+      " more stack.",
+      " more stacks.",
       "Ready to fire."
     ]
   },

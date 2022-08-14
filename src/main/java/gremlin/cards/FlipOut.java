@@ -1,6 +1,7 @@
 package gremlin.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.LoseBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -19,34 +20,33 @@ public class FlipOut extends AbstractGremlinCard {
     }
 
     @Override
+    public void upp() {
+        upgradeBaseCost(0);
+    }
+
+    @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
        allDmg(AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+       atb(new LoseBlockAction(p, p, 999));
     }
 
     public void applyPowers() {
         this.baseDamage = AbstractDungeon.player.currentBlock;
         super.applyPowers();
-        //this.rawDescription = DESCRIPTION;
-        //this.rawDescription = this.rawDescription + UPGRADE_DESCRIPTION;
-        //this.initializeDescription();
-    }
-
-    /*
-    public void onMoveToDiscard() {
-        this.rawDescription = cardStrings.DESCRIPTION;
+        this.rawDescription = DESCRIPTION;
+        this.rawDescription = this.rawDescription + EXTENDED_DESCRIPTION[0];
         this.initializeDescription();
     }
-     */
+
+    public void onMoveToDiscard() {
+        this.rawDescription = DESCRIPTION;
+        this.initializeDescription();
+    }
 
     public void calculateCardDamage(AbstractMonster mo) {
         super.calculateCardDamage(mo);
-        //this.rawDescription = cardStrings.DESCRIPTION;
-        //this.rawDescription = this.rawDescription + cardStrings.UPGRADE_DESCRIPTION;
-        //this.initializeDescription();
-    }
-
-    @Override
-    public void upp() {
-        upgradeBaseCost(0);
+        this.rawDescription = DESCRIPTION;
+        this.rawDescription = this.rawDescription + EXTENDED_DESCRIPTION[0];
+        this.initializeDescription();
     }
 }

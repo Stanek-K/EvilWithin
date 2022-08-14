@@ -1,6 +1,8 @@
 package gremlin.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -10,20 +12,22 @@ public class Kablamo extends AbstractGremlinCard {
     public static final String ID = getID("Kablamo");
 
     public Kablamo() {
-        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
-        this.baseDamage = 13;
-        this.isMultiDamage = true;
+        super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
+        this.baseDamage = 15;
         this.tags.add(WIZARD_GREMLIN);
         setBackgrounds();
     }
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        allDmg(AbstractGameAction.AttackEffect.FIRE);
+        dmg(m, AbstractGameAction.AttackEffect.FIRE);
+        for (AbstractMonster mo: monsterList())
+            if (mo != m)
+                atb(new DamageAction(mo, new DamageInfo(p, damage/2, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.FIRE));
     }
 
     @Override
     public void upp() {
-        upgradeDamage(4);
+        upgradeDamage(5);
     }
 }

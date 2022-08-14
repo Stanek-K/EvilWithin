@@ -14,31 +14,30 @@ public class CounterStrike extends AbstractGremlinCard {
 
     public CounterStrike() {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        this.baseDamage = 6;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseDamage = 8;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.cardsToPreview = new Shiv();
         this.tags.add(CardTags.STRIKE);
         this.tags.add(SNEAKY_GREMLIN);
         setBackgrounds();
     }
 
-    @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                if (GremlinMod.doesEnemyIntendToAttack(m)) {
-                    AbstractCard c = new Shiv();
-                   makeInHand(c, magicNumber);
+        if (GremlinMod.doesEnemyIntendToAttack(m)) {
+            atb(new AbstractGameAction() {
+                @Override
+                public void update() {
+                    makeInHand(new Shiv(), magicNumber);
+                    this.isDone = true;
                 }
-                this.isDone = true;
-            }
-        });
+            });
+        }
     }
 
-    @Override
     public void upp() {
-        upgradeDamage(3);
+        upgradeMagicNumber(1);
+        this.rawDescription = this.UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
 }

@@ -17,16 +17,10 @@ public class Pretaliation extends AbstractGremlinCard {
     public Pretaliation() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
 
-        this.baseDamage = 7;
+        this.baseDamage = 6;
         this.baseMagicNumber = magicNumber = 3;
         this.tags.add(MAD_GREMLIN);
         setBackgrounds();
-    }
-
-    @Override
-    public void upp() {
-        upgradeDamage(2);
-        upgradeMagicNumber(1);
     }
 
     @Override
@@ -34,5 +28,11 @@ public class Pretaliation extends AbstractGremlinCard {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         applyToSelf(new ThornsPower(p, this.magicNumber));
         applyToSelf(new LoseThornsPower(p, this.magicNumber));
+    }
+
+    @Override
+    public void upp() {
+        upgradeDamage(2);
+        upgradeMagicNumber(1);
     }
 }

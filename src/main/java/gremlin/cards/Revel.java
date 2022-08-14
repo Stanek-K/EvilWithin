@@ -16,6 +16,11 @@ public class Revel extends AbstractGremlinCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {}
 
+    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+        this.cantUseMessage = EXTENDED_DESCRIPTION[0];
+        return false;
+    }
+
     @Override
     public void triggerWhenDrawn() {
         att(new GainEnergyAction(1));

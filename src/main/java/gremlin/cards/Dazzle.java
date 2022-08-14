@@ -17,8 +17,8 @@ public class Dazzle extends AbstractGremlinCard {
     public Dazzle() {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
         this.baseDamage = 7;
-        this.baseDownfallMagic = this.downfallMagic = 4;
-        this.baseMagicNumber = this.magicNumber = 2;
+        this.baseDownfallMagic = this.downfallMagic = 3;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(WIZARD_GREMLIN);
         setBackgrounds();
     }
@@ -37,8 +37,7 @@ public class Dazzle extends AbstractGremlinCard {
 
     @Override
     public void upp() {
-        upgradeDamage(2);
-        upgradeDownfall(-1);
+        upgradeDamage(3);
     }
 
     @Override

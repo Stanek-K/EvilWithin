@@ -15,7 +15,7 @@ public class WizPower extends AbstractGremlinPower {
     private static final PowerStrings strings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     private static final Texture IMG = new Texture(GremlinMod.getResourcePath("powers/wiz.png"));
 
-    public static final int AMOUNT_TO_FIRE = 4;
+    public static final int AMOUNT_TO_FIRE = 3;
 
     public WizPower(AbstractCreature owner, int amount) {
         this.name = strings.NAME;

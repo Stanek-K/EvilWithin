@@ -19,7 +19,7 @@ import static automaton.AutomatonMod.GOOD_STATUS;
 
 public class CowerChoice extends AbstractGremlinCard {
     public static final String ID = getID("CowerChoice");
-    final static String img = "gremlinResources/images/cards/cower.png";
+    final static String img = "gremlinResources/images/cards/Cower.png";
 
     public CowerChoice() {
         super(ID, img, -2,  CardType.STATUS, CardRarity.SPECIAL, CardTarget.NONE, Enums.AbstractCardEnum.GREMLIN);

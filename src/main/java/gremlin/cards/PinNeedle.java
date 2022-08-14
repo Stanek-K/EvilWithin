@@ -23,17 +23,11 @@ public class PinNeedle extends AbstractGremlinCard {
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        AbstractCard card = new Pinprick();
-        if(upgraded)
-            card.upgrade();
-        shuffleIn(card, this.magicNumber);
+        shuffleIn(new Pinprick(), this.magicNumber);
     }
 
     @Override
     public void upp() {
-        upgradeDamage(2);
-        this.rawDescription = UPGRADE_DESCRIPTION;
-        initializeDescription();
-        this.cardsToPreview.upgrade();
+        upgradeDamage(4);
     }
 }

@@ -94,9 +94,6 @@ public abstract class AbstractGremlinCard extends AbstractDownfallCard {
         if (card.tags.contains(WIZARD_GREMLIN)) {
             return ART_GREMLIN.WIZ;
         }
-        if (card.tags.contains(NOB_GREMLIN)) {
-            return ART_GREMLIN.NOB;
-        }
         return ART_GREMLIN.NONE;
     }
 }

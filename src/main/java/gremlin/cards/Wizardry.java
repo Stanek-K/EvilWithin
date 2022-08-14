@@ -13,7 +13,7 @@ public class Wizardry extends AbstractGremlinCard {
     public Wizardry() {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
         this.baseMagicNumber = this.magicNumber = 1;
-        this.baseDownfallMagic = this.downfallMagic = 2;
+        this.baseDownfallMagic = this.downfallMagic = 1;
         this.tags.add(WIZARD_GREMLIN);
         setBackgrounds();
         loadJokeCardImage(this, modID, "Wizardry.png");

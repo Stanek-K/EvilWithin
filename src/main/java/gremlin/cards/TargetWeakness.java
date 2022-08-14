@@ -10,8 +10,8 @@ public class TargetWeakness extends AbstractGremlinCard {
     public static final String ID = getID("TargetWeakness");
 
     public TargetWeakness() {
-        super(ID, 1, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
-        this.baseMagicNumber = this.magicNumber = 3;
+        super(ID, 0, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
+        this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(FAT_GREMLIN);
         setBackgrounds();
     }
@@ -21,7 +21,7 @@ public class TargetWeakness extends AbstractGremlinCard {
     }
 
     public void upp() {
-        upgradeMagicNumber(2);
+        upgradeMagicNumber(1);
     }
 }
 

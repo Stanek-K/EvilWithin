@@ -51,8 +51,7 @@ public class PlayerDamagePatch {
                     return SpireReturn.Return(null);
                 }
             }
-        }
-        else if (AbstractDungeon.getCurrRoom() instanceof EventRoom) {
+        } else if (AbstractDungeon.getCurrRoom() instanceof EventRoom) {
             if (__instance instanceof GremlinCharacter) {
                 ((GremlinCharacter) __instance).gremlinDeathSFX();
                 String targetGremlin = null;

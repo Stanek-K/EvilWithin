@@ -14,15 +14,18 @@ public class Patsy extends AbstractGremlinCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
+        if (this.upgraded) atb(new GremlinSwapAction());
     }
 
     @Override
     public void triggerWhenDrawn() {
-        att(new GremlinSwapAction());
+        if (!this.upgraded) att(new GremlinSwapAction());
     }
 
     public void upp() {
-        upgradeBlock(3);
+        upgradeBlock(1);
+        this.rawDescription = this.UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
 }
 

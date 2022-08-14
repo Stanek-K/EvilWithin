@@ -86,8 +86,6 @@ public class GremlinCharacter extends CustomPlayer {
 
     public GremlinHelper mobState;
 
-    public boolean nob = false;
-
     private int trueGameHandSize;
     private boolean cowering = false;
     private int enemyGremTalk = 0;
@@ -128,27 +126,6 @@ public class GremlinCharacter extends CustomPlayer {
         currentGremlin = assetFolder;
         currentAnimation = animationName;
         return oldGremlin;
-    }
-
-    public void becomeNob(){
-        nob = true;
-        dialogX += 50;
-        dialogY += 60;
-        String s_atlas = CHAR_FOLDER + "nob" + SKELETON_ATLAS;
-        String s_json = CHAR_FOLDER + "nob" + SKELETON_JSON;
-        this.loadAnimation(GremlinMod.getResourcePath(s_atlas), GremlinMod.getResourcePath(s_json), 1.0f);
-        AnimationState.TrackEntry e = this.state.setAnimation(0, "animation", true);
-        e.setTime(e.getEndTime() * MathUtils.random());
-    }
-
-    public void revertNob(){
-        nob = false;
-        dialogX -= 50;
-        dialogY -= 60;
-        swapBody(currentGremlin, currentAnimation);
-        GremlinStandby gremlin = GremlinMod.getGremlinOrb(currentGremlin);
-        AbstractDungeon.actionManager.addToTop(
-                new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, gremlin.getPower(), 1));
     }
 
     @Override
@@ -312,9 +289,6 @@ public class GremlinCharacter extends CustomPlayer {
     }
 
     public void updateMobState() {
-        if(nob){
-            revertNob();
-        }
         if(cowering){
             removeCower(false);
         }

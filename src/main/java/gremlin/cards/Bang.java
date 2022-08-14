@@ -26,8 +26,8 @@ public class Bang extends AbstractGremlinCard {
         this.tags.add(WIZARD_GREMLIN);
         setBackgrounds();
 
-        if (this.real)
-            this.cardsToPreview = new Whiz(false);
+        //if (this.real)
+            //this.cardsToPreview = new Whiz(false);
     }
 
     @Override

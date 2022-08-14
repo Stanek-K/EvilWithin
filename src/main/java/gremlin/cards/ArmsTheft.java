@@ -3,40 +3,29 @@ package gremlin.cards;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import gremlin.GremlinMod;
 
-import static gremlin.GremlinMod.FAT_GREMLIN;
-import static gremlin.GremlinMod.getModID;
+import static gremlin.GremlinMod.*;
 
 public class ArmsTheft extends AbstractGremlinCard {
     public static final String ID = getID("ArmsTheft");
 
     public ArmsTheft() {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        this.baseMagicNumber = this.magicNumber = 1;
+        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        this.baseMagicNumber = this.magicNumber = 2;
         this.baseDownfallMagic = this.downfallMagic = 1;
         this.exhaust = true;
-        this.tags.add(FAT_GREMLIN);
+        this.tags.add(MAD_GREMLIN);
         setBackgrounds();
         loadJokeCardImage(this, getModID(), "ArmsTheft.png");
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if (!this.upgraded) {
-            applyToEnemy(m, new StrengthPower(m, -this.magicNumber));
-            applyToEnemy(m, autoWeak(m, downfallMagic));
-        } else {
-            for (AbstractMonster mo : monsterList()) {
-                applyToEnemy(mo, new StrengthPower(m, -this.magicNumber));
-                applyToEnemy(mo, autoWeak(m, downfallMagic));
-            }
-        }
+        applyToEnemy(m, new StrengthPower(m, -magicNumber));
+        applyToSelf(new StrengthPower(p, downfallMagic));
     }
 
     public void upp() {
-        this.target = CardTarget.ALL_ENEMY;
-        this.rawDescription = this.UPGRADE_DESCRIPTION;
-        initializeDescription();
+        upgradeDownfall(1);
     }
 }
 

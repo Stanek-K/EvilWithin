@@ -4,7 +4,7 @@
       "agony"
     ],
     "PROPER_NAME": "Agony",
-    "DESCRIPTION": "Creatures in #yAgony deal #b80% less damage with Attacks."
+    "DESCRIPTION": "Creatures in Agony lose HP equal to their #yWeak at the start of their turn."
   },
   {
     "NAMES": [
@@ -26,7 +26,7 @@
       "fat gremlin", "fat_gremlin"
     ],
     "PROPER_NAME": "Fat Gremlin",
-    "DESCRIPTION": "After you apply a debuff to an enemy, deal #b3 damage to it."
+    "DESCRIPTION": "After you apply a debuff to an enemy, deal #b4 damage to it."
   },
   {
     "NAMES": [
@@ -40,7 +40,7 @@
       "mad gremlin", "mad_gremlin"
     ],
     "PROPER_NAME": "Mad Gremlin",
-    "DESCRIPTION": "After you play an Attack, gain #b1 temporary #yStrength when attacked."
+    "DESCRIPTION": "After you play an Attack, gain #b1 temporary #yStrength."
   },
   {
     "NAMES": [
@@ -77,13 +77,6 @@
       "wiz"
     ],
     "PROPER_NAME": "Wiz",
-    "DESCRIPTION": "When you have at least #b4 stacks of Wiz, Attacks will consume all stacks to deal double damage."
-  },
-  {
-    "NAMES": [
-      "nob"
-    ],
-    "PROPER_NAME": "Gremlin Nob",
-    "DESCRIPTION": "At the start of your turn, add #b1 #yBellow , #ySkull #yBash and #yRush to your hand."
+    "DESCRIPTION": "When you have at least #b3 stacks of Wiz, Attacks will consume all stacks to deal double damage."
   }
 ]

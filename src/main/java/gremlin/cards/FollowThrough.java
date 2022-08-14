@@ -13,8 +13,8 @@ public class FollowThrough extends AbstractGremlinCard {
 
     public FollowThrough() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        this.baseDamage = 8;
-        this.baseMagicNumber = this.magicNumber = 1;
+        this.baseDamage = 6;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(MAD_GREMLIN);
         setBackgrounds();
     }
@@ -28,7 +28,7 @@ public class FollowThrough extends AbstractGremlinCard {
 
     @Override
     public void upp() {
-        upgradeDamage(2);
+        upgradeDamage(1);
         upgradeMagicNumber(1);
     }
 }

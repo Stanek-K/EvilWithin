@@ -16,7 +16,7 @@ public class Strike extends AbstractGremlinCard {
 
     @Override
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
     }
 
     @Override

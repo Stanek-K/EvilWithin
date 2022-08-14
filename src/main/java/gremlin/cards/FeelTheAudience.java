@@ -13,8 +13,8 @@ public class FeelTheAudience extends AbstractGremlinCard {
     public static final String ID = getID("FeelTheAudience");
 
     public FeelTheAudience() {
-        super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
-        this.baseDamage = 7;
+        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
+        this.baseDamage = 10;
         this.baseMagicNumber = this.magicNumber = 1;
         this.isMultiDamage = true;
         this.tags.add(WIZARD_GREMLIN);
@@ -39,6 +39,6 @@ public class FeelTheAudience extends AbstractGremlinCard {
 
     @Override
     public void upp(){
-        upgradeDamage(3);
+        upgradeDamage(4);
     }
 }

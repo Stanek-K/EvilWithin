@@ -5,8 +5,7 @@
   },
   "gremlin:ArmsTheft": {
     "NAME": "Arms Theft",
-    "DESCRIPTION": "Enemy loses !M! Strength. NL Apply !DM! Weak. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "ALL enemies lose !M! Strength. NL Apply !DM! Weak to ALL enemies. NL Exhaust."
+    "DESCRIPTION": "Enemy loses !M! Strength. NL Gain !DM! Strength. NL Exhaust."
   },
   "gremlin:Astound": {
     "NAME": "Astound",
@@ -32,7 +31,8 @@
   },
   "gremlin:BulkUp": {
     "NAME": "Bulk Up",
-    "DESCRIPTION": "Gain !M! gremlin:Temp_HP. NL gremlin:Swap to the next Gremlin."
+    "DESCRIPTION": "Gain !M! gremlin:Temp_HP. NL Upgrade a random card in your hand for the rest of combat.",
+    "UPGRADE_DESCRIPTION": "Gain !M! gremlin:Temp_HP. NL Upgrade a card in your hand for the rest of combat."
   },
   "gremlin:BurlyBlow": {
     "NAME": "Burly Blow",
@@ -53,8 +53,8 @@
   },
   "gremlin:CounterStrike": {
     "NAME": "Counter Strike",
-    "DESCRIPTION": "Deal !D! damage. If the enemy intends to attack, gain !M! Shivs.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. If the enemy intends to attack, gain !M! Upgraded Shivs."
+    "DESCRIPTION": "Deal !D! damage. If the enemy intends to attack, gain !M! Shiv.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. If the enemy intends to attack, gain !M! Shivs."
   },
   "gremlin:CowerChoice": {
     "NAME": "Cower",
@@ -123,11 +123,14 @@
   },
   "gremlin:FlipOut": {
     "NAME": "Flip Out",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Damage increased by your Block."
+    "DESCRIPTION": "Deal damage equal to you Block to ALL enemies. NL Lose your Block.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (Deals !D! damage.)"
+      ]
   },
   "gremlin:Flurry": {
     "NAME": "Flurry",
-    "DESCRIPTION": "Deal !D! damage for each card played this turn. NL Exhaust.",
+    "DESCRIPTION": "Whenever you play a card this turn, random enemy takes !M! damage.",
     "EXTENDED_DESCRIPTION": [
       " NL (",
       " card played.)",
@@ -149,8 +152,12 @@
   },
   "gremlin:GlitterGuard": {
     "NAME": "Glitter Guard",
-    "DESCRIPTION": "Apply !M! Weak. NL When draw, gain a *Ward.",
-    "UPGRADE_DESCRIPTION": "Apply !M! Weak. NL When draw, gain an Upgraded *Ward."
+    "DESCRIPTION": "Apply !M! Weak. NL When drawn, gain a *Ward.",
+    "UPGRADE_DESCRIPTION": "Apply !M! Weak. NL When drawn, gain an Upgraded *Ward."
+  },
+  "gremlin:GoForTheEyes": {
+    "NAME": "Go For The Eyes",
+    "DESCRIPTION": "Deal !D! damage. NL If the enemy intends to attack, apply !M! Weak."
   },
   "gremlin:GremlinArms": {
     "NAME": "Gremlin Arms",
@@ -191,6 +198,10 @@
     "NAME": "Heckle",
     "DESCRIPTION": "Whenever you apply a debuff to an enemy, gain !M! Block."
   },
+  "gremlin:HitAndRun": {
+    "NAME": "Hit and Run",
+    "DESCRIPTION": "Deal !D! damage. NL gremlin:Swap to the next Gremlin."
+  },
   "gremlin:InfiniteBlocks": {
     "NAME": "Infinite Blocks",
     "DESCRIPTION": "At the start of your turn, gain a *Ward.",
@@ -210,7 +221,7 @@
   },
   "gremlin:Kablamo": {
     "NAME": "Kablamo!",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies."
+    "DESCRIPTION": "Deal !D! damage. NL Other enemies take half of the damage."
   },
   "gremlin:LeaderChoice": {
     "NAME": "Make a Choice",
@@ -227,16 +238,12 @@
   },
   "gremlin:Mockery": {
     "NAME": "Mockery",
-    "DESCRIPTION": "Apply !M! Weak. NL If the enemy has 3 or more Weak, gain !B! Block."
+    "DESCRIPTION": "Apply !M! Vulnerable. NL Gain !B! Block."
   },
   "gremlin:Necromancy": {
     "NAME": "Necromancy",
-    "DESCRIPTION": "Requires !DM! gremlin:Wiz. NL Consume all gremlin:Wiz to resurrect a random Gremlin with !M! HP. Exhaust.",
+    "DESCRIPTION": "Resurrect a random Gremlin with !M! HP. NL Exhaust.",
     "EXTENDED_DESCRIPTION": ["Not enough mojo.", "Nobody is dead yet.", "Not enough room."]
-  },
-  "gremlin:Nob": {
-    "NAME": "NOB",
-    "DESCRIPTION": "Gain !M! gremlin:Temp_HP. NL Mutate into *Gremlin gremlin:Nob until you run out of *Temp *HP."
   },
   "gremlin:NobChoice": {
     "NAME": "Make a Choice",
@@ -250,11 +257,12 @@
   },
   "gremlin:Patsy": {
     "NAME": "Patsy",
-    "DESCRIPTION": "Gain !B! Block. NL When drawn, gremlin:Swap to the next Gremlin."
+    "DESCRIPTION": "Gain !B! Block. NL When drawn, gremlin:Swap to the next Gremlin.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL gremlin:Swap to the next Gremlin."
   },
   "gremlin:Pickpocket": {
     "NAME": "Pickpocket",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! Vulnerable. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! Gold. NL Exhaust."
   },
   "gremlin:PinNeedle": {
     "NAME": "Pin Needle",
@@ -268,7 +276,7 @@
   },
   "gremlin:Polish": {
     "NAME": "Polish",
-    "DESCRIPTION": "Shivs deal !M! additional damage. NL *Wards grant !M! additional Block."
+    "DESCRIPTION": "Gain !M! Strength. NL Gain !DM! Dexterity."
   },
   "gremlin:PourSalt": {
     "NAME": "Pour Salt",
@@ -276,7 +284,7 @@
   },
   "gremlin:Presto": {
     "NAME": "Presto!",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !M! gremlin:Wiz."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Gain !M! gremlin:Wiz."
   },
   "gremlin:Pretaliation": {
     "NAME": "Pretaliation",
@@ -296,10 +304,17 @@
     "DESCRIPTION": "Draw a card for each living Gremlin. NL Discard !M! cards.",
     "UPGRADE_DESCRIPTION": "Draw a card for each living Gremlin. NL Discard !M! cards."
   },
+  "gremlin:Regroup": {
+    "NAME": "Regroup",
+    "DESCRIPTION": "Gain !B! Block. NL Put a card from your discard pile on top of your draw pile."
+  },
   "gremlin:Revel": {
     "NAME": "Revel",
-    "DESCRIPTION": "Unplayable. NL When drawn, NL Gain [E] .",
-    "UPGRADE_DESCRIPTION": "Unplayable. NL When drawn, draw a card and gain [E] ."
+    "DESCRIPTION": "Unplayable. NL When drawn, NL gain [E] .",
+    "UPGRADE_DESCRIPTION": "Unplayable. NL When drawn, NL gain [E] and draw a card.",
+    "EXTENDED_DESCRIPTION": [
+      "I can't play this card."
+    ]
   },
   "gremlin:Rhythm": {
     "NAME": "Rhythm",
@@ -330,7 +345,7 @@
   },
   "gremlin:ShankStone": {
     "NAME": "Shank Stone",
-    "DESCRIPTION": "Gain !M! Shiv. NL When drawn, gain a Shiv.",
+    "DESCRIPTION": "Deal !D! damage. NL When drawn, gain a Shiv.",
     "UPGRADE_DESCRIPTION": "Gain !M! Shivs. NL When drawn, gain a Shiv.",
     "EXTENDED_DESCRIPTION": ["I can't play this card."]
   },
@@ -371,7 +386,7 @@
   },
   "gremlin:Stupend": {
     "NAME": "Stupend",
-    "DESCRIPTION": "Deal !D! damage. NL If you have !M! or more *Wiz, gain !B! Block."
+    "DESCRIPTION": "Deal !D! damage. NL Gain Block equal to unblocked damage dealt."
   },
   "gremlin:SupplyScrollCard": {
     "NAME": "Supply Scroll",
@@ -414,7 +429,7 @@
   },
   "gremlin:Whiz": {
     "NAME": "Whiz",
-    "DESCRIPTION": "Gain !M! gremlin:Wiz. Next turn, gain a *Bang. NL Exhaust.",
+    "DESCRIPTION": "Gain !M! gremlin:Wiz. NL Put a card from your draw pile on top of it.",
     "UPGRADE_DESCRIPTION": "Gain !M! gremlin:Wiz. Next turn, gain an Upgraded *Bang. NL Exhaust."
   },
   "gremlin:Wizardry": {

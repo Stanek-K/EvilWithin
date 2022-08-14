@@ -10,9 +10,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
+import com.megacrit.cardcrawl.powers.EnergizedPower;
 import slimebound.SlimeboundMod;
 import slimebound.patches.AbstractCardEnum;
-import slimebound.powers.EnergizedSlimeboundPower;
 
 
 public class Prepare extends AbstractSlimeboundCard {
@@ -48,7 +48,7 @@ public class Prepare extends AbstractSlimeboundCard {
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
 
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DrawCardNextTurnPower(p, this.magicNumber), this.magicNumber));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnergizedSlimeboundPower(p, p, this.magicNumber), this.magicNumber));
+        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnergizedPower(p, this.magicNumber), this.magicNumber));
         // if (upgraded) AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new RetainCardsOneTurnPower(p,2),2));
 
     }

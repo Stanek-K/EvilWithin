@@ -1,9 +1,9 @@
 package gremlin.powers;
 
+import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import gremlin.actions.SneakyAction;
 
 public class SneakyGremlinPower extends GremlinPower {
     static final String POWER_ID = getID("SneakyGremlin");
@@ -23,7 +23,7 @@ public class SneakyGremlinPower extends GremlinPower {
 
     public void atEndOfTurn(boolean isPlayer) {
         if (isPlayer && !AbstractDungeon.player.hand.isEmpty() && !AbstractDungeon.player.hasRelic("Runic Pyramid") && !AbstractDungeon.player.hasPower("Equilibrium")) {
-            this.addToBot(new SneakyAction(this.owner, 1, pot));
+            this.addToBot(new RetainCardsAction(this.owner, pot));
         }
     }
 }

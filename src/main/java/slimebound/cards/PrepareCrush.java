@@ -10,10 +10,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.vfx.MegaSpeechBubble;
 import slimebound.SlimeboundMod;
 import slimebound.patches.AbstractCardEnum;
-import slimebound.powers.EnergizedSlimeboundPower;
 import slimebound.powers.NextTurnGainSlimeCrush;
 import slimebound.powers.NextTurnGainStrengthPower;
 
@@ -50,12 +50,12 @@ public class PrepareCrush extends AbstractSlimeboundCard {
         AbstractDungeon.actionManager.addToBottom(new ShakeScreenAction(0.3F, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.LOW));
 
         if (upgraded)
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnergizedSlimeboundPower(p, p, 4), 4));
+            addToBot(new ApplyPowerAction(p, p, new EnergizedPower(p, 4), 4));
         else
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnergizedSlimeboundPower(p, p, 3), 3));
+            addToBot(new ApplyPowerAction(p, p, new EnergizedPower(p, 3), 3));
 
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NextTurnGainStrengthPower(p, p, this.magicNumber), this.magicNumber));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new NextTurnGainSlimeCrush(p, p, 1, this.upgraded), 1));
+        addToBot(new ApplyPowerAction(p, p, new NextTurnGainStrengthPower(p, p, this.magicNumber), this.magicNumber));
+        addToBot(new ApplyPowerAction(p, p, new NextTurnGainSlimeCrush(p, p, 1, this.upgraded), 1));
     }
 
     public AbstractCard makeCopy() {
