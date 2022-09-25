@@ -14,6 +14,7 @@ import slimebound.SlimeboundMod;
 import slimebound.orbs.SpawnedSlime;
 
 
+@Deprecated
 public class SelfFormingGooPowerPlus extends AbstractPower {
     public static final String POWER_ID = "Slimebound:SelfFormingGooPowerPlus";
     public static final String NAME = "Potency";

@@ -1,7 +1,7 @@
 package automaton.cards;
 
 import automaton.AutomatonMod;
-import automaton.actions.EasyXCostAction;
+import expansioncontent.actions.EasyXCostAction;
 import automaton.powers.CloningPower;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;

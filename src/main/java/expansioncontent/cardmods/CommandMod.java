@@ -1,4 +1,4 @@
-package downfall.cardmods;
+package expansioncontent.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -10,7 +10,6 @@ import slimebound.actions.CommandAction;
 import slimebound.powers.BuffSecondarySlimeEffectsPower;
 
 public class CommandMod extends AbstractCardModifier {
-
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         return rawDescription + CardCrawlGame.languagePack.getUIString("slimeboundmod:CommandMod").TEXT[0];

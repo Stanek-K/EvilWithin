@@ -9,12 +9,15 @@ import sneckomod.actions.MuddleAction;
 
 public class ImprovisedGuard extends AbstractSneckoCard {
     public final static String ID = makeID("ImprovisedGuard");
-
     public static AbstractCard storage;
 
     public ImprovisedGuard() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         baseBlock = 8;
+    }
+
+    public void upp() {
+        upgradeBlock(3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -28,12 +31,5 @@ public class ImprovisedGuard extends AbstractSneckoCard {
                 addToTop(new MuddleAction(storage));
             }
         });
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBlock(3);
-        }
     }
 }

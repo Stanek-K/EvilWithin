@@ -6,24 +6,18 @@ import sneckomod.SneckoMod;
 import sneckomod.powers.UnendingSupplyPower;
 
 public class UnendingSupply extends AbstractSneckoCard {
-
     public final static String ID = makeID("UnendingSupply");
-
-    //stupid intellij stuff POWER, SELF, UNCOMMON
 
     public UnendingSupply() {
         super(ID, 1, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
         SneckoMod.loadJokeCardImage(this, "UnendingSupply.png");
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        applyToSelf(new UnendingSupplyPower(1));
+    public void upp() {
+        upgradeBaseCost(0);
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(0);
-        }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        applyToSelf(new UnendingSupplyPower(1));
     }
 }

@@ -33,7 +33,7 @@ public class GoopTackle extends AbstractTackleCard {
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardStrings cardStrings;
-    private static final int COST = 2;
+    private static final int COST = 0;
     public static String UPGRADED_DESCRIPTION;
 
     static {
@@ -41,25 +41,24 @@ public class GoopTackle extends AbstractTackleCard {
         NAME = cardStrings.NAME;
         DESCRIPTION = cardStrings.DESCRIPTION;
         UPGRADED_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-
     }
 
     public GoopTackle() {
-
         super(ID, NAME, SlimeboundMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.SLIMEBOUND, RARITY, TARGET);
-        tags.add(SlimeboundMod.TACKLE);
-
-
-        this.baseDamage = 12;
+        this.baseDamage = 8;
         baseSelfDamage = this.selfDamage = 3;
+        tags.add(SlimeboundMod.TACKLE);
+    }
 
-
+    public void upgrade() {
+        if (!this.upgraded) {
+            upgradeName();
+            upgradeDamage(3);
+        }
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new com.megacrit.cardcrawl.cards.DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        addToBot(new DamageAction(m, new com.megacrit.cardcrawl.cards.DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
         if (!AbstractDungeon.player.hasPower(PreventTackleDamagePower.POWER_ID))
             addToBot(new TackleSelfDamageAction(new DamageInfo(p, selfDamage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SMASH));
 
@@ -72,11 +71,8 @@ public class GoopTackle extends AbstractTackleCard {
 
 
         AbstractCard cTackle = qCardList.get(AbstractDungeon.cardRng.random(0, qCardList.size() - 1));
-        if (upgraded) {
-            cTackle.upgrade();
-        }
-
-        cTackle.setCostForTurn(0);
+        //if (upgraded) cTackle.upgrade();
+        //cTackle.setCostForTurn(0);
 
         AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(cTackle));
 
@@ -86,24 +82,7 @@ public class GoopTackle extends AbstractTackleCard {
     }
 
     public AbstractCard makeCopy() {
-
         return new GoopTackle();
-
-    }
-
-    public void upgrade() {
-
-        if (!this.upgraded) {
-
-            upgradeName();
-
-            upgradeDamage(3);
-
-            this.rawDescription = UPGRADED_DESCRIPTION;
-            this.initializeDescription();
-
-        }
-
     }
 }
 

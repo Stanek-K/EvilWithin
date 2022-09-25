@@ -14,14 +14,12 @@ import sneckomod.relics.UnknownEgg;
 
 import java.util.ArrayList;
 
+import static sneckomod.SneckoMod.costToIdentify;
+
 
 public class LockInCampfireOption extends AbstractCampfireOption {
     public static final String[] DESCRIPTIONS;
     private static final UIStrings UI_STRINGS;
-    public static boolean usedIdentify = false;
-
-    private ArrayList<AbstractCard> validCards = new ArrayList<>();
-
 
     static {
         UI_STRINGS = CardCrawlGame.languagePack.getUIString("sneckomod:LockInBonfireOptions");
@@ -42,17 +40,19 @@ public class LockInCampfireOption extends AbstractCampfireOption {
 
         this.usable = active;
         if (active) {
-            if (AbstractDungeon.player.hasRelic(UnknownEgg.ID)) {
-                this.description = DESCRIPTIONS[4];
-            } else {
-                this.description = DESCRIPTIONS[1];
-            }
+            this.description = DESCRIPTIONS[1];
         } else {
             this.description = DESCRIPTIONS[2];
         }
-        usedIdentify = false;
-        updateImage(active);
 
+
+        if (AbstractDungeon.player.gold < costToIdentify) {
+            this.usable = false;
+            this.description = DESCRIPTIONS[4];
+            updateImage(false);
+        } else {
+            updateImage(active);
+        }
     }
 
     public void updateImage(boolean active) {
@@ -74,20 +74,13 @@ public class LockInCampfireOption extends AbstractCampfireOption {
     @Override
     public void update() {
         float hackScale = (float) ReflectionHacks.getPrivate(this, AbstractCampfireOption.class, "scale");
-        if (usable && usedIdentify) {
-            usable = false;
-            updateImage(false);
-        }
 
         if (this.hb.hovered) {
-
             if (!this.hb.clickStarted) {
                 ReflectionHacks.setPrivate(this, AbstractCampfireOption.class, "scale", MathHelper.scaleLerpSnap(hackScale, Settings.scale));
                 ReflectionHacks.setPrivate(this, AbstractCampfireOption.class, "scale", MathHelper.scaleLerpSnap(hackScale, Settings.scale));
-
             } else {
                 ReflectionHacks.setPrivate(this, AbstractCampfireOption.class, "scale", MathHelper.scaleLerpSnap(hackScale, 0.9F * Settings.scale));
-
             }
         } else {
             ReflectionHacks.setPrivate(this, AbstractCampfireOption.class, "scale", MathHelper.scaleLerpSnap(hackScale, 0.9F * Settings.scale));

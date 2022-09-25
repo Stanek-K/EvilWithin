@@ -19,6 +19,10 @@ public class MixItUp extends AbstractSneckoCard {
         tags.add(CardTags.HEALING);
     }
 
+    public void upp() {
+        upgradeMagicNumber(1);
+    }
+
     public void use(AbstractPlayer p, AbstractMonster m) {
         atb(new AbstractGameAction() {
             @Override
@@ -33,15 +37,8 @@ public class MixItUp extends AbstractSneckoCard {
             }
         });
         for (int i = 0; i < this.magicNumber; i++) {
-            dmg(m, makeInfo(), AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+            dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         }
 
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeMagicNumber(1);
-        }
     }
 }

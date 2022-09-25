@@ -50,8 +50,8 @@ import sneckomod.potions.CheatPotion;
 import sneckomod.potions.DiceRollPotion;
 import sneckomod.potions.MuddlingPotion;
 import sneckomod.potions.OffclassReductionPotion;
+import sneckomod.powers.MudshieldPower;
 import sneckomod.relics.*;
-import sneckomod.util.SneckoSilly;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -98,6 +98,7 @@ public class SneckoMod implements
     public static com.megacrit.cardcrawl.cards.AbstractCard.CardTags BANNEDFORSNECKO;
 
     public static Random identifyRng;
+    public static final int costToIdentify = 40;
 
     public static ArrayList<AbstractCard.CardColor> validColors = new ArrayList<>();
     public static ArrayList<String> allowedColors = new ArrayList<>(Arrays.asList("RED", "BLUE", "GREEN", "PURPLE", "GUARDIAN", "SLIMEBOUND", "HEXA_GHOST_PURPLE", "THE_CHAMP_GRAY", "THE_BRONZE_AUTOMATON", "GREMLIN", "HERMIT_YELLOW"));
@@ -315,7 +316,6 @@ public class SneckoMod implements
 
     @Override
     public void receiveEditCards() {
-        BaseMod.addDynamicVariable(new SneckoSilly());
         try {
             autoAddCards();
         } catch (URISyntaxException | IllegalAccessException | InstantiationException | NotFoundException | ClassNotFoundException e) {
@@ -333,7 +333,6 @@ public class SneckoMod implements
 
     @Override
     public void receiveSetUnlocks() {
-
         downfallMod.registerUnlockSuite(
                 Memorize.ID,
                 PureSnecko.ID,
@@ -587,5 +586,31 @@ public class SneckoMod implements
                 SneckoMod.dualClassChoice();
             }
         }
+    }
+
+    //Common things that shouldn't be actions.
+    public static int muddleACard(AbstractCard card, boolean no3) {
+        if (card.cost >= 0 && !card.hasTag(SneckoMod.SNEKPROOF)) {
+            if (AbstractDungeon.player.hasPower(MudshieldPower.POWER_ID)) {
+                AbstractDungeon.player.getPower(MudshieldPower.POWER_ID).onSpecificTrigger();
+            }
+            card.superFlash();
+            ArrayList<Integer> numList = new ArrayList<>();
+            if (!AbstractDungeon.player.hasRelic(CrystallizedMud.ID)) {
+                if (card.costForTurn != 0) numList.add(0);
+            }
+            if (card.costForTurn != 1) numList.add(1);
+            if (card.costForTurn != 2) numList.add(2);
+            if (!AbstractDungeon.player.hasRelic(CleanMud.ID)) {
+                    if (!no3 && card.costForTurn != 3) numList.add(3);
+            }
+            int newCost = numList.get(AbstractDungeon.cardRandomRng.random(numList.size() - 1));
+            if (card.costForTurn != newCost) {
+                card.setCostForTurn(newCost);
+            }
+            card.freeToPlayOnce = false;
+            return newCost;
+        }
+        return -1;
     }
 }

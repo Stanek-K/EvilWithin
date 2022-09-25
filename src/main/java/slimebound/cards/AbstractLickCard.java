@@ -13,6 +13,8 @@ public abstract class AbstractLickCard extends AbstractSlimeboundCard {
         super(id, name, img, cost, rawDescription, type, color, rarity, target);
     }
 
+    //Why this exists? Did russian translator fail to name cards correctly?
+
     @Override
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();

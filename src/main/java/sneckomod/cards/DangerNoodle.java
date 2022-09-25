@@ -12,22 +12,20 @@ import sneckomod.SneckoMod;
 import java.util.ArrayList;
 
 public class DangerNoodle extends AbstractSneckoCard {
-
     public final static String ID = makeID("DangerNoodle");
-
-    //stupid intellij stuff ATTACK, ENEMY, RARE
-
-    private static final int DAMAGE = 9;
-    private static final int UPG_DAMAGE = 3;
 
     public DangerNoodle() {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
-        baseDamage = DAMAGE;
+        baseDamage = 9;
         SneckoMod.loadJokeCardImage(this, "DangerNoodle.png");
     }
 
+    public void upp(){
+        upgradeDamage(3);
+    }
+
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, makeInfo(), AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -46,12 +44,5 @@ public class DangerNoodle extends AbstractSneckoCard {
                 }
             }
         });
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeDamage(UPG_DAMAGE);
-        }
     }
 }

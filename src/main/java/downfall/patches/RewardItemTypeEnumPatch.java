@@ -27,7 +27,9 @@ public class RewardItemTypeEnumPatch {
 	@SpireEnum
 	public static RewardItem.RewardType COLORFULCARD;
 	@SpireEnum
-	public static RewardItem.RewardType UPGRADEDUNKNOWNCARD;
+	public static RewardItem.RewardType UPGRADEDOFFCLASSCARD;
+	@SpireEnum
+	public static RewardItem.RewardType UNIDENTIFIEDCARD;
 	@SpireEnum
 	public static RewardItem.RewardType SEALCARD;
 }

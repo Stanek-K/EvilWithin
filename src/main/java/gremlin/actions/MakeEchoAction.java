@@ -13,9 +13,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
-import downfall.cardmods.EtherealMod;
-import downfall.cardmods.ExhaustMod;
-import downfall.cardmods.RetainCardMod;
+import expansioncontent.cardmods.EtherealMod;
+import expansioncontent.cardmods.ExhaustMod;
+import expansioncontent.cardmods.RetainCardMod;
 
 public class MakeEchoAction extends AbstractGameAction {
     private static final float DURATION_PER_CARD = 0.35F;

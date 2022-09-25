@@ -1,6 +1,11 @@
 package guardian.powers;
 
 public interface DefensiveModeBooster {
-    void onEnter();
-    void onLeave();
+    default void onEnter() {
+
+    }
+
+    default void onLeave() {
+
+    }
 }

@@ -39,7 +39,8 @@
   },
   "Guardian:ChargeUp": {
     "NAME": "Charge Up",
-    "DESCRIPTION": "Place this into guardianmod:Stasis. NL guardianmod:Tick - Gain !B! Block and !M! Strength. NL guardianmod:Volatile."
+    "DESCRIPTION": "Place this into guardianmod:Stasis. NL guardianmod:Tick - Gain !B! Block and !M! Strength. NL guardianmod:Volatile.",
+    "UPGRADE_DESCRIPTION": "Place this into guardianmod:Stasis. NL *Stasis lasts 2 turns. NL guardianmod:Tick - Gain !B! Block and !M! Strength. NL guardianmod:Volatile."
   },
   "Guardian:DonusPower": {
     "NAME": "Overload",
@@ -66,7 +67,8 @@
   },
   "Guardian:GuardianWhirl": {
     "NAME": "Guardian Whirl",
-    "DESCRIPTION": "Requires 20 or more Block. NL Deal !D! damage to ALL enemies !M! times.",    "EXTENDED_DESCRIPTION": [
+    "DESCRIPTION": "Requires 20 or more Block. NL Deal !D! damage to ALL enemies !M! times.",
+    "EXTENDED_DESCRIPTION": [
       "More Block required."
     ]
   },
@@ -303,15 +305,15 @@
   },
   "Guardian:EvasiveProtocol": {
     "NAME": "Evasive Protocol",
-    "DESCRIPTION": "While in *Defensive *Mode, raise your Dexterity by !M!. NL At the start of your turn, guardianmod:Brace 3."
+    "DESCRIPTION": "At the start of your turn, guardianmod:Brace !M!."
   },
   "Guardian:SpikerProtocol": {
     "NAME": "Spiker Protocol",
-    "DESCRIPTION": "Gain !M! Thorns while in *Defensive *Mode. NL At the start of your turn, guardianmod:Brace 3."
+    "DESCRIPTION": "Gain !M! Thorns while in *Defensive *Mode."
   },
   "Guardian:ArmoredProtocol": {
     "NAME": "Armored Protocol",
-    "DESCRIPTION": "Gain !M! Block at the end of each turn while in *Defensive *Mode. NL At the start of your turn, guardianmod:Brace 3."
+    "DESCRIPTION": "Gain !M! Block at the end of each turn while in *Defensive *Mode."
   },
   "Guardian:TimeSifter": {
     "NAME": "Time Sifter",
@@ -376,11 +378,11 @@
   },
   "Guardian:RevengeProtocol": {
     "NAME": "Revenge Protocol",
-    "DESCRIPTION": "While in *Defensive *Mode, raise your Strength by !M!. NL At the start of your turn, guardianmod:Brace 5."
+    "DESCRIPTION": "Whenever you are attacked, gain !M! temporary Strength."
   },
   "Guardian:GatlingBeam": {
     "NAME": "Laser Turret",
-    "DESCRIPTION": "Deal !D! damage. NL Place this into guardianmod:Stasis. NL guardianmod:Stasis lasts !M! turns. NL guardianmod:Tick - Deal !D! damage to a random enemy."
+    "DESCRIPTION": "Deal !D! damage. NL guardianmod:Tick - Deal !D! damage to a random enemy."
   },
   "Guardian:ShieldCharger": {
     "NAME": "Shield Charger",
@@ -433,8 +435,8 @@
     "UPGRADE_DESCRIPTION": " NL Exhaust."
   },
   "Guardian:BodySlam": {
-    "NAME": "Body Slam",
-    "DESCRIPTION": "Deal damage equal to your Block.",
+    "NAME": "Body Crash",
+    "DESCRIPTION": "Gain !B! Block. NL Deal damage equal to your Block.",
     "UPGRADE_DESCRIPTION": " NL (Deals !D! damage.)"
   },
   "Guardian:SecondStrike": {

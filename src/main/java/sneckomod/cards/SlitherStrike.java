@@ -9,23 +9,21 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import sneckomod.SneckoMod;
 
 public class SlitherStrike extends AbstractSneckoCard {
-
     public final static String ID = makeID("SlitherStrike");
-
-    //stupid intellij stuff ATTACK, ENEMY, UNCOMMON
-
-    private static final int DAMAGE = 9;
-    private static final int UPG_DAMAGE = 3;
 
     public SlitherStrike() {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = DAMAGE;
+        baseDamage = 9;
         tags.add(CardTags.STRIKE);
         SneckoMod.loadJokeCardImage(this, "SlitherStrike.png");
     }
 
+    public void upp() {
+        upgradeDamage(3);
+    }
+
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, makeInfo(), AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         atb(new AbstractGameAction() {
             @Override
             public void update() {
@@ -38,12 +36,5 @@ public class SlitherStrike extends AbstractSneckoCard {
                 }
             }
         });
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeDamage(UPG_DAMAGE);
-        }
     }
 }

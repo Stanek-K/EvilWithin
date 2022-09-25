@@ -26,13 +26,7 @@ public class ChargeUp extends AbstractGuardianCard implements InStasisCard {
     private static final CardType TYPE = CardType.SKILL;
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final int COST = 0;
 
-    //TUNING CONSTANTS
-    private static final int BLOCK = 8;
-    private static final int UPGRADE_BLOCK = 3;
-    private static final int STRENGTH = 1;
-    private static final int UPGRADE_STRENGTH = 1;
     private static final int SOCKETS = 0;
     private static final boolean SOCKETSAREAFTER = true;
     public static String UPGRADED_DESCRIPTION;
@@ -48,11 +42,9 @@ public class ChargeUp extends AbstractGuardianCard implements InStasisCard {
     }
 
     public ChargeUp() {
-        super(ID, NAME, GuardianMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.GUARDIAN, RARITY, TARGET);
-
-
-        this.baseBlock = BLOCK;
-        this.baseMagicNumber = this.magicNumber = STRENGTH;
+        super(ID, NAME, GuardianMod.getResourcePath(IMG_PATH), 0, DESCRIPTION, TYPE, AbstractCardEnum.GUARDIAN, RARITY, TARGET);
+        this.baseBlock = 8;
+        this.baseMagicNumber = this.magicNumber = 1;
         this.tags.add(GuardianMod.TICK);
         this.tags.add(GuardianMod.VOLATILE);
         this.tags.add(GuardianMod.SELFSTASIS);
@@ -64,10 +56,13 @@ public class ChargeUp extends AbstractGuardianCard implements InStasisCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         super.use(p, m);
-
         AbstractDungeon.actionManager.addToBottom(new SFXAction("MONSTER_GUARDIAN_DESTROY"));
-
         super.useGems(p, m);
+    }
+
+    @Override
+    public void whenEnteredStasis(StasisOrb orb) {
+        if (upgraded) orb.passiveAmount = 2;
     }
 
     public AbstractCard makeCopy() {
@@ -77,16 +72,12 @@ public class ChargeUp extends AbstractGuardianCard implements InStasisCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            //upgradeBlock(UPGRADE_BLOCK);
-            this.cost = 1;
-            this.costForTurn = 1;
-            this.upgradedCost = true;
-
+            rawDescription = UPGRADED_DESCRIPTION;
+            initializeDescription();
         }
     }
 
     public void updateDescription() {
-
         if (this.socketCount > 0) {
             if (upgraded && UPGRADED_DESCRIPTION != null) {
                 this.rawDescription = this.updateGemDescription(UPGRADED_DESCRIPTION, true);
@@ -101,7 +92,6 @@ public class ChargeUp extends AbstractGuardianCard implements InStasisCard {
     public void onStartOfTurn(StasisOrb orb) {
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, this.block));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, this.magicNumber), this.magicNumber));
-
     }
 
     @Override

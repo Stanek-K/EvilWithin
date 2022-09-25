@@ -14,10 +14,10 @@ import guardian.stances.DefensiveMode;
 
 public class ModeShiftPower extends AbstractGuardianPower {
     public static final String POWER_ID = "Guardian:ModeShiftPower";
-    private static final int STARTINGAMOUNT = 20;
-    private static final int AMOUNTGAINPERACTIVATION = 10;
-    private static final int MAXAMOUNT = 50;
-    private static final int BLOCKONTRIGGER = 10;
+    private static final int STARTINGAMOUNT = 16;
+    private static final int AMOUNTGAINPERACTIVATION = 8;
+    private static final int MAXAMOUNT = 40;
+    private static final int BLOCKONTRIGGER = 20;
     public static PowerType POWER_TYPE = PowerType.BUFF;
     public static String[] DESCRIPTIONS;
     private AbstractCreature source;
@@ -26,7 +26,6 @@ public class ModeShiftPower extends AbstractGuardianPower {
     private int nextamount = 0;
 
     public ModeShiftPower(AbstractCreature owner, AbstractCreature source, int amount) {
-
         this.ID = POWER_ID;
         this.owner = owner;
         this.source = source;
@@ -39,12 +38,10 @@ public class ModeShiftPower extends AbstractGuardianPower {
         this.name = CardCrawlGame.languagePack.getPowerStrings(this.ID).NAME;
 
         updateDescription();
-
     }
 
     public void updateDescription() {
         this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
-
     }
 
     public void onSpecificTrigger(int brace) {
@@ -52,12 +49,7 @@ public class ModeShiftPower extends AbstractGuardianPower {
         updateDescription();
         flash();
         if (this.amount <= 0) {
-            int blockAmt = BLOCKONTRIGGER;
-            if (AbstractDungeon.player.hasRelic(ModeShifter.ID) && !AbstractDungeon.player.getRelic(ModeShifter.ID).grayscale) {
-                blockAmt += 10;
-                AbstractDungeon.player.getRelic(ModeShifter.ID).grayscale = true;
-            }
-            AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this.owner, this.owner, blockAmt));
+            AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this.owner, this.owner, BLOCKONTRIGGER));
             AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction(DefensiveMode.STANCE_ID));
 
             int turns;
@@ -79,7 +71,6 @@ public class ModeShiftPower extends AbstractGuardianPower {
 
     @Override
     public int onLoseHp(int damageAmount) {
-
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && this.active && !AbstractDungeon.player.hasPower(BufferPower.POWER_ID)) {
             onSpecificTrigger(damageAmount);
         }

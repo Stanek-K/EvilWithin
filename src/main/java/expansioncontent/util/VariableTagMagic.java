@@ -4,29 +4,29 @@ import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import expansioncontent.cards.AbstractDownfallCard;
 
-public class DownfallMagic extends DynamicVariable {
+public class VariableTagMagic extends DynamicVariable {
     public String key() {
-        return "DM";
+        return "TM";
     }
 
     public boolean isModified(AbstractCard abstractCard) {
-        return ((AbstractDownfallCard) abstractCard).isDownfallModified;
+        return ((AbstractDownfallCard) abstractCard).isTagMagicModified;
     }
 
     public void setIsModified(AbstractCard card, boolean v) {
         if (card instanceof AbstractDownfallCard)
-            ((AbstractDownfallCard) card).isDownfallModified = v;
+            ((AbstractDownfallCard) card).isTagMagicModified = v;
     }
 
     public int value(AbstractCard abstractCard) {
-        return ((AbstractDownfallCard) abstractCard).downfallMagic;
+        return ((AbstractDownfallCard) abstractCard).tagMagic;
     }
 
     public int baseValue(AbstractCard abstractCard) {
-        return ((AbstractDownfallCard) abstractCard).baseDownfallMagic;
+        return ((AbstractDownfallCard) abstractCard).baseTagMagic;
     }
 
     public boolean upgraded(AbstractCard abstractCard) {
-        return ((AbstractDownfallCard) abstractCard).upgradedDownfall;
+        return ((AbstractDownfallCard) abstractCard).isTagMagicUpgraded;
     }
 }

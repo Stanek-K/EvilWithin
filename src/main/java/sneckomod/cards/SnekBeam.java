@@ -12,16 +12,11 @@ import sneckomod.cards.unknowns.AbstractUnknownCard;
 import static com.megacrit.cardcrawl.cards.red.PerfectedStrike.countCards;
 
 public class SnekBeam extends AbstractSneckoCard {
-
     public final static String ID = makeID("SnekBeam");
-
-    //stupid intellij stuff ATTACK, ALL_ENEMY, UNCOMMON
-
-    private static final int DAMAGE = 0;
 
     public SnekBeam() {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ALL_ENEMY);
-        baseDamage = DAMAGE;
+        baseDamage = 0;
         isMultiDamage = true;
         this.exhaust = true;
     }

@@ -1,27 +1,17 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
 package slimebound.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.colorless.Madness;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import slimebound.SlimeboundMod;
 import slimebound.cards.Lick;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
 
 public class DissolveAction extends AbstractGameAction {
     public static final String[] TEXT;
@@ -33,19 +23,17 @@ public class DissolveAction extends AbstractGameAction {
         TEXT = uiStrings.TEXT;
     }
 
-    private AbstractPlayer p;
-    private boolean isRandom;
-    private boolean anyNumber;
-    private boolean canPickZero;
-    private int block;
+    private final AbstractPlayer p;
+    private final boolean isRandom;
+    private final boolean anyNumber;
+    private final boolean canPickZero;
     private int extraCards;
 
-    public DissolveAction(AbstractCreature target, AbstractCreature source, int amount, boolean isRandom, int block, int blockUnc) {
-        this(target, source, amount, isRandom, false, false, block, blockUnc);
+    public DissolveAction(AbstractCreature target, AbstractCreature source, int amount, int extraCards) {
+        this(target, source, amount, false, false, false, extraCards);
     }
 
-    public DissolveAction(AbstractCreature target, AbstractCreature source, int amount, boolean isRandom, boolean anyNumber, boolean canPickZero, int block, int extraCards) {
-        this.canPickZero = false;
+    public DissolveAction(AbstractCreature target, AbstractCreature source, int amount, boolean isRandom, boolean anyNumber, boolean canPickZero, int extraCards) {
         this.anyNumber = anyNumber;
         this.canPickZero = canPickZero;
         this.p = (AbstractPlayer) target;
@@ -53,7 +41,6 @@ public class DissolveAction extends AbstractGameAction {
         this.setValues(target, source, amount);
         this.duration = Settings.ACTION_DUR_FAST;
         this.actionType = ActionType.EXHAUST;
-        this.block = block;
         this.extraCards = extraCards;
     }
 

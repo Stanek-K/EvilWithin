@@ -33,7 +33,7 @@ public class MuddleRandomCardAction extends AbstractGameAction {
         ArrayList<AbstractCard> myCardList = new ArrayList<>(AbstractDungeon.player.hand.group);
         myCardList.removeIf(c -> c.hasTag(SneckoMod.SNEKPROOF));
 
-        for (int i = 0; i < this.amount; ++i) {// 101
+        for (int i = 0; i < this.amount; ++i) {
             if (!myCardList.isEmpty()) {
                 AbstractCard card = null;
                 if (onlyHighest) {
@@ -57,8 +57,7 @@ public class MuddleRandomCardAction extends AbstractGameAction {
                     card = myCardList.remove(AbstractDungeon.cardRandomRng.random(myCardList.size() - 1));
                 }
 
-                if (card != null)
-                    addToTop(new MuddleAction(card, cannotCost3));
+                if (card != null) SneckoMod.muddleACard(card, cannotCost3);
             }
         }
     }

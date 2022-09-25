@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 import slimebound.SlimeboundMod;
 import slimebound.actions.SlimeSpawnAction;
 
-
+@Deprecated
 public class ScrapRespawnPower extends AbstractPower {
     public static final String POWER_ID = "Slimebound:ScrapRespawnPower";
     public static final String NAME = "Potency";

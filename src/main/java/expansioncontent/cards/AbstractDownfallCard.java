@@ -23,17 +23,17 @@ abstract public class AbstractDownfallCard extends CustomCard {
         //Second Magic - Downfall Magic (DM)
             public int downfallMagic;
             public int baseDownfallMagic;
-            public boolean upgradedDownfall;
+            public boolean isDownfallUpgraded;
             public boolean isDownfallModified;
         //Third Magic - Second Downfall Magic (DM2)
             public int secondDownfall;
             public int baseSecondDownfall;
-            public boolean upgradedSecondDownfall;
+            public boolean isSecondDownfallUpgraded;
             public boolean isSecondDownfallModified;
         //Tag Magic (TM)
             public int tagMagic;
             public int baseTagMagic;
-            public boolean upgradedTagMagic;
+            public boolean isTagMagicUpgraded;
             public boolean isTagMagicModified;
             /* What does TM (Tag Magic) mean and how it is supposed to be used you ask?
                 It is simple the intended use for it is to combine it with card tags, but that might be too vague so an example:
@@ -65,11 +65,11 @@ abstract public class AbstractDownfallCard extends CustomCard {
             return imgPath;
         switch (type) {
             case ATTACK:
-                return "expansioncontentResources/images/cards/Placeholder/Attack.png";
+                return "expansioncontentResources/images/cards/placeholder/Attack.png";
             case POWER:
-                return "expansioncontentResources/images/cards/Placeholder/Power.png";
+                return "expansioncontentResources/images/cards/placeholder/Power.png";
             default:
-                return "expansioncontentResources/images/cards/Placeholder/Skill.png";
+                return "expansioncontentResources/images/cards/placeholder/Skill.png";
         }
     }
 
@@ -87,15 +87,15 @@ abstract public class AbstractDownfallCard extends CustomCard {
 
     public void displayUpgrades() {
         super.displayUpgrades();
-        if (upgradedDownfall) {
+        if (isDownfallUpgraded) {
             downfallMagic = baseDownfallMagic;
             isDownfallModified = true;
         }
-        if (upgradedSecondDownfall) {
+        if (isSecondDownfallUpgraded) {
             secondDownfall = baseSecondDownfall;
             isSecondDownfallModified = true;
         }
-        if (upgradedTagMagic) {
+        if (isTagMagicUpgraded) {
             tagMagic = baseTagMagic;
             isTagMagicModified = true;
         }
@@ -104,19 +104,19 @@ abstract public class AbstractDownfallCard extends CustomCard {
     public void upgradeDownfall(int amount) {
         baseDownfallMagic += amount;
         downfallMagic = baseDownfallMagic;
-        upgradedDownfall = true;
+        isDownfallUpgraded = true;
     }
 
     public void upgradeSecondDownfall(int amount) {
         baseSecondDownfall += amount;
         secondDownfall = baseSecondDownfall;
-        upgradedSecondDownfall = true;
+        isSecondDownfallUpgraded = true;
     }
 
     public void upgradeTagMagic(int amount) {
         baseTagMagic += amount;
         tagMagic = baseTagMagic;
-        upgradedTagMagic = true;
+        isTagMagicUpgraded = true;
     }
 
     @Override
@@ -127,7 +127,7 @@ abstract public class AbstractDownfallCard extends CustomCard {
         }
     }
 
-    abstract public void upp();
+    public void upp() {}
 
     //Simple Methods
 

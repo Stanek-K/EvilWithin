@@ -1,4 +1,4 @@
-package downfall.cardmods;
+package expansioncontent.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -9,8 +9,6 @@ import guardian.GuardianMod;
 import guardian.cards.AbstractGuardianCard;
 
 public class BraceMod extends AbstractCardModifier {
-
-
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
         return rawDescription + CardCrawlGame.languagePack.getUIString(GuardianMod.makeID("BraceMod")).TEXT[0];

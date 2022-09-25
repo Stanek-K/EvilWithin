@@ -57,7 +57,6 @@ public class ArmoredProtocol extends AbstractGuardianCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         super.use(p, m);
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new ArmoredProtocolPower(p, magicNumber)));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new BracePerTurnPower(p, this.secondaryM)));
     }
 
     public AbstractCard makeCopy() {
@@ -67,7 +66,7 @@ public class ArmoredProtocol extends AbstractGuardianCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(3);
+            upgradeMagicNumber(2);
         }
     }
 

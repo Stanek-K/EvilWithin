@@ -1,4 +1,4 @@
-package downfall.cardmods;
+package expansioncontent.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import downfall.downfallMod;
 
 public class EtherealMod extends AbstractCardModifier {
-
     public static String ID = downfallMod.makeID("EtherealMod");
 
     @Override
@@ -16,6 +15,7 @@ public class EtherealMod extends AbstractCardModifier {
     }
 
     public boolean shouldApply(AbstractCard card) {
+        if (card.isEthereal || card.selfRetain) return false;
         return !CardModifierManager.hasModifier(card, ID);
     }
 

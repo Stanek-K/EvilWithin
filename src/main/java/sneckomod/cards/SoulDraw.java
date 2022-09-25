@@ -9,7 +9,6 @@ import sneckomod.SneckoMod;
 import java.util.ArrayList;
 
 public class SoulDraw extends AbstractSneckoCard {
-
     public final static String ID = makeID("SoulDraw");
 
     public SoulDraw() {
@@ -19,17 +18,14 @@ public class SoulDraw extends AbstractSneckoCard {
         tags.add(SneckoMod.SNEKPROOF);
     }
 
+    public void upp() {
+        upgradeMagicNumber(1);
+    }
+
     public void use(AbstractPlayer p, AbstractMonster m) {
         ArrayList<AbstractCard> cards = OffclassHelper.getXRandomOffclassCards(magicNumber);
         for (AbstractCard c : cards) {
             makeInHand(c);
-        }
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeMagicNumber(1);
         }
     }
 }

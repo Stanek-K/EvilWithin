@@ -12,13 +12,18 @@ import sneckomod.SneckoMod;
 import java.util.ArrayList;
 
 public class Rotation extends AbstractSneckoCard {
-
     public final static String ID = makeID("Rotation");
 
     public Rotation() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 0;
         tags.add(SneckoMod.SNEKPROOF);
+    }
+
+    public void upp() {
+        upgradeMagicNumber(1);
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -41,14 +46,5 @@ public class Rotation extends AbstractSneckoCard {
                 }
             }
         });
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeMagicNumber(1);
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
-        }
     }
 }

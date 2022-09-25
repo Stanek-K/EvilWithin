@@ -6,21 +6,21 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class DefensiveFlair extends AbstractSneckoCard {
-
     public final static String ID = makeID("DefensiveFlair");
-
-    //stupid intellij stuff SKILL, SELF, UNCOMMON
-
-    private static final int BLOCK = 8;
-    private static final int UPG_BLOCK = 2;
-
-    private static final int MAGIC = 1;
-    private static final int UPG_MAGIC = 1;
 
     public DefensiveFlair() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseBlock = BLOCK;
-        baseMagicNumber = magicNumber = MAGIC;
+        baseBlock = 8;
+        baseMagicNumber = magicNumber = 1;
+    }
+
+    public void upp() {
+        upgradeBlock(1);
+        upgradeMagicNumber(1);
+    }
+
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        blck();
     }
 
     @Override
@@ -33,17 +33,5 @@ public class DefensiveFlair extends AbstractSneckoCard {
         super.applyPowersToBlock();
         this.baseBlock = realBaseBlock;// 75
         this.isBlockModified = block != baseBlock;
-    }
-
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        blck();
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBlock(UPG_BLOCK);
-            upgradeMagicNumber(UPG_MAGIC);
-        }
     }
 }

@@ -69,18 +69,15 @@ public class DefensiveMode extends AbstractStance {
         }
 
         CardCrawlGame.sound.play("GUARDIAN_ROLL_UP");
-
         if (!(AbstractDungeon.player instanceof GuardianCharacter)) {
-//             CardCrawlGame.sound.play("STANCE_ENTER_CALM");
             sfxId = CardCrawlGame.sound.playAndLoop(GuardianMod.makeID("STANCE_LOOP_Defensive_Mode"));
         }
-
         AbstractDungeon.actionManager.addToTop(new VFXAction(AbstractDungeon.player, new IntenseZoomEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, false), 0.05F, true));
         AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.GOLDENROD, true));
-
         if (AbstractDungeon.player instanceof GuardianCharacter) {
             ((GuardianCharacter) AbstractDungeon.player).switchToDefensiveMode();
         }
+
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ThornsPower(AbstractDungeon.player, 3), 3));
         for (AbstractPower p : AbstractDungeon.player.powers) {
             if (p instanceof DefensiveModeBooster) {
@@ -114,11 +111,11 @@ public class DefensiveMode extends AbstractStance {
         }
     }
 
+    /*
     public void atStartOfTurn() {
         AbstractDungeon.actionManager.addToBottom(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, 10));
-
-
     }
+     */
 
     public void onEndOfRound() {
         if (AbstractDungeon.player.hasPower(DontLeaveDefensiveModePower.POWER_ID)) {

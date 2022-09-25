@@ -9,14 +9,22 @@ import sneckomod.SneckoMod;
 import sneckomod.actions.NoApplyRandomDamageAction;
 
 public class DiceBoulder extends AbstractSneckoCard {
-
     public final static String ID = makeID("DiceBoulder");
 
     public DiceBoulder() {
         super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = 27;
-        baseMagicNumber = magicNumber = 1;
+        baseMagicNumber = magicNumber = 1; //Min Damage
+        baseDamage = 27; //Max Damage
         tags.add(SneckoMod.RNG);
+    }
+
+    public void upgrade() {
+        this.upgradeDamage(3 + timesUpgraded);
+        upgradeMagicNumber(6 + timesUpgraded);
+        ++this.timesUpgraded;
+        this.upgraded = true;
+        this.name = cardStrings.NAME + "+" + this.timesUpgraded;
+        this.initializeTitle();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -58,14 +66,5 @@ public class DiceBoulder extends AbstractSneckoCard {
     @Override
     public AbstractCard makeCopy() {
         return new DiceBoulder();
-    }
-
-    public void upgrade() {
-        this.upgradeDamage(3 + timesUpgraded);
-        upgradeMagicNumber(6 + timesUpgraded);
-        ++this.timesUpgraded;
-        this.upgraded = true;
-        this.name = cardStrings.NAME + "+" + this.timesUpgraded;
-        this.initializeTitle();
     }
 }

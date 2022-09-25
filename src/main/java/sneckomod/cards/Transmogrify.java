@@ -17,10 +17,7 @@ import java.util.Collections;
 import java.util.Locale;
 
 public class Transmogrify extends AbstractSneckoCard {
-
     public final static String ID = makeID("Transmogrify");
-
-    //stupid intellij stuff SKILL, SELF, RARE
 
     public Transmogrify() {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
@@ -148,10 +145,7 @@ public class Transmogrify extends AbstractSneckoCard {
         return false;
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(0);
-        }
+    public void upp() {
+        upgradeBaseCost(0);
     }
 }

@@ -75,17 +75,18 @@ public class FleeingMerchant extends AbstractMonster {
     public static int CURRENT_STRENGTH = 0;
     public static int CURRENT_SOULS = 0;
 
+    public static int SOULSTEAL_AMOUNT = 15;
+
     public static boolean DEAD = false;
     public static boolean ESCAPED = false;
 
     // Move bytes
-    private static byte ATTACK = 0;
-    private static byte DEFEND = 1;
-    private static byte ESCAPE = 2;
-    private static byte SOULSTEAL = 3;
+    private static final byte ATTACK = 0;
+    private static final byte DEFEND = 1;
+    private static final byte ESCAPE = 2;
+    private static final byte SOULSTEAL = 3;
 
     private int turn = 0;
-    private boolean boss = false;
 
     public FleeingMerchant() {
         super(NAME, ID, START_HP, -10.0F, -30.0F, 180.0F, 150.0F, null, 0.0F, 0.0F);
@@ -103,7 +104,6 @@ public class FleeingMerchant extends AbstractMonster {
         dialogX = -200.0F * Settings.scale;
         dialogY = 10.0F * Settings.scale;
 
-        gold = 100;
         halfDead = false;
 
         damage.add(new DamageInfo(this, 2));
@@ -113,11 +113,9 @@ public class FleeingMerchant extends AbstractMonster {
 
     @Override
     public void render(SpriteBatch sb) {
-        if (!boss) {
-            if (!isDeadOrEscaped() || AbstractDungeon.getCurrRoom().cannotLose) {
-                sb.setColor(Color.WHITE);
-                sb.draw(ImageMaster.MERCHANT_RUG_IMG, DRAW_X, DRAW_Y, 512.0F * Settings.scale, 512.0F * Settings.scale);
-            }
+        if (!isDeadOrEscaped() || AbstractDungeon.getCurrRoom().cannotLose) {
+            sb.setColor(Color.WHITE);
+            sb.draw(ImageMaster.MERCHANT_RUG_IMG, DRAW_X, DRAW_Y, 512.0F * Settings.scale, 512.0F * Settings.scale);
         }
 
         super.render(sb);
@@ -125,7 +123,6 @@ public class FleeingMerchant extends AbstractMonster {
 
     @Override
     public void usePreBattleAction() {
-        AbstractDungeon.getCurrRoom().eliteTrigger = true;
         //AbstractDungeon.getCurrRoom().cannotLose = true;
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(this, this, new BarricadePower(this)));
 
@@ -199,9 +196,9 @@ public class FleeingMerchant extends AbstractMonster {
 
             this.addToBot(new ApplyPowerAction(this, this, new StrengthPower(this, 1), 1));
             CURRENT_STRENGTH += 1;
-            if (AbstractDungeon.player.gold >= 15) {
+            if (AbstractDungeon.player.gold >= SOULSTEAL_AMOUNT) {
                 this.addToBot(new ApplyPowerAction(this, this, new SoulStealPower(this, 15), 15));
-                CURRENT_SOULS += 15;
+                CURRENT_SOULS += SOULSTEAL_AMOUNT;
             } else {
                 this.addToBot(new ApplyPowerAction(this, this, new SoulStealPower(this, AbstractDungeon.player.gold), AbstractDungeon.player.gold));
                 CURRENT_SOULS += AbstractDungeon.player.gold;
@@ -231,7 +228,7 @@ public class FleeingMerchant extends AbstractMonster {
             return;
         }
         if (turn == 1) {
-            setMove(ATTACK, Intent.ATTACK, ((DamageInfo) this.damage.get(0)).base, 5, true);
+            setMove(ATTACK, Intent.ATTACK, this.damage.get(0).base, 5, true);
             return;
         }
         if (turn == 2) {
@@ -240,7 +237,6 @@ public class FleeingMerchant extends AbstractMonster {
         }
         if (turn == 3) {
             setMove(ESCAPE, Intent.ESCAPE);
-            return;
         }
     }
 
@@ -250,7 +246,7 @@ public class FleeingMerchant extends AbstractMonster {
         AbstractDungeon.getCurrRoom().rewardAllowed = false;
         AbstractDungeon.getCurrRoom().rewards.clear();
         */
-        int increaseGold = 300;
+        int increaseGold = 150;
         if (FleeingMerchant.CURRENT_SOULS > 0)
             increaseGold += FleeingMerchant.CURRENT_SOULS;
 

@@ -23,8 +23,6 @@ public class Schlurp extends AbstractSlimeboundCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardStrings cardStrings;
     private static final int COST = 1;
-    private static final int POWER = 6;
-    private static final int UPGRADE_BONUS = 3;
     public static String UPGRADED_DESCRIPTION;
 
     static {
@@ -32,47 +30,29 @@ public class Schlurp extends AbstractSlimeboundCard {
         NAME = cardStrings.NAME;
         DESCRIPTION = cardStrings.DESCRIPTION;
         UPGRADED_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-
     }
-
 
     public Schlurp() {
-
         super(ID, NAME, SlimeboundMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.SLIMEBOUND, RARITY, TARGET);
-
+        baseBlock = 4;
         this.magicNumber = this.baseMagicNumber = 2;
         this.cardsToPreview = new Lick();
-        baseBlock = block = 6;
-
-    }
-
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
-
-        for (int i = 0; i < this.magicNumber; i++) {
-            AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(new Lick()));
-
-        }
-
-
-    }
-
-    public AbstractCard makeCopy() {
-
-        return new Schlurp();
-
     }
 
     public void upgrade() {
-
         if (!this.upgraded) {
-
             upgradeName();
-
             upgradeMagicNumber(1);
-
         }
+    }
 
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new GainBlockAction(p, p, this.block));
+        addToBot(new MakeTempCardInHandAction(new Lick(), magicNumber));
+    }
+
+    public AbstractCard makeCopy() {
+        return new Schlurp();
     }
 }
 

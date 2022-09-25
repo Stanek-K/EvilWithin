@@ -4,11 +4,14 @@ import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import downfall.cardmods.EtherealMod;
+import downfall.util.CardIgnore;
+import expansioncontent.cardmods.EtherealMod;
+import expansioncontent.cardmods.ExhaustMod;
 import sneckomod.SneckoMod;
 import sneckomod.powers.UnlimitedRollsPower;
-import downfall.cardmods.ExhaustMod;
 
+@Deprecated
+@CardIgnore
 public class UnlimitedRolls extends AbstractSneckoCard {
 
     public final static String ID = makeID("UnlimitedRolls");

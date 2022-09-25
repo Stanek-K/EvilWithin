@@ -8,8 +8,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import downfall.cardmods.RetainCardMod;
-import sneckomod.SneckoMod;
+import expansioncontent.cardmods.RetainCardMod;
 
 import java.util.ArrayList;
 

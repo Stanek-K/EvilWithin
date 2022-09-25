@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import sneckomod.SneckoMod;
 
 public class TrashToTreasure extends AbstractSneckoCard {
-
     public final static String ID = makeID("TrashToTreasure");
-
-    //stupid intellij stuff SKILL, SELF, UNCOMMON
 
     public TrashToTreasure() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
@@ -17,16 +14,13 @@ public class TrashToTreasure extends AbstractSneckoCard {
         this.exhaust = true;
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new RecycleAction());
+    public void upp() {
+        this.exhaust = false;
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            this.exhaust = false;
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
-        }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        atb(new RecycleAction());
     }
 }

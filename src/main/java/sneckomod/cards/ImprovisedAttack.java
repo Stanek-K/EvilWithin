@@ -9,7 +9,6 @@ import sneckomod.actions.MuddleAction;
 
 public class ImprovisedAttack extends AbstractSneckoCard {
     public final static String ID = makeID("ImprovisedAttack");
-
     public static AbstractCard storage;
 
     public ImprovisedAttack() {
@@ -19,7 +18,7 @@ public class ImprovisedAttack extends AbstractSneckoCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, makeInfo(), AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
         AbstractCard q = SneckoMod.getOffClassCardMatchingPredicate(c -> c.type == CardType.ATTACK);
         makeInHand(q);
         atb(new AbstractGameAction() {
@@ -31,10 +30,7 @@ public class ImprovisedAttack extends AbstractSneckoCard {
         });
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeDamage(3);
-        }
+    public void upp() {
+        upgradeDamage(3);
     }
 }

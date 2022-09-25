@@ -30,7 +30,6 @@ import java.util.function.Predicate;
 
 
 public abstract class AbstractUnknownCard extends AbstractSneckoCard implements StartupCard, CustomSavable<String> {
-
     public AbstractCard lastUnknownRoll;
 
     public AbstractUnknownCard(final String id, final CardType type, final CardRarity rarity) {
@@ -42,13 +41,6 @@ public abstract class AbstractUnknownCard extends AbstractSneckoCard implements 
 
     public AbstractUnknownCard(final String id, final CardType type, final CardRarity rarity, CardColor color) {
         super(id, -2, type, rarity, CardTarget.NONE, color);
-        tags.add(CardTags.HEALING);
-        purgeOnUse = true;
-        cardsToPreview = CardLibrary.cards.get("Madness");
-    }
-
-    public AbstractUnknownCard(final String id, final String img, final CardType type, final CardRarity rarity, boolean IsClass) {
-        super(id, img, -2, type, rarity, CardTarget.NONE, IsClass);
         tags.add(CardTags.HEALING);
         purgeOnUse = true;
         cardsToPreview = CardLibrary.cards.get("Madness");
@@ -222,12 +214,9 @@ public abstract class AbstractUnknownCard extends AbstractSneckoCard implements 
         return result;
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            if (UPGRADE_DESCRIPTION != null) {
-                rawDescription = UPGRADE_DESCRIPTION;
-            }
+    public void upp() {
+        if (UPGRADE_DESCRIPTION != null) {
+            rawDescription = UPGRADE_DESCRIPTION;
             initializeDescription();
         }
     }

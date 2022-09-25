@@ -8,12 +8,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import sneckomod.SneckoMod;
-import sneckomod.util.UpgradedUnknownReward;
+import sneckomod.util.UpgradedOffclassReward;
 import downfall.util.TextureLoader;
 
-public class UnknownUpgradedPostCombatPower extends AbstractPower implements CloneablePowerInterface {
-
-    public static final String POWER_ID = SneckoMod.makeID("UnknownUpgradedPostCombatPower");
+public class UpgradedOffclassPostCombatPower extends AbstractPower implements CloneablePowerInterface {
+    public static final String POWER_ID = SneckoMod.makeID("UpgradedOffclassPostCombatPower");
 
     private static final Texture tex84 = TextureLoader.getTexture(SneckoMod.getModID() + "Resources/images/powers/UnknownAfterCombat84.png");
     private static final Texture tex32 = TextureLoader.getTexture(SneckoMod.getModID() + "Resources/images/powers/UnknownAfterCombat32.png");
@@ -22,7 +21,7 @@ public class UnknownUpgradedPostCombatPower extends AbstractPower implements Clo
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public UnknownUpgradedPostCombatPower(final int amount) {
+    public UpgradedOffclassPostCombatPower(final int amount) {
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = AbstractDungeon.player;
@@ -47,11 +46,11 @@ public class UnknownUpgradedPostCombatPower extends AbstractPower implements Clo
     @Override
     public void onVictory() {
         for (int i = 0; i < this.amount; i++)
-            AbstractDungeon.getCurrRoom().addCardReward(new UpgradedUnknownReward());
+            AbstractDungeon.getCurrRoom().addCardReward(new UpgradedOffclassReward());
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new UnknownUpgradedPostCombatPower(amount);
+        return new UpgradedOffclassPostCombatPower(amount);
     }
 }

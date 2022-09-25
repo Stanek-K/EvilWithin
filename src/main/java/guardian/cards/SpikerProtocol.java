@@ -27,13 +27,6 @@ public class SpikerProtocol extends AbstractGuardianCard {
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final int COST = 1;
-
-    //TUNING CONSTANTS
-    private static final int THORNS = 4;
-    private static final int UPGRADE_THORNS = 2;
-    private static final int SOCKETS = 0;
-    private static final int BRACE_PER_TURN = 3;
-    private static final boolean SOCKETSAREAFTER = true;
     public static String UPGRADED_DESCRIPTION;
 
     //END TUNING CONSTANTS
@@ -47,12 +40,17 @@ public class SpikerProtocol extends AbstractGuardianCard {
 
     public SpikerProtocol() {
         super(ID, NAME, GuardianMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.GUARDIAN, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = THORNS;
-        this.secondaryM = BRACE_PER_TURN;
-        this.socketCount = SOCKETS;
+        this.magicNumber = this.baseMagicNumber = 4;
+        this.socketCount = 0;
         updateDescription();
         loadGemMisc();
+    }
 
+    public void upgrade() {
+        if (!this.upgraded) {
+            upgradeName();
+            upgradeMagicNumber(2);
+        }
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -61,18 +59,10 @@ public class SpikerProtocol extends AbstractGuardianCard {
         if (p.stance instanceof DefensiveMode) {
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new ThornsPower(p, magicNumber), magicNumber));
         }
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new BracePerTurnPower(p, this.secondaryM)));
     }
 
     public AbstractCard makeCopy() {
         return new SpikerProtocol();
-    }
-
-    public void upgrade() {
-        if (!this.upgraded) {
-            upgradeName();
-            upgradeMagicNumber(UPGRADE_THORNS);
-        }
     }
 
     public void updateDescription() {

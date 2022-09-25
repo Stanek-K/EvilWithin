@@ -4,7 +4,7 @@ import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import expansioncontent.cards.AbstractDownfallCard;
 
-public class SecondDownfallMagic extends DynamicVariable {
+public class VariableSecondDownfallMagic extends DynamicVariable {
     public String key() {
         return "DM2";
     }
@@ -27,6 +27,6 @@ public class SecondDownfallMagic extends DynamicVariable {
     }
 
     public boolean upgraded(AbstractCard abstractCard) {
-        return ((AbstractDownfallCard) abstractCard).upgradedSecondDownfall;
+        return ((AbstractDownfallCard) abstractCard).isSecondDownfallUpgraded;
     }
 }

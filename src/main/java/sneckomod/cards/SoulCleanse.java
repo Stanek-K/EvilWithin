@@ -7,10 +7,7 @@ import sneckomod.SneckoMod;
 import sneckomod.actions.MuddleHandAction;
 
 public class SoulCleanse extends AbstractSneckoCard {
-
     public final static String ID = makeID("SoulCleanse");
-
-    //stupid intellij stuff SKILL, SELF, UNCOMMON
 
     public SoulCleanse() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
@@ -19,16 +16,13 @@ public class SoulCleanse extends AbstractSneckoCard {
         SneckoMod.loadJokeCardImage(this, "SoulCleanse.png");
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new MuddleHandAction(true));
+    public void upp() {
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
+        this.exhaust = false;
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
-            this.exhaust = false;
-        }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        atb(new MuddleHandAction(true));
     }
 }

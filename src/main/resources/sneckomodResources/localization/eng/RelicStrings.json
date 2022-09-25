@@ -59,7 +59,7 @@
     "NAME": "Unidentified Egg",
     "FLAVOR": "What will hatch? Pay $1000 to see.",
     "DESCRIPTIONS": [
-      "#yIdentifying becomes a free action. NL #yUnidentified cards in card rewards are #yUpgraded."
+      "Whenever you #yIdentify a card, #yUpgrade it."
     ]
   },
   "sneckomod:SuperSneckoEye": {

@@ -84,7 +84,4 @@ public abstract class AbstractExpansionCard extends AbstractDownfallCard {
         }
         return super.getPortraitImage();
     }
-
-    @Override
-    public void upp() {} //TODO Remove me later
 }

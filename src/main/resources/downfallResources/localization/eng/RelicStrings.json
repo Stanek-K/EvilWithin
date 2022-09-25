@@ -448,21 +448,21 @@
     "NAME": "Ruby Heart Blessing",
     "FLAVOR": "The heart is strong.",
     "DESCRIPTIONS": [
-      "Start each combat with #b1 #yStrength."
+      "At the start of Boss combats, gain #b1 #yStrength."
     ]
   },
   "downfall:HeartBlessingBlue": {
     "NAME": "Sapphire Heart Blessing",
     "FLAVOR": "The heart is pleased.",
     "DESCRIPTIONS": [
-      "Upon pickup, raise your Max HP by #b10."
+      "At the start of Boss combats, heal #b12 HP."
     ]
   },
   "downfall:HeartBlessingGreen": {
     "NAME": "Emerald Heart Blessing",
     "FLAVOR": "The heart is everything.",
     "DESCRIPTIONS": [
-      "Start each combat with #b1 #yDexterity."
+      "At the start of Boss combats, gain #b1 #yDexterity."
     ]
   },
   "downfall:TeleportStone": {
@@ -502,7 +502,9 @@
       "Corrupted Courier",
       "The Heart restocks cards, relics, and potions. All prices are reduced by #b20%.",
       "Combat reward screens now contain Colorless cards and cards from the Hero colors.",
-      "Gain [E] at the start of your turn. You can no longer gain #ySouls. Breaking Keys costs no #ySouls."
+      "Hectoplasm",
+      "Gain [E] at the start of your turn. You can no longer gain #ySouls. Breaking Keys costs no #ySouls.",
+      "This blob of slime seems to pulse with the energy of hundreds of souls. No wonder no one wanted it."
     ]
   },
   "downfall:LizardTail": {

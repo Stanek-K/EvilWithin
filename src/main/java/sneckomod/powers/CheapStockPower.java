@@ -15,7 +15,6 @@ import downfall.util.TextureLoader;
 import java.util.ArrayList;
 
 public class CheapStockPower extends AbstractPower implements CloneablePowerInterface {
-
     public static final String POWER_ID = SneckoMod.makeID("CheapStockPower");
 
     private static final Texture tex84 = TextureLoader.getTexture(SneckoMod.getModID() + "Resources/images/powers/CheapStock84.png");
