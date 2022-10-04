@@ -6,7 +6,10 @@ import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import downfall.util.CardIgnore;
 
+@Deprecated
+@CardIgnore
 public class NightmareStrike extends AbstractHexaCard {
 
     public final static String ID = makeID("NightmareStrike");
@@ -20,13 +23,13 @@ public class NightmareStrike extends AbstractHexaCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, makeInfo(), AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
     }
 
     @Override
     public void afterlife() {
         superFlash(Color.PURPLE);
-        AbstractCard q = new ShadowStrike(this);
+        AbstractCard q = new ShadowStrike();
         if (upgraded) q.upgrade();
         atb(new MakeTempCardInHandAction(q));
     }

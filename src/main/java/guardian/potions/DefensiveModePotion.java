@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import guardian.powers.DontLeaveDefensiveModePower;
+import guardian.powers.ModeShiftPower;
 import guardian.stances.DefensiveMode;
 import guardian.characters.GuardianCharacter;
 
@@ -46,7 +47,7 @@ public class DefensiveModePotion extends CustomPotion {
     }
 
     public void use(AbstractCreature target) {
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(AbstractDungeon.player, 10));
+        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(AbstractDungeon.player, ModeShiftPower.BLOCKONTRIGGER));
         AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction(DefensiveMode.STANCE_ID));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DontLeaveDefensiveModePower(AbstractDungeon.player, potency), potency));
     }

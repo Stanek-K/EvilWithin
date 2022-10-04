@@ -4,16 +4,18 @@ import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import theHexaghost.HexaMod;
 import theHexaghost.powers.BurnPower;
 import downfall.util.TextureLoader;
+import theHexaghost.util.OnSoulburnDetonationSubscriber;
 
 import static theHexaghost.HexaMod.makeRelicOutlinePath;
 import static theHexaghost.HexaMod.makeRelicPath;
 
-public class SoulConsumer extends CustomRelic {
+public class SoulConsumer extends CustomRelic implements OnSoulburnDetonationSubscriber {
 
     public static final String ID = HexaMod.makeID("SoulConsumer");
     private static final Texture IMG = TextureLoader.getTexture(makeRelicPath("SoulConsumer.png"));
@@ -22,11 +24,10 @@ public class SoulConsumer extends CustomRelic {
 
     public SoulConsumer() {
         super(ID, IMG, OUTLINE, RelicTier.RARE, LandingSound.MAGICAL);
-
     }
 
     @Override
-    public void onTrigger() {
+    public void onDetonationPlayer(AbstractCreature origin) {
         if (!this.activated) {
             this.img = TextureLoader.getTexture(makeRelicPath("SoulConsumerOn.png"));
             this.flash();

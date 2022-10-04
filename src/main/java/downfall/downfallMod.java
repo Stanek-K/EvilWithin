@@ -1649,20 +1649,6 @@ public class downfallMod implements
             evilMode = true;
         }
 
-        if (AbstractDungeon.player instanceof TheHexaghost) {
-            for (AbstractCard c : CardLibrary.getAllCards()) {
-                if (c.hasTag(HexaMod.GHOSTWHEELCARD) && c.hasTag(AbstractCard.CardTags.HEALING)) {
-                    c.tags.remove(AbstractCard.CardTags.HEALING);
-                }
-            }
-        } else {
-            for (AbstractCard c : CardLibrary.getAllCards()) {
-                if (c.hasTag(HexaMod.GHOSTWHEELCARD)) {
-                    c.tags.add(AbstractCard.CardTags.HEALING);
-                }
-            }
-        }
-
         Act1BossFaced = "";
         Act2BossFaced = "";
         Act3BossFaced = "";

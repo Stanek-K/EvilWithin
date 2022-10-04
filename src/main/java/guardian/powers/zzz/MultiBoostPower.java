@@ -9,7 +9,7 @@ import guardian.GuardianMod;
 import guardian.cards.AbstractGuardianCard;
 import guardian.powers.AbstractGuardianPower;
 
-
+@Deprecated
 public class MultiBoostPower extends AbstractGuardianPower {
     public static final String POWER_ID = "Guardian:MultiBoostPower";
     public static PowerType POWER_TYPE = PowerType.BUFF;

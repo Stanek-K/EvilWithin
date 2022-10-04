@@ -27,7 +27,7 @@
   },
   "hexamod:BurningTouch": {
     "NAME": "Жгучее касание",
-    "DESCRIPTION": "Накладывает !burny! hexamod:Ожога_души. Повторяет, если на врага уже наложен NL hexamod:Ожог_души."
+    "DESCRIPTION": "Накладывает !TM! hexamod:Ожога_души. Повторяет, если на врага уже наложен NL hexamod:Ожог_души."
   },
   "hexamod:CatchUp": {
     "NAME": "Наверстать упущенное",
@@ -35,7 +35,7 @@
   },
   "hexamod:ChargedBarrage": {
     "NAME": "Заряженный залп",
-    "DESCRIPTION": "Накладывает !burny! hexamod:Ожога_души. NL Повторяет за каждый hexamod:Зажжёный Огонёк."
+    "DESCRIPTION": "Накладывает !TM! hexamod:Ожога_души. NL Повторяет за каждый hexamod:Зажжёный Огонёк."
   },
   "hexamod:CouncilsJustice": {
     "NAME": "Правосудие совета",
@@ -51,7 +51,7 @@
   },
   "hexamod:DynamicBlow": {
     "NAME": "Динамический удар",
-    "DESCRIPTION": "Эфирная. NL Накладывает !burny! hexamod:Ожога_души, если hexamod:активный Огонёк hexamod:Зажжён. Если нет - наносит !D! урона."
+    "DESCRIPTION": "Эфирная. NL Накладывает !TM! hexamod:Ожога_души, если hexamod:активный Огонёк hexamod:Зажжён. Если нет - наносит !D! урона."
   },
   "hexamod:EmpoweredFlame": {
     "NAME": "Усиленное пламя",
@@ -73,11 +73,11 @@
   },
   "hexamod:Firestarter": {
     "NAME": "Поджигатель",
-    "DESCRIPTION": "Наносит !D! урона и накладывает !burny! hexamod:Ожога_души на ВСЕХ врагов."
+    "DESCRIPTION": "Наносит !D! урона и накладывает !TM! hexamod:Ожога_души на ВСЕХ врагов."
   },
   "hexamod:FlamesFromBeyond": {
     "NAME": "Огонь извне",
-    "DESCRIPTION": "Эфирная. hexamod:Посмертие. NL Накладывает !burny! hexamod:Ожога_души на ВСЕХ врагов."
+    "DESCRIPTION": "Эфирная. hexamod:Посмертие. NL Накладывает !TM! hexamod:Ожога_души на ВСЕХ врагов."
   },
   "hexamod:FlameSwitch": {
     "NAME": "Дурной знак",
@@ -107,7 +107,7 @@
   },
   "hexamod:GhostflameBarrier": {
     "NAME": "Стена из Огоньков",
-    "DESCRIPTION": "Даёт !B! Защиты. NL Накладывает !burny! hexamod:Ожога_души в ответ на каждую атаку в этом ходу."
+    "DESCRIPTION": "Даёт !B! Защиты. NL Накладывает !TM! hexamod:Ожога_души в ответ на каждую атаку в этом ходу."
   },
   "hexamod:GhostflameInferno": {
     "NAME": "Мгновенный ад",
@@ -177,7 +177,7 @@
   },
   "hexamod:Incineration": {
     "NAME": "Испепелить",
-    "DESCRIPTION": "Наносит !D! урона и накладывает !burny! hexamod:Ожога_души !M! раза."
+    "DESCRIPTION": "Наносит !D! урона и накладывает !TM! hexamod:Ожога_души !M! раза."
   },
   "hexamod:InspiringFlames": {
     "NAME": "Согреться",
@@ -231,8 +231,8 @@
   },
   "hexamod:RainOfEmbers": {
     "NAME": "Град углей",
-    "DESCRIPTION": "Наносит !D! урона и накладывает !burny! hexamod:Ожога_души X раз.",
-    "UPGRADE_DESCRIPTION": "Наносит !D! урона, накладывает !burny! hexamod:Ожога_души и 1 Слабости X раз."
+    "DESCRIPTION": "Наносит !D! урона и накладывает !TM! hexamod:Ожога_души X раз.",
+    "UPGRADE_DESCRIPTION": "Наносит !D! урона, накладывает !TM! hexamod:Ожога_души и 1 Слабости X раз."
   },
   "hexamod:RecurringNightmare": {
     "NAME": "Кошмарное видение",
@@ -255,7 +255,7 @@
   },
   "hexamod:Sear": {
     "NAME": "Прижечь",
-    "DESCRIPTION": "Эфирная. hexamod:Посмертие. NL Накладывает !burny! hexamod:Ожога_души."
+    "DESCRIPTION": "Эфирная. hexamod:Посмертие. NL Накладывает !TM! hexamod:Ожога_души."
   },
   "hexamod:SearingWound": {
     "NAME": "Жгущая рана",
@@ -281,7 +281,7 @@
   },
   "hexamod:SoulSteal": {
     "NAME": "Живая бомба",
-    "DESCRIPTION": "Накладывает !burny! hexamod:Ожога_души. Этот эффект сработает на ВСЕХ врагов."
+    "DESCRIPTION": "Накладывает !TM! hexamod:Ожога_души. Этот эффект сработает на ВСЕХ врагов."
   },
   "hexamod:SpectersWail": {
     "NAME": "Призрачный вопль",
@@ -310,7 +310,7 @@
   },
   "hexamod:SuperheatedStrike": {
     "NAME": "Прижигающий удар",
-    "DESCRIPTION": "Эфирная. NL Наносит !D! урона. NL Накладывает !burny! hexamod:Ожога_души. NL Если эта карта *сжигается, вы получите !M! урона."
+    "DESCRIPTION": "Эфирная. NL Наносит !D! урона. NL Накладывает !TM! hexamod:Ожога_души. NL Если эта карта *сжигается, вы получите !M! урона."
   },
   "hexamod:SwordOfDarkness": {
     "NAME": "Меч Ночи",

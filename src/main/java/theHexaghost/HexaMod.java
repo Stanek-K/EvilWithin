@@ -25,20 +25,16 @@ import com.megacrit.cardcrawl.events.beyond.Falling;
 import com.megacrit.cardcrawl.events.city.BackToBasics;
 import com.megacrit.cardcrawl.events.city.Ghosts;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.scenes.TheBottomScene;
 import com.megacrit.cardcrawl.vfx.scene.InteractableTorchEffect;
 import downfall.downfallMod;
 import downfall.patches.BanSharedContentPatch;
 import downfall.util.CardIgnore;
-import guardian.cards.AbstractGuardianCard;
 import javassist.CtClass;
 import javassist.Modifier;
 import javassist.NotFoundException;
 import org.clapper.util.classutil.*;
-import slimebound.cards.AbstractSlimeboundCard;
 import theHexaghost.cards.*;
 import theHexaghost.events.*;
 import theHexaghost.ghostflames.AbstractGhostflame;
@@ -49,7 +45,6 @@ import theHexaghost.potions.EctoCoolerPotion;
 import theHexaghost.potions.InfernoChargePotion;
 import theHexaghost.potions.SoulburnPotion;
 import theHexaghost.relics.*;
-import theHexaghost.util.BurnVariable;
 import theHexaghost.util.CardFilter;
 import downfall.util.TextureLoader;
 
@@ -66,16 +61,9 @@ import static theHexaghost.TheHexaghost.oscillarator;
 @SuppressWarnings({"ConstantConditions", "unused", "WeakerAccess"})
 @SpireInitializer
 public class HexaMod implements
-        EditCardsSubscriber,
-        EditRelicsSubscriber,
-        // EditStringsSubscriber,
-        //EditKeywordsSubscriber,
-        EditCharactersSubscriber,
-        PostInitializeSubscriber,
-        OnStartBattleSubscriber,
-        PostBattleSubscriber,
-        SetUnlocksSubscriber,
-        PostDeathSubscriber {
+        EditCardsSubscriber, EditRelicsSubscriber, EditCharactersSubscriber,
+        PostInitializeSubscriber, OnStartBattleSubscriber, PostBattleSubscriber,
+        SetUnlocksSubscriber, PostDeathSubscriber {
     public static final String SHOULDER1 = "hexamodResources/images/char/mainChar/shoulder.png";
     public static final String SHOULDER2 = "hexamodResources/images/char/mainChar/shoulderR.png";
     public static final String CORPSE = "hexamodResources/images/char/mainChar/corpse.png";
@@ -104,7 +92,7 @@ public class HexaMod implements
     @SpireEnum
     public static AbstractCard.CardTags AFTERLIFE;
     @SpireEnum
-    public static AbstractCard.CardTags GHOSTWHEELCARD;
+    public static AbstractCard.CardTags DEALS_SOULBURN;
 
     public HexaMod() {
         BaseMod.subscribe(this);
@@ -116,8 +104,6 @@ public class HexaMod implements
                 ATTACK_S_ART, SKILL_S_ART, POWER_S_ART, CARD_ENERGY_S,
                 ATTACK_L_ART, SKILL_L_ART, POWER_L_ART,
                 CARD_ENERGY_L, TEXT_ENERGY);
-
-
     }
 
     public static void loadJokeCardImage(AbstractCard card, String img) {
@@ -236,7 +222,6 @@ public class HexaMod implements
 
     @Override
     public void receiveEditCards() {
-        BaseMod.addDynamicVariable(new BurnVariable());
         try {
             autoAddCards();
         } catch (URISyntaxException | IllegalAccessException | InstantiationException | NotFoundException | ClassNotFoundException e) {
@@ -251,7 +236,6 @@ public class HexaMod implements
 
 
     public void addPotions() {
-
         BaseMod.addPotion(EctoCoolerPotion.class, Color.GRAY, Color.GRAY, Color.BLACK, EctoCoolerPotion.POTION_ID, TheHexaghost.Enums.THE_SPIRIT);
         BaseMod.addPotion(SoulburnPotion.class, Color.GRAY, Color.GRAY, Color.BLACK, SoulburnPotion.POTION_ID);
         BaseMod.addPotion(DoubleChargePotion.class, Color.BLUE, Color.PURPLE, Color.MAROON, DoubleChargePotion.POTION_ID, TheHexaghost.Enums.THE_SPIRIT);
@@ -283,7 +267,6 @@ public class HexaMod implements
 
     @Override
     public void receiveSetUnlocks() {
-
         downfallMod.registerUnlockSuite(
                 GiftsFromTheDead.ID,
                 PowerFromBeyond.ID,
@@ -458,6 +441,4 @@ public class HexaMod implements
                 .eventType(EventUtils.EventType.FULL_REPLACE)
                 .create());
     }
-
-
 }

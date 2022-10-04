@@ -1,46 +1,45 @@
 package theHexaghost.cards;
 
+import com.evacipated.cardcrawl.mod.stslib.powers.abstracts.TwoAmountPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.GoldenSlashEffect;
-import downfall.actions.OctoChoiceAction;
-import downfall.cards.OctoChoiceCard;
-import downfall.util.OctopusCard;
-import sneckomod.SneckoMod;
-import theHexaghost.GhostflameHelper;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import theHexaghost.HexaMod;
-import theHexaghost.actions.AdvanceAction;
-import theHexaghost.actions.RetractAction;
-import theHexaghost.ghostflames.AbstractGhostflame;
-import theHexaghost.ghostflames.BolsteringGhostflame;
-import theHexaghost.ghostflames.CrushingGhostflame;
-import theHexaghost.ghostflames.SearingGhostflame;
+import theHexaghost.powers.BurnPower;
 
-import java.util.ArrayList;
-
-public class FlameSwitch extends AbstractHexaCard implements OctopusCard {
-
+public class FlameSwitch extends AbstractHexaCard {
     public final static String ID = makeID("FlameSwitch");
-
-    //stupid intellij stuff ATTACK, SELF_AND_ENEMY, RARE
-
-    private static final int DAMAGE = 5;
-    private static final int UPG_DAMAGE = 3;
 
     public FlameSwitch() {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
-        baseDamage = DAMAGE;
+        baseTagMagic = tagMagic = 20;
+        baseMagicNumber = magicNumber = 2;
         exhaust = true;
-        isEthereal = true;
-        tags.add(HexaMod.GHOSTWHEELCARD);
-        this.tags.add(SneckoMod.BANNEDFORSNECKO);
+        this.tags.add(HexaMod.DEALS_SOULBURN);
     }
 
-    public ArrayList<OctoChoiceCard> choiceList() {
+    public void upp() {
+        upgradeTagMagic(8);
+    }
 
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        burn(m, tagMagic);
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                this.isDone = true;
+                AbstractPower po = m.getPower(BurnPower.POWER_ID);
+                if (po instanceof TwoAmountPower)
+                    ((TwoAmountPower) po).amount2 += magicNumber;
+            }
+        });
+    }
+
+    /*
+    needs to implement OctopusCard
+    public ArrayList<OctoChoiceCard> choiceList() {
         ArrayList<OctoChoiceCard> cardList = new ArrayList<>();
         cardList.add(new OctoChoiceCard("octo:OctoCrush", this.name, HexaMod.makeCardPath("FlameSwitch.png"), this.EXTENDED_DESCRIPTION[1]));
         cardList.add(new OctoChoiceCard("octo:OctoEmpower", this.name, HexaMod.makeCardPath("FlameSwitch.png"), this.EXTENDED_DESCRIPTION[0]));
@@ -48,7 +47,6 @@ public class FlameSwitch extends AbstractHexaCard implements OctopusCard {
 
         return cardList;
     }
-
 
     public void doChoiceStuff(AbstractMonster m, OctoChoiceCard card) {
         switch (card.cardID) {
@@ -105,4 +103,5 @@ public class FlameSwitch extends AbstractHexaCard implements OctopusCard {
             initializeDescription();
         }
     }
+     */
 }

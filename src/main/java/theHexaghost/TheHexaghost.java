@@ -65,8 +65,6 @@ public class TheHexaghost extends CustomPlayer {
     public float renderscale = 1.0F;
     public float renderscale2 = 1.0F;
 
-    public static AbstractGhostflame startingFlame;
-
     private String atlasURL = "reskinContent/img/HexaghostMod/Hexago/animation/Hexaghost_original.atlas";
     private String jsonURL = "reskinContent/img/HexaghostMod/Hexago/animation/Hexaghost_original.json";
 
@@ -81,37 +79,6 @@ public class TheHexaghost extends CustomPlayer {
                 CharacterSelectScreenPatches.characters[2].skins[CharacterSelectScreenPatches.characters[2].reskinCount].getSHOULDER2(),
                 CharacterSelectScreenPatches.characters[2].skins[CharacterSelectScreenPatches.characters[2].reskinCount].CORPSE,
                 getLoadout(), -15.0F, 0.0F, 450.0F, 450.0F, new EnergyManager(3));
-//
-//        if (CharacterSelectScreenPatches.characters[2].isOriginal()) {
-//            initializeClass(null,
-//                    SHOULDER1,
-//                    SHOULDER2,
-//                    CORPSE,
-//                    getLoadout(), -15.0F, 0.0F, 450.0F, 450.0F, new EnergyManager(3));
-//        } else {
-//            if (CharacterSelectScreenPatches.characters[2].reskinCount == 1) {
-//                if (reskinContent.hexaghostMask) {
-//                    initializeClass(null,
-//                            "reskinContent/img/HexaghostMod/Hexago/shoulder2.png",
-//                            "reskinContent/img/HexaghostMod/Hexago/shoulder.png",
-//                            CORPSE,
-//                            getLoadout(), -15.0F, 0.0F, 450.0F, 450.0F, new EnergyManager(3));
-//
-//                } else {
-//                    initializeClass(null,
-//                            "reskinContent/img/HexaghostMod/Hexago/shoulderMask2.png",
-//                            "reskinContent/img/HexaghostMod/Hexago/shoulderMask.png",
-//                            CORPSE,
-//                            getLoadout(), -15.0F, 0.0F, 450.0F, 450.0F, new EnergyManager(3));
-//                }
-//            } else {
-//                initializeClass(null,
-//                        SHOULDER1,
-//                        SHOULDER2,
-//                        CORPSE,
-//                        getLoadout(), -15.0F, 0.0F, 450.0F, 450.0F, new EnergyManager(3));
-//            }
-//        }
 
         this.reloadAnimation();
 
@@ -131,8 +98,6 @@ public class TheHexaghost extends CustomPlayer {
         } else {
             this.state.setAnimation(0, "idle2_mask", true);
         }
-
-
     }
 
 
@@ -160,13 +125,6 @@ public class TheHexaghost extends CustomPlayer {
             myBody.render(sb);
         super.render(sb);
     }
-
-    /*
-    @Override
-    public Texture getCustomModeCharacterButtonImage() {
-        return ImageMaster.loadImage(HexaMod.getModID() + "Resources/images/charSelect/leaderboard.png");
-    }
-    */
 
     @Override
     public void preBattlePrep() {
@@ -311,12 +269,5 @@ public class TheHexaghost extends CustomPlayer {
         @SpireEnum(name = "HEXA_GHOST_PURPLE")
         @SuppressWarnings("unused")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
-    }
-
-    @Override
-    public void applyStartOfTurnPowers() {
-        startingFlame = activeGhostFlame;
-        super.applyStartOfTurnPowers();
-
     }
 }

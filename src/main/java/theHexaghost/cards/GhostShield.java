@@ -1,30 +1,23 @@
 package theHexaghost.cards;
 
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.BlurPower;
+import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import theHexaghost.HexaMod;
-import theHexaghost.patches.ExhaustCardTickPatch;
 
 public class GhostShield extends AbstractHexaCard {
-
     public final static String ID = makeID("GhostShield");
-
-    //stupid intellij stuff SKILL, SELF, UNCOMMON
-
-    private static final int BLOCK = 7;
-    private static final int MAGIC = 1;
-    private static final int UPG_BLOCK = 3;
 
     public GhostShield() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        baseBlock = BLOCK;
-        baseMagicNumber = magicNumber = MAGIC;
+        baseBlock = 8;
         isEthereal = true;
-        tags.add(HexaMod.AFTERLIFE);
+    }
+
+    public void upp() {
+        upgradeBlock(3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -33,19 +26,7 @@ public class GhostShield extends AbstractHexaCard {
 
     @Override
     public void afterlife() {
-        use(AbstractDungeon.player, null);
-        applyToSelf(new BlurPower(AbstractDungeon.player, magicNumber));
-    }
-/*
-    public void triggerOnGlowCheck() {
-        this.glowColor = ExhaustCardTickPatch.exhaustedLastTurn ? AbstractCard.GOLD_BORDER_GLOW_COLOR : AbstractCard.BLUE_BORDER_GLOW_COLOR;// 65
-    }// 68
- */
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBlock(UPG_BLOCK);
-        }
+        flash(Color.PURPLE);
+        applyToSelf(new NextTurnBlockPower(AbstractDungeon.player, block));
     }
 }

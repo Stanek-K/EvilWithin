@@ -9,7 +9,7 @@
   },
   "hexamod:Sear": {
     "NAME": "灼燒",
-    "DESCRIPTION": "虛無 。 hexamod:陰世 。 NL 給予 !burny! 層 hexamod:灼魂 。"
+    "DESCRIPTION": "虛無 。 hexamod:陰世 。 NL 給予 !TM! 層 hexamod:灼魂 。"
   },
   "hexamod:Float": {
     "NAME": "浮動",
@@ -190,15 +190,15 @@
   },
   "hexamod:BurningTouch": {
     "NAME": "灼燒之觸",
-    "DESCRIPTION": "給予 !burny! 層 hexamod:灼魂 。 NL 若敵人已有 hexamod:灼魂 ， NL 再給予一次。"
+    "DESCRIPTION": "給予 !TM! 層 hexamod:灼魂 。 NL 若敵人已有 hexamod:灼魂 ， NL 再給予一次。"
   },
   "hexamod:Incineration": {
     "NAME": "焚化",
-    "DESCRIPTION": "重復 !M! 次： NL 造成 !D! 點傷害。 NL 給予 !burny! 層 hexamod:灼魂 。"
+    "DESCRIPTION": "重復 !M! 次： NL 造成 !D! 點傷害。 NL 給予 !TM! 層 hexamod:灼魂 。"
   },
   "hexamod:Firestarter": {
     "NAME": "縱火",
-    "DESCRIPTION": "對所有敵人造成 !D! 點 NL 傷害並給予 !burny! 層 hexamod:灼魂 。"
+    "DESCRIPTION": "對所有敵人造成 !D! 點 NL 傷害並給予 !TM! 層 hexamod:灼魂 。"
   },
   "hexamod:SearingWound": {
     "NAME": "灼熱傷口",
@@ -212,7 +212,7 @@
   },
   "hexamod:GhostflameBarrier": {
     "NAME": "亡魂屏障",
-    "DESCRIPTION": "獲得 !B! 點 格擋 。 NL 本回合被攻擊時，給予攻擊者 !burny! 層 hexamod:灼魂 。"
+    "DESCRIPTION": "獲得 !B! 點 格擋 。 NL 本回合被攻擊時，給予攻擊者 !TM! 層 hexamod:灼魂 。"
   },
   "hexamod:Toasty": {
     "NAME": "烘焙！",
@@ -244,8 +244,8 @@
   },
   "hexamod:RainOfEmbers": {
     "NAME": "焰燼雨",
-    "DESCRIPTION": "造成 !D! 點傷害並給 NL 予 !burny! 層 hexamod:灼魂 X 次。",
-    "UPGRADE_DESCRIPTION": "造成 !D! 點傷害，給 NL 予 !burny! 層 hexamod:灼魂 與 1層 虛弱 X 次。"
+    "DESCRIPTION": "造成 !D! 點傷害並給 NL 予 !TM! 層 hexamod:灼魂 X 次。",
+    "UPGRADE_DESCRIPTION": "造成 !D! 點傷害，給 NL 予 !TM! 層 hexamod:灼魂 與 1層 虛弱 X 次。"
   },
   "hexamod:VolcanoVisage": {
     "NAME": "火山面貌",
@@ -253,7 +253,7 @@
   },
   "hexamod:FlamesFromBeyond": {
     "NAME": "深處之焰",
-    "DESCRIPTION": "虛無 。 hexamod:陰世 。 NL 給予所有敵人 !burny! 層 hexamod:灼魂 。"
+    "DESCRIPTION": "虛無 。 hexamod:陰世 。 NL 給予所有敵人 !TM! 層 hexamod:灼魂 。"
   },
   "hexamod:PhantomFireball": {
     "NAME": "幻影火球",
@@ -270,7 +270,7 @@
   },
   "hexamod:ChargedBarrage": {
     "NAME": "蓄能焰幕",
-    "DESCRIPTION": "給予 !burny! 層 hexamod:灼魂 。 NL 每有一枚 hexamod:點燃 的鬼火，再給予一次。"
+    "DESCRIPTION": "給予 !TM! 層 hexamod:灼魂 。 NL 每有一枚 hexamod:點燃 的鬼火，再給予一次。"
   },
   "hexamod:RadiantFlame": {
     "NAME": "火焰輻射",
@@ -326,7 +326,7 @@
   },
   "hexamod:SoulSteal": {
     "NAME": "活體炸彈",
-    "DESCRIPTION": "給予 !burny! 層 hexamod:灼魂 。 NL 它引爆時對所有敵人造成傷害。"
+    "DESCRIPTION": "給予 !TM! 層 hexamod:灼魂 。 NL 它引爆時對所有敵人造成傷害。"
   },
   "hexamod:CouncilsJustice": {
     "NAME": "議會裁決",
@@ -379,11 +379,11 @@
   },
   "hexamod:DynamicBlow": {
     "NAME": "動態攻擊",
-    "DESCRIPTION": "虛無 。 NL 若 hexamod:激活 的鬼火已 hexamod:點燃 ，給予 !burny! 層 hexamod:灼魂 。否則造成 !D! 點傷害。"
+    "DESCRIPTION": "虛無 。 NL 若 hexamod:激活 的鬼火已 hexamod:點燃 ，給予 !TM! 層 hexamod:灼魂 。否則造成 !D! 點傷害。"
   },
   "hexamod:SuperheatedStrike": {
     "NAME": "灼熱打擊",
-    "DESCRIPTION": "虛無 。 NL 造成 !D! 點傷害。 NL 給予 !burny! 層 hexamod:灼魂 。 NL 若本牌被 消耗 ，受到 !M! 點傷害。"
+    "DESCRIPTION": "虛無 。 NL 造成 !D! 點傷害。 NL 給予 !TM! 層 hexamod:灼魂 。 NL 若本牌被 消耗 ，受到 !M! 點傷害。"
   },
   "hexamod:Ghostwalk": {
     "NAME": "鬼步",

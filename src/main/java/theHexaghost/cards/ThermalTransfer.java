@@ -9,26 +9,22 @@ import com.megacrit.cardcrawl.vfx.combat.FireballEffect;
 import theHexaghost.powers.BurnPower;
 
 public class ThermalTransfer extends AbstractHexaCard {
-
     public final static String ID = makeID("ThermalTransfer");
-
-    //stupid intellij stuff ATTACK, ENEMY, UNCOMMON
-
-    private static final int DAMAGE = 7;
-    private static final int UPG_DAMAGE = 3;
-
-    private static final int BLOCK = 6;
-    private static final int UPG_BLOCK = 2;
 
     public ThermalTransfer() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = DAMAGE;
-        baseBlock = BLOCK;
+        baseDamage = 7;
+        baseBlock = 6;
+    }
+
+    public void upp() {
+        upgradeDamage(2);
+        upgradeBlock(2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         atb(new VFXAction(new FireballEffect(p.hb.cX, p.hb.cY, m.hb.cX, m.hb.cY), 0.5F));
-        dmg(m, makeInfo(), AbstractGameAction.AttackEffect.FIRE);
+        dmg(m, AbstractGameAction.AttackEffect.FIRE);
         if (m.hasPower(BurnPower.POWER_ID)) {
             atb(new GainBlockAction(p, block));
             atb(new VFXAction(new FireballEffect(m.hb.cX, m.hb.cY, p.hb.cX, p.hb.cY), 0.5F));
@@ -38,13 +34,5 @@ public class ThermalTransfer extends AbstractHexaCard {
     @Override
     public void triggerOnGlowCheck() {
         burnGlowCheck();
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeDamage(UPG_DAMAGE);
-            upgradeBlock(UPG_BLOCK);
-        }
     }
 }

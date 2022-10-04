@@ -7,7 +7,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
+import downfall.util.CardIgnore;
 
+@Deprecated
+@CardIgnore
 public class ShadowGuise extends AbstractHexaCard {
 
     public final static String ID = makeID("ShadowGuise");
@@ -30,6 +33,10 @@ public class ShadowGuise extends AbstractHexaCard {
         this.parent = parent;
         if (parent != null)
             cardsToPreview = this.parent.makeStatEquivalentCopy();
+    }
+
+    public void upp() {
+        upgradeBlock(2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -81,12 +88,5 @@ public class ShadowGuise extends AbstractHexaCard {
         card.freeToPlayOnce = this.freeToPlayOnce;
         card.setParent(this.parent);
         return card;
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBlock(2);
-        }
     }
 }

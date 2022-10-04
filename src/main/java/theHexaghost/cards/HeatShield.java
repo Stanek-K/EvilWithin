@@ -1,67 +1,37 @@
 package theHexaghost.cards;
 
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import theHexaghost.powers.BurnPower;
 
 public class HeatShield extends AbstractHexaCard {
-
     public final static String ID = makeID("HeatShield");
 
-    //stupid intellij stuff SKILL, SELF_AND_ENEMY, UNCOMMON
-
     public HeatShield() {
-        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseBlock = 0;
-        this.magicNumber = this.baseMagicNumber = 0;
+        super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        baseBlock = 8;
     }
 
-    @Override
-    protected void applyPowersToBlock() {
-        if (AbstractDungeon.isPlayerInDungeon()) {
-            if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
-                int realBaseBlock = this.baseBlock;
-                super.applyPowersToBlock();
-                this.magicNumber = this.baseMagicNumber = this.block;
-                for (AbstractMonster mo : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                    if (mo.hasPower(BurnPower.POWER_ID))
-                        baseBlock += mo.getPower(BurnPower.POWER_ID).amount;
-                }
-                super.applyPowersToBlock();
-                this.baseBlock = realBaseBlock;// 75
-                this.isBlockModified = block != baseBlock;
-                this.rawDescription = DESCRIPTION + EXTENDED_DESCRIPTION[0];// 73
-                initializeDescription();
-            }
-        } else {
-            this.baseBlock = this.block = 0;
-            this.isBlockModified = false;
-        }
+    public void upp() {
+        upgradeBlock(2);
     }
-
-    public void onMoveToDiscard() {
-        this.rawDescription = DESCRIPTION;// 73
-        this.initializeDescription();// 81
-    }// 82
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         blck();
-        if (AbstractDungeon.getCurrRoom().monsters != null)
-            for (AbstractMonster m2 : AbstractDungeon.getCurrRoom().monsters.monsters) {
-                if (!m2.isDeadOrEscaped() && m2.hasPower(BurnPower.POWER_ID)) {
-                    atb(new RemoveSpecificPowerAction(m2, m2, m2.getPower(BurnPower.POWER_ID)));
-                    break;// 43
-                }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                for (AbstractMonster mo: monsterList())
+                    if (mo.hasPower(BurnPower.POWER_ID))
+                        att(new GainBlockAction(p, block));
             }
+        });
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(0);
-        }
+    @Override
+    public void triggerOnGlowCheck() {
+        burnGlowCheck();
     }
 }

@@ -5,23 +5,23 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import sneckomod.SneckoMod;
 import theHexaghost.GhostflameHelper;
-import theHexaghost.HexaMod;
 import theHexaghost.actions.ChargeCurrentFlameAction;
 import theHexaghost.ghostflames.AbstractGhostflame;
 import theHexaghost.ghostflames.InfernoGhostflame;
 
 public class GhostflameInferno extends AbstractHexaCard {
-
     public final static String ID = makeID("GhostflameInferno");
-
-    //stupid intellij stuff ATTACK, ALL_ENEMY, RARE
 
     public GhostflameInferno() {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
         selfRetain = true;
         exhaust = true;
-        tags.add(HexaMod.GHOSTWHEELCARD);
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
+    }
+
+    public void upp() {
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -37,13 +37,5 @@ public class GhostflameInferno extends AbstractHexaCard {
                 }
             }
         });
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
-        }
     }
 }

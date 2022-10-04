@@ -17,26 +17,21 @@ public class ModeShiftPower extends AbstractGuardianPower {
     private static final int STARTINGAMOUNT = 16;
     private static final int AMOUNTGAINPERACTIVATION = 8;
     private static final int MAXAMOUNT = 40;
-    private static final int BLOCKONTRIGGER = 20;
+    public static final int BLOCKONTRIGGER = 20;
     public static PowerType POWER_TYPE = PowerType.BUFF;
     public static String[] DESCRIPTIONS;
-    private AbstractCreature source;
-    private boolean active;
+    private final boolean active;
     private int activations = 0;
-    private int nextamount = 0;
 
     public ModeShiftPower(AbstractCreature owner, AbstractCreature source, int amount) {
         this.ID = POWER_ID;
         this.owner = owner;
-        this.source = source;
         this.loadRegion("modeShift");
         this.type = POWER_TYPE;
         this.amount = STARTINGAMOUNT;
         this.active = true;
-        this.nextamount = STARTINGAMOUNT + (this.activations * AMOUNTGAINPERACTIVATION);
         DESCRIPTIONS = CardCrawlGame.languagePack.getPowerStrings(this.ID).DESCRIPTIONS;
         this.name = CardCrawlGame.languagePack.getPowerStrings(this.ID).NAME;
-
         updateDescription();
     }
 
@@ -74,7 +69,6 @@ public class ModeShiftPower extends AbstractGuardianPower {
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && this.active && !AbstractDungeon.player.hasPower(BufferPower.POWER_ID)) {
             onSpecificTrigger(damageAmount);
         }
-
         return super.onLoseHp(damageAmount);
     }
 }

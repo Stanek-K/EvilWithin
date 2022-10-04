@@ -12,23 +12,19 @@ import theHexaghost.actions.ChargeCurrentFlameAction;
 import theHexaghost.actions.ExtinguishCurrentFlameAction;
 
 public class HauntingEcho extends AbstractHexaCard {
-
     public final static String ID = makeID("HauntingEcho");
-
-    //stupid intellij stuff ATTACK, SELF_AND_ENEMY, UNCOMMON
-
-    private static final int DAMAGE = 8;
-    private static final int UPG_DAMAGE = 3;
 
     public HauntingEcho() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
-        baseDamage = DAMAGE;
-        tags.add(HexaMod.GHOSTWHEELCARD);
-        this.tags.add(SneckoMod.BANNEDFORSNECKO);
+        baseDamage = 8;
+    }
+
+    public void upp() {
+        upgradeDamage(3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, makeInfo(), AbstractGameAction.AttackEffect.FIRE);
+        dmg(m, AbstractGameAction.AttackEffect.FIRE);
         addToBot(new AbstractGameAction() {
             @Override
             public void update() {
@@ -42,13 +38,6 @@ public class HauntingEcho extends AbstractHexaCard {
     }
 
     public void triggerOnGlowCheck() {
-        this.glowColor = GhostflameHelper.activeGhostFlame.charged ? AbstractCard.GOLD_BORDER_GLOW_COLOR : AbstractCard.BLUE_BORDER_GLOW_COLOR;// 65
-    }// 68
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeDamage(UPG_DAMAGE);
-        }
+        this.glowColor = GhostflameHelper.activeGhostFlame.charged ? AbstractCard.GOLD_BORDER_GLOW_COLOR : AbstractCard.BLUE_BORDER_GLOW_COLOR;
     }
 }

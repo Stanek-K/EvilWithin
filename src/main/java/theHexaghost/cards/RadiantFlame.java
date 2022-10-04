@@ -6,7 +6,6 @@ import sneckomod.SneckoMod;
 import theHexaghost.powers.RadiantPower;
 
 public class RadiantFlame extends AbstractHexaCard {
-
     public final static String ID = makeID("RadiantFlame");
 
     public RadiantFlame() {
@@ -15,14 +14,11 @@ public class RadiantFlame extends AbstractHexaCard {
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        applyToSelf(new RadiantPower(magicNumber));
+    public void upp () {
+        upgradeMagicNumber(1);
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeMagicNumber(1);
-        }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        applyToSelf(new RadiantPower(magicNumber));
     }
 }

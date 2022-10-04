@@ -39,7 +39,7 @@
     ]
   },
   "hexamod:BurnvenomPower": {
-    "NAME": "Wildfire Weapon",
+    "NAME": "Burning Touch",
     "DESCRIPTIONS": [
       "Whenever you deal unblocked attack damage, apply #b",
       " #ySoulburn."
@@ -141,10 +141,17 @@
       " #yIntensity."
     ]
   },
+  "hexamod:NightmareGuisePower": {
+    "NAME": "Nightmare Guise",
+    "DESCRIPTIONS": [
+      "At the start of your next turn, apply #b",
+      " #YVulnerable to ALL enemies."
+    ]
+  },
   "hexamod:ParanormalFormPower": {
     "NAME": "Poltergeist",
     "DESCRIPTIONS": [
-      "Whenever you play an #yAfterlife card, deal #b",
+      "Whenever you draw an #yEthereal card, deal #b",
       " damage to a random enemy."
     ]
   },

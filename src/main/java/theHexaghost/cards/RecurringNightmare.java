@@ -2,14 +2,10 @@ package theHexaghost.cards;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import downfall.util.CardIgnore;
 import theHexaghost.actions.RecurringNightmareAction;
 
 public class RecurringNightmare extends AbstractHexaCard {
-
     public final static String ID = makeID("RecurringNightmare");
-
-    //stupid intellij stuff SKILL, SELF, UNCOMMON
 
     public RecurringNightmare() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
@@ -18,16 +14,13 @@ public class RecurringNightmare extends AbstractHexaCard {
         tags.add(CardTags.HEALING);
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new RecurringNightmareAction(magicNumber));
+    public void upp() {
+        upgradeMagicNumber(1);
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeMagicNumber(1);
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
-        }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        atb(new RecurringNightmareAction(magicNumber));
     }
 }

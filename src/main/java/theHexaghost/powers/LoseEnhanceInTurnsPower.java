@@ -14,8 +14,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import theHexaghost.HexaMod;
 import downfall.util.TextureLoader;
 
-public class LoseEnhanceInTurnsPower extends TwoAmountPower implements CloneablePowerInterface, NonStackablePower {
-
+public class LoseEnhanceInTurnsPower extends AbstractPower implements CloneablePowerInterface {
     public static final String POWER_ID = HexaMod.makeID("LoseEnhanceInTurnsPower");
 
     private static final Texture tex84 = TextureLoader.getTexture(HexaMod.getModID() + "Resources/images/powers/LoseIntensity84.png");
@@ -25,12 +24,11 @@ public class LoseEnhanceInTurnsPower extends TwoAmountPower implements Cloneable
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public LoseEnhanceInTurnsPower(final int amount, final int amount2) {
+    public LoseEnhanceInTurnsPower(final int amount) {
         this.name = NAME;
         this.ID = POWER_ID;
         this.owner = AbstractDungeon.player;
         this.amount = amount;
-        this.amount2 = amount2;
         this.type = PowerType.BUFF;
         this.isTurnBased = true;
 
@@ -40,33 +38,20 @@ public class LoseEnhanceInTurnsPower extends TwoAmountPower implements Cloneable
         this.updateDescription();
     }
 
-    public void stackPower(int stackAmount) {
-        this.amount += stackAmount;// 39
-        if (this.amount == 0) {// 41
-            this.addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, this.ID));// 42
-        }
-    }// 52
-
     @Override
     public void atEndOfTurn(boolean isPlayer) {
         if (isPlayer) {
-            addToBot(new ReducePowerAction(owner, owner, this, 1));
-            if (amount == 1) {
-                addToBot(new ReducePowerAction(owner, owner, EnhancePower.POWER_ID, amount2));
-            }
+            addToBot(new ReducePowerAction(owner, owner, EnhancePower.POWER_ID, amount));
         }
     }
 
     @Override
     public void updateDescription() {
-        if (amount == 1)
-            description = DESCRIPTIONS[0] + amount2 + DESCRIPTIONS[3];
-        else
-            description = DESCRIPTIONS[1] + amount + DESCRIPTIONS[2] + amount2 + DESCRIPTIONS[3];
+        description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[3];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new LoseEnhanceInTurnsPower(amount, amount2);
+        return new LoseEnhanceInTurnsPower(amount);
     }
 }

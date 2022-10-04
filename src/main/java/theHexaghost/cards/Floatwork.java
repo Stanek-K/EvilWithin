@@ -10,24 +10,18 @@ public class Floatwork extends AbstractHexaCard {
     public final static String ID = makeID("Floatwork");
 
     public Floatwork() {
-        super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        baseBlock = 7;
         baseMagicNumber = magicNumber = 3;
         isEthereal = true;
-        tags.add(HexaMod.AFTERLIFE);
+    }
+
+    public void upp() {
+        upgradeBlock(3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        blck();
         applyToSelf(new PlatedArmorPower(p, magicNumber));
-    }
-
-    public void afterlife() {
-        applyToSelf(new PlatedArmorPower(AbstractDungeon.player, magicNumber));
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeMagicNumber(1);
-        }
     }
 }

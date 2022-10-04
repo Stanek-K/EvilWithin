@@ -29,7 +29,7 @@
       "defensive mode",
       "defensive_mode"
     ],
-    "DESCRIPTION": "#yStance. NL Gain #b20 #yBlock when entering Defensive Mode. NL While in Defensive Mode, you have #b3 #yThorns, and your Block does not expire."
+    "DESCRIPTION": "#yStance. NL On entry, gain #b20 #yBlock. NL While you in it, you have #b3 #yThorns, and your #yBlock does not expire."
   },
   {
     "NAMES": [

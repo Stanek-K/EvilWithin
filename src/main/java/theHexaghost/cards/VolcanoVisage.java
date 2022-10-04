@@ -6,7 +6,6 @@ import sneckomod.SneckoMod;
 import theHexaghost.powers.VolcanoVisagePower;
 
 public class VolcanoVisage extends AbstractHexaCard {
-
     public final static String ID = makeID("VolcanoVisage");
 
     public VolcanoVisage() {
@@ -15,14 +14,11 @@ public class VolcanoVisage extends AbstractHexaCard {
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        applyToSelf(new VolcanoVisagePower(magicNumber));
+    public void upp() {
+        upgradeMagicNumber(2);
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeMagicNumber(2);
-        }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        applyToSelf(new VolcanoVisagePower(magicNumber));
     }
 }

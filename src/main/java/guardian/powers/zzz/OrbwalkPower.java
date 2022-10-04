@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import guardian.powers.AbstractGuardianPower;
 
-
+@Deprecated
 public class OrbwalkPower extends AbstractGuardianPower {
     public static final String POWER_ID = "Guardian:OrbwalkPower";
     public static PowerType POWER_TYPE = PowerType.BUFF;

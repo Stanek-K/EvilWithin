@@ -12,23 +12,21 @@ public class Firestarter extends AbstractHexaCard {
     public Firestarter() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
         baseDamage = 6;
-        baseBurn = burn = 6;
+        baseTagMagic = tagMagic = 6;
         isMultiDamage = true;
+        this.tags.add(HexaMod.DEALS_SOULBURN);
         HexaMod.loadJokeCardImage(this, "Firestarter.png");
+    }
+
+    public void upp() {
+        upgradeDamage(2);
+        upgradeTagMagic(2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         allDmg(AbstractGameAction.AttackEffect.FIRE);
         for (AbstractMonster q : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            burn(q, burn);
-        }
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeDamage(2);
-            upgradeBurn(2);
+            burn(q, tagMagic);
         }
     }
 }

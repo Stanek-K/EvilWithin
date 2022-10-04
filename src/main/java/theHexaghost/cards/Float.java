@@ -15,20 +15,30 @@ import theHexaghost.actions.RetractAction;
 import java.util.ArrayList;
 
 public class Float extends AbstractHexaCard implements OctopusCard {
-
     public final static String ID = makeID("Float");
-
-    //stupid intellij stuff SKILL, SELF, BASIC
 
     public Float() {
         super(ID, 0, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
-        tags.add(HexaMod.GHOSTWHEELCARD);
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
         HexaMod.loadJokeCardImage(this, "Float.png");
     }
 
-    public ArrayList<OctoChoiceCard> choiceList() {
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        atb(new AnimateHopAction(p));
+        atb(new DrawCardAction(1));
+        if (upgraded) {
+            atb(new OctoChoiceAction(m, this));
+        } else {
+            atb(new AdvanceAction(false));
+        }
+    }
 
+    public void upp() {
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
+    }
+
+    public ArrayList<OctoChoiceCard> choiceList() {
         ArrayList<OctoChoiceCard> cardList = new ArrayList<>();
         cardList.add(new OctoChoiceCard("octo:OctoRetract", this.name, HexaMod.makeCardPath("Float.png"), this.EXTENDED_DESCRIPTION[1]));
         cardList.add(new OctoChoiceCard("octo:OctoNothing", this.name, HexaMod.makeCardPath("Float.png"), this.EXTENDED_DESCRIPTION[2]));
@@ -49,24 +59,5 @@ public class Float extends AbstractHexaCard implements OctopusCard {
                 break;
         }
 
-    }
-
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new AnimateHopAction(p));
-        atb(new DrawCardAction(1));
-        if (upgraded) {
-            atb(new OctoChoiceAction(m, this));
-        } else {
-            atb(new AdvanceAction(false));
-        }
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
-        }
     }
 }

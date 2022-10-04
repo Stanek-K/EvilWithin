@@ -12,8 +12,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import theHexaghost.HexaMod;
 import downfall.util.TextureLoader;
+import theHexaghost.util.OnSoulburnDetonationSubscriber;
 
-public class BurnPerTurnPower extends AbstractPower implements CloneablePowerInterface {
+public class BurnPerTurnPower extends AbstractPower implements CloneablePowerInterface, OnSoulburnDetonationSubscriber {
 
     public static final String POWER_ID = HexaMod.makeID("BurnPerTurnPower");
 
@@ -39,12 +40,10 @@ public class BurnPerTurnPower extends AbstractPower implements CloneablePowerInt
     }
 
     @Override
-    public void onSpecificTrigger() {
-        if (owner instanceof AbstractMonster) {
-            flash();
-            addToBot(new ApplyPowerAction(owner, owner, new BurnPower(owner, amount), amount));
-            addToBot(new RemoveSpecificPowerAction(owner, owner, this));
-        }
+    public void onDetonationOwner(int soulburnAmount) {
+        flash();
+        addToBot(new ApplyPowerAction(owner, owner, new BurnPower(owner, amount), amount));
+        addToBot(new RemoveSpecificPowerAction(owner, owner, this));
     }
 
     @Override

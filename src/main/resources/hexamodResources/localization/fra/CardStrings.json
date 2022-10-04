@@ -9,7 +9,7 @@
   },
   "hexamod:Sear": {
     "NAME": "Ardeur",
-    "DESCRIPTION": "Éthérée. hexamod:Après-vie. NL Appliquez !burny! de hexamod:Brûlure."
+    "DESCRIPTION": "Éthérée. hexamod:Après-vie. NL Appliquez !TM! de hexamod:Brûlure."
   },
   "hexamod:Float": {
     "NAME": "Flotter",
@@ -193,15 +193,15 @@
   },
   "hexamod:BurningTouch": {
     "NAME": "Toucher de feu",
-    "DESCRIPTION": "Appliquez !burny! de hexamod:Brûlure, deux fois si l'ennemi a de la hexamod:Brûlure."
+    "DESCRIPTION": "Appliquez !TM! de hexamod:Brûlure, deux fois si l'ennemi a de la hexamod:Brûlure."
   },
   "hexamod:Incineration": {
     "NAME": "Incinération",
-    "DESCRIPTION": "Infligez !D! dégâts et appliquez !burny! de hexamod:Brûlure !M! fois."
+    "DESCRIPTION": "Infligez !D! dégâts et appliquez !TM! de hexamod:Brûlure !M! fois."
   },
   "hexamod:Firestarter": {
     "NAME": "Pyromania",
-    "DESCRIPTION": "Infligez !D! dégâts et Appliquez !burny! de hexamod:Brûlure à TOUS les ennemis."
+    "DESCRIPTION": "Infligez !D! dégâts et Appliquez !TM! de hexamod:Brûlure à TOUS les ennemis."
   },
   "hexamod:SearingWound": {
     "NAME": "Blessure ardente",
@@ -215,7 +215,7 @@
   },
   "hexamod:GhostflameBarrier": {
     "NAME": "Mur de feux follets",
-    "DESCRIPTION": "Gagnez !B! d'Armure. NL Lorsque vous êtes attaqué ce tour, appliquez !burny! de hexamod:Brûlure à l'attaquant."
+    "DESCRIPTION": "Gagnez !B! d'Armure. NL Lorsque vous êtes attaqué ce tour, appliquez !TM! de hexamod:Brûlure à l'attaquant."
   },
   "hexamod:Toasty": {
     "NAME": "Toasty!",
@@ -251,8 +251,8 @@
   },
   "hexamod:RainOfEmbers": {
     "NAME": "Pluie de braises",
-    "DESCRIPTION": "Infligez !D! dégâts et appliquez !burny! de hexamod:Brûlure à un ennemi aléatoire X fois.",
-    "UPGRADE_DESCRIPTION": "Infligez !D! dégâts et appliquez !burny! de hexamod:Brûlure à un ennemi aléatoire X fois, et aplliquez 1 de Faiblesse X fois."
+    "DESCRIPTION": "Infligez !D! dégâts et appliquez !TM! de hexamod:Brûlure à un ennemi aléatoire X fois.",
+    "UPGRADE_DESCRIPTION": "Infligez !D! dégâts et appliquez !TM! de hexamod:Brûlure à un ennemi aléatoire X fois, et aplliquez 1 de Faiblesse X fois."
   },
   "hexamod:VolcanoVisage": {
     "NAME": "Façade du volcan",
@@ -260,11 +260,11 @@
   },
   "hexamod:SuperheatedStrike": {
     "NAME": "Frappe ardente",
-    "DESCRIPTION": "Éthérée. NL Infligez !D! dégâts. NL Appliquez !burny! de hexamod:Brûlure. NL Si cette carte est Épuisée, prenez !M! dégâts."
+    "DESCRIPTION": "Éthérée. NL Infligez !D! dégâts. NL Appliquez !TM! de hexamod:Brûlure. NL Si cette carte est Épuisée, prenez !M! dégâts."
   },
   "hexamod:FlamesFromBeyond": {
     "NAME": "Flammes de l'Au-delà",
-    "DESCRIPTION": "Éthérée. hexamod:Après-vie. NL Appliquez !burny! de hexamod:Brûlure à TOUS les ennemis."
+    "DESCRIPTION": "Éthérée. hexamod:Après-vie. NL Appliquez !TM! de hexamod:Brûlure à TOUS les ennemis."
   },
   "hexamod:PhantomFireball": {
     "NAME": "Boule de feu fantôme",
@@ -281,7 +281,7 @@
   },
   "hexamod:ChargedBarrage": {
     "NAME": "Barrage explosif",
-    "DESCRIPTION": "Appliquez !burny! de hexamod:Brûlure. NL Répétez ceci pour chaque Feu Follet hexamod:Enflammé."
+    "DESCRIPTION": "Appliquez !TM! de hexamod:Brûlure. NL Répétez ceci pour chaque Feu Follet hexamod:Enflammé."
   },
   "hexamod:RadiantFlame": {
     "NAME": "Flammes radiantes",
@@ -294,7 +294,7 @@
   },
   "hexamod:DynamicBlow": {
     "NAME": "Souffle dynamique",
-    "DESCRIPTION": "Éthérée. NL Si le Feu Follet actuel hexamod:Enflammé, appliquez !burny! de hexamod:Brûlure. Sinon, infligez !D! dégâts."
+    "DESCRIPTION": "Éthérée. NL Si le Feu Follet actuel hexamod:Enflammé, appliquez !TM! de hexamod:Brûlure. Sinon, infligez !D! dégâts."
   },
   "hexamod:Again": {
     "NAME": "Encore!",
@@ -341,7 +341,7 @@
   },
   "hexamod:SoulSteal": {
     "NAME": "Bombe vivante",
-    "DESCRIPTION": "Appliquez !burny! de hexamod:Brûlure. NL La prochaine fois que la hexamod:Brûlure de la cible s'active, cela affecte TOUS les ennemis. NL Épuisement."
+    "DESCRIPTION": "Appliquez !TM! de hexamod:Brûlure. NL La prochaine fois que la hexamod:Brûlure de la cible s'active, cela affecte TOUS les ennemis. NL Épuisement."
   },
   "hexamod:CouncilsJustice": {
     "NAME": "Justice du Conseil",

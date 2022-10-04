@@ -38,9 +38,11 @@ abstract public class AbstractDownfallCard extends CustomCard {
             /* What does TM (Tag Magic) mean and how it is supposed to be used you ask?
                 It is simple the intended use for it is to combine it with card tags, but that might be too vague so an example:
                     A card that applies Goop would have TM_GOOP tag, and Powers that increase that can just check if card has correct tag (also if it is an instance of AbstractDownfallCard later to prevent crashes).
-                    List of effects that TM should be eventually used on Goop, Self Damage, Brace, Soulburn, Counter, Vigor, and possibly more in the future.
+                    List of effects that TM should be eventually used on Goop, Self Damage, Brace, Counter, Vigor, and possibly more in the future.
                     But what if the card gives you both Vigor and Counter, then you need to calculate bonus for each tag (similar to how Snecko does random amount of damage).
+                    Note: Soulburn uses damage value.
              */
+
     //Card stuff
         protected final CardStrings cardStrings;
         protected final String NAME;

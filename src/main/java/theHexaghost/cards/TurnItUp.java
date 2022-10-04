@@ -1,45 +1,28 @@
 package theHexaghost.cards;
 
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import downfall.actions.PerformXAction;
 import sneckomod.SneckoMod;
 import theHexaghost.HexaMod;
-import theHexaghost.actions.TurnItUpAction;
+import theHexaghost.powers.EnhancePower;
+import theHexaghost.powers.LoseEnhanceInTurnsPower;
 
 public class TurnItUp extends AbstractHexaCard {
-
     public final static String ID = makeID("TurnItUp");
 
-    //stupid intellij stuff SKILL, ENEMY, RARE
-
     public TurnItUp() {
-        super(ID, -1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 1;
-        this.exhaust = true;
-        tags.add(HexaMod.GHOSTWHEELCARD);
+        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        baseMagicNumber = magicNumber = 3;
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
         HexaMod.loadJokeCardImage(this, "TurnItUp.png");
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        if (energyOnUse < EnergyPanel.totalCount) {
-            energyOnUse = EnergyPanel.totalCount;
-        }
-        TurnItUpAction r = new TurnItUpAction(magicNumber);
-        atb(new PerformXAction(r, p, energyOnUse, freeToPlayOnce));
-        if (upgraded) {
-            atb(new GainEnergyAction(1));
-        }
+    public void upp() {
+        upgradeMagicNumber(2);
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
-        }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        applyToSelf(new EnhancePower(magicNumber));
+        applyToSelf(new LoseEnhanceInTurnsPower(magicNumber));
     }
 }

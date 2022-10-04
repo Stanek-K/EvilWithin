@@ -7,14 +7,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class ForLoop extends AbstractBronzeCard {
-
     public final static String ID = makeID("ForLoop");
-
-    //stupid intellij stuff skill, self, uncommon
 
     public ForLoop() {
         super(ID, -1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        //   this.tags.add(SneckoMod.BANNEDFORSNECKO);
         exhaust = true;
         baseMagicNumber = magicNumber = 0;
         AutomatonMod.loadJokeCardImage(this, AutomatonMod.makeBetaCardPath("ForLoop.png"));

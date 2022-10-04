@@ -7,13 +7,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import theHexaghost.HexaMod;
 
-import static automaton.AutomatonMod.makeBetaCardPath;
-
 public class TimeOfNeed extends AbstractHexaCard {
-
     public final static String ID = makeID("TimeOfNeed");
-
-    //stupid intellij stuff SKILL, SELF, RARE
 
     public TimeOfNeed() {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
@@ -22,16 +17,13 @@ public class TimeOfNeed extends AbstractHexaCard {
         HexaMod.loadJokeCardImage(this, "TimeOfNeed.png");
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractCard q = AbstractDungeon.returnTrulyRandomCardInCombat(CardType.POWER).makeCopy();// 32
-        q.freeToPlayOnce = true;// 33
-        this.addToBot(new MakeTempCardInHandAction(q, true));// 34
+    public void upp() {
+        upgradeBaseCost(0);
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(0);
-        }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        AbstractCard q = AbstractDungeon.returnTrulyRandomCardInCombat(CardType.POWER).makeCopy();
+        q.freeToPlayOnce = true;
+        this.addToBot(new MakeTempCardInHandAction(q, true));
     }
 }

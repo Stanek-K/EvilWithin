@@ -1,5 +1,6 @@
 package automaton.cards;
 
+import automaton.AutomatonChar;
 import automaton.cardmods.CardEffectsCardMod;
 import automaton.relics.ElectromagneticCoil;
 import basemod.ReflectionHacks;
@@ -31,7 +32,7 @@ public class FunctionCard extends AbstractBronzeCard {
     public String textPrefix = "";
 
     public FunctionCard() {
-        super(ID, 1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ALL);
+        super(ID, null,1, CardType.SKILL, CardRarity.SPECIAL, CardTarget.ALL, AutomatonChar.Enums.BRONZE_AUTOMATON);
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
         this.setPortraitTextures("bronzeResources/images/512/frame_function.png", "bronzeResources/images/1024/frame_function.png");
         this.setBackgroundTexture("bronzeResources/images/512/bg_skill_function.png", "bronzeResources/images/1024/bg_skill_function.png");

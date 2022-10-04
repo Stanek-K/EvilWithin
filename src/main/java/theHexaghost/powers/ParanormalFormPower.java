@@ -15,7 +15,6 @@ import theHexaghost.HexaMod;
 import downfall.util.TextureLoader;
 
 public class ParanormalFormPower extends AbstractPower implements CloneablePowerInterface {
-
     public static final String POWER_ID = HexaMod.makeID("ParanormalFormPower");
 
     private static final Texture tex84 = TextureLoader.getTexture(HexaMod.getModID() + "Resources/images/powers/ParanormalForm84.png");
@@ -40,9 +39,8 @@ public class ParanormalFormPower extends AbstractPower implements CloneablePower
     }
 
     @Override
-    public void onAfterCardPlayed(AbstractCard card) {
-        super.onAfterCardPlayed(card);
-        if (card.hasTag(HexaMod.AFTERLIFE)) {
+    public void onCardDraw(AbstractCard card) {
+        if (card.isEthereal) {
             flash();
             addToBot(new DamageRandomEnemyAction(new DamageInfo(owner, amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
         }

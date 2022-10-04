@@ -67,8 +67,11 @@ public abstract class AbstractBronzeCard extends CustomCard {
     }
 
     public AbstractBronzeCard(final String id, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
-        super(id, "ERROR", getCorrectPlaceholderImage(type, id),
-                cost, "ERROR", type, color, rarity, target);
+        this(id, getCorrectPlaceholderImage(type, id), cost, type, rarity, target, color);
+    }
+
+    public AbstractBronzeCard(final String id, final String img, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
+        super(id, "ERROR", img, cost, "ERROR", type, color, rarity, target);
         cardStrings = CardCrawlGame.languagePack.getCardStrings(id);
         name = NAME = cardStrings.NAME;
         originalName = NAME;
@@ -135,7 +138,6 @@ public abstract class AbstractBronzeCard extends CustomCard {
             auto = baseAuto;
             isAutoModified = true;
         }
-
     }
 
     void upgradeAuto(int amount) {

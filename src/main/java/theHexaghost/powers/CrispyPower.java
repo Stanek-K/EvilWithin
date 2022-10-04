@@ -3,15 +3,18 @@ package theHexaghost.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import theHexaghost.HexaMod;
 import downfall.util.TextureLoader;
+import theHexaghost.util.OnSoulburnDetonationSubscriber;
 
-public class CrispyPower extends AbstractPower implements CloneablePowerInterface {
-
+public class CrispyPower extends AbstractPower implements CloneablePowerInterface, OnSoulburnDetonationSubscriber {
     public static final String POWER_ID = HexaMod.makeID("CrispyPower");
 
     private static final Texture tex84 = TextureLoader.getTexture(HexaMod.getModID() + "Resources/images/powers/ExtraCrispy84.png");
@@ -36,12 +39,18 @@ public class CrispyPower extends AbstractPower implements CloneablePowerInterfac
     }
 
     @Override
+    public void onDetonationPlayer(AbstractCreature origin) {
+        flash();
+        for (AbstractMonster mo : AbstractDungeon.getMonsters().monsters)
+            addToBot(new ApplyPowerAction(mo, owner, new BurnPower(mo, this.amount), this.amount));
+    }
+
     public void updateDescription() {
         description = DESCRIPTIONS[0] + amount + DESCRIPTIONS[1];
     }
 
     @Override
     public AbstractPower makeCopy() {
-        return new CrispyPower(amount);
+        return new CrispyPower(this.amount);
     }
 }

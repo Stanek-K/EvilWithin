@@ -8,17 +8,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class UnleashSpirits extends AbstractHexaCard {
-
     public final static String ID = makeID("UnleashSpirits");
-
-    //stupid intellij stuff ATTACK, ALL_ENEMY, RARE
-
-    private static final int DAMAGE = 6;
 
     public UnleashSpirits() {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ALL_ENEMY);
-        baseDamage = DAMAGE;
+        baseDamage = 6;
         exhaust = true;
+    }
+
+    public void upp() {
+        upgradeDamage(2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -38,12 +37,5 @@ public class UnleashSpirits extends AbstractHexaCard {
                 }
             }
         });
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeDamage(2);
-        }
     }
 }

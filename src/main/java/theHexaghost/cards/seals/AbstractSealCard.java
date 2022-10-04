@@ -22,18 +22,14 @@ public abstract class AbstractSealCard extends AbstractHexaCard {
         isEthereal = true;
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            isEthereal = false;
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
-        }
+    public void upp() {
+        isEthereal = false;
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
 
     @Override
     public void use(AbstractPlayer abstractPlayer, AbstractMonster abstractMonster) {
-
         realUse(abstractPlayer, abstractMonster);
         if (!AbstractDungeon.player.hasRelic(TheBrokenSeal.ID)) {
             ArrayList<String> sealList = new ArrayList<>();
@@ -65,7 +61,6 @@ public abstract class AbstractSealCard extends AbstractHexaCard {
             }
         }
     }
-
 
     public static boolean playedAll(ArrayList<String> sList) {
         return (sList.contains(FirstSeal.ID) && sList.contains(SecondSeal.ID) && sList.contains(ThirdSeal.ID) && sList.contains(FourthSeal.ID) && sList.contains(FifthSeal.ID) && sList.contains(SixthSeal.ID));

@@ -9,22 +9,18 @@ import theHexaghost.powers.GhostFlameBarrierPower;
 import theHexaghost.vfx.SpookyFlameBarrier;
 
 public class GhostflameBarrier extends AbstractHexaCard {
-
     public final static String ID = makeID("GhostflameBarrier");
-
-    //stupid intellij stuff SKILL, SELF, UNCOMMON
-
-    private static final int BLOCK = 12;
-    private static final int UPG_BLOCK = 4;
-
-    private static final int MAGIC = 6;
-    private static final int UPG_MAGIC = 3;
 
     public GhostflameBarrier() {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseBlock = BLOCK;
-        baseBurn = burn = MAGIC;
+        baseBlock = 12;
+        baseMagicNumber = magicNumber = 6;
         HexaMod.loadJokeCardImage(this, "GhostflameBarrier.png");
+    }
+
+    public void upp() {
+        upgradeBlock(4);
+        upgradeMagicNumber(3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -34,14 +30,6 @@ public class GhostflameBarrier extends AbstractHexaCard {
             this.addToBot(new VFXAction(p, new SpookyFlameBarrier(p.hb.cX, p.hb.cY), 0.5F));// 41
         }
         blck();
-        applyToSelf(new GhostFlameBarrierPower(burn));
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBlock(UPG_BLOCK);
-            upgradeBurn(UPG_MAGIC);
-        }
+        applyToSelf(new GhostFlameBarrierPower(magicNumber));
     }
 }

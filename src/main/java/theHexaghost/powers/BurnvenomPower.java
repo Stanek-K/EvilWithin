@@ -4,6 +4,7 @@ import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -15,7 +16,6 @@ import theHexaghost.HexaMod;
 import downfall.util.TextureLoader;
 
 public class BurnvenomPower extends AbstractPower implements CloneablePowerInterface {
-
     public static final String POWER_ID = HexaMod.makeID("BurnvenomPower");
 
     private static final Texture tex84 = TextureLoader.getTexture(HexaMod.getModID() + "Resources/images/powers/BurnVenom84.png");
@@ -40,10 +40,15 @@ public class BurnvenomPower extends AbstractPower implements CloneablePowerInter
     }
 
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-        if (damageAmount > 0 && target != this.owner && target instanceof AbstractMonster && info.type == DamageInfo.DamageType.NORMAL) {// 32
-            this.flash();// 33
+        if (target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
+            this.flash();
             addToBot(new ApplyPowerAction(target, owner, new BurnPower(target, amount), amount));
         }
+    }
+
+    @Override
+    public void atEndOfTurn(boolean isPlayer) {
+        addToBot(new RemoveSpecificPowerAction(owner, owner, this));
     }
 
     @Override

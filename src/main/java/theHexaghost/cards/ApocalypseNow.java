@@ -11,6 +11,7 @@ import theHexaghost.HexaMod;
 import theHexaghost.ghostflames.AbstractGhostflame;
 import theHexaghost.ghostflames.InfernoGhostflame;
 
+@Deprecated
 @CardIgnore
 public class ApocalypseNow extends AbstractHexaCard {
 
@@ -23,7 +24,6 @@ public class ApocalypseNow extends AbstractHexaCard {
         isEthereal = true;
         baseMagicNumber = magicNumber = 2;
         exhaust = true;
-        tags.add(HexaMod.GHOSTWHEELCARD);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

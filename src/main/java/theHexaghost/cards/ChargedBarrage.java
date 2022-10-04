@@ -16,38 +16,27 @@ import theHexaghost.ghostflames.AbstractGhostflame;
 import theHexaghost.powers.BurnPower;
 
 public class ChargedBarrage extends AbstractHexaCard {
-
     public final static String ID = makeID("ChargedBarrage");
-
-    //stupid intellij stuff ATTACK, ENEMY, UNCOMMON
-
-
-    private static final int MAGIC = 5;
-    private static final int UPG_MAGIC = 2;
 
     public ChargedBarrage() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseBurn = burn = MAGIC;
-        this.tags.add(SneckoMod.BANNEDFORSNECKO);
+        baseTagMagic = tagMagic = 5;
     }
 
-    private AbstractGameEffect getVFXForThrow(AbstractPlayer p, AbstractMonster m) {
-        return new VfxBuilder(0.33F)
-                .arc(p.hb.cX, p.hb.cY, m.hb.cX, m.hb.cY, Settings.HEIGHT * 0.8f)
-                .emitEvery((x, y) -> new TorchHeadFireEffect(x + MathUtils.random(10 * Settings.scale), y + MathUtils.random(10 * Settings.scale)), 0.005f)
-                .build();
+    public void upp() {
+        upgradeTagMagic(2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         atb(new TimedVFXAction(getVFXForThrow(p, m)));
-        burn(m, burn);
+        burn(m, tagMagic);
         atb(new AbstractGameAction() {
             @Override
             public void update() {
                 isDone = true;
                 for (AbstractGhostflame gf : GhostflameHelper.hexaGhostFlames) {
                     if (gf.charged) {
-                        addToTop(new ApplyPowerAction(m, p, new BurnPower(m, burn), burn));
+                        applyToEnemyTop(m, new BurnPower(m, tagMagic));
                         addToTop(new TimedVFXAction(getVFXForThrow(p, m)));
                     }
                 }
@@ -55,10 +44,10 @@ public class ChargedBarrage extends AbstractHexaCard {
         });
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBurn(UPG_MAGIC);
-        }
+    private AbstractGameEffect getVFXForThrow(AbstractPlayer p, AbstractMonster m) {
+        return new VfxBuilder(0.33F)
+                .arc(p.hb.cX, p.hb.cY, m.hb.cX, m.hb.cY, Settings.HEIGHT * 0.8f)
+                .emitEvery((x, y) -> new TorchHeadFireEffect(x + MathUtils.random(10 * Settings.scale), y + MathUtils.random(10 * Settings.scale)), 0.005f)
+                .build();
     }
 }

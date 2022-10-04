@@ -12,17 +12,17 @@ import theHexaghost.actions.ExtinguishAction;
 import theHexaghost.ghostflames.AbstractGhostflame;
 
 public class SpectralAdrenaline extends AbstractHexaCard {
-
     public final static String ID = makeID("SpectralAdrenaline");
-
-    //stupid intellij stuff SKILL, SELF, UNCOMMON
 
     public SpectralAdrenaline() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         exhaust = true;
-        tags.add(HexaMod.GHOSTWHEELCARD);
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
         HexaMod.loadJokeCardImage(this, "SpectralAdrenaline.png");
+    }
+
+    public void upp() {
+        upgradeBaseCost(0);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -39,12 +39,5 @@ public class SpectralAdrenaline extends AbstractHexaCard {
                 }
             }
         });
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(0);
-        }
     }
 }

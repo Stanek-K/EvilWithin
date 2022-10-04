@@ -7,19 +7,17 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import theHexaghost.HexaMod;
 
 public class Hexaguard extends AbstractHexaCard {
-
     public final static String ID = makeID("Hexaguard");
-
-    //stupid intellij stuff SKILL, SELF, COMMON
-
-    private static final int BLOCK = 7;
-    private static final int UPG_BLOCK = 3;
 
     public Hexaguard() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseBlock = BLOCK;
+        baseBlock = 5;
         isEthereal = true;
         tags.add(HexaMod.AFTERLIFE);
+    }
+
+    public void upp() {
+        upgradeBlock(3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -30,12 +28,5 @@ public class Hexaguard extends AbstractHexaCard {
     public void afterlife() {
         blck();
         atb(new DrawCardAction(AbstractDungeon.player, 1));
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBlock(UPG_BLOCK);
-        }
     }
 }

@@ -27,7 +27,7 @@
   },
   "hexamod:BurningTouch": {
     "NAME": "불타는 접촉",
-    "DESCRIPTION": "hexamod:영혼화상을 !burny! 부여합니다. NL 대상이 hexamod:영혼화상을 보유한다면 2번 부여합니다."
+    "DESCRIPTION": "hexamod:영혼화상을 !TM! 부여합니다. NL 대상이 hexamod:영혼화상을 보유한다면 2번 부여합니다."
   },
   "hexamod:CatchUp": {
     "NAME": "따라잡기",
@@ -35,7 +35,7 @@
   },
   "hexamod:ChargedBarrage": {
     "NAME": "충전된 일제 공격",
-    "DESCRIPTION": "hexamod:영혼화상을 !burny! 부여합니다. NL hexamod:점화된 유령불꽃 하나당 hexamod:영혼화상을 !burny! 부여합니다."
+    "DESCRIPTION": "hexamod:영혼화상을 !TM! 부여합니다. NL hexamod:점화된 유령불꽃 하나당 hexamod:영혼화상을 !TM! 부여합니다."
   },
   "hexamod:CouncilsJustice": {
     "NAME": "의회의 정의",
@@ -51,7 +51,7 @@
   },
   "hexamod:DynamicBlow": {
     "NAME": "유동성 강타",
-    "DESCRIPTION": "휘발성. NL 현재 유령불꽃이 hexamod:점화되어 있다면 hexamod:영혼화상을 !burny! 부여합니다. 아니라면 피해를 !D! 줍니다."
+    "DESCRIPTION": "휘발성. NL 현재 유령불꽃이 hexamod:점화되어 있다면 hexamod:영혼화상을 !TM! 부여합니다. 아니라면 피해를 !D! 줍니다."
   },
   "hexamod:EmpoweredFlame": {
     "NAME": "힘찬 불꽃",
@@ -73,11 +73,11 @@
   },
   "hexamod:Firestarter": {
     "NAME": "불쏘시개",
-    "DESCRIPTION": "피해를 !D! 줍니다. NL 적 전체에게 hexamod:영혼화상을 !burny! 부여합니다."
+    "DESCRIPTION": "피해를 !D! 줍니다. NL 적 전체에게 hexamod:영혼화상을 !TM! 부여합니다."
   },
   "hexamod:FlamesFromBeyond": {
     "NAME": "저편의 불꽃",
-    "DESCRIPTION": "휘발성. hexamod:사후세계. NL 적 전체에게 hexamod:영혼화상을 !burny! 부여합니다."
+    "DESCRIPTION": "휘발성. hexamod:사후세계. NL 적 전체에게 hexamod:영혼화상을 !TM! 부여합니다."
   },
   "hexamod:FlameSwitch": {
     "NAME": "흉조",
@@ -107,7 +107,7 @@
   },
   "hexamod:GhostflameBarrier": {
     "NAME": "유령불꽃 장벽",
-    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 이번 턴에 공격을 받을 때마다 공격한 대상에게 hexamod:영혼화상을 !burny! 부여합니다."
+    "DESCRIPTION": "방어도를 !B! 얻습니다. NL 이번 턴에 공격을 받을 때마다 공격한 대상에게 hexamod:영혼화상을 !TM! 부여합니다."
   },
   "hexamod:GhostflameInferno": {
     "NAME": "즉발 지옥불",
@@ -177,7 +177,7 @@
   },
   "hexamod:Incineration": {
     "NAME": "소각",
-    "DESCRIPTION": "무작위 적들에게 피해를 !D! 만큼 !M! 번 주고 hexamod:영혼화상을 !burny! 만큼 !M! 번 부여합니다."
+    "DESCRIPTION": "무작위 적들에게 피해를 !D! 만큼 !M! 번 주고 hexamod:영혼화상을 !TM! 만큼 !M! 번 부여합니다."
   },
   "hexamod:InspiringFlames": {
     "NAME": "불 지피기",
@@ -231,8 +231,8 @@
   },
   "hexamod:RainOfEmbers": {
     "NAME": "불씨의 비",
-    "DESCRIPTION": "피해를 !D! 만큼 X번 주고 hexamod:영혼화상을 !burny! 만큼 X번 부여합니다.",
-    "UPGRADE_DESCRIPTION": "피해를 !D! 만큼 X번 주고 hexamod:영혼화상을 !burny! 만큼 X번 부여하고 약화를 1만큼 X번 부여합니다."
+    "DESCRIPTION": "피해를 !D! 만큼 X번 주고 hexamod:영혼화상을 !TM! 만큼 X번 부여합니다.",
+    "UPGRADE_DESCRIPTION": "피해를 !D! 만큼 X번 주고 hexamod:영혼화상을 !TM! 만큼 X번 부여하고 약화를 1만큼 X번 부여합니다."
   },
   "hexamod:RecurringNightmare": {
     "NAME": "악몽의 환영",
@@ -255,7 +255,7 @@
   },
   "hexamod:Sear": {
     "NAME": "그을음",
-    "DESCRIPTION": "휘발성. hexamod:사후세계. NL hexamod:영혼화상을 !burny! 부여합니다."
+    "DESCRIPTION": "휘발성. hexamod:사후세계. NL hexamod:영혼화상을 !TM! 부여합니다."
   },
   "hexamod:SearingWound": {
     "NAME": "화끈거리는 상처",
@@ -281,7 +281,7 @@
   },
   "hexamod:SoulSteal": {
     "NAME": "살아있는 폭탄",
-    "DESCRIPTION": "hexamod:영혼화상을 !burny! 부여합니다. NL 부여한 대상의 hexamod:영혼화상이 체력을 잃게 하고 제거된다면 적 전체를 대상으로 합니다."
+    "DESCRIPTION": "hexamod:영혼화상을 !TM! 부여합니다. NL 부여한 대상의 hexamod:영혼화상이 체력을 잃게 하고 제거된다면 적 전체를 대상으로 합니다."
   },
   "hexamod:SpectersWail": {
     "NAME": "망령의 통곡",
@@ -310,7 +310,7 @@
   },
   "hexamod:SuperheatedStrike": {
     "NAME": "화끈한 타격",
-    "DESCRIPTION": "휘발성. NL 피해를 !D! 줍니다. NL hexamod:영혼화상을 !burny! 부여합니다. NL 이 카드가 소멸되면 피해를 !M! 받습니다."
+    "DESCRIPTION": "휘발성. NL 피해를 !D! 줍니다. NL hexamod:영혼화상을 !TM! 부여합니다. NL 이 카드가 소멸되면 피해를 !M! 받습니다."
   },
   "hexamod:SwordOfDarkness": {
     "NAME": "밤의 검",

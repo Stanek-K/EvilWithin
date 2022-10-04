@@ -299,8 +299,7 @@ public class GuardianMod implements PostDrawSubscriber,
     }
 
     public static String makeID(String input) {
-        String concat = "Guardian:" + input;
-        return concat;
+        return "Guardian:" + input;
     }
 
     public static String printString(String s) {
@@ -335,9 +334,9 @@ public class GuardianMod implements PostDrawSubscriber,
         allGemCards.add("GREEN");
         allGemCards.add("LIGHTBLUE");
         if (!onlyCommon) allGemCards.add("ORANGE");
-        allGemCards.add("CYAN");
+        if (!onlyCommon) allGemCards.add("CYAN");
         if (!onlyCommon) allGemCards.add("WHITE");
-        if (!onlyCommon) allGemCards.add("BLUE");
+        allGemCards.add("BLUE");
         if (!onlyCommon) allGemCards.add("CRIMSON");
         if (!onlyCommon) allGemCards.add("FRAGMENTED");
         if (!onlyCommon) allGemCards.add("PURPLE");

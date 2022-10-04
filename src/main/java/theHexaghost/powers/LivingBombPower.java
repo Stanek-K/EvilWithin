@@ -3,8 +3,11 @@ package theHexaghost.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.LoseHPAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -16,9 +19,9 @@ import theHexaghost.HexaMod;
 import theHexaghost.ghostflames.AbstractGhostflame;
 import theHexaghost.util.OnChargeSubscriber;
 import downfall.util.TextureLoader;
+import theHexaghost.util.OnSoulburnDetonationSubscriber;
 
-public class LivingBombPower extends AbstractPower implements CloneablePowerInterface, OnChargeSubscriber {
-
+public class LivingBombPower extends AbstractPower implements CloneablePowerInterface, OnSoulburnDetonationSubscriber {
     public static final String POWER_ID = HexaMod.makeID("LivingBombPower");
 
     private static final Texture tex84 = TextureLoader.getTexture(HexaMod.getModID() + "Resources/images/powers/LivingBomb84.png");
@@ -40,6 +43,16 @@ public class LivingBombPower extends AbstractPower implements CloneablePowerInte
         this.region48 = new TextureAtlas.AtlasRegion(tex32, 0, 0, 32, 32);
 
         this.updateDescription();
+    }
+
+    @Override
+    public void onDetonationOwner(int soulburnAmount) {
+        flash();
+        for (AbstractMonster mo: AbstractDungeon.getMonsters().monsters)
+            if (mo != this.owner && !mo.isDeadOrEscaped())
+                addToBot(new LoseHPAction(owner, owner, soulburnAmount, AbstractGameAction.AttackEffect.FIRE));
+
+        addToBot(new RemoveSpecificPowerAction(owner, owner, this));
     }
 
     @Override

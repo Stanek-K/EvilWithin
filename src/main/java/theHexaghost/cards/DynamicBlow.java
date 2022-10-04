@@ -10,6 +10,7 @@ import downfall.util.CardIgnore;
 import theHexaghost.GhostflameHelper;
 import theHexaghost.powers.BurnPower;
 
+@Deprecated
 @CardIgnore
 public class DynamicBlow extends AbstractHexaCard {
 
@@ -26,7 +27,7 @@ public class DynamicBlow extends AbstractHexaCard {
     public DynamicBlow() {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
         baseDamage = DAMAGE;
-        baseBurn = burn = MAGIC;
+        baseTagMagic = tagMagic = MAGIC;
         isEthereal = true;
     }
 
@@ -36,7 +37,7 @@ public class DynamicBlow extends AbstractHexaCard {
             public void update() {
                 isDone = true;
                 if (GhostflameHelper.activeGhostFlame.charged) {
-                    addToTop(new ApplyPowerAction(m, p, new BurnPower(m, burn), burn));
+                    addToTop(new ApplyPowerAction(m, p, new BurnPower(m, tagMagic), tagMagic));
                 } else {
                     addToTop(new DamageAction(m, makeInfo(), AttackEffect.BLUNT_HEAVY));
                 }
@@ -52,7 +53,7 @@ public class DynamicBlow extends AbstractHexaCard {
         if (!upgraded) {
             upgradeName();
             upgradeDamage(UPG_DAMAGE);
-            upgradeBurn(UPG_MAGIC);
+            upgradeTagMagic(UPG_MAGIC);
         }
     }
 }

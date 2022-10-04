@@ -5,29 +5,21 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import theHexaghost.HexaMod;
 
 public class Defend extends AbstractHexaCard {
-
     public final static String ID = makeID("Defend");
-
-    //stupid intellij stuff SKILL, SELF, BASIC
-
-    private static final int BLOCK = 5;
-    private static final int UPG_BLOCK = 3;
 
     public Defend() {
         super(ID, 1, CardType.SKILL, CardRarity.BASIC, CardTarget.SELF);
-        baseBlock = BLOCK;
+        baseBlock = 5;
         tags.add(CardTags.STARTER_DEFEND);
         HexaMod.loadJokeCardImage(this, "Defend.png");
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        blck();
+    @Override
+    public void upp() {
+        upgradeBlock(3);
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBlock(UPG_BLOCK);
-        }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        blck();
     }
 }

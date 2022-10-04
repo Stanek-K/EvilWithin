@@ -9,7 +9,7 @@
   },
   "hexamod:Sear": {
     "NAME": "Sear",
-    "DESCRIPTION": "Apply !burny! hexamod:Soulburn."
+    "DESCRIPTION": "Apply !TM! hexamod:Soulburn."
   },
   "hexamod:Float": {
     "NAME": "Float",
@@ -215,15 +215,15 @@
   },
   "hexamod:BurningTouch": {
     "NAME": "Burning Touch",
-    "DESCRIPTION": "If the enemy has hexamod:Soulburn, apply !burny! hexamod:Soulburn. NL Apply !burny! hexamod:Soulburn."
+    "DESCRIPTION": "If the enemy has hexamod:Soulburn, apply !TM! hexamod:Soulburn. NL Apply !TM! hexamod:Soulburn."
   },
   "hexamod:Incineration": {
     "NAME": "Incineration",
-    "DESCRIPTION": "Deal !D! damage and apply !burny! hexamod:Soulburn to a random enemy !M! times."
+    "DESCRIPTION": "Deal !D! damage and apply !TM! hexamod:Soulburn to a random enemy !M! times."
   },
   "hexamod:Firestarter": {
     "NAME": "Firestarter",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !burny! hexamod:Soulburn."
+    "DESCRIPTION": "Deal !D! damage. NL Apply !TM! hexamod:Soulburn."
   },
   "hexamod:SearingWound": {
     "NAME": "Searing Wound",
@@ -274,8 +274,8 @@
   },
   "hexamod:RainOfEmbers": {
     "NAME": "Rain of Embers",
-    "DESCRIPTION": "Deal !D! damage and apply !burny! hexamod:Soulburn to a random enemy X times.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage and apply !burny! hexamod:Soulburn to a random enemy X+1 times."
+    "DESCRIPTION": "Deal !D! damage and apply !TM! hexamod:Soulburn to a random enemy X times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage and apply !TM! hexamod:Soulburn to a random enemy X+1 times."
   },
   "hexamod:VolcanoVisage": {
     "NAME": "Volcano Visage",
@@ -283,11 +283,11 @@
   },
   "hexamod:SuperheatedStrike": {
     "NAME": "Searing Strike",
-    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Apply !burny! hexamod:Soulburn. NL If this card is Exhausted, take !M! damage."
+    "DESCRIPTION": "Ethereal. NL Deal !D! damage. NL Apply !TM! hexamod:Soulburn. NL If this card is Exhausted, take !M! damage."
   },
   "hexamod:FlamesFromBeyond": {
     "NAME": "Flames from Beyond",
-    "DESCRIPTION": "Unplayable. NL Ethereal, hexamod:Afterlife. NL Apply !burny! hexamod:Soulburn to ALL enemies at the start of your next turn.",
+    "DESCRIPTION": "Unplayable. NL Ethereal, hexamod:Afterlife. NL Apply !TM! hexamod:Soulburn to ALL enemies at the start of your next turn.",
     "EXTENDED_DESCRIPTION": [
       "It's too hot to touch!"
     ]
@@ -298,7 +298,7 @@
   },
   "hexamod:SpectralSpark": {
     "NAME": "Spectral Spark",
-    "DESCRIPTION": "Apply !burny! hexamod:Soulburn. NL If the hexamod:Active Ghostflame is hexamod:Ignited: hexamod:Extinguish it and return this card to your hand."
+    "DESCRIPTION": "Apply !TM! hexamod:Soulburn. NL If the hexamod:Active Ghostflame is hexamod:Ignited: hexamod:Extinguish it and return this card to your hand."
   },
   "hexamod:GhostflameInferno": {
     "NAME": "Instant Inferno",
@@ -307,7 +307,7 @@
   },
   "hexamod:ChargedBarrage": {
     "NAME": "Charged Barrage",
-    "DESCRIPTION": "Apply !burny! hexamod:Soulburn. NL Repeat for each hexamod:Ignited Ghostflame."
+    "DESCRIPTION": "Apply !TM! hexamod:Soulburn. NL Repeat for each hexamod:Ignited Ghostflame."
   },
   "hexamod:RadiantFlame": {
     "NAME": "Radiant Flame",
@@ -320,7 +320,7 @@
   },
   "hexamod:DynamicBlow": {
     "NAME": "Dynamic Blow",
-    "DESCRIPTION": "Ethereal. NL If the hexamod:Active Ghostflame is hexamod:Ignited, apply !burny! hexamod:Soulburn. If not, deal !D! damage."
+    "DESCRIPTION": "Ethereal. NL If the hexamod:Active Ghostflame is hexamod:Ignited, apply !TM! hexamod:Soulburn. If not, deal !D! damage."
   },
   "hexamod:SpiritOfFire": {
     "NAME": "Spirit of Fire",
@@ -366,8 +366,8 @@
   },
   "hexamod:SoulSteal": {
     "NAME": "Living Bomb",
-    "DESCRIPTION": "Apply !burny! hexamod:Soulburn. NL The next time the target's hexamod:Soulburn detonates, it affects ALL enemies. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Apply !burny! hexamod:Soulburn. NL The next time the target's hexamod:Soulburn detonates, it affects ALL enemies."
+    "DESCRIPTION": "Apply !TM! hexamod:Soulburn. NL The next time the target's hexamod:Soulburn detonates, it affects ALL enemies. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Apply !TM! hexamod:Soulburn. NL The next time the target's hexamod:Soulburn detonates, it affects ALL enemies."
   },
   "hexamod:Haunted": {
     "NAME": "Haunted",

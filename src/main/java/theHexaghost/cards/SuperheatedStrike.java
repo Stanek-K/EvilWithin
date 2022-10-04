@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import downfall.util.CardIgnore;
 
+@Deprecated
 @CardIgnore
 public class SuperheatedStrike extends AbstractHexaCard {
 
@@ -23,15 +24,15 @@ public class SuperheatedStrike extends AbstractHexaCard {
     public SuperheatedStrike() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
         baseDamage = DAMAGE;
-        baseBurn = burn = MAGIC;
+        baseTagMagic = tagMagic = MAGIC;
         baseMagicNumber = magicNumber = MAGIC;
         isEthereal = true;
         tags.add(CardTags.STRIKE);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, makeInfo(), AbstractGameAction.AttackEffect.FIRE);
-        burn(m, burn);
+        dmg(m, AbstractGameAction.AttackEffect.FIRE);
+        burn(m, tagMagic);
     }
 
     @Override
@@ -43,7 +44,7 @@ public class SuperheatedStrike extends AbstractHexaCard {
         if (!upgraded) {
             upgradeName();
             upgradeDamage(UPG_DAMAGE);
-            upgradeBurn(UPG_MAGIC);
+            upgradeTagMagic(UPG_MAGIC);
         }
     }
 }

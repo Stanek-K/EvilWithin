@@ -9,20 +9,20 @@ import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPowe
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import theHexaghost.HexaMod;
 import theHexaghost.relics.IceCube;
-import theHexaghost.relics.SoulConsumer;
 import downfall.util.TextureLoader;
+import theHexaghost.util.OnSoulburnDetonationSubscriber;
 import theHexaghost.vfx.ExplosionSmallEffectGreen;
 
 public class BurnPower extends TwoAmountPower implements CloneablePowerInterface, HealthBarRenderPower {
@@ -82,30 +82,22 @@ public class BurnPower extends TwoAmountPower implements CloneablePowerInterface
 
     public void explode(){
         this.flashWithoutSound();
-        if (AbstractDungeon.player.hasRelic(SoulConsumer.ID)){
-            AbstractDungeon.player.getRelic(SoulConsumer.ID).onTrigger();
-        }
+        for (AbstractRelic r: AbstractDungeon.player.relics)
+            if (r instanceof OnSoulburnDetonationSubscriber)
+                ((OnSoulburnDetonationSubscriber) r).onDetonationPlayer(owner);
+
         this.addToBot(new VFXAction(new ExplosionSmallEffectGreen(this.owner.hb.cX, this.owner.hb.cY), 0.1F));
-        this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, this));
+        this.addToBot(new ReducePowerAction(this.owner, this.owner, this, this.amount));
+        this.addToBot(new LoseHPAction(owner, owner, amount, AbstractGameAction.AttackEffect.FIRE));
 
-        if (owner.hasPower(LivingBombPower.POWER_ID)){
-            for (AbstractMonster m: AbstractDungeon.getCurrRoom().monsters.monsters){
-                if (!m.isDeadOrEscaped()){
-                    this.addToBot(new LoseHPAction(m, owner, amount, AbstractGameAction.AttackEffect.FIRE));
-                }
-            }
-            this.addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, LivingBombPower.POWER_ID));
+        for (AbstractPower p: owner.powers)
+            if (p instanceof OnSoulburnDetonationSubscriber)
+                ((OnSoulburnDetonationSubscriber) p).onDetonationOwner(this.amount);
 
-        } else {
-            this.addToBot(new LoseHPAction(owner, owner, amount, AbstractGameAction.AttackEffect.FIRE));
-        }
-        if (owner.hasPower(BurnPerTurnPower.POWER_ID)) {
-            owner.getPower(BurnPerTurnPower.POWER_ID).onSpecificTrigger();
-
-        }
-
-
-        }
+        for (AbstractPower p: AbstractDungeon.player.powers)
+            if (p instanceof OnSoulburnDetonationSubscriber)
+                ((OnSoulburnDetonationSubscriber) p).onDetonationPlayer(this.owner);
+    }
 
     @Override
     public void updateDescription() {

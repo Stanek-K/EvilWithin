@@ -1,5 +1,6 @@
 package theHexaghost.cards;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -11,86 +12,29 @@ import slimebound.SlimeboundMod;
 import theHexaghost.HexaMod;
 
 public class ShadowStrike extends AbstractHexaCard {
-
     public final static String ID = makeID("ShadowStrike");
 
-    private AbstractCard parent;
-
-    public ShadowStrike(AbstractCard parent) {
-        super(ID, 2, CardType.ATTACK, CardRarity.SPECIAL, CardTarget.ENEMY, CardColor.COLORLESS);
-        baseDamage = 8;
-        exhaust = true;
+    public ShadowStrike() {
+        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
+        baseDamage = 14;
+        baseBlock = 5;
         isEthereal = true;
         tags.add(CardTags.STRIKE);
-        setParent(parent);
         HexaMod.loadJokeCardImage(this, "ShadowStrike.png");
     }
 
-    public ShadowStrike() {
-        this(null);
-    }
-
-    public void setParent(AbstractCard parent) {
-        this.parent = parent;
-        if (parent != null)
-            cardsToPreview = this.parent.makeStatEquivalentCopy();
+    public void upp() {
+        upgradeDamage(4);
+        upgradeBlock(3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, makeInfo(), AbstractGameAction.AttackEffect.FIRE);
-        dmg(m, makeInfo(), AbstractGameAction.AttackEffect.FIRE);
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                isDone = true;
-                if (parent != null && p.exhaustPile.contains(parent)) {
-                    att(new AbstractGameAction() {
-                        @Override
-                        public void update() {
-                            isDone = true;
-                            p.exhaustPile.removeCard(parent);
-                            AbstractDungeon.effectsQueue.add(new ShowCardAndAddToDiscardEffect(parent.makeSameInstanceOf()));
-                        }
-                    });
-                }
-            }
-        });
+        dmg(m, AbstractGameAction.AttackEffect.FIRE);
     }
 
     @Override
-    public AbstractCard makeStatEquivalentCopy() {
-        ShadowStrike card = (ShadowStrike) this.makeCopy();
-
-        for(int i = 0; i < this.timesUpgraded; ++i) {
-            card.upgrade();
-        }
-
-        card.name = this.name;
-        card.target = this.target;
-        card.upgraded = this.upgraded;
-        card.timesUpgraded = this.timesUpgraded;
-        card.baseDamage = this.baseDamage;
-        card.baseBlock = this.baseBlock;
-        card.baseMagicNumber = this.baseMagicNumber;
-        card.cost = this.cost;
-        card.costForTurn = this.costForTurn;
-        card.isCostModified = this.isCostModified;
-        card.isCostModifiedForTurn = this.isCostModifiedForTurn;
-        card.inBottleLightning = this.inBottleLightning;
-        card.inBottleFlame = this.inBottleFlame;
-        card.inBottleTornado = this.inBottleTornado;
-        card.isSeen = this.isSeen;
-        card.isLocked = this.isLocked;
-        card.misc = this.misc;
-        card.freeToPlayOnce = this.freeToPlayOnce;
-        card.setParent(this.parent);
-        return card;
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeDamage(2);
-        }
+    public void afterlife() {
+        superFlash(Color.PURPLE);
+        blck();
     }
 }
