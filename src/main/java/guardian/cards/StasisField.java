@@ -25,10 +25,6 @@ public class StasisField extends AbstractGuardianCard implements InStasisCard {
     private static final int COST = 1;
 
     //TUNING CONSTANTS
-    private static final int BLOCK = 7;
-    private static final int UPGRADE_BONUS = 3;
-    private static final int SOCKETS = 0;
-    private static final boolean SOCKETSAREAFTER = true;
     public static String UPGRADED_DESCRIPTION;
 
     //END TUNING CONSTANTS
@@ -40,26 +36,10 @@ public class StasisField extends AbstractGuardianCard implements InStasisCard {
         UPGRADED_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
     }
 
-    public boolean justUsed = false;
-
-    /*
-    @Override
-    public void whenReturnedFromStasis() {
-        upgradeBlock(magicNumber);
-        freeToPlayOnce = false;
-        cost = costForTurn = 1;
-    }
-    
-     */
-
     public StasisField() {
         super(ID, NAME, GuardianMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.GUARDIAN, RARITY, TARGET);
-
-
-        this.baseBlock = BLOCK;
-
-        this.socketCount = SOCKETS;
-        baseMagicNumber = magicNumber = 4;
+        this.baseBlock = 6;
+        this.socketCount = 0;
         this.tags.add(GuardianMod.SELFSTASIS);
         updateDescription();
         loadGemMisc();

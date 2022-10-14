@@ -24,11 +24,7 @@ public class DecasProtection extends AbstractGuardianCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardStrings cardStrings;
     private static final int COST = 1;
-
-    //TUNING CONSTANTS
     public static String UPGRADED_DESCRIPTION;
-
-    //END TUNING CONSTANTS
 
     static {
         cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -39,9 +35,10 @@ public class DecasProtection extends AbstractGuardianCard {
 
     public DecasProtection() {
         super(ID, NAME, GuardianMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.GUARDIAN, RARITY, TARGET);
-
-        baseMagicNumber = magicNumber = 4;
-        exhaust = true;
+        baseMagicNumber = magicNumber = 3;
+        this.socketCount = 1;
+        updateDescription();
+        loadGemMisc();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -49,10 +46,7 @@ public class DecasProtection extends AbstractGuardianCard {
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new LoseStrengthPower(p, magicNumber), magicNumber));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DexterityPower(p, magicNumber), magicNumber));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new LoseDexterityPower(p, magicNumber), magicNumber));
-        if (upgraded){
-            AbstractDungeon.actionManager.addToBottom(new ReduceDebuffsAction(AbstractDungeon.player, 1));
-        }
-
+        useGems(p, m);
     }
 
     public AbstractCard makeCopy() {
@@ -62,11 +56,19 @@ public class DecasProtection extends AbstractGuardianCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            this.rawDescription = UPGRADED_DESCRIPTION;
-            this.initializeDescription();
+            upgradeMagicNumber(1);
         }
     }
 
+    public void updateDescription() {
+        if (this.socketCount > 0) {
+            if (upgraded && UPGRADED_DESCRIPTION != null)
+                this.rawDescription = this.updateGemDescription(UPGRADED_DESCRIPTION, true);
+            else
+                this.rawDescription = this.updateGemDescription(DESCRIPTION, true);
+        }
+        this.initializeDescription();
+    }
 }
 
 

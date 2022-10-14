@@ -31,34 +31,22 @@ public class SlimedPower extends AbstractPower {
     public static PowerType POWER_TYPE = PowerType.DEBUFF;
     public static String[] DESCRIPTIONS;
     public boolean doubleUp = false;
-    private AbstractCreature source;
+    private final AbstractCreature source;
+    public boolean dontRemoveOnce = false;
 
 
     public SlimedPower(AbstractCreature owner, AbstractCreature source, int amount) {
-
-        this.name = NAME;
-
         this.ID = POWER_ID;
+        this.name = NAME;
         this.amount = amount;
-
         this.owner = owner;
-
         this.source = source;
-
-
         this.img = new com.badlogic.gdx.graphics.Texture(slimebound.SlimeboundMod.getResourcePath(IMG));
-
         this.type = POWER_TYPE;
-
         DESCRIPTIONS = CardCrawlGame.languagePack.getPowerStrings(this.ID).DESCRIPTIONS;
-
         this.name = CardCrawlGame.languagePack.getPowerStrings(this.ID).NAME;
-
         updateDescription();
-
-
     }
-
 
     public void updateDescription() {
 
@@ -94,16 +82,10 @@ public class SlimedPower extends AbstractPower {
 
 
     public float atDamageFinalReceive(float damage, DamageInfo.DamageType damageType) {
-
         if (damageType == DamageInfo.DamageType.NORMAL) {
-
-
             return damage + this.amount;
-
         }
-
         return damage;
-
     }
 
 
@@ -129,8 +111,9 @@ public class SlimedPower extends AbstractPower {
 
 
             SlimeboundMod.checkForEndGoopCardVFX();
-            if (this.owner.hasPower(PreventSlimeDecayPower.POWER_ID)) {
-                // AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, this, this.amount / 2));
+            if (this.dontRemoveOnce) {
+                dontRemoveOnce = false;
+            } else if (this.owner.hasPower(PreventSlimeDecayPower.POWER_ID)) {
                 AbstractDungeon.actionManager.addToBottom(new ReducePowerAction(this.owner, this.owner, this.owner.getPower(PreventSlimeDecayPower.POWER_ID), 1));
             } else {
                 AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(this.owner, this.owner, this));

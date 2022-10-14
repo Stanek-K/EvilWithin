@@ -91,7 +91,7 @@
   },
   "sneckomod:QuickBite": {
     "NAME": "Snake Rake",
-    "DESCRIPTION": "Deal !D! damage. NL Draw !M! cards, then sneckomod:Muddle them."
+    "DESCRIPTION": "Deal !D! damage. NL Draw !M! cards, then discard any that are non sneckomod:Offclass."
   },
   "sneckomod:QuickMove": {
     "NAME": "Quick Move",
@@ -139,7 +139,7 @@
   },
   "sneckomod:SnekBite": {
     "NAME": "Snek Bite",
-    "DESCRIPTION": "Deal !D! damage. NL sneckomod:Muddle adjacent cards.",
+    "DESCRIPTION": "Deal !D! damage. NL sneckomod:Muddle the highest-cost card in your hand.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL sneckomod:Muddle the !M! highest-cost cards in your hand."
   },
   "sneckomod:SoulCleanse": {

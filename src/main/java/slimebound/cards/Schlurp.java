@@ -1,6 +1,7 @@
 package slimebound.cards;
 
 
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import slimebound.SlimeboundMod;
 import slimebound.patches.AbstractCardEnum;
+import slimebound.powers.SlimedPower;
 
 
 public class Schlurp extends AbstractSlimeboundCard {
@@ -34,8 +36,8 @@ public class Schlurp extends AbstractSlimeboundCard {
 
     public Schlurp() {
         super(ID, NAME, SlimeboundMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.SLIMEBOUND, RARITY, TARGET);
-        baseBlock = 4;
-        this.magicNumber = this.baseMagicNumber = 2;
+        baseSlimed = slimed = 6;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.cardsToPreview = new Lick();
     }
 
@@ -43,11 +45,13 @@ public class Schlurp extends AbstractSlimeboundCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeMagicNumber(1);
+            rawDescription = UPGRADED_DESCRIPTION;
+            initializeDescription();
         }
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new GainBlockAction(p, p, this.block));
+        addToBot(new ApplyPowerAction(m, p, new SlimedPower(m, p, this.slimed)));
         addToBot(new MakeTempCardInHandAction(new Lick(), magicNumber));
     }
 

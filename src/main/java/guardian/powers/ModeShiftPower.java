@@ -3,6 +3,7 @@ package guardian.powers;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -17,23 +18,19 @@ public class ModeShiftPower extends AbstractGuardianPower {
     private static final int STARTINGAMOUNT = 16;
     private static final int AMOUNTGAINPERACTIVATION = 8;
     private static final int MAXAMOUNT = 40;
-    private static final int BLOCKONTRIGGER = 20;
+    private static final int BLOCKONTRIGGER = 16;
     public static PowerType POWER_TYPE = PowerType.BUFF;
     public static String[] DESCRIPTIONS;
-    private AbstractCreature source;
     private boolean active;
     private int activations = 0;
-    private int nextamount = 0;
 
     public ModeShiftPower(AbstractCreature owner, AbstractCreature source, int amount) {
         this.ID = POWER_ID;
         this.owner = owner;
-        this.source = source;
         this.loadRegion("modeShift");
         this.type = POWER_TYPE;
         this.amount = STARTINGAMOUNT;
         this.active = true;
-        this.nextamount = STARTINGAMOUNT + (this.activations * AMOUNTGAINPERACTIVATION);
         DESCRIPTIONS = CardCrawlGame.languagePack.getPowerStrings(this.ID).DESCRIPTIONS;
         this.name = CardCrawlGame.languagePack.getPowerStrings(this.ID).NAME;
 
@@ -65,16 +62,13 @@ public class ModeShiftPower extends AbstractGuardianPower {
             if (this.amount <= 0){
                 onSpecificTrigger(0);
             }
-
         }
     }
 
     @Override
-    public int onLoseHp(int damageAmount) {
-        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && this.active && !AbstractDungeon.player.hasPower(BufferPower.POWER_ID)) {
+    public void wasHPLost(DamageInfo info, int damageAmount) {
+        if (damageAmount > 0 && this.active) {
             onSpecificTrigger(damageAmount);
         }
-
-        return super.onLoseHp(damageAmount);
     }
 }

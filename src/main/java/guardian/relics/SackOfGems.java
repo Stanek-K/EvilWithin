@@ -15,11 +15,10 @@ public class SackOfGems extends CustomRelic {
     public static final String ID = "Guardian:SackOfGems";
     public static final String IMG_PATH = "relics/sackOfgems.png";
     public static final String OUTLINE_IMG_PATH = "relics/sackOfgemsOutline.png";
-    private static final int HP_PER_CARD = 1;
 
     public SackOfGems() {
         super(ID, new Texture(GuardianMod.getResourcePath(IMG_PATH)), new Texture(GuardianMod.getResourcePath(OUTLINE_IMG_PATH)),
-                RelicTier.RARE, LandingSound.FLAT);
+                RelicTier.SHOP, LandingSound.FLAT);
     }
 
     @Override

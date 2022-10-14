@@ -82,7 +82,7 @@ public class Equalize extends AbstractSlimeboundCard {
 
     public void triggerOnGlowCheck() {
         slimedGlowCheck();
-    }// 68
+    }
 
     public void upgrade() {
         if (!this.upgraded) {

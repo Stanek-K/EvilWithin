@@ -19,7 +19,7 @@
   },
   "hexamod:BacktrackSmack": {
     "NAME": "Backtrack Smack",
-    "DESCRIPTION": "Deal !D! damage. NL hexamod:Retract."
+    "DESCRIPTION": "Deal !D! damage twice. NL hexamod:Retract."
   },
   "hexamod:BurningQuestion": {
     "NAME": "Burning Question",
@@ -31,7 +31,7 @@
   },
   "hexamod:CatchUp": {
     "NAME": "Catch Up",
-    "DESCRIPTION": "hexamod:Ignite the previous Ghostflame !M! times."
+    "DESCRIPTION": "hexamod:Ignite the previous Ghostflame !M! times. NL Exhaust."
   },
   "hexamod:ChargedBarrage": {
     "NAME": "Charged Barrage",
@@ -68,7 +68,7 @@
   },
   "hexamod:FastForward": {
     "NAME": "Fast Forward",
-    "DESCRIPTION": "Ethereal. NL hexamod:Ignite the current Ghostflame. NL hexamod:Advance.",
+    "DESCRIPTION": "Draw !M! cards. NL hexamod:Advance.",
     "UPGRADE_DESCRIPTION": "hexamod:Ignite the current Ghostflame. NL hexamod:Advance."
   },
   "hexamod:Firestarter": {
@@ -250,8 +250,8 @@
   },
   "hexamod:Rewind": {
     "NAME": "Rewind",
-    "DESCRIPTION": "hexamod:Retract. NL Gain [E] .",
-    "UPGRADE_DESCRIPTION": "hexamod:Retract. NL Gain [E] and draw 1 card."
+    "DESCRIPTION": "hexamod:Retract. NL Fetch !M! card from your discard pile.",
+    "UPGRADE_DESCRIPTION": "hexamod:Retract. NL Fetch !M! cards from your discard pile."
   },
   "hexamod:Sear": {
     "NAME": "Sear",

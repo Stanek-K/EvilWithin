@@ -11,13 +11,13 @@ public class DiceBlock extends AbstractSneckoCard {
     public DiceBlock() {
         super(ID, 2, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 8; //Min Block
-        baseBlock = 12; //Max Block
+        baseBlock = 14; //Max Block
         tags.add(SneckoMod.RNG);
     }
 
     public void upp() {
-        upgradeMagicNumber(4);
-        upgradeBlock(4);
+        upgradeMagicNumber(6);
+        upgradeBlock(2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -35,7 +35,7 @@ public class ForkedFlame extends AbstractHexaCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeDamage(5);
+            upgradeDamage(3);
             initializeDescription();
         }
     }

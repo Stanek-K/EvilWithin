@@ -101,7 +101,6 @@ public class DefensiveMode extends AbstractStance {
             }
         }
         AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(AbstractDungeon.player, AbstractDungeon.player, DontLeaveDefensiveModePower.POWER_ID));
-
     }
 
     public void stopIdleSfx() {

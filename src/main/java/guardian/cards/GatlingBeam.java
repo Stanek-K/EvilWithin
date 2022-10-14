@@ -24,7 +24,7 @@ public class GatlingBeam extends AbstractGuardianCard implements InStasisCard {
     public static final String[] EXTENDED_DESCRIPTION;
     public static final String IMG_PATH = "cards/gatlingBeam.png";
     private static final CardType TYPE = CardType.ATTACK;
-    private static final CardRarity RARITY = CardRarity.UNCOMMON;
+    private static final CardRarity RARITY = CardRarity.RARE;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardStrings cardStrings;
 
@@ -43,9 +43,11 @@ public class GatlingBeam extends AbstractGuardianCard implements InStasisCard {
     }
 
     public GatlingBeam() {
-        super(ID, NAME, GuardianMod.getResourcePath(IMG_PATH), 2, DESCRIPTION, TYPE, AbstractCardEnum.GUARDIAN, RARITY, TARGET);
-        this.baseDamage = 8;
+        super(ID, NAME, GuardianMod.getResourcePath(IMG_PATH), 1, DESCRIPTION, TYPE, AbstractCardEnum.GUARDIAN, RARITY, TARGET);
+        this.baseDamage = 5;
+        this.baseMagicNumber = 4;
         this.tags.add(GuardianMod.BEAM);
+        this.tags.add(GuardianMod.SELFSTASIS);
         this.tags.add(GuardianMod.TICK);
         this.socketCount = SOCKETS;
         updateDescription();
@@ -55,7 +57,7 @@ public class GatlingBeam extends AbstractGuardianCard implements InStasisCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeDamage(3);
+            upgradeDamage(2);
         }
     }
 
@@ -80,6 +82,11 @@ public class GatlingBeam extends AbstractGuardianCard implements InStasisCard {
         }
         this.initializeDescription();
     }
+    
+    @Override
+    public void whenEnteredStasis(StasisOrb orb) {
+        orb.passiveAmount = this.baseMagicNumber;
+    }
 
     @Override
     public void onStartOfTurn(StasisOrb orb) {
@@ -90,10 +97,5 @@ public class GatlingBeam extends AbstractGuardianCard implements InStasisCard {
             AbstractDungeon.actionManager.addToBottom(new VFXAction(new SmallLaserEffectColored(m.hb.cX, m.hb.cY, AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, Color.BLUE), 0.1F));
             AbstractDungeon.actionManager.addToBottom(new PseudoDamageRandomEnemyAction(m, new DamageInfo(AbstractDungeon.player, this.damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
         }
-    }
-
-    @Override
-    public void onEvoke(StasisOrb orb) {
-
     }
 }

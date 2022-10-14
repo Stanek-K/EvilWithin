@@ -46,9 +46,6 @@ public class Repurpose extends AbstractSlimeboundCard {
         super(ID, NAME, SlimeboundMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.SLIMEBOUND, RARITY, TARGET);
         this.baseMagicNumber = magicNumber = 2;
         exhaust = true;
-
-      //  this.tags.add(SneckoMod.BANNEDFORSNECKO);
-
         this.tags.add(CardTags.HEALING);
     }
 
@@ -58,8 +55,8 @@ public class Repurpose extends AbstractSlimeboundCard {
             AbstractDungeon.actionManager.addToBottom(new EvokeSpecificOrbAction(o));
             SlimeboundMod.spawnSpecialistSlime();
             if (upgraded) addToBot(new CommandAction());
-            }
         }
+    }
 
 
 

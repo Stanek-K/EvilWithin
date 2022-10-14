@@ -22,7 +22,7 @@ public class Dissolve extends AbstractSlimeboundCard {
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardStrings cardStrings;
-    private static final int COST = 1;
+    private static final int COST = 0;
     public static String UPGRADED_DESCRIPTION;
 
     static {
@@ -34,7 +34,7 @@ public class Dissolve extends AbstractSlimeboundCard {
 
     public Dissolve() {
         super(ID, NAME, SlimeboundMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.SLIMEBOUND, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.exhaust = true;
         this.cardsToPreview = new Lick();
     }

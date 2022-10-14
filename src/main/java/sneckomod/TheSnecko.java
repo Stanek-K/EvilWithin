@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import reskinContent.patches.CharacterSelectScreenPatches;
 import sneckomod.cards.Defend;
+import sneckomod.cards.SnekBite;
 import sneckomod.cards.Strike;
 import sneckomod.cards.TailWhip;
 import sneckomod.cards.unknowns.*;
@@ -108,7 +109,7 @@ public class TheSnecko extends CustomPlayer {
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
-        retVal.add(Strike.ID);
+        retVal.add(SnekBite.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);

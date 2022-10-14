@@ -345,7 +345,6 @@ public class GremlinMatchGame_Evil extends AbstractImageEvent {
                             imageEventText.removeDialogOption(1);
                             this.imageEventText.setDialogOption(OPTIONS[5],  new GremlinSack());
                             this.threatened = true;
-                            return;
                         } else {
                             this.screen = CUR_SCREEN.FIGHT;
                             //SlimeboundMod.logger.info("fight");
@@ -357,19 +356,17 @@ public class GremlinMatchGame_Evil extends AbstractImageEvent {
                             GremlinSack r = new GremlinSack();
                             r.onTrigger();
                             AbstractDungeon.getCurrRoom().addRelicToRewards(r);
-                            AbstractDungeon.getCurrRoom().addGoldToRewards(100);
+                            if (Settings.isDailyRun)
+                                AbstractDungeon.getCurrRoom().addGoldToRewards(AbstractDungeon.miscRng.random(30));
+                            else
+                                AbstractDungeon.getCurrRoom().addGoldToRewards(AbstractDungeon.miscRng.random(25, 35));
 
-                            AbstractDungeon.getCurrRoom().eliteTrigger = true;
                             AbstractDungeon.lastCombatMetricKey = "Match Game Nob";
                             this.imageEventText.clearRemainingOptions();
                             this.enterCombatFromImage();
-                            return;
                         }
                 }
-
-
         }
-
     }
 
     private void placeCards() {

@@ -24,13 +24,6 @@ public class OrbSlam extends AbstractGuardianCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardStrings cardStrings;
     private static final int COST = 0;
-    private static final int DAMAGE = 2;
-
-    //TUNING CONSTANTS
-    private static final int UPGRADE_BONUS = 1;
-    private static final int MULTICOUNT = 2;
-    private static final int SOCKETS = 0;
-    private static final boolean SOCKETSAREAFTER = true;
     public static String DESCRIPTION;
     public static String UPGRADED_DESCRIPTION;
 
@@ -46,19 +39,11 @@ public class OrbSlam extends AbstractGuardianCard {
 
     public OrbSlam() {
         super(ID, NAME, GuardianMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, CardColor.COLORLESS, RARITY, TARGET);
-
-        this.baseDamage = DAMAGE;
-        this.tags.add(GuardianMod.MULTIHIT);
-
-        this.multihit = MULTICOUNT;
-        //this.sockets.add(GuardianMod.socketTypes.RED);
-
+        this.baseDamage = 4;
         this.exhaust = true;
-        this.socketCount = SOCKETS;
+        this.socketCount = 0;
         updateDescription();
         loadGemMisc();
-
-
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -67,10 +52,7 @@ public class OrbSlam extends AbstractGuardianCard {
             ((FloatingOrbsPower) p.getPower(FloatingOrbsPower.POWER_ID)).orbVFX.attackAnim();
             AbstractDungeon.actionManager.addToBottom(new WaitAction(0.4F));
         }
-        for (int i = 0; i < this.multihit; i++) {
-            AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-
-        }
+        addToBot(new DamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
 
     }
 
@@ -81,10 +63,8 @@ public class OrbSlam extends AbstractGuardianCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeDamage(UPGRADE_BONUS);
+            upgradeDamage(2);
         }
-
-
     }
 
     public void updateDescription() {

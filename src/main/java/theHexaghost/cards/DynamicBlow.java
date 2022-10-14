@@ -10,6 +10,7 @@ import downfall.util.CardIgnore;
 import theHexaghost.GhostflameHelper;
 import theHexaghost.powers.BurnPower;
 
+@Deprecated
 @CardIgnore
 public class DynamicBlow extends AbstractHexaCard {
 

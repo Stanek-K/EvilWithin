@@ -1,5 +1,6 @@
 package theHexaghost.cards;
 
+import com.megacrit.cardcrawl.actions.common.BetterDiscardPileToHandAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -20,25 +21,20 @@ public class Rewind extends AbstractHexaCard {
     public Rewind() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 1;
+        this.exhaust = true;
         tags.add(HexaMod.GHOSTWHEELCARD);
         HexaMod.loadJokeCardImage(this, "Rewind.png");
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         atb(new RetractAction());
-        atb(new GainEnergyAction(magicNumber));
-        if (upgraded)upgradeAction(p,m);
-
-    }
-
-
-    public void upgradeAction(AbstractPlayer p, AbstractMonster m){
-        AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, 1));
+        atb(new BetterDiscardPileToHandAction(magicNumber));
     }
 
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
+            upgradeMagicNumber(1);
             rawDescription = UPGRADE_DESCRIPTION;
             initializeDescription();
         }

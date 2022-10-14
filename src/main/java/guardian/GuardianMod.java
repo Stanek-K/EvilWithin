@@ -331,20 +331,18 @@ public class GuardianMod implements PostDrawSubscriber,
         ArrayList<String> allGemCards = new ArrayList<>();
         ArrayList<AbstractCard> rewardGemCards = new ArrayList<>();
 
-        allGemCards.add("RED");
-        allGemCards.add("GREEN");
-        allGemCards.add("LIGHTBLUE");
-        if (!onlyCommon) allGemCards.add("ORANGE");
-        allGemCards.add("CYAN");
-        if (!onlyCommon) allGemCards.add("WHITE");
-        if (!onlyCommon) allGemCards.add("BLUE");
-        if (!onlyCommon) allGemCards.add("CRIMSON");
-        if (!onlyCommon) allGemCards.add("FRAGMENTED");
-        if (!onlyCommon) allGemCards.add("PURPLE");
-        if (!onlyCommon) allGemCards.add("SYNTHETIC");
-        if (!UnlockTracker.isCardLocked(Gem_Yellow.ID)) {
-            if (!onlyCommon) allGemCards.add("YELLOW");
-        }
+        allGemCards.add("RED"); //Ruby
+        allGemCards.add("GREEN"); //Emerald
+        allGemCards.add("LIGHTBLUE"); //Tourmaline
+        allGemCards.add("BLUE"); //Sapphire
+        if (!onlyCommon) allGemCards.add("ORANGE"); //Citrine
+        if (!onlyCommon) allGemCards.add("CYAN"); //Aquamarine
+        if (!onlyCommon) allGemCards.add("WHITE"); //Quartz
+        if (!onlyCommon) allGemCards.add("CRIMSON"); //Garnet
+        if (!onlyCommon) allGemCards.add("FRAGMENTED"); //Fragmented
+        if (!onlyCommon) allGemCards.add("PURPLE"); //Amethyst
+        if (!onlyCommon) allGemCards.add("SYNTHETIC"); //Onyx
+        if (!onlyCommon) allGemCards.add("YELLOW"); //Amber
 
         int rando;
         String ID;
@@ -539,7 +537,6 @@ public static void saveData() {
 
     @Override
     public void receiveSetUnlocks() {
-
         downfallMod.registerUnlockSuite(
                 GatlingBeam.ID,
                 Orbwalk.ID,

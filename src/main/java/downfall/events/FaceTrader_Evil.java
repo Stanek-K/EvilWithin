@@ -81,9 +81,11 @@ public class FaceTrader_Evil extends AbstractImageEvent {
                         AbstractDungeon.getCurrRoom().monsters =  MonsterHelper.getEncounter("downfall:FaceTrader");
                         AbstractDungeon.getCurrRoom().rewards.clear();
                         AbstractDungeon.getCurrRoom().addRelicToRewards(new CloakOfManyFaces());
-                        AbstractDungeon.getCurrRoom().addGoldToRewards(100);
+                        if (Settings.isDailyRun)
+                            AbstractDungeon.getCurrRoom().addGoldToRewards(AbstractDungeon.miscRng.random(30));
+                        else
+                            AbstractDungeon.getCurrRoom().addGoldToRewards(AbstractDungeon.miscRng.random(25, 35));
 
-                        AbstractDungeon.getCurrRoom().eliteTrigger = true;
                         this.imageEventText.clearRemainingOptions();
                         this.enterCombatFromImage();
                         AbstractDungeon.lastCombatMetricKey = "downfall:FaceTrader";

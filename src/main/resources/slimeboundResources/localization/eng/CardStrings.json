@@ -39,7 +39,8 @@
   },
   "Slimebound:Dissolve": {
     "NAME": "Quick Snack",
-    "DESCRIPTION": "Draw !M! cards. NL Exhaust a card. Gain *Licks equal to its cost. NL Exhaust."
+    "DESCRIPTION": "Draw !M! card. NL Exhaust a card. Gain *Licks equal to its cost. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Draw !M! cards. NL Exhaust a card. Gain *Licks equal to its cost. NL Exhaust."
   },
   "Slimebound:DivideAndConquer": {
     "NAME": "Divide & Conquer",
@@ -93,13 +94,16 @@
   },
   "Slimebound:GoopTackle": {
     "NAME": "Combo Tackle",
-    "DESCRIPTION": "Deal !D! damage. NL Take !SlimeboundSelfharm! damage. NL Gain a random \"Tackle\" card.",
+    "DESCRIPTION": "Deal !D! damage. NL Take !SlimeboundSelfharm! damage. NL slimeboundmod:Consume - Apply !M! Weak.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Take !SlimeboundSelfharm! damage. NL Gain a random Upgraded \"Tackle\". It costs 0 this turn."
   },
   "Slimebound:Grow": {
     "NAME": "Grow",
-    "DESCRIPTION": "slimeboundmod:Absorb all Slimes. NL Gain !M! Dexterity for each.",
-    "UPGRADE_DESCRIPTION": "slimeboundmod:Absorb all Slimes. NL Gain !M! Strength and Dexterity for each."
+    "DESCRIPTION": "slimeboundmod:Absorb all Slimes. NL Gain !M! Dexterity.",
+    "UPGRADE_DESCRIPTION": "slimeboundmod:Absorb all Slimes. NL Gain !M! Strength and Dexterity for each.",
+    "EXTENDED_DESCRIPTION": [
+      "Need... slimes..."
+    ]
   },
   "Slimebound:GrowthPunch": {
     "NAME": "Growth Punch",
@@ -266,7 +270,8 @@
   },
   "Slimebound:Schlurp": {
     "NAME": "Schlurp",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! *Licks."
+    "DESCRIPTION": "Apply !slime! slimeboundmod:Goop. NL Gain !M! *Lick.",
+    "UPGRADE_DESCRIPTION": "Apply !slime! slimeboundmod:Goop. NL Gain !M! *Licks."
   },
   "Slimebound:SelfFormingGoo": {
     "NAME": "Reformation",

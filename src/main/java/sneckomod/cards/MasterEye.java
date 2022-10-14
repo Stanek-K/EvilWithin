@@ -10,16 +10,16 @@ public class MasterEye extends AbstractSneckoCard {
     public final static String ID = makeID("MasterEye");
 
     public MasterEye() {
-        super(ID, 1, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        super(ID, 2, CardType.POWER, CardRarity.RARE, CardTarget.SELF);
+        this.baseMagicNumber = magicNumber = 2;
     }
 
     public void upp() {
-        isInnate = true;
-        rawDescription = UPGRADE_DESCRIPTION;
-        initializeDescription();
+        upgradeBaseCost(1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        applyToSelf(new MastersEyePower(p, 1));
+        applyToSelf(new ConfusionPower(p));
+        applyToSelf(new DrawPower(p, magicNumber));
     }
 }

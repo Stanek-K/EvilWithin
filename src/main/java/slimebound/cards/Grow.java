@@ -28,12 +28,12 @@ public class Grow extends AbstractSlimeboundCard {
     public static final String ID = "Slimebound:Grow";
     public static final String NAME;
     public static final String DESCRIPTION;
+    public static final String[] EXTENDED_DESCRIPTION;
     public static final String IMG_PATH = "cards/grow.png";
     private static final CardStrings cardStrings;
     private static final CardType TYPE = CardType.POWER;
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
-    private static final int COST = 1;
     public static String UPGRADED_DESCRIPTION;
 
     static {
@@ -41,32 +41,30 @@ public class Grow extends AbstractSlimeboundCard {
         NAME = cardStrings.NAME;
         DESCRIPTION = cardStrings.DESCRIPTION;
         UPGRADED_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
+        EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
     }
 
     public Grow() {
         super(ID, NAME, SlimeboundMod.getResourcePath(IMG_PATH), 1, DESCRIPTION, TYPE, AbstractCardEnum.SLIMEBOUND, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = 1;
+        this.magicNumber = this.baseMagicNumber = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new AbstractGameAction() {
-            @Override
-            public void update() {
-                isDone = true;
-                int slimes = 0;
-                for (AbstractOrb o: p.orbs)
-                    if (o instanceof SpawnedSlime) slimes++;
+        AbstractOrb o = SlimeboundMod.getLeadingSlime();
+        if (o != null) {
+            addToBot(new EvokeSpecificOrbAction(o));
+            addToBot(new ApplyPowerAction(p, p, new DexterityPower(p, magicNumber)));
+        }
+    }
 
-                if (slimes > 0) {
-                    addToTop(new ApplyPowerAction(p, p, new DexterityPower(p, slimes*magicNumber), slimes*magicNumber));
-                    if (upgraded) addToTop(new ApplyPowerAction(p, p, new StrengthPower(p, slimes*magicNumber), slimes*magicNumber));
-
-                    for (AbstractOrb o: p.orbs)
-                        if (o instanceof SpawnedSlime)
-                            addToTop(new EvokeSpecificOrbAction(o));
-                }
-            }
-        });
+    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+        boolean canUse = super.canUse(p, m);
+        if (canUse) {
+            for (AbstractOrb o : p.orbs)
+                if (o instanceof SpawnedSlime) return true;
+            this.cantUseMessage = EXTENDED_DESCRIPTION[0];
+        }
+        return false;
     }
 
     public AbstractCard makeCopy() {
@@ -76,8 +74,7 @@ public class Grow extends AbstractSlimeboundCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            rawDescription = UPGRADED_DESCRIPTION;
-            initializeDescription();
+            upgradeMagicNumber(1);
         }
     }
 }

@@ -3,7 +3,7 @@
     "NAME": "Heart of Goo",
     "FLAVOR": "I feel so funky.",
     "DESCRIPTIONS": [
-      "Whenever you #yslimeboundmod:Consume, heal #b2 HP, up to #b8 each combat."
+      "First #b4 times you #yslimeboundmod:Consume each combat, heal #b2 HP."
     ]
   },
   "Slimebound:AbsorbEndCombatUpgraded": {
@@ -11,7 +11,7 @@
     "FLAVOR": "The Secret of the Ooze.",
     "DESCRIPTIONS": [
       "Replaces ",
-      ".[] NL Whenever you #yslimeboundmod:Consume, heal #b3 HP, up to #b15 each combat."
+      ".[] NL First #b4 times you #yslimeboundmod:Consume each combat, heal #b3 HP."
     ]
   },
   "Slimebound:SlimedTailRelic": {
@@ -26,7 +26,7 @@
     "NAME": "Stone of Nomakk",
     "FLAVOR": "When presented to one of your Goop Gang, it seems to make the blob dance.",
     "DESCRIPTIONS": [
-      "At the start of combat, #ySplit into a #yslimeboundmod:Mire #ySlime and gain #b1 #yslimeboundmod:Potency."
+      "At the start of combat, gain #b1 #yslimeboundmod:Potency."
     ]
   },
   "Slimebound:DailySplitRelic": {

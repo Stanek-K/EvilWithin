@@ -12,11 +12,11 @@ public class GhostOfSpireFuture extends AbstractHexaCard {
 
 
     public GhostOfSpireFuture() {
-        super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 0, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
         tags.add(HexaMod.GHOSTWHEELCARD);
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
         HexaMod.loadJokeCardImage(this, "GhostOfSpireFuture.png");
-        magicNumber = baseMagicNumber= 2;
+        magicNumber = baseMagicNumber = 2;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
