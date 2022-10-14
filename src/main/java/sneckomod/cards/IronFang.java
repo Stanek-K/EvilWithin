@@ -59,17 +59,4 @@ public class IronFang extends AbstractSneckoCard {
         baseDamage = CURRENT_DAMAGE;
         super.applyPowers();
     }
-
-    @Override
-    public void calculateCardDamage(final AbstractMonster m) {
-        int CURRENT_SILLY = baseDownfallMagic;
-        int CURRENT_DAMAGE = baseDamage;
-        baseDamage = CURRENT_SILLY;
-        super.calculateCardDamage(m);
-        downfallMagic = damage;
-        isDownfallModified = damage != baseDamage;
-
-        baseDamage = CURRENT_DAMAGE;
-        super.calculateCardDamage(m);
-    }
 }
