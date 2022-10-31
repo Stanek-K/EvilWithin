@@ -17,28 +17,25 @@ import slimebound.powers.EnergizedSlimeboundPower;
 import sneckomod.SneckoMod;
 
 public class FalseCounter extends AbstractChampCard {
-
     public final static String ID = makeID("FalseCounter");
 
     public FalseCounter() {
         super(ID, 2, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseMagicNumber = magicNumber = 1;
-        tags.add(ChampMod.FINISHER);
         baseBlock = block = 12;
-    }
-
-    public void use(AbstractPlayer p, AbstractMonster m) {
-
-        blck();
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DrawCardNextTurnPower(p,2), 2));
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EnergizedDurationPower(this.magicNumber), this.magicNumber));
-
-        finisher();
-        postInit();
+        baseDownfallMagic = downfallMagic = 1;
+        baseMagicNumber = magicNumber = 2;
+        tags.add(ChampMod.FINISHER);
     }
 
     public void upp() {
-        upgradeMagicNumber(1);
+        upgradeDownfall(1);
         initializeDescription();
+    }
+
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        blck();
+        applyToSelf(new DrawCardNextTurnPower(p,downfallMagic));
+        applyToSelf(new EnergizedDurationPower(this.magicNumber));
+        finisher();
     }
 }

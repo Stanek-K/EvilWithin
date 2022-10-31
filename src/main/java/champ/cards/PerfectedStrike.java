@@ -9,22 +9,22 @@ import static champ.ChampMod.loadJokeCardImage;
 import static com.megacrit.cardcrawl.cards.red.PerfectedStrike.countCards;
 
 public class PerfectedStrike extends AbstractChampCard {
-
     public final static String ID = makeID("PerfectedStrike");
-
-    //stupid intellij stuff attack, enemy, common
-
-    private static final int DAMAGE = 8;
-    private static final int MAGIC = 3;
-    private static final int UPG_MAGIC = 1;
 
     public PerfectedStrike() {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = DAMAGE;
-        baseMagicNumber = magicNumber = MAGIC;
+        baseDamage = 8;
+        baseMagicNumber = magicNumber = 2;
         tags.add(CardTags.STRIKE);
-        postInit();
         loadJokeCardImage(this, "PerfecterStrike.png");
+    }
+
+    public void upp() {
+        upgradeMagicNumber(1);
+    }
+
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
     }
 
     public void calculateCardDamage(AbstractMonster mo) {
@@ -41,13 +41,5 @@ public class PerfectedStrike extends AbstractChampCard {
         super.applyPowers();
         this.baseDamage = realBaseDamage;
         this.isDamageModified = this.damage != this.baseDamage;
-    }
-
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-    }
-
-    public void upp() {
-        upgradeMagicNumber(UPG_MAGIC);
     }
 }

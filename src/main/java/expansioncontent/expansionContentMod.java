@@ -39,7 +39,7 @@ import expansioncontent.relics.StudyCardRelic;
 import expansioncontent.util.CardFilter;
 import expansioncontent.util.VariableDownfallMagic;
 import expansioncontent.util.VariableSecondDownfallMagic;
-import expansioncontent.util.VariableTagMagic;
+import expansioncontent.util.VariableThirdDownfallMagic;
 import javassist.CtClass;
 import javassist.Modifier;
 import javassist.NotFoundException;
@@ -200,7 +200,7 @@ public class expansionContentMod implements
     public void receiveEditCards() {
         BaseMod.addDynamicVariable(new VariableDownfallMagic());
         BaseMod.addDynamicVariable(new VariableSecondDownfallMagic());
-        BaseMod.addDynamicVariable(new VariableTagMagic());
+        BaseMod.addDynamicVariable(new VariableThirdDownfallMagic());
         try {
             autoAddCards();
         } catch (URISyntaxException | IllegalAccessException | InstantiationException | NotFoundException | ClassNotFoundException e) {

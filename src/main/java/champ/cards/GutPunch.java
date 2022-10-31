@@ -18,25 +18,21 @@ public class GutPunch extends AbstractChampCard {
         tags.add(ChampMod.COMBO);
         tags.add(ChampMod.COMBODEFENSIVE);
         tags.add(ChampMod.COMBOBERSERKER);
-        postInit();
         exhaust = true;
-    }
-
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        //berserkOpen();
-        dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        //  fatigue(2);
-        if (bcombo() || dcombo()) {
-            triggerOpenerRelics(AbstractDungeon.player.stance.ID.equals(NeutralStance.STANCE_ID));
-            ultimateStance();
-            applyToSelf(new UltimateFormPower(1));
-        }
     }
 
     public void upp() {
         upgradeDamage(4);
     }
 
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        dmg(m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        if (bcombo() || dcombo()) {
+            triggerOpenerRelics(AbstractDungeon.player.stance.ID.equals(NeutralStance.STANCE_ID));
+            ultimateStance();
+            applyToSelf(new UltimateFormPower(1));
+        }
+    }
 
     @Override
     public void triggerOnGlowCheck() {

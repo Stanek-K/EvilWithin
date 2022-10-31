@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class PreemptiveStrike extends AbstractChampCard {
-
     public final static String ID = makeID("PreemptiveStrike");
 
     public PreemptiveStrike() {
@@ -18,7 +17,10 @@ public class PreemptiveStrike extends AbstractChampCard {
         baseDamage = 0;
         isMultiDamage = true;
         tags.add(CardTags.STRIKE);
-        postInit();
+    }
+
+    public void upp() {
+        upgradeBaseCost(0);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -53,9 +55,5 @@ public class PreemptiveStrike extends AbstractChampCard {
     public void onMoveToDiscard() {
         this.rawDescription = cardStrings.DESCRIPTION;
         this.initializeDescription();
-    }
-
-    public void upp() {
-        upgradeBaseCost(0);
     }
 }

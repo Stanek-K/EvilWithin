@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class CrookedStrike extends AbstractChampCard {
-
     public final static String ID = makeID("CrookedStrike");
 
     public CrookedStrike() {
@@ -17,15 +16,12 @@ public class CrookedStrike extends AbstractChampCard {
         tags.add(ChampMod.FINISHER);
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-
-        finisher();
-    }
-
     public void upp() {
         upgradeDamage(3);
     }
 
-
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
+        finisher();
+    }
 }

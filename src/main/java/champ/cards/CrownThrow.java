@@ -15,30 +15,19 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class CrownThrow extends AbstractChampCard {
-
     public final static String ID = makeID("CrownThrow");
-
-    //stupid intellij stuff attack, enemy, rare
-
-    private static final int DAMAGE = 8;
-    private static final int UPG_DAMAGE = 2;
-
-    private boolean returned;
 
     public CrownThrow() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = DAMAGE;
+        baseDamage = 8;
         baseMagicNumber = magicNumber = 2;
         tags.add(ChampMod.COMBO);
         tags.add(ChampMod.COMBOBERSERKER);
     }
 
-    public void returned() {
-
-        upgradeBaseCost(0);
-        returned = true;
-        DESCRIPTION = rawDescription = EXTENDED_DESCRIPTION[0];
-        initializeDescription();
+    public void upp() {
+        upgradeDamage(2);
+        upgradeMagicNumber(1);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -55,12 +44,6 @@ public class CrownThrow extends AbstractChampCard {
     @Override
     public void triggerOnGlowCheck() {
         glowColor = bcombo() ? GOLD_BORDER_GLOW_COLOR : BLUE_BORDER_GLOW_COLOR;
-    }
-
-
-    public void upp() {
-        upgradeDamage(UPG_DAMAGE);
-        upgradeMagicNumber(1);
     }
 }
 

@@ -11,31 +11,21 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import static champ.ChampMod.fatigue;
 
 public class GladiatorStyle extends AbstractChampCard {
-
     public final static String ID = makeID("GladiatorStyle");
-
-    //stupid intellij stuff power, self, uncommon
 
     public GladiatorStyle() {
         super(ID, 0, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
-       // this.tags.add(ChampMod.OPENER);
       baseMagicNumber = magicNumber = 2;
-       // this.tags.add(ChampMod.OPENERGLADIATOR);
-        postInit();
-    }
-
-    public void use(AbstractPlayer p, AbstractMonster m) {
-
-        applyToSelf(new StrengthPower(p, magicNumber));
-       // applyToSelf(new DexterityPower(p, 2));
-        for (AbstractMonster q : monsterList()) {
-            applyToEnemy(q, new StrengthPower(q, 1));
-            //applyToEnemy(q, new DexterityPower(q, 2));
-        }
-
     }
 
     public void upp() {
         upgradeMagicNumber(1);
+    }
+
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        applyToSelf(new StrengthPower(p, magicNumber));
+        for (AbstractMonster q : monsterList()) {
+            applyToEnemy(q, new StrengthPower(q, 1));
+        }
     }
 }

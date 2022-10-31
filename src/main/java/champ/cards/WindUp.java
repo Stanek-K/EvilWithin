@@ -28,28 +28,24 @@ import downfall.util.OctopusCard;
 import java.util.ArrayList;
 
 public class WindUp extends AbstractChampCard implements OctopusCard {
-
     public final static String ID = makeID("WindUp");
-
-    //stupid intellij stuff skill, enemy, uncommon
 
     public WindUp() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         exhaust = true;
         tags.add(ChampMod.OPENER);
-        postInit();
     }
 
-
+    public void upp() {
+        exhaust = false;
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
+    }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-
         this.tags.remove(ChampMod.OPENERBERSERKER);
         this.tags.remove(ChampMod.OPENERDEFENSIVE);
-        //if (upgraded) techique();
         atb(new OctoChoiceAction(m, this));
-        postInit();
-
     }
 
     public ArrayList<OctoChoiceCard> choiceList() {
@@ -70,13 +66,5 @@ public class WindUp extends AbstractChampCard implements OctopusCard {
         }
 
         atb(new FetchAction(AbstractDungeon.player.drawPile, c -> (c.hasTag(ChampMod.FINISHER))));
-    }
-
-
-
-    public void upp() {
-        exhaust = false;
-        rawDescription = UPGRADE_DESCRIPTION;
-        initializeDescription();
     }
 }

@@ -13,10 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import sneckomod.SneckoMod;
 
 public class CalledShot extends AbstractChampCard {
-
     public final static String ID = makeID("CalledShot");
-
-    //stupid intellij stuff power, self, uncommon
 
     public CalledShot() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
@@ -24,8 +21,12 @@ public class CalledShot extends AbstractChampCard {
         tags.add(ChampMod.COMBO);
         tags.add(ChampMod.COMBODEFENSIVE);
         tags.add(ChampMod.COMBOBERSERKER);
-        tags.add(CardTags.HEALING);
-        postInit();
+    }
+
+    public void upp() {
+        upgradeMagicNumber(1);
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -42,17 +43,8 @@ public class CalledShot extends AbstractChampCard {
         }
     }
 
-
     @Override
     public void triggerOnGlowCheck() {
         glowColor = (dcombo() || bcombo()) ? GOLD_BORDER_GLOW_COLOR : BLUE_BORDER_GLOW_COLOR;
-    }
-
-    public void upp() {
-        rawDescription = UPGRADE_DESCRIPTION;
-        upgradeMagicNumber(1);
-        initializeDescription();
-        tags.add(SneckoMod.BANNEDFORSNECKO);
-
     }
 }

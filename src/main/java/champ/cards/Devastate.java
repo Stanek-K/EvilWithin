@@ -12,15 +12,12 @@ public class Devastate extends AbstractChampCard {
 
     public Devastate() {
         super(ID, 5, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
-
         this.baseDamage = 6;
         this.magicNumber = this.baseMagicNumber = 3;
     }
 
-    public void triggerOnCardPlayed(AbstractCard c) {
-        if (c.hasTag(ChampMod.FINISHER) && c!=this) {
-            updateCost(-1);
-        }
+    public void upp() {
+        upgradeDamage(3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -29,7 +26,9 @@ public class Devastate extends AbstractChampCard {
         }
     }
 
-    public void upp() {
-        upgradeDamage(3);
+    public void triggerOnCardPlayed(AbstractCard c) {
+        if (c.hasTag(ChampMod.FINISHER) && c!=this) {
+            updateCost(-1);
+        }
     }
 }

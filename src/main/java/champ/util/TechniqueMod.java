@@ -1,6 +1,7 @@
 package champ.util;
 
 import basemod.abstracts.AbstractCardModifier;
+import basemod.helpers.CardModifierManager;
 import champ.ChampMod;
 import champ.cards.AbstractChampCard;
 import champ.stances.AbstractChampStance;
@@ -11,11 +12,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class TechniqueMod extends AbstractCardModifier {
-
+    public static String ID = ChampMod.makeID("TechniqueMod");
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-       return rawDescription + CardCrawlGame.languagePack.getUIString(ChampMod.makeID("TechniqueMod")).TEXT[0] ;
+       return rawDescription + CardCrawlGame.languagePack.getUIString(ID).TEXT[0] ;
     }
 
     @Override
@@ -26,7 +27,17 @@ public class TechniqueMod extends AbstractCardModifier {
     }
 
     @Override
+    public boolean shouldApply(AbstractCard card) {
+        return !CardModifierManager.hasModifier(card, ID);
+    }
+
+    @Override
     public AbstractCardModifier makeCopy() {
         return new TechniqueMod();
+    }
+
+    @Override
+    public String identifier(AbstractCard card) {
+        return ID;
     }
 }

@@ -10,26 +10,22 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import static champ.ChampMod.fatigue;
 
 public class EnragedBash extends AbstractChampCard {
-
     public final static String ID = makeID("EnragedBash");
-
-    //stupid intellij stuff attack, enemy, uncommon
-
-    private static final int DAMAGE = 7;
-    private static final int MAGIC = 1;
 
     public EnragedBash() {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = DAMAGE;
-        baseMagicNumber = magicNumber = MAGIC;
+        baseDamage = 7;
+        baseMagicNumber = magicNumber = 1;
         tags.add(ChampMod.COMBO);
         tags.add(ChampMod.COMBOBERSERKER);
-        postInit();
+    }
+
+    public void upp() {
+        upgradeDamage(3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-        int chosen = 0;
+        int chosen;
         for (int i = 0; i < magicNumber; i++) {
             chosen = AbstractDungeon.cardRng.random(0,2);
             switch(chosen) {
@@ -58,9 +54,5 @@ public class EnragedBash extends AbstractChampCard {
     @Override
     public void triggerOnGlowCheck() {
         glowColor = bcombo() ? GOLD_BORDER_GLOW_COLOR : BLUE_BORDER_GLOW_COLOR;
-    }
-
-    public void upp() {
-        upgradeDamage(3);
     }
 }

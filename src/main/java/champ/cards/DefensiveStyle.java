@@ -10,29 +10,23 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import static champ.ChampMod.fatigue;
 
 public class DefensiveStyle extends AbstractChampCard {
-
     public final static String ID = makeID("DefensiveStyle");
-
-    //stupid intellij stuff power, self, uncommon
 
     public DefensiveStyle() {
         super(ID, 1, CardType.POWER, CardRarity.UNCOMMON, CardTarget.SELF);
         this.tags.add(ChampMod.OPENER);
         this.tags.add(ChampMod.OPENERDEFENSIVE);
         baseMagicNumber = magicNumber = 1;
-        //myHpLossCost = 5;
-        postInit();
-    }
-
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        defenseOpen();
-      //  fatigue(5);
-        applyToSelf(new DefensiveStylePower(magicNumber));
     }
 
     public void upp() {
         isInnate = true;
         rawDescription = UPGRADE_DESCRIPTION;
         initializeDescription();
+    }
+
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        defenseOpen();
+        applyToSelf(new DefensiveStylePower(magicNumber));
     }
 }

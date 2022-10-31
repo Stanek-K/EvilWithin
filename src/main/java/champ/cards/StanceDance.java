@@ -6,6 +6,7 @@ import champ.stances.DefensiveStance;
 import champ.stances.UltimateStance;
 import champ.vfx.StanceDanceEffect;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -21,23 +22,22 @@ import java.util.ArrayList;
 import static champ.ChampMod.loadJokeCardImage;
 
 public class StanceDance extends AbstractChampCard implements OctopusCard {
-
     public final static String ID = makeID("StanceDance");
 
-    //stupid intellij stuff SKILL, SELF, UNCOMMON
-
     public StanceDance() {
-        super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
+        this.baseMagicNumber = magicNumber = 2;
         tags.add(ChampMod.OPENER);
         loadJokeCardImage(this, "StanceDance.png");
     }
 
+    public void upp() {
+        upgradeMagicNumber(1);
+    }
+
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-        //if (upgraded) techique();
+        atb(new DrawCardAction(magicNumber));
         atb(new OctoChoiceAction(m, this));
-        postInit();
-
     }
 
     public ArrayList<OctoChoiceCard> choiceList() {
@@ -50,6 +50,7 @@ public class StanceDance extends AbstractChampCard implements OctopusCard {
     public void doChoiceStuff(AbstractMonster m, OctoChoiceCard card) {
         switch (card.cardID) {
             case "octo:OctoBerserk":
+                /*
                 if (upgraded || AbstractDungeon.player.stance.ID.equals(BerserkerStance.STANCE_ID)|| AbstractDungeon.player.stance.ID.equals(champ.stances.UltimateStance.STANCE_ID)) {
                     ArrayList<AbstractCard> rCardList = new ArrayList<AbstractCard>();
                     for (AbstractCard t : CardLibrary.getAllCards()) {
@@ -60,10 +61,12 @@ public class StanceDance extends AbstractChampCard implements OctopusCard {
                     UnlockTracker.markCardAsSeen(r.cardID);
                     makeInHand(r);
                 }
+                 */
                 ChampMod.berserkOpen();
 
                 break;
             case "octo:OctoDefense":
+                /*
                 if (upgraded || AbstractDungeon.player.stance.ID.equals(DefensiveStance.STANCE_ID) || AbstractDungeon.player.stance.ID.equals(UltimateStance.STANCE_ID)) {
                     ArrayList<AbstractCard> rCardList = new ArrayList<AbstractCard>();
                     for (AbstractCard t : CardLibrary.getAllCards()) {
@@ -74,17 +77,11 @@ public class StanceDance extends AbstractChampCard implements OctopusCard {
                     UnlockTracker.markCardAsSeen(r.cardID);
                     makeInHand(r);
                 }
+                 */
                 ChampMod.defenseOpen();
                 break;
         }
-
         AbstractDungeon.player.useJumpAnimation();
         atb(new VFXAction(new StanceDanceEffect(AbstractDungeon.player, false, true, false), 0.7F));
-
-    }
-
-    public void upp() {
-        rawDescription = UPGRADE_DESCRIPTION;
-        initializeDescription();
     }
 }
