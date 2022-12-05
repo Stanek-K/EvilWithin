@@ -225,11 +225,10 @@
     ],
     "OPTIONS": [
       "[Full Harvest] #gGain #g",
-      "[Drain] #gGain #g",
       "[Sap] #gGain #g",
-      " #gSouls. #rBecome #rCursed #rThrice #r- #rIcky.",
-      " #gSouls. #rBecome #rCursed #rTwice #r- #rIcky.",
       " #gSouls. #rBecome #rCursed #r- #rIcky.",
+      " #gSouls. #rLose #r",
+      " #rHP.",
       "[Leave]"
     ]
   },
@@ -296,7 +295,7 @@
       "[Punch] #gGain #y",
       "[Intimidate] #gRemove #ga #gcard #gfrom #gyour #gdeck.",
       "[Leave]",
-      "Select a Card to Remove.",
+      "Select a Card to Transform.",
       " #ySouls."
     ]
   },
@@ -391,12 +390,12 @@
       "The beggar takes off its cloak to reveal that he is #bCleric! NL @\"You@ @are@ @a@ @horrible@ @soul.@ @Cleric@ @bought@ @protection!\"@ he screams. NL NL Two massive figures emerge from the alley, each wearing full plate. Before you have a chance to react, they draw their blades and charge!",
       "Having slain this #bCleric's bodyguards, you turn to him and back him into a corner of the alley. He is terrified and trembling.",
       "The creature crumples in a single blow, falling into a pile of mangled blue flesh. You happily absorb its #ysoul and continue onward. NL NL As you leave, you notice the other beggars peering from behind buildings and alleys. You bask in their fear - let this be a lesson to anyone who dare defy a Spire overlord.",
-      "\"Cleric help! Cleric help!\" the creature says once again, barely able to speak as he cowers in fear. NL A cold blue flame envelops your body and dissipates. NL NL Deciding his powers may of use later, and that you can easily dispatch of any bodyguards he tries to employ in the future, you let this \"Cleric\" live once more."
+      "\"Cleric help! Cleric help!\" the creature says once again, barely able to speak as he cowers in fear. NL A cold blue flame envelops your body and dissipates. NL NL Immediately \"Cleric\" flees."
     ],
     "OPTIONS": [
       " #rBecome #rCursed #r- #rPride.",
       "[Fight]",
-      "[Threaten] #gRemove #g2 #gcards #gfrom #gyour #gdeck."
+      "[Threaten] #gTransform #g2 #gcards."
     ]
   },
   "downfall:Mausoleum": {

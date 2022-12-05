@@ -17,21 +17,19 @@ public class SwordThrow extends AbstractChampCard {
         baseMagicNumber = magicNumber = 2;
         tags.add(ChampMod.COMBOBERSERKER);
         tags.add(ChampMod.COMBO);
-        postInit();
+    }
+
+    public void upp() {
+        upgradeDamage(3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         for (int i = 0; i < magicNumber; i++) dmg(m, AbstractGameAction.AttackEffect.SMASH);
         if (!bcombo()) applyToSelf(new WeakPower(p,2, false));
-       // if (bcombo()) atb(new ReducePowerAction(p,p,WeakPower.POWER_ID,2));
     }
 
     @Override
     public void triggerOnGlowCheck() {
         glowColor = bcombo() ? GOLD_BORDER_GLOW_COLOR : BLUE_BORDER_GLOW_COLOR;
-    }
-
-    public void upp() {
-        upgradeDamage(3);
     }
 }

@@ -1,34 +1,33 @@
-package downfall.cardmods;
+package expansioncontent.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
 import basemod.helpers.CardModifierManager;
+import champ.ChampMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import downfall.downfallMod;
-import sneckomod.SneckoMod;
 
-public class ExhaustMod extends AbstractCardModifier {
-
-    public static String ID = SneckoMod.makeID("ExhaustMod");
-
+public class RetainCardMod extends AbstractCardModifier {
+    public static String ID = downfallMod.makeID("RetainCardMod");
 
     @Override
     public String modifyDescription(String rawDescription, AbstractCard card) {
-        return rawDescription + CardCrawlGame.languagePack.getUIString(SneckoMod.makeID("ExhaustMod")).TEXT[0];
+        return CardCrawlGame.languagePack.getUIString(ChampMod.makeID("RetainCardMod")).TEXT[0] + rawDescription;
     }
 
     public boolean shouldApply(AbstractCard card) {
+        if (card.isEthereal || card.selfRetain) return false;
         return !CardModifierManager.hasModifier(card, ID);
     }
 
     @Override
     public void onInitialApplication(AbstractCard card) {
-        card.exhaust = true;
+        card.selfRetain = true;
     }
 
     @Override
     public AbstractCardModifier makeCopy() {
-        return new ExhaustMod();
+        return new RetainCardMod();
     }
 
     @Override

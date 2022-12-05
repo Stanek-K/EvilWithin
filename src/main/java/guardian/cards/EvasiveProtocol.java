@@ -29,15 +29,7 @@ public class EvasiveProtocol extends AbstractGuardianCard {
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final int COST = 1;
-
-    //TUNING CONSTANTS
-    private static final int DEX = 3;
-    private static final int BRACE_PER_TURN = 3;
-    private static final int SOCKETS = 0;
-    private static final boolean SOCKETSAREAFTER = true;
     public static String UPGRADED_DESCRIPTION;
-
-    //END TUNING CONSTANTS
 
     static {
         cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -48,9 +40,8 @@ public class EvasiveProtocol extends AbstractGuardianCard {
 
     public EvasiveProtocol() {
         super(ID, NAME, GuardianMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.GUARDIAN, RARITY, TARGET);
-        this.magicNumber = this.baseMagicNumber = DEX;
-        this.secondaryM = BRACE_PER_TURN;
-        this.socketCount = SOCKETS;
+        this.magicNumber = this.baseMagicNumber = 3;
+        this.socketCount = 0;
         updateDescription();
         loadGemMisc();
         GuardianMod.loadJokeCardImage(this, makeBetaCardPath("EvasiveProtocol.png"));
@@ -58,11 +49,7 @@ public class EvasiveProtocol extends AbstractGuardianCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         super.use(p, m);
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new EvasiveProtocolPower(p, magicNumber)));
-        if (p.stance instanceof DefensiveMode) {
-            AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new DexterityPower(p, magicNumber), magicNumber));
-        }
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(p, p, new BracePerTurnPower(p, this.secondaryM)));
+        addToBot(new ApplyPowerAction(p, p, new BracePerTurnPower(p, magicNumber)));
     }
 
     public AbstractCard makeCopy() {
@@ -72,7 +59,7 @@ public class EvasiveProtocol extends AbstractGuardianCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(2);
+            upgradeMagicNumber(1);
         }
     }
 

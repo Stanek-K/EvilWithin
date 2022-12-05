@@ -2,14 +2,15 @@ package sneckomod.cards;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import sneckomod.SneckoMod;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
+import sneckomod.actions.MuddleAction;
 import sneckomod.actions.MuddleRandomCardAction;
 
 public class SnekBite extends AbstractSneckoCard {
-
     public final static String ID = makeID("SnekBite");
 
     public SnekBite() {
@@ -19,19 +20,13 @@ public class SnekBite extends AbstractSneckoCard {
         SneckoMod.loadJokeCardImage(this, "SnekBite.png");
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new VFXAction(new BiteEffect(m.hb.cX, m.hb.cY), 0.3F));// 117
-        dmg(m, makeInfo(), AbstractGameAction.AttackEffect.NONE);
-        atb(new MuddleRandomCardAction(magicNumber, true));
+    public void upp() {
+        upgradeDamage(3);
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeDamage(2);
-            upgradeMagicNumber(1);
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
-        }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        atb(new VFXAction(new BiteEffect(m.hb.cX, m.hb.cY), 0.3F));
+        dmg(m, AbstractGameAction.AttackEffect.NONE);
+        atb(new MuddleRandomCardAction(1, true));
     }
 }

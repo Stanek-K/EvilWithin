@@ -9,18 +9,21 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import static champ.ChampMod.loadJokeCardImage;
 
 public class Endure extends AbstractChampCard {
-
     public final static String ID = makeID("Endure");
 
     public Endure() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseBlock = block = 7;
-        postInit();
+        baseBlock = block = 9;
         loadJokeCardImage(this, "Endure.png");
     }
 
+    public void upp() {
+        upgradeBlock(2);
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
+    }
+
     public void use(AbstractPlayer p, AbstractMonster m) {
-        techique();
         blck();
     }
 
@@ -35,11 +38,5 @@ public class Endure extends AbstractChampCard {
         super.applyPowersToBlock();
         baseBlock = realBaseBlock;
         isBlockModified = block != baseBlock;
-    }
-
-    public void upp() {
-        upgradeBlock(3);
-        rawDescription = UPGRADE_DESCRIPTION;
-        initializeDescription();
     }
 }

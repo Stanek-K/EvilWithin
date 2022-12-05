@@ -14,7 +14,7 @@ import static champ.ChampMod.TECHNIQUE;
 public class ChampTextHelper {
     protected static String[] ifStr = CardCrawlGame.languagePack.getUIString(AbstractChampCard.makeID("highlightCombos")).TEXT;
 
-    public static void calculateTagText(AbstractChampCard c) {
+    public static void calculateTagText(AbstractChampCard c, String description, String upgradedDescription) {
         String prefixTech = "";
         String prefixFin = "";
         /*
@@ -62,10 +62,10 @@ public class ChampTextHelper {
                     prefixFin = ChampChar.characterStrings.TEXT[38];
                 }
             }
-            if (c.upgraded && c.UPGRADE_DESCRIPTION != null) {
-                c.rawDescription = prefixTech + c.UPGRADE_DESCRIPTION + prefixFin;
+            if (c.upgraded && upgradedDescription != null) {
+                c.rawDescription = prefixTech + upgradedDescription + prefixFin;
             } else {
-                c.rawDescription = prefixTech + c.DESCRIPTION + prefixFin;
+                c.rawDescription = prefixTech + description + prefixFin;
             }
         }
     }

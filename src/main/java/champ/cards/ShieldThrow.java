@@ -13,24 +13,22 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import static champ.ChampMod.loadJokeCardImage;
 
 public class ShieldThrow extends AbstractChampCard {
-
     public final static String ID = makeID("ShieldThrow");
-
-    //stupid intellij stuff attack, enemy, rare
 
     public ShieldThrow() {
         super(ID, 1, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
-        //  tags.add(ChampMod.FINISHER);
         baseBlock = block = 0;
         baseMagicNumber = magicNumber = 2;
         tags.add(ChampMod.COMBODEFENSIVE);
         tags.add(ChampMod.COMBO);
-        postInit();
         loadJokeCardImage(this, "ShieldThrow.png");
     }
 
+    public void upp() {
+        upgradeBaseCost(0);
+    }
+
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //finisher();
         blck();
         this.baseDamage = p.currentBlock;
         this.calculateCardDamage(m);
@@ -40,8 +38,6 @@ public class ShieldThrow extends AbstractChampCard {
         this.initializeDescription();
 
         if (!dcombo()) applyToSelf(new FrailPower(p,2, false));
-       // if (bcombo()) atb(new ReducePowerAction(p,p,FrailPower.POWER_ID,2));
-        //  finisher();
     }
 
     @Override
@@ -68,9 +64,5 @@ public class ShieldThrow extends AbstractChampCard {
         //this.rawDescription = cardStrings.DESCRIPTION;
         this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[0];
         this.initializeDescription();
-    }
-
-    public void upp() {
-        upgradeBaseCost(0);
     }
 }

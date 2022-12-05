@@ -3,33 +3,31 @@ package champ.cards;
 import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import downfall.cardmods.RetainCardMod;
+import expansioncontent.cardmods.RetainCardMod;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.*;
 
 public class ArenaPreparation extends AbstractChampCard {
-
     public final static String ID = makeID("ArenaPreparation");
 
-    //stupid intellij stuff skill, self, uncommon
-
     public ArenaPreparation() {
-        super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
         baseMagicNumber = magicNumber = 2;
         exhaust = true;
-        // tags.add(ChampMod.TECHNIQUE);
-//         tags.add(CardTags.HEALING);
-        postInit();
+    }
+
+    public void upp() {
+        upgradeBaseCost(0);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //techique();
-        for (int i = 0; i < magicNumber; i++) {
-            AbstractCard c = AbstractDungeon.returnTrulyRandomCardInCombat(CardType.SKILL);
+        ArrayList<AbstractCard> cards = getRandomSkills(magicNumber);
+        for (AbstractCard c : cards) {
             c.isSeen = true;
             UnlockTracker.markCardAsSeen(c.cardID);
             if (!c.selfRetain) {
@@ -39,7 +37,38 @@ public class ArenaPreparation extends AbstractChampCard {
         }
     }
 
-    public void upp() {
-        upgradeMagicNumber(1);
+    private static ArrayList<AbstractCard> getRandomSkills(int amount) {
+        ArrayList<AbstractCard> list = new ArrayList<>(),
+                returnList = new ArrayList<>();
+        AbstractCard c;
+        Iterator<AbstractCard> var2 = srcCommonCardPool.group.iterator();
+        while(var2.hasNext()) {
+            c = var2.next();
+            if (c.type == CardType.SKILL && !c.hasTag(CardTags.HEALING)) {
+                list.add(c);
+            }
+        }
+
+        var2 = srcUncommonCardPool.group.iterator();
+        while(var2.hasNext()) {
+            c = var2.next();
+            if (c.type == CardType.SKILL && !c.hasTag(CardTags.HEALING) && !(c instanceof ArenaPreparation)) {
+                list.add(c);
+            }
+        }
+
+        var2 = srcRareCardPool.group.iterator();
+        while(var2.hasNext()) {
+            c = var2.next();
+            if (c.type == CardType.SKILL && !c.hasTag(CardTags.HEALING)) {
+                list.add(c);
+            }
+        }
+
+        for (int i = 0; i < amount; i++) {
+            returnList.add(list.remove(cardRandomRng.random(list.size() - 1)));
+        }
+
+        return returnList;
     }
 }

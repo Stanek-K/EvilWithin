@@ -23,7 +23,6 @@ public class RelicOverrides {
             }
             return SpireReturn.Continue();
         }
-
     }
 
 

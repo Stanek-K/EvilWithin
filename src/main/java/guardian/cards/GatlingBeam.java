@@ -40,40 +40,18 @@ public class GatlingBeam extends AbstractGuardianCard implements InStasisCard {
         DESCRIPTION = cardStrings.DESCRIPTION;
         UPGRADED_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
         EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
-
     }
 
     public GatlingBeam() {
-
         super(ID, NAME, GuardianMod.getResourcePath(IMG_PATH), 1, DESCRIPTION, TYPE, AbstractCardEnum.GUARDIAN, RARITY, TARGET);
-
         this.baseDamage = 5;
-        this.baseMagicNumber = this.magicNumber = 4;
-
+        this.baseMagicNumber = 4;
         this.tags.add(GuardianMod.BEAM);
-        this.tags.add(GuardianMod.TICK);
         this.tags.add(GuardianMod.SELFSTASIS);
+        this.tags.add(GuardianMod.TICK);
         this.socketCount = SOCKETS;
         updateDescription();
         loadGemMisc();
-
-    }
-
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        super.use(p, m);
-        AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_MAGIC_BEAM_SHORT", 0.5F));
-        AbstractDungeon.actionManager.addToBottom(new VFXAction(new SmallLaserEffectColored(m.hb.cX, m.hb.cY, AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, Color.BLUE), 0.1F));
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new com.megacrit.cardcrawl.cards.DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
-
-    }
-
-    @Override
-    public void whenEnteredStasis(StasisOrb orb) {
-        orb.passiveAmount = this.baseMagicNumber;
-    }
-
-    public AbstractCard makeCopy() {
-        return new GatlingBeam();
     }
 
     public void upgrade() {
@@ -81,6 +59,17 @@ public class GatlingBeam extends AbstractGuardianCard implements InStasisCard {
             upgradeName();
             upgradeDamage(2);
         }
+    }
+
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        super.use(p, m);
+        AbstractDungeon.actionManager.addToBottom(new SFXAction("ATTACK_MAGIC_BEAM_SHORT", 0.5F));
+        AbstractDungeon.actionManager.addToBottom(new VFXAction(new SmallLaserEffectColored(m.hb.cX, m.hb.cY, AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, Color.BLUE), 0.1F));
+        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new com.megacrit.cardcrawl.cards.DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
+    }
+
+    public AbstractCard makeCopy() {
+        return new GatlingBeam();
     }
 
     public void updateDescription() {
@@ -93,6 +82,11 @@ public class GatlingBeam extends AbstractGuardianCard implements InStasisCard {
         }
         this.initializeDescription();
     }
+    
+    @Override
+    public void whenEnteredStasis(StasisOrb orb) {
+        orb.passiveAmount = this.baseMagicNumber;
+    }
 
     @Override
     public void onStartOfTurn(StasisOrb orb) {
@@ -104,11 +98,4 @@ public class GatlingBeam extends AbstractGuardianCard implements InStasisCard {
             AbstractDungeon.actionManager.addToBottom(new PseudoDamageRandomEnemyAction(m, new DamageInfo(AbstractDungeon.player, this.damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
         }
     }
-
-    @Override
-    public void onEvoke(StasisOrb orb) {
-
-    }
 }
-
-

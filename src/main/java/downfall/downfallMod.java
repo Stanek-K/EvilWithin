@@ -72,8 +72,6 @@ import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.monsters.exordium.LouseNormal;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.GoldenIdol;
 import com.megacrit.cardcrawl.relics.MedicalKit;
@@ -87,7 +85,7 @@ import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import downfall.cardmods.EtherealMod;
+import expansioncontent.cardmods.EtherealMod;
 import downfall.cards.KnowingSkullWish;
 import downfall.cards.curses.*;
 import downfall.dailymods.*;
@@ -125,7 +123,7 @@ import sneckomod.SneckoMod;
 import sneckomod.TheSnecko;
 import sneckomod.cards.unknowns.*;
 import sneckomod.util.ColorfulCardReward;
-import sneckomod.util.UpgradedUnknownReward;
+import sneckomod.util.UpgradedOffclassReward;
 import theHexaghost.HexaMod;
 import theHexaghost.TheHexaghost;
 import theHexaghost.util.SealSealReward;
@@ -592,7 +590,7 @@ public class downfallMod implements
         //Snecko
         BaseMod.registerCustomReward(RewardItemTypeEnumPatch.COLORFULCARD, (rewardSave) -> new ColorfulCardReward(AbstractCard.CardColor.valueOf(rewardSave.id)), (customReward) -> new RewardSave(customReward.type.toString(), customReward instanceof ColorfulCardReward ? ((ColorfulCardReward) customReward).myColor.toString() : "COLORLESS"));
 
-        BaseMod.registerCustomReward(RewardItemTypeEnumPatch.UPGRADEDUNKNOWNCARD, (rewardSave) -> new UpgradedUnknownReward(), (customReward) -> new RewardSave(customReward.type.toString(), null));
+        BaseMod.registerCustomReward(RewardItemTypeEnumPatch.UPGRADEDOFFCLASSCARD, (rewardSave) -> new UpgradedOffclassReward(), (customReward) -> new RewardSave(customReward.type.toString(), null));
 
         //Hexaghost
         BaseMod.registerCustomReward(RewardItemTypeEnumPatch.SEALCARD, (rewardSave) -> new SealSealReward(), (customReward) -> new RewardSave(customReward.type.toString(), null));

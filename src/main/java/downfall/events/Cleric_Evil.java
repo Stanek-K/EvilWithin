@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 public class Cleric_Evil extends AbstractImageEvent {
     public static final String ID = "downfall:Cleric";
@@ -28,7 +29,7 @@ public class Cleric_Evil extends AbstractImageEvent {
     }
 
     private CurrentScreen curScreen;
-    private int gold;
+    private final int gold;
 
 
     public Cleric_Evil() {
@@ -37,7 +38,7 @@ public class Cleric_Evil extends AbstractImageEvent {
         if (AbstractDungeon.ascensionLevel >= 15) {
             this.gold = 50;
         } else {
-            this.gold = 100;
+            this.gold = 75;
         }
 
         this.imageEventText.setDialogOption(OPTIONS[0] + this.gold + OPTIONS[4]);
@@ -51,10 +52,12 @@ public class Cleric_Evil extends AbstractImageEvent {
         super.update();
         if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
             AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
-            AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(c, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
-            AbstractEvent.logMetricCardRemovalAtCost(ID, "Card Removal", c, 0);
             AbstractDungeon.player.masterDeck.removeCard(c);
-            AbstractDungeon.gridSelectScreen.selectedCards.remove(c);
+            AbstractDungeon.transformCard(c, false, AbstractDungeon.miscRng);
+            AbstractCard transCard = AbstractDungeon.getTransformedCard();
+            logMetricTransformCard(ID, "Transformed", c, transCard);
+            AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(transCard, (float)Settings.WIDTH / 2.0F, (float)Settings.HEIGHT / 2.0F));
+            AbstractDungeon.gridSelectScreen.selectedCards.clear();
         }
     }
 
@@ -72,7 +75,7 @@ public class Cleric_Evil extends AbstractImageEvent {
                         break;
                     case 1:
                         this.imageEventText.updateBodyText(DESC[2]);
-                        AbstractDungeon.gridSelectScreen.open(CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()), 1, OPTIONS[3], false, false, false, true);
+                        AbstractDungeon.gridSelectScreen.open(CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()), 1, OPTIONS[3], false, true, false, false);
                         break;
                 }
 

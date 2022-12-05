@@ -12,6 +12,7 @@ import downfall.util.TextureLoader;
 import sneckomod.SneckoMod;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import static sneckomod.SneckoMod.makeCardPath;
@@ -19,12 +20,13 @@ import static sneckomod.SneckoMod.makeCardPath;
 @CardIgnore
 public class UnknownClass extends AbstractUnknownCard {
     public final static String ID = makeID("UnknownClass");
-    private static String[] unknownClass = CardCrawlGame.languagePack.getUIString(ID).TEXT;
-    private String TID; //Temporary ID
+    private static final String[] unknownClass = CardCrawlGame.languagePack.getUIString(ID).TEXT;
+    private final String TID; //Temporary ID
+    private final String UP_DESC;
     public CardColor myColor;
 
     public UnknownClass(CardColor cardColor) {
-        super(ID + cardColor.name(), determineCardImg(cardColor), CardType.SKILL, CardRarity.COMMON, true);
+        super(ID + cardColor.name(), makeCardPath(determineCardImg(cardColor)), CardType.SKILL, CardRarity.COMMON);
         TID = ID + cardColor.name();
         myColor = cardColor;
         name = unknownClass[0];
@@ -36,8 +38,8 @@ public class UnknownClass extends AbstractUnknownCard {
             rawDescription = unknownClass[1] + unknownClass[3]
                     + unknownClass[2];
         }
-        UPGRADE_DESCRIPTION = unknownClass[6] + rawDescription;
-        if (CardCrawlGame.languagePack.getCardStrings(TID).NAME == "[MISSING_TITLE]") {
+        UP_DESC = unknownClass[6] + rawDescription;
+        if (Objects.equals(CardCrawlGame.languagePack.getCardStrings(TID).NAME, "[MISSING_TITLE]")) {
             BaseMod.loadCustomStrings(CardStrings.class, "{\"" + TID 
             + "\": {\"NAME\": \"" + name 
             + "\", \"DESCRIPTION\": \"" + rawDescription 
@@ -46,40 +48,46 @@ public class UnknownClass extends AbstractUnknownCard {
         initializeDescription();
     }
 
+    @Override
+    public void upp() {
+        rawDescription = UP_DESC;
+        initializeDescription();
+    }
+
     private static String determineCardImg(CardColor myColor) {
         switch (myColor.name()) {
             case "RED":
-                return "UnknownIronclad";
+                return "UnknownIronclad.png";
             case "BLUE":
-                return "UnknownDefect";
+                return "UnknownDefect.png";
             case "GREEN":
-                return "UnknownSilent";
+                return "UnknownSilent.png";
             case "PURPLE":
-                return "UnknownWatcher";
+                return "UnknownWatcher.png";
             case "GUARDIAN":
-                return "UnknownGuardian";
+                return "UnknownGuardian.png";
             case "SLIMEBOUND":
-                return "UnknownSlimeBoss";
+                return "UnknownSlimeBoss.png";
             case "HEXA_GHOST_PURPLE":
-                return "UnknownHexaghost";
+                return "UnknownHexaghost.png";
             case "THE_CHAMP_GRAY":
-                return "UnknownChamp";
+                return "UnknownChamp.png";
             case "THE_BRONZE_AUTOMATON":
-                return "UnknownAutomaton";
+                return "UnknownAutomaton.png";
             case "GREMLIN":
-                return "UnknownGremlin";
+                return "UnknownGremlin.png";
             case "HERMIT_YELLOW":
-                return "UnknownHermit";
+                return "UnknownHermit.png";
             default:
                 String filename = "UnknownClass" + myColor.name();
                 if (Gdx.files.internal(makeCardPath(filename) + ".png").exists())
                     return filename;
-                return "UnknownModded";
+                return "UnknownModded.png";
         }
     }
 
     private static String getCharName(CardColor myColor) {
-        ArrayList<AbstractPlayer> theDudes = new ArrayList<AbstractPlayer>(CardCrawlGame.characterManager.getAllCharacters());
+        ArrayList<AbstractPlayer> theDudes = new ArrayList<>(CardCrawlGame.characterManager.getAllCharacters());
         for (AbstractPlayer p : theDudes) {
             if (p.getCardColor() == myColor)
                 return p.getLocalizedCharacterName().replace(unknownClass[4], "");

@@ -49,11 +49,8 @@ public class MassRepurpose extends AbstractSlimeboundCard {
         super(ID, NAME, SlimeboundMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.SLIMEBOUND, RARITY, TARGET);
         this.baseMagicNumber = magicNumber = 2;
         this.exhaust = true;
-
-
-       // this.tags.add(SneckoMod.BANNEDFORSNECKO);
-
-//         this.tags.add(CardTags.HEALING);
+        // this.tags.add(SneckoMod.BANNEDFORSNECKO);
+        //this.tags.add(CardTags.HEALING);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

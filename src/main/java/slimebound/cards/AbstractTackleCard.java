@@ -20,6 +20,8 @@ public abstract class AbstractTackleCard extends AbstractSlimeboundCard {
         }
     }
 
+    //Why this exists? Did russian translator fail to name cards correctly?
+
     @Override
     public List<String> getCardDescriptors() {
         List<String> tags = new ArrayList<>();

@@ -7,7 +7,6 @@ import downfall.util.CardIgnore;
 
 @CardIgnore
 public class Riposte extends AbstractChampCard {
-
     public final static String ID = makeID("Riposte");
 
     public Riposte() {
@@ -15,14 +14,13 @@ public class Riposte extends AbstractChampCard {
         baseDamage = 0;
         isEthereal = true;
         exhaust = true;
-        postInit();
-    }
-
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
     }
 
     public void upp() {
         upgradeBaseCost(0);
+    }
+
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
     }
 }

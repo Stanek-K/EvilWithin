@@ -1,13 +1,11 @@
 package champ.cards;
 
-import champ.ChampMod;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import static champ.ChampMod.loadJokeCardImage;
 
 public class SwordSigil extends AbstractChampCard {
-
     public final static String ID = makeID("SwordSigil");
 
     public SwordSigil() {
@@ -17,14 +15,13 @@ public class SwordSigil extends AbstractChampCard {
         loadJokeCardImage(this, "SwordSigil.png");
     }
 
+    public void upp() {
+        upgradeMagicNumber(2);
+    }
+
     public void use(AbstractPlayer p, AbstractMonster m) {
         for (int i = 0; i < magicNumber; i++) {
             techique();
         }
-    }
-
-    public void upp() {
-        upgradeMagicNumber(2);
-       // upgradeCool(2);
     }
 }

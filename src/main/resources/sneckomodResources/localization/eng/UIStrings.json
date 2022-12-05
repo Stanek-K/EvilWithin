@@ -25,9 +25,15 @@
       "Upgraded "
     ]
   },
-  "sneckomod:UpgradedUnknownReward": {
+  "sneckomod:UpgradedOffclassReward": {
     "TEXT": [
-      "Add an Unidentified+ card to your deck",
+      "Add an Offclass card to your deck",
+      "Pick a Card."
+    ]
+  },
+  "sneckomod:UnidentifiedReward": {
+    "TEXT": [
+      "Add an Unidentified card to your deck",
       "Pick a Card."
     ]
   },
@@ -50,10 +56,10 @@
   "sneckomod:LockInBonfireOptions": {
     "TEXT": [
       "Identify",
-      "Lock an Unidentified into a permanent card.",
+      "(Free Action) Spend 40 Souls: Lock an Unidentified into a permanent card.",
       "Requires an Unidentified card.",
       "Select a card to add to your deck, removing its Unidentified.",
-      "[Free Action] Lock an Unidentified into a permanent card."
+      "Requires 40 Souls."
     ]
   },
   "sneckomod:AtGameStart": {

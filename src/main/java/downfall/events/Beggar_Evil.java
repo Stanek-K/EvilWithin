@@ -19,6 +19,8 @@ import slimebound.SlimeboundMod;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 public class Beggar_Evil extends AbstractImageEvent {
     public static final String ID = downfallMod.makeID("Beggar");
@@ -45,7 +47,8 @@ public class Beggar_Evil extends AbstractImageEvent {
     private int finalDmg;
     private int gold;
     private CurScreen screen;
-    private int cardsToRemove;
+    private int cardsToTransform;
+    private boolean cardsSelected = false;
 
     public Beggar_Evil() {
         super(NAME, DESCRIPTIONS[0], "images/events/beggar.jpg");
@@ -54,36 +57,49 @@ public class Beggar_Evil extends AbstractImageEvent {
         if (AbstractDungeon.ascensionLevel >= 15) {
             this.gold = 50;
         } else {
-            this.gold = 100;
+            this.gold = 75;
         }
 
         this.imageEventText.setDialogOption(OPTIONS[4]);
         this.screen = CurScreen.INTRO;
-        this.cardsToRemove = 1;
+        this.cardsToTransform = 1;
     }
 
     public void update() {
         super.update();
         if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-            if (cardsToRemove == 1) {
+            if (cardsToTransform == 1) {
                 AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
                 AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(c, (float) (Settings.WIDTH / 2), (float) (Settings.HEIGHT / 2)));
                 AbstractDungeon.player.masterDeck.removeCard(c);
+                AbstractDungeon.transformCard(c, false, AbstractDungeon.miscRng);
+                AbstractCard transCard = AbstractDungeon.getTransformedCard();
                 AbstractDungeon.gridSelectScreen.selectedCards.remove(c);
-                logMetricRemoveCards(ID, "Intimidate", Collections.singletonList(c.cardID));
-            } else {
-                ArrayList<String> cards = new ArrayList<>();
-                AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
-                AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(c, (Settings.WIDTH * 0.3F), (float) (Settings.HEIGHT / 2)));
-                AbstractDungeon.player.masterDeck.removeCard(c);
-                AbstractDungeon.gridSelectScreen.selectedCards.remove(c);
-                cards.add(c.cardID);
-                c = AbstractDungeon.gridSelectScreen.selectedCards.get(1);
-                AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(c, (Settings.WIDTH * 0.7F), (float) (Settings.HEIGHT / 2)));
-                AbstractDungeon.player.masterDeck.removeCard(c);
-                AbstractDungeon.gridSelectScreen.selectedCards.remove(c);
-                cards.add(c.cardID);
-                logMetricRemoveCards(ID, "Threaten", cards);
+                logMetricTransformCard(ID, "Intimidate", c, transCard);
+            } else if (!cardsSelected) {
+                List<String> transformedCards = new ArrayList<>();
+                List<String> obtainedCards = new ArrayList<>();
+                if (AbstractDungeon.gridSelectScreen.selectedCards.size() == 2) {
+                    this.cardsSelected = true;
+                    float displayCount = 0.0F;
+                    for (AbstractCard card : AbstractDungeon.gridSelectScreen.selectedCards) {
+                        card.untip();
+                        card.unhover();
+                        transformedCards.add(card.cardID);
+                        AbstractDungeon.player.masterDeck.removeCard(card);
+                        AbstractDungeon.transformCard(card, false, AbstractDungeon.miscRng);
+                        AbstractCard c = AbstractDungeon.getTransformedCard();
+                        obtainedCards.add(c.cardID);
+                        if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.TRANSFORM && c != null) {
+                            AbstractDungeon.topLevelEffectsQueue.add(new ShowCardAndObtainEffect(c.makeCopy(), (float) Settings.WIDTH / 3.0F + displayCount, (float) Settings.HEIGHT / 2.0F, false));
+                            displayCount += (float) Settings.WIDTH / 6.0F;
+                        }
+                    }
+
+                    AbstractDungeon.gridSelectScreen.selectedCards.clear();
+                    logMetricTransformCards(ID, "Threaten", transformedCards, obtainedCards);
+                    AbstractDungeon.getCurrRoom().rewardPopOutTimer = 0.25F;
+                }
             }
         }
     }
@@ -130,7 +146,7 @@ public class Beggar_Evil extends AbstractImageEvent {
                     case 1:
                         this.imageEventText.clearAllDialogs();
                         this.imageEventText.updateBodyText(DESCRIPTIONSOG[2]);
-                        AbstractDungeon.gridSelectScreen.open(CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()), 1, OPTIONSOG[3], false, false, false, true);
+                        this.transform();
                         this.screen = CurScreen.END;
                         this.imageEventText.setDialogOption(OPTIONS[5]);
                         break;
@@ -192,7 +208,8 @@ public class Beggar_Evil extends AbstractImageEvent {
                         AbstractDungeon.getCurrRoom().rewardAllowed = false;
                         this.imageEventText.clearAllDialogs();
                         this.imageEventText.updateBodyText(DESCRIPTIONSALT[7]);
-                        AbstractDungeon.gridSelectScreen.open(CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()), 2, OPTIONSOG[3], false, false, false, true);
+                        cardsToTransform = 2;
+                        this.transform();
                         this.screen = CurScreen.END;
                         this.imageEventText.setDialogOption(OPTIONS[5]);
                         break;
@@ -216,6 +233,16 @@ public class Beggar_Evil extends AbstractImageEvent {
             this.imageEventText.setDialogOption(OPTIONSOG[0] + (this.gold * 2) + OPTIONSOG[4]); // Punch: gain many souls
             this.imageEventText.setDialogOption(OPTIONSALT[2]); // Threaten: remove 2 cards
             this.enterImageFromCombat();
+        }
+    }
+
+    private void transform() {
+        if (!AbstractDungeon.isScreenUp) {
+            AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck.getPurgeableCards(), cardsToTransform, OPTIONS[5], false, cardsToTransform == 1, false, false);
+        } else {
+            AbstractDungeon.dynamicBanner.hide();
+            AbstractDungeon.previousScreen = AbstractDungeon.screen;
+            AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck.getPurgeableCards(), cardsToTransform, OPTIONS[5], false, cardsToTransform == 1, false, false);
         }
 
     }

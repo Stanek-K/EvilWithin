@@ -22,7 +22,7 @@ public class DefensiveModePotion extends CustomPotion {
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString(POTION_ID);
     public static final String NAME = potionStrings.NAME;
     public static final String[] DESCRIPTIONS = potionStrings.DESCRIPTIONS;
-
+    private static final int BLOCK_PER_POTENCY = 16;
 
     public DefensiveModePotion() {
         super(NAME, POTION_ID, PotionRarity.UNCOMMON, PotionSize.S, PotionColor.ANCIENT);
@@ -31,26 +31,25 @@ public class DefensiveModePotion extends CustomPotion {
         this.labOutlineColor = GuardianCharacter.cardRenderColor;
     }
 
-
     public void initializeData() {
         this.potency = getPotency();
         if (potency > 1){
-            this.description = (DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[2]);
+            this.description = (DESCRIPTIONS[0] + (BLOCK_PER_POTENCY * potency) + DESCRIPTIONS[1] + this.potency + DESCRIPTIONS[3]);
         } else {
-            this.description = (DESCRIPTIONS[0] + this.potency + DESCRIPTIONS[1]);
+            this.description = (DESCRIPTIONS[0] + BLOCK_PER_POTENCY + DESCRIPTIONS[1] + this.potency + DESCRIPTIONS[2]);
         }
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
+        this.tips.add(new PowerTip(TipHelper.capitalize(GameDictionary.BLOCK.NAMES[0]), GameDictionary.keywords.get(GameDictionary.BLOCK.NAMES[0])));
         this.tips.add(new PowerTip(TipHelper.capitalize(BaseMod.getKeywordProper("guardianmod:defensive mode")), GameDictionary.keywords.get("guardianmod:defensive mode")));
 
     }
 
     public void use(AbstractCreature target) {
-        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(AbstractDungeon.player, 10));
+        AbstractDungeon.actionManager.addToBottom(new GainBlockAction(AbstractDungeon.player, BLOCK_PER_POTENCY * potency));
         AbstractDungeon.actionManager.addToBottom(new ChangeStanceAction(DefensiveMode.STANCE_ID));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new DontLeaveDefensiveModePower(AbstractDungeon.player, potency), potency));
     }
-
 
     public CustomPotion makeCopy() {
         return new DefensiveModePotion();

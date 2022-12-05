@@ -39,7 +39,7 @@
   },
   "sneckomod:IronFang": {
     "NAME": "Железный клык",
-    "DESCRIPTION": "Даёт !M! - !B! Защиты. NL Наносит !qqq! - !D! урона."
+    "DESCRIPTION": "Даёт !M! - !B! Защиты. NL Наносит !DM! - !D! урона."
   },
   "sneckomod:ImprovisedAttack": {
     "NAME": "Импровизированная атака",
@@ -99,7 +99,7 @@
   },
   "sneckomod:RainOfDice": {
     "NAME": "Дождь из костей",
-    "DESCRIPTION": "Наносит !qqq! - !D! урона случ. врагу. NL sneckomod:Спутывает себя и возвращается в руку."
+    "DESCRIPTION": "Наносит !DM! - !D! урона случ. врагу. NL sneckomod:Спутывает себя и возвращается в руку."
   },
   "sneckomod:Restock": {
     "NAME": "Пополнить",
@@ -125,7 +125,7 @@
   },
   "sneckomod:SnakeSap": {
     "NAME": "Змеиное иссушение",
-    "DESCRIPTION": "sneckomod:Анти-змекко. NL Наносит !qqq! - !D! урона. NL Даёт 1 - !M! [E] . NL Сжигается."
+    "DESCRIPTION": "sneckomod:Анти-змекко. NL Наносит !DM! - !D! урона. NL Даёт 1 - !M! [E] . NL Сжигается."
   },
   "sneckomod:SnekBeam": {
     "NAME": "Змекко-луч",

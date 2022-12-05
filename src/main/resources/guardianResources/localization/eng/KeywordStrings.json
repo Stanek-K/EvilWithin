@@ -29,7 +29,7 @@
       "defensive mode",
       "defensive_mode"
     ],
-    "DESCRIPTION": "#yStance. NL Gain #b10 #yBlock when entering Defensive Mode. NL While in Defensive Mode, you have #b3 #yThorns, gain #b10 #yBlock at the start of your turn, and your Block does not expire."
+    "DESCRIPTION": "#yStance. NL While in Defensive Mode, you have #b3 #yThorns, and your Block does not expire."
   },
   {
     "NAMES": [
@@ -44,7 +44,7 @@
       "packages"
     ],
     "PROPER_NAME": "Package",
-    "DESCRIPTION": "0-cost #yExhausting #ySkill that generates three cards inspired by a chosen Construct of the Spire, and reduces their cost by #b1 for this combat."
+    "DESCRIPTION": "0-cost #yExhausting #ySkill that generates three cards inspired by a chosen Construct of the Spire."
   },
   {
     "NAMES": [
@@ -73,12 +73,5 @@
     ],
     "PROPER_NAME": "Brace X",
     "DESCRIPTION": "Reduce the HP loss required to trigger Mode Shift by X."
-  },
-  {
-    "NAMES": [
-      "downgrade"
-    ],
-    "PROPER_NAME": "Downgrade",
-    "DESCRIPTION": "Remove an upgrade from a card."
   }
 ]

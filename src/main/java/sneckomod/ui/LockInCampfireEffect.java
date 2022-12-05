@@ -13,9 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.monsters.city.Snecko;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
@@ -23,7 +21,6 @@ import slimebound.SlimeboundMod;
 import sneckomod.SneckoMod;
 import sneckomod.cards.unknowns.AbstractUnknownCard;
 import sneckomod.patches.UnknownExtraUiPatch;
-import sneckomod.relics.SuperSneckoSoul;
 import sneckomod.relics.UnknownEgg;
 
 public class LockInCampfireEffect extends com.megacrit.cardcrawl.vfx.AbstractGameEffect {
@@ -35,6 +32,8 @@ public class LockInCampfireEffect extends com.megacrit.cardcrawl.vfx.AbstractGam
     private Color screenColor = AbstractDungeon.fadeColor.cpy();
 
     public static int identifyRngCount;
+
+    public static boolean identifiedACard = false;
 
     public LockInCampfireEffect() {
         this.duration = 1.5F;
@@ -52,22 +51,23 @@ public class LockInCampfireEffect extends com.megacrit.cardcrawl.vfx.AbstractGam
 
         if (!AbstractDungeon.isScreenUp) {
             if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
+                //Picked a card
                 for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards) {
-
                     AbstractDungeon.effectsQueue.add(new ShowCardAndObtainEffect(c, (float) Settings.WIDTH * .75F, (float) Settings.HEIGHT / 2.0F));
 
                     AbstractDungeon.topLevelEffects.add(new com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect(
-
-                            (AbstractCard) UnknownExtraUiPatch.parentCard.get(c), Settings.WIDTH * 0.35F, Settings.HEIGHT / 2));
-
+                            UnknownExtraUiPatch.parentCard.get(c), Settings.WIDTH * 0.35F, Settings.HEIGHT / 2F));
 
                     AbstractDungeon.player.masterDeck.removeCard(UnknownExtraUiPatch.parentCard.get(c));
 
+                    AbstractDungeon.player.loseGold(SneckoMod.costToIdentify);
+                    if (c.canUpgrade() && AbstractDungeon.player.hasRelic(UnknownEgg.ID)) c.upgrade();
                 }
                 AbstractDungeon.gridSelectScreen.selectedCards.clear();
-                ((RestRoom) AbstractDungeon.getCurrRoom()).fadeIn();
-                LockInCampfireOption.usedIdentify = true;
-            } else if (this.openedScreen && !LockInCampfireOption.usedIdentify) {
+                ((RestRoom) AbstractDungeon.getCurrRoom()).campfireUI.reopen();
+                SneckoMod.identifyRng = new Random(Settings.seed, identifyRngCount);
+                identifiedACard = true;
+            } else if (this.openedScreen && !identifiedACard) {
                 // Cancelled
                 isDone = true;
                 ((RestRoom) AbstractDungeon.getCurrRoom()).campfireUI.reopen();
@@ -76,6 +76,7 @@ public class LockInCampfireEffect extends com.megacrit.cardcrawl.vfx.AbstractGam
         }
 
         if ((this.duration < 1.0F) && (!this.openedScreen)) {
+            //Create a Screen
             this.openedScreen = true;
 
             CardGroup cg = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
@@ -89,9 +90,9 @@ public class LockInCampfireEffect extends com.megacrit.cardcrawl.vfx.AbstractGam
                         if (((AbstractUnknownCard)c).lastUnknownRoll != null){
                             SlimeboundMod.logger.info("Detected last unknown roll!");
                             c2 = ((AbstractUnknownCard)c).lastUnknownRoll.makeCopy();
-
                         } else {
-                            c2 = CardLibrary.getCard(((AbstractUnknownCard) c).myList().get(SneckoMod.identifyRng.random(0, ((AbstractUnknownCard) c).myList().size() - 1))).makeCopy();
+                            c2 = CardLibrary.getCard(((AbstractUnknownCard) c).myList().get(
+                                    SneckoMod.identifyRng.random(0, ((AbstractUnknownCard) c).myList().size() - 1))).makeCopy();
                         }
 
                     } else {
@@ -106,7 +107,6 @@ public class LockInCampfireEffect extends com.megacrit.cardcrawl.vfx.AbstractGam
             }
             AbstractDungeon.overlayMenu.cancelButton.show(GridCardSelectScreen.TEXT[1]);
             AbstractDungeon.gridSelectScreen.open(cg, 1, TEXT[3], false, false, true, false);
-
         }
 
 
@@ -114,11 +114,7 @@ public class LockInCampfireEffect extends com.megacrit.cardcrawl.vfx.AbstractGam
             this.isDone = true;
             if (com.megacrit.cardcrawl.rooms.CampfireUI.hidden) {
                 com.megacrit.cardcrawl.rooms.AbstractRoom.waitTimer = 0.0F;
-                if (AbstractDungeon.player.hasRelic(UnknownEgg.ID)){
-                    ((RestRoom) AbstractDungeon.getCurrRoom()).campfireUI.reopen();
-                } else {
-                    AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
-                }
+                ((RestRoom) AbstractDungeon.getCurrRoom()).campfireUI.reopen();
                 ((RestRoom) AbstractDungeon.getCurrRoom()).cutFireSound();
             }
         }

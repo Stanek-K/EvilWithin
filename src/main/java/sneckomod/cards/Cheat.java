@@ -6,10 +6,7 @@ import sneckomod.SneckoMod;
 import sneckomod.powers.CheatPower;
 
 public class Cheat extends AbstractSneckoCard {
-
     public final static String ID = makeID("Cheat");
-
-    //stupid intellij stuff SKILL, SELF, RARE
 
     public Cheat() {
         super(ID, 0, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
@@ -18,16 +15,13 @@ public class Cheat extends AbstractSneckoCard {
         SneckoMod.loadJokeCardImage(this, "Cheat.png");
     }
 
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        applyToSelf(new CheatPower(1));
+    public void upp() {
+        exhaust = false;
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            exhaust = false;
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
-        }
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        applyToSelf(new CheatPower(1));
     }
 }

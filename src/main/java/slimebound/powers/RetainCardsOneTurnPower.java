@@ -14,7 +14,7 @@ import slimebound.SlimeboundMod;
 /*    */
 /*    */
 
-
+@Deprecated
 public class RetainCardsOneTurnPower extends AbstractPower {
     public static final String POWER_ID = "Slimebound:RetainCardsOneTurnPower";
     public static final String NAME = "Potency";

@@ -11,7 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import slimebound.SlimeboundMod;
 
-
+@Deprecated
 public class SearingPower extends AbstractPower implements HealthBarRenderPower {
 
     public static final String POWER_ID = "Slimebound:SearingPower";

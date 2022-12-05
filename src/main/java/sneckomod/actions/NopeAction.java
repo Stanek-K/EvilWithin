@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import slimebound.actions.MakeTempCardInHandActionReduceCost;
+import sneckomod.OffclassHelper;
 import sneckomod.SneckoMod;
 
 import java.util.ArrayList;
@@ -32,15 +33,14 @@ public class NopeAction extends AbstractGameAction {
     }// 26
 
     public void update() {
-        if (this.duration == Settings.ACTION_DUR_FAST) {// 30
-
-            if (this.p.hand.group.size() > 1) {// 74
-                AbstractDungeon.handCardSelectScreen.open(EXTENDED_DESCRIPTION[0], 1, false, false);// 75
-                this.tickDuration();// 76
-                return;// 77
+        if (this.duration == Settings.ACTION_DUR_FAST) {
+            if (this.p.hand.group.size() > 1) {
+                AbstractDungeon.handCardSelectScreen.open(EXTENDED_DESCRIPTION[0], 1, false, false);
+                this.tickDuration();
+                return;
             }
 
-            if (this.p.hand.group.size() == 1) {// 78
+            if (this.p.hand.group.size() == 1) {
                 AbstractCard c = p.hand.getTopCard();
                 p.hand.moveToExhaustPile(c);
                 AbstractCard.CardType q = c.type;
@@ -49,7 +49,7 @@ public class NopeAction extends AbstractGameAction {
                 if (c.type == AbstractCard.CardType.CURSE) {
                     card = AbstractDungeon.returnRandomCurse();
                 } else if (c.type == AbstractCard.CardType.STATUS) {
-                    card = SneckoMod.getRandomStatus().makeCopy();
+                    card = OffclassHelper.getARandomStatus();
                 } else {
                     card = SneckoMod.getSpecificClassCard(c.color);
                 }
@@ -71,7 +71,7 @@ public class NopeAction extends AbstractGameAction {
                 if (c.type == AbstractCard.CardType.CURSE) {
                     card = AbstractDungeon.returnRandomCurse();
                 } else if (c.type == AbstractCard.CardType.STATUS) {
-                    card = SneckoMod.getRandomStatus().makeCopy();
+                    card = OffclassHelper.getARandomStatus();
                 } else {
                     card = SneckoMod.getSpecificClassCard(c.color);
                 }

@@ -39,7 +39,8 @@
   },
   "Guardian:ChargeUp": {
     "NAME": "Charge Up",
-    "DESCRIPTION": "Place this into guardianmod:Stasis. NL guardianmod:Tick - Gain !B! Block and !M! Strength. NL guardianmod:Volatile."
+    "DESCRIPTION": "Place this into guardianmod:Stasis. NL guardianmod:Tick - Gain !B! Block and !M! Strength. NL guardianmod:Volatile.",
+    "UPGRADE_DESCRIPTION": "Place this into guardianmod:Stasis. NL *Stasis lasts 2 turns. NL guardianmod:Tick - Gain !B! Block and !M! Strength. NL guardianmod:Volatile."
   },
   "Guardian:DonusPower": {
     "NAME": "Overload",
@@ -48,8 +49,7 @@
   },
   "Guardian:DecasProtection": {
     "NAME": "Ancient Power",
-    "DESCRIPTION": "Gain 4 Temporary Strength and Dexterity. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Gain 4 Temporary Strength and Dexterity. Reduce each of your debuffs by 1. NL Exhaust."
+    "DESCRIPTION": "Gain !M! Temporary Strength and Dexterity."
   },
   "Guardian:FierceBash": {
     "NAME": "Fierce Bash",
@@ -66,7 +66,8 @@
   },
   "Guardian:GuardianWhirl": {
     "NAME": "Guardian Whirl",
-    "DESCRIPTION": "Requires 20 or more Block. NL Deal !D! damage to ALL enemies !M! times.",    "EXTENDED_DESCRIPTION": [
+    "DESCRIPTION": "Requires 20 or more Block. NL Deal !D! damage to ALL enemies !M! times.",
+    "EXTENDED_DESCRIPTION": [
       "More Block required."
     ]
   },
@@ -90,8 +91,8 @@
   },
   "Guardian:BronzeArmor": {
     "NAME": "Resilient Plate",
-    "DESCRIPTION": "Reduce each of your debuffs by !M!. NL guardianmod:Brace 8. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Reduce each of your debuffs by !M!. NL guardianmod:Brace 8."
+    "DESCRIPTION": "Reduce each of your debuffs by !M!. NL guardianmod:Brace !GuardianSecondM!. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Reduce each of your debuffs by !M!. NL guardianmod:Brace !GuardianSecondM!."
   },
   "Guardian:FloatingOrbs": {
     "NAME": "Floating Orbs",
@@ -100,7 +101,7 @@
   },
   "Guardian:OrbSlam": {
     "NAME": "Orb Slam",
-    "DESCRIPTION": "Deal !D! damage !GuardianMulti! times. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage. NL Exhaust."
   },
   "Guardian:Incinerate": {
     "NAME": "Incinerate",
@@ -118,11 +119,11 @@
   },
   "Guardian:SphericShield": {
     "NAME": "Spheric Shield",
-    "DESCRIPTION": "Gain !B! Block. NL guardianmod:Brace !M!. NL Exhaust."
+    "DESCRIPTION": "Gain !B! Block. NL Enter guardianmod:Defensive_Mode. NL Exhaust."
   },
   "Guardian:Harden": {
     "NAME": "Harden",
-    "DESCRIPTION": "Requires 20 or more Block. NL guardianmod:Brace !GuardianSecondM! and gain !M! Thorns.",
+    "DESCRIPTION": "Gain !B! Block. NL Reduce each of you debuffs by !M!.",
     "EXTENDED_DESCRIPTION": [
       "More Block required."
     ]
@@ -240,7 +241,7 @@
   },
   "Guardian:RollAttack": {
     "NAME": "Roll Attack",
-    "DESCRIPTION": "Deal !D! damage. NL If in *Defensive *Mode, affects ALL enemies. Otherwise, guardianmod:Brace 8."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL guardianmod:Brace !M!."
   },
   "Guardian:GemFire": {
     "NAME": "Gem Cannon",
@@ -260,7 +261,7 @@
   },
   "Guardian:ShieldSpikes": {
     "NAME": "Shield Spikes",
-    "DESCRIPTION": "Gain !B! Block. NL Gain !M! temporary Thorns if in *Defensive *Mode. Otherwise, guardianmod:Brace 8."
+    "DESCRIPTION": "Gain !B! Block. NL If you are in *Defensive *Mode, gain !M! Thorns. Otherwise, guardianmod:Brace !GuardianSecondM!."
   },
   "Guardian:PrismaticBeam": {
     "NAME": "Prismatic Spray",
@@ -303,15 +304,15 @@
   },
   "Guardian:EvasiveProtocol": {
     "NAME": "Evasive Protocol",
-    "DESCRIPTION": "While in *Defensive *Mode, raise your Dexterity by !M!. NL At the start of your turn, guardianmod:Brace 3."
+    "DESCRIPTION": "At the start of your turn, guardianmod:Brace !M!."
   },
   "Guardian:SpikerProtocol": {
     "NAME": "Spiker Protocol",
-    "DESCRIPTION": "Gain !M! Thorns while in *Defensive *Mode. NL At the start of your turn, guardianmod:Brace 3."
+    "DESCRIPTION": "Gain !M! Thorns while in *Defensive *Mode."
   },
   "Guardian:ArmoredProtocol": {
     "NAME": "Armored Protocol",
-    "DESCRIPTION": "Gain !M! Block at the end of each turn while in *Defensive *Mode. NL At the start of your turn, guardianmod:Brace 3."
+    "DESCRIPTION": "Gain !M! Block at the end of each turn while in *Defensive *Mode."
   },
   "Guardian:TimeSifter": {
     "NAME": "Time Sifter",
@@ -376,7 +377,7 @@
   },
   "Guardian:RevengeProtocol": {
     "NAME": "Revenge Protocol",
-    "DESCRIPTION": "While in *Defensive *Mode, raise your Strength by !M!. NL At the start of your turn, guardianmod:Brace 5."
+    "DESCRIPTION": "Whenever you are attacked, gain !M! temporary Strength."
   },
   "Guardian:GatlingBeam": {
     "NAME": "Laser Turret",
@@ -433,8 +434,8 @@
     "UPGRADE_DESCRIPTION": " NL Exhaust."
   },
   "Guardian:BodySlam": {
-    "NAME": "Body Slam",
-    "DESCRIPTION": "Deal damage equal to your Block.",
+    "NAME": "Body Crash",
+    "DESCRIPTION": "Gain !B! Block. NL Deal damage equal to your Block.",
     "UPGRADE_DESCRIPTION": " NL (Deals !D! damage.)"
   },
   "Guardian:SecondStrike": {

@@ -11,7 +11,7 @@ public class AbsorbEndCombat extends CustomRelic {
     public static final String IMG_PATH = "relics/heartofgoo.png";
     public static final String OUTLINE_IMG_PATH = "relics/heartofgooOutline.png";
     private static final int HP_PER_SLURP = 2;
-    private static final int HP_PER_COMBAT = 8;
+    private static final int TRIGGERS_PER_COMBAT = 4;
 
     public AbsorbEndCombat() {
         super(ID, new Texture(slimebound.SlimeboundMod.getResourcePath(IMG_PATH)), new Texture(slimebound.SlimeboundMod.getResourcePath(OUTLINE_IMG_PATH)),
@@ -26,16 +26,21 @@ public class AbsorbEndCombat extends CustomRelic {
     @Override
     public void atBattleStart() {
         grayscale = false;
-        counter = HP_PER_COMBAT;
+        counter = TRIGGERS_PER_COMBAT;
+    }
+
+    @Override
+    public void onVictory() {
+        grayscale = false;
+        counter = -1;
     }
 
     @Override
     public void onTrigger() {
-        int realAmount = Math.min(HP_PER_SLURP, counter);
-        if (realAmount > 0) {
-            AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.HealAction(AbstractDungeon.player, AbstractDungeon.player, realAmount));
+        if (counter > 0) {
+            addToBot(new com.megacrit.cardcrawl.actions.common.HealAction(AbstractDungeon.player, AbstractDungeon.player, HP_PER_SLURP));
             flash();
-            counter -= realAmount;
+            counter -= 1;
             if (counter == 0) {
                 grayscale = true;
             }

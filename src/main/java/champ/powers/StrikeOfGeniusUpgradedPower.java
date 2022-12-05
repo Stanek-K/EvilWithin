@@ -13,8 +13,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import downfall.cardmods.ExhaustMod;
-import theHexaghost.HexaMod;
+import expansioncontent.cardmods.ExhaustMod;
 import downfall.util.TextureLoader;
 
 import java.util.ArrayList;

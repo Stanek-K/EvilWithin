@@ -10,10 +10,7 @@ import sneckomod.actions.MemorizeAction;
 import sneckomod.patches.UnknownExtraUiPatch;
 
 public class Memorize extends AbstractSneckoCard {
-
     public final static String ID = makeID("Memorize");
-
-    //stupid intellij stuff SKILL, SELF, COMMON
 
     public Memorize() {
         super(ID, 0, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
@@ -23,30 +20,24 @@ public class Memorize extends AbstractSneckoCard {
         SneckoMod.loadJokeCardImage(this, "Memorize.png");
     }
 
+    public void upp() {
+        selfRetain = true;
+        rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
+    }
+
     public void use(AbstractPlayer p, AbstractMonster m) {
         atb(new MemorizeAction());
     }
 
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            selfRetain = true;
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
-        }
-    }
-
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
             c.update();
             if (UnknownExtraUiPatch.parentCard.get(c) != null) {
                 return super.canUse(p, m);
             }
         }
-
-
         return false;
     }
 }

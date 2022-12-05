@@ -3,11 +3,17 @@ package downfall.relics;
 import basemod.abstracts.CustomRelic;
 import charbosses.bosses.AbstractCharBoss;
 import com.badlogic.gdx.graphics.Texture;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import downfall.downfallMod;
+
+import java.util.Iterator;
 
 public class HeartBlessingBlue extends CustomRelic {
 
@@ -24,8 +30,18 @@ public class HeartBlessingBlue extends CustomRelic {
         return DESCRIPTIONS[0];
     }
 
-    public void onEquip() {
-        AbstractDungeon.player.increaseMaxHp(10, true);
-    }
+    public void atBattleStart() {
+        Iterator<AbstractMonster> var1 = AbstractDungeon.getMonsters().monsters.iterator();
+        AbstractMonster m;
+        do {
+            if (!var1.hasNext()) {
+                return;
+            }
+            m = var1.next();
+        } while(m.type != AbstractMonster.EnemyType.BOSS);
 
+        this.flash();
+        this.addToTop(new HealAction(AbstractDungeon.player, AbstractDungeon.player, 12, 0.0F));
+        this.addToTop(new RelicAboveCreatureAction(AbstractDungeon.player, this));
+    }
 }

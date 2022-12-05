@@ -20,12 +20,6 @@ public class BronzeArmor extends AbstractGuardianCard {
     private static final CardRarity RARITY = CardRarity.UNCOMMON;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final int COST = 1;
-
-    //TUNING CONSTANTS
-    private static final int ARTIFACT = 2;
-    private static final int UPGRADE_ARTIFACT = 1;
-    private static final int SOCKETS = 0;
-    private static final boolean SOCKETSAREAFTER = true;
     public static String UPGRADED_DESCRIPTION;
 
     //END TUNING CONSTANTS
@@ -39,11 +33,10 @@ public class BronzeArmor extends AbstractGuardianCard {
 
     public BronzeArmor() {
         super(ID, NAME, GuardianMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.GUARDIAN, RARITY, TARGET);
-
-
-        this.magicNumber = this.baseMagicNumber = ARTIFACT;
+        this.magicNumber = this.baseMagicNumber = 2;
+        this.secondaryM = 8;
         this.exhaust = true;
-        this.socketCount = SOCKETS;
+        this.socketCount = 0;
         updateDescription();
         loadGemMisc();
     }
@@ -52,7 +45,7 @@ public class BronzeArmor extends AbstractGuardianCard {
         super.use(p, m);
 
         AbstractDungeon.actionManager.addToBottom(new ReduceDebuffsAction(AbstractDungeon.player, magicNumber));
-        brace(8);
+        brace(secondaryM);
     }
 
     public AbstractCard makeCopy() {

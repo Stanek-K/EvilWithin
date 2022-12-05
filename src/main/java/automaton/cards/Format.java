@@ -1,7 +1,7 @@
 package automaton.cards;
 
 import automaton.actions.AddToFuncAction;
-import automaton.actions.EasyXCostAction;
+import expansioncontent.actions.EasyXCostAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

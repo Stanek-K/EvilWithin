@@ -30,8 +30,6 @@ public class Equalize extends AbstractSlimeboundCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardStrings cardStrings;
     private static final int COST = 2;
-    private static final int POWER = 6;
-    private static final int UPGRADE_BONUS = 3;
 
     static {
         cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -40,27 +38,19 @@ public class Equalize extends AbstractSlimeboundCard {
         UPGRADED_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
 
     }
-
-    public int missingHealth;
     private boolean isACopy;
 
 
     public Equalize() {
-
         super(ID, NAME, SlimeboundMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.SLIMEBOUND, RARITY, TARGET);
-
-
         this.baseDamage = 8;
         this.magicNumber = this.baseMagicNumber = 4;
         this.exhaust = true;
         tags.add(CardTags.HEALING);
         SlimeboundMod.loadJokeCardImage(this, "Equalize.png");
-
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-
         logger.info("max health: " + p.maxHealth + ", current health: " + p.currentHealth);
         if (m.hasPower(SlimedPower.POWER_ID) && !this.isACopy) {
             //this.isACopy = true;
@@ -88,26 +78,18 @@ public class Equalize extends AbstractSlimeboundCard {
     }
 
     public AbstractCard makeCopy() {
-
         return new Equalize();
-
     }
 
     public void triggerOnGlowCheck() {
         slimedGlowCheck();
-    }// 68
+    }
 
     public void upgrade() {
-
         if (!this.upgraded) {
-
             upgradeName();
             upgradeDamage(4);
-            upgradeMagicNumber(2);
-
-
         }
-
     }
 }
 

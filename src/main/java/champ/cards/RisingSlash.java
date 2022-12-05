@@ -9,18 +9,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class RisingSlash extends AbstractChampCard {
-
     public final static String ID = makeID("RisingSlash");
-
-    //stupid intellij stuff attack, enemy, uncommon
-
-    private static final int DAMAGE = 9;
-    private static final int UPG_DAMAGE = 3;
 
     public RisingSlash() {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = DAMAGE;
+        baseDamage = 8;
         tags.add(CardTags.STRIKE);
+    }
+
+    public void upp() {
+        upgradeDamage(3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -35,9 +33,5 @@ public class RisingSlash extends AbstractChampCard {
     public void triggerOnGlowCheck() {
         if (!AbstractDungeon.actionManager.cardsPlayedThisCombat.isEmpty())
             glowColor = (AbstractDungeon.actionManager.cardsPlayedThisCombat.get(AbstractDungeon.actionManager.cardsPlayedThisCombat.size() - 1).hasTag(ChampMod.FINISHER) && !this.purgeOnUse ? AbstractCard.GOLD_BORDER_GLOW_COLOR : BLUE_BORDER_GLOW_COLOR);
-    }
-
-    public void upp() {
-        upgradeDamage(UPG_DAMAGE);
     }
 }

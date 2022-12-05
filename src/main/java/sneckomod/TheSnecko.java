@@ -12,15 +12,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import reskinContent.patches.CharacterSelectScreenPatches;
-import reskinContent.reskinContent;
 import sneckomod.cards.Defend;
 import sneckomod.cards.SnekBite;
 import sneckomod.cards.Strike;
@@ -102,7 +99,7 @@ public class TheSnecko extends CustomPlayer {
     @Override
     public CharSelectInfo getLoadout() {
         return new CharSelectInfo(NAMES[0], TEXT[0],
-                85, 85, 3, 99, 5, this, getStartingRelics(),
+                80, 80, 3, 139, 5, this, getStartingRelics(),
                 getStartingDeck(), false);
     }
 
@@ -112,12 +109,12 @@ public class TheSnecko extends CustomPlayer {
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
         retVal.add(Strike.ID);
+        retVal.add(SnekBite.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(Defend.ID);
         retVal.add(TailWhip.ID);
-        retVal.add(SnekBite.ID);
         retVal.add(Unknown.ID);
         retVal.add(Unknown.ID);
         return retVal;

@@ -11,36 +11,26 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import static champ.ChampMod.loadJokeCardImage;
 
 public class Haymaker extends AbstractChampCard {
-
     public final static String ID = makeID("Haymaker");
 
-    //stupid intellij stuff attack, enemy, common
-
-    private static final int DAMAGE = 10;
-    private static final int UPG_DAMAGE = 4;
-
     public Haymaker() {
-        super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ENEMY);
-        baseDamage = DAMAGE;
-
+        super(ID, 2, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        baseDamage = 8;
+        baseMagicNumber = magicNumber = 2;
+        baseDownfallMagic = downfallMagic = 2;
         tags.add(ChampMod.FINISHER);
-        postInit();
         loadJokeCardImage(this, "Haymaker.png");
+    }
+
+    public void upp() {
+        upgradeDamage(4);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         atb(new AnimateSuplexAction(m));
         dmg(m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        
-        //if (dcombo())
-            applyToEnemy(m, autoVuln(m, 2));
-            applyToEnemy(m, autoWeak(m, 2));
-
+        applyToEnemy(m, autoVuln(m, magicNumber));
+        applyToEnemy(m, autoWeak(m, downfallMagic));
         finisher();
-    }
-
-
-    public void upp() {
-        upgradeDamage(UPG_DAMAGE);
     }
 }

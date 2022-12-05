@@ -23,8 +23,6 @@ public class Dissolve extends AbstractSlimeboundCard {
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardStrings cardStrings;
     private static final int COST = 0;
-    private static final int BLOCK = 5;
-    private static final int UPGRADE_BONUS = 3;
     public static String UPGRADED_DESCRIPTION;
 
     static {
@@ -36,20 +34,14 @@ public class Dissolve extends AbstractSlimeboundCard {
 
     public Dissolve() {
         super(ID, NAME, SlimeboundMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.SLIMEBOUND, RARITY, TARGET);
-        this.cardsToPreview = new Lick();
-
-        this.baseBlock = 7;
+        this.magicNumber = this.baseMagicNumber = 1;
         this.exhaust = true;
-        this.magicNumber = this.baseMagicNumber = 2;
+        this.cardsToPreview = new Lick();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-        // AbstractDungeon.actionManager.addToBottom(new GainBlockAction(p, p, this.block));
-        AbstractDungeon.actionManager.addToBottom(new DrawCardAction(p, magicNumber));
-        AbstractDungeon.actionManager.addToBottom(new DissolveAction(p, p, 1, false, this.block, 0));
-
-
+        addToBot(new DrawCardAction(p, magicNumber));
+        addToBot(new DissolveAction(p, p, 1, 0));
     }
 
     public AbstractCard makeCopy() {

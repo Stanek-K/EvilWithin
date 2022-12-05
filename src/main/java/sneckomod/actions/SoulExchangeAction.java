@@ -1,70 +1,71 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
 package sneckomod.actions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import sneckomod.SneckoMod;
 
 public class SoulExchangeAction extends AbstractGameAction {
     private static final String[] EXTENDED_DESCRIPTION = CardCrawlGame.languagePack.getCardStrings(SneckoMod.makeID("SoulExchange")).EXTENDED_DESCRIPTION;
-    private AbstractPlayer p;
+    private final AbstractPlayer p;
 
     public SoulExchangeAction() {
-        this.actionType = ActionType.CARD_MANIPULATION;// 22
-        this.p = AbstractDungeon.player;// 23
-        this.duration = Settings.ACTION_DUR_FAST;// 24
-    }// 26
+        this.actionType = ActionType.CARD_MANIPULATION;
+        this.p = AbstractDungeon.player;
+        this.duration = Settings.ACTION_DUR_FAST;
+    }
 
     public void update() {
-        if (this.duration == Settings.ACTION_DUR_FAST) {// 30
-
-            if (this.p.hand.group.size() > 1) {// 74
-                AbstractDungeon.handCardSelectScreen.open(EXTENDED_DESCRIPTION[0], 1, false, false);// 75
-                this.tickDuration();// 76
-                return;// 77
+        if (this.duration == Settings.ACTION_DUR_FAST) {
+            if (this.p.hand.group.size() > 2) {
+                AbstractDungeon.handCardSelectScreen.open(EXTENDED_DESCRIPTION[0], 2, false, false);
+                this.tickDuration();
+                return;
             }
 
-            if (this.p.hand.group.size() == 1) {// 78
-                AbstractCard c = p.hand.getTopCard();
-                p.hand.moveToExhaustPile(c);
-                this.isDone = true;// 82
+            if (this.p.hand.group.size() == 2) {
+                swapCosts(p.hand.getTopCard(), p.hand.getNCardFromTop(1));
+                this.isDone = true;
+            }
+
+            if (this.p.hand.group.size() < 2) {
+                this.isDone = true;
+                return;
             }
         }
 
-        if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {// 87
-            for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
-                p.hand.moveToExhaustPile(c);
-                addToBot(new ExhaustAction(p.hand.size(), true, false));
-                for (int i = 0; i < p.hand.size(); i++) {
-                    if (c.type != AbstractCard.CardType.STATUS && c.type != AbstractCard.CardType.CURSE) {
-                        AbstractCard card = SneckoMod.getSpecificClassCard(c.color);
-                        this.addToBot(new MakeTempCardInHandAction(card, true));// 34
-                    } else if (c.type == AbstractCard.CardType.STATUS) {
-                        AbstractCard card = SneckoMod.getRandomStatus();
-                        this.addToBot(new MakeTempCardInHandAction(card, true));// 34
-                    } else {
-                        AbstractCard card = AbstractDungeon.returnRandomCurse();
-                        this.addToBot(new MakeTempCardInHandAction(card, true));// 34
-                    }
-                }
-
-
-            }
-
-            AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;// 96
-            AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();// 97
-            this.isDone = true;// 98
+        if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
+            swapCosts(AbstractDungeon.handCardSelectScreen.selectedCards.group.get(0), AbstractDungeon.handCardSelectScreen.selectedCards.group.get(1));
+            AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;
+            AbstractDungeon.handCardSelectScreen.selectedCards.group.clear();
+            this.isDone = true;
         }
-        this.tickDuration();// 101
-    }// 102
+        this.tickDuration();
+    }
+
+    private void swapCosts(AbstractCard card1, AbstractCard card2) {
+        int cc1 = getCurrentCost(card1),
+            cc2 = getCurrentCost(card2);
+        setCost(card1, cc2);
+        setCost(card2, cc1);
+    }
+
+    private int getCurrentCost(AbstractCard card) {
+        int cost;
+        if (card.freeToPlayOnce) cost = 0;
+        else if (card.cost == -1) cost = EnergyPanel.getCurrentEnergy();
+        else cost = card.costForTurn;
+        return cost;
+    }
+
+    private void setCost(AbstractCard card, int cost) {
+        if (card.cost >= 0) {
+            card.cost = card.costForTurn = cost;
+            card.freeToPlayOnce = false;
+        }
+    }
 }

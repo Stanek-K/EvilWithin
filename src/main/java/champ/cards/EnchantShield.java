@@ -10,24 +10,22 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import static champ.ChampMod.fatigue;
 
 public class EnchantShield extends AbstractChampCard {
-
     public final static String ID = makeID("EnchantShield");
-
-    //stupid intellij stuff skill, self, rare
 
     public EnchantShield() {
         super(ID, 1, CardType.SKILL, CardRarity.RARE, CardTarget.SELF);
-        exhaust = true;
-      //  myHpLossCost = 5;
         magicNumber = baseMagicNumber = 8;
-        postInit();
+        exhaust = true;
+    }
+
+    public void upp() {
+        upgradeBaseCost(0);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         atb(new SelectCardsInHandAction(1, CardCrawlGame.languagePack.getUIString("champ:EnchantUI").TEXT[2], c -> c.baseBlock > 0, (cards) -> {
             cards.get(0).baseBlock += magicNumber;
         }));
-     //   fatigue(5);
     }
 
     @Override
@@ -44,10 +42,5 @@ public class EnchantShield extends AbstractChampCard {
             return false;
         }
         return super.canUse(p, m);
-    }
-
-    public void upp() {
-        //  tags.add(ChampMod.TECHNIQUE);
-        upgradeBaseCost(0);
     }
 }

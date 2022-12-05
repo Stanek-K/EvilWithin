@@ -32,33 +32,26 @@ public class RainOfGoop extends AbstractSlimeboundCard {
 
     }
 
-
     public RainOfGoop() {
         super(ID, NAME, SlimeboundMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.SLIMEBOUND, RARITY, TARGET);
-        this.slimed = this.baseSlimed = 3;
-        this.magicNumber = this.baseMagicNumber = 4;
+        this.slimed = this.baseSlimed = 4;
+        this.magicNumber = this.baseMagicNumber = 3;
         SlimeboundMod.loadJokeCardImage(this, "RainOfGoop.png");
     }
 
+    public void upgrade() {
+        if (!this.upgraded) {
+            upgradeName();
+            this.upgradeMagicNumber(1);
+        }
+    }
+
     public void use(AbstractPlayer p, AbstractMonster m) {
-        AbstractDungeon.actionManager.addToBottom(new TendrilFlailAction(p,
-                AbstractDungeon.getMonsters().getRandomMonster(true), this.magicNumber, this.slimed));
+        addToBot(new TendrilFlailAction(p, AbstractDungeon.getMonsters().getRandomMonster(true), this.magicNumber, this.slimed));
     }
 
     public AbstractCard makeCopy() {
-
         return new RainOfGoop();
-
-    }
-
-    public void upgrade() {
-
-        if (!this.upgraded) {
-
-            upgradeName();
-            this.upgradeMagicNumber(2);
-        }
-
     }
 }
 

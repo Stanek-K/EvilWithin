@@ -35,6 +35,7 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import expansioncontent.cards.AbstractDownfallCard;
 import hermit.util.TextureLoader;
 
 import java.security.Signature;
@@ -44,46 +45,20 @@ import java.util.List;
 import static champ.ChampMod.*;
 
 
-public abstract class AbstractChampCard extends CustomCard {
-    protected final CardStrings cardStrings;
+public abstract class AbstractChampCard extends AbstractDownfallCard {
     public String betaArtPath;
-    protected final String NAME;
-    public int cool;
-    public int baseCool;
-    public boolean upgradedCool;
-    public boolean isCoolModified;
     public int myHpLossCost;
-    public String DESCRIPTION;
-    public String UPGRADE_DESCRIPTION;
-    public String[] EXTENDED_DESCRIPTION;
     public boolean reInitDescription = true;
-
     public boolean techniqueLast = true;
 
 
     public AbstractChampCard(final String id, final int cost, final CardType type, final CardRarity rarity, final CardTarget target) {
-        super(id, "ERROR", getCorrectPlaceholderImage(type, id),
-                cost, "ERROR", type, ChampChar.Enums.CHAMP_GRAY, rarity, target);
-        cardStrings = CardCrawlGame.languagePack.getCardStrings(id);
-        name = NAME = cardStrings.NAME;
-        originalName = NAME;
-        rawDescription = DESCRIPTION = cardStrings.DESCRIPTION;
-        UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-        EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
-        initializeTitle();
+        super(id, getCorrectPlaceholderImage(type, id), cost, type, rarity, target, ChampChar.Enums.CHAMP_GRAY);
         initializeDescription();
     }
 
     public AbstractChampCard(final String id, final int cost, final CardType type, final CardRarity rarity, final CardTarget target, final CardColor color) {
-        super(id, "ERROR", getCorrectPlaceholderImage(type, id),
-                cost, "ERROR", type, color, rarity, target);
-        cardStrings = CardCrawlGame.languagePack.getCardStrings(id);
-        name = NAME = cardStrings.NAME;
-        originalName = NAME;
-        rawDescription = DESCRIPTION = cardStrings.DESCRIPTION;
-        UPGRADE_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-        EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
-        initializeTitle();
+        super(id, getCorrectPlaceholderImage(type, id), cost, type, rarity, target, color);
         initializeDescription();
     }
 
@@ -121,28 +96,6 @@ public abstract class AbstractChampCard extends CustomCard {
         return AbstractDungeon.player.stance.ID.equals(DefensiveStance.STANCE_ID) || AbstractDungeon.player.stance.ID.equals(UltimateStance.STANCE_ID);
     }
 
-    public void displayUpgrades() {
-        super.displayUpgrades();
-        if (upgradedCool) {
-            cool = baseCool;
-            isCoolModified = true;
-        }
-    }
-
-    void upgradeCool(int amount) {
-        baseCool += amount;
-        cool = baseCool;
-        upgradedCool = true;
-    }
-
-    @Override
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upp();
-        }
-    }
-
 
     @Override
     public List<TooltipInfo> getCustomTooltips() {
@@ -162,76 +115,6 @@ public abstract class AbstractChampCard extends CustomCard {
         if (this.hasTag(FINISHER)) {
             this.glowColor = AbstractDungeon.player.stance instanceof AbstractChampStance ? Color.RED.cpy() : BLUE_BORDER_GLOW_COLOR;
         }
-    }
-
-    public abstract void upp();
-
-    protected void atb(AbstractGameAction action) {
-        addToBot(action);
-    }
-
-    protected void att(AbstractGameAction action) {
-        addToTop(action);
-    }
-
-    protected DamageInfo makeInfo() {
-        return makeInfo(damageTypeForTurn);
-    }
-
-    private DamageInfo makeInfo(DamageInfo.DamageType type) {
-        return new DamageInfo(AbstractDungeon.player, damage, type);
-    }
-
-    public void dmg(AbstractMonster m, AbstractGameAction.AttackEffect fx) {
-        atb(new DamageAction(m, makeInfo(), fx));
-    }
-
-    public void allDmg(AbstractGameAction.AttackEffect fx) {
-        atb(new DamageAllEnemiesAction(AbstractDungeon.player, multiDamage, damageTypeForTurn, fx));
-    }
-
-    public void blck() {
-        atb(new GainBlockAction(AbstractDungeon.player, AbstractDungeon.player, block));
-    }
-
-    public void makeInHand(AbstractCard c, int i) {
-        atb(new MakeTempCardInHandAction(c, i));
-    }
-
-    public void makeInHand(AbstractCard c) {
-        makeInHand(c, 1);
-    }
-
-    void shuffleIn(AbstractCard c, int i) {
-        atb(new MakeTempCardInDrawPileAction(c, i, false, true));
-    }
-
-    public void shuffleIn(AbstractCard c) {
-        shuffleIn(c, 1);
-    }
-
-    public ArrayList<AbstractMonster> monsterList() {
-        ArrayList<AbstractMonster> q = new ArrayList<>();
-        for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-            if (!m.isDeadOrEscaped()) q.add(m);
-        }
-        return q;
-    }
-
-    public void applyToEnemy(AbstractMonster m, AbstractPower po) {
-        atb(new ApplyPowerAction(m, AbstractDungeon.player, po, po.amount));
-    }
-
-    public void applyToSelf(AbstractPower po) {
-        atb(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, po, po.amount));
-    }
-
-    WeakPower autoWeak(AbstractMonster m, int i) {
-        return new WeakPower(m, i, false);
-    }
-
-    VulnerablePower autoVuln(AbstractMonster m, int i) {
-        return new VulnerablePower(m, i, false);
     }
 
     public void triggerOpenerRelics(boolean fromNeutral) {
@@ -333,13 +216,9 @@ public abstract class AbstractChampCard extends CustomCard {
         ChampTextHelper.colorCombos(this, true);
     }
 
-    public void postInit(){
-        if (baseDamage > 0) techniqueLast = true;
-    }
-
     @Override
     public void initializeDescription() {
-        ChampTextHelper.calculateTagText(this);
+        ChampTextHelper.calculateTagText(this, DESCRIPTION, UPGRADE_DESCRIPTION);
         super.initializeDescription();
     }
 

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import downfall.patches.RewardItemTypeEnumPatch;
 import downfall.util.TextureLoader;
+import sneckomod.OffclassHelper;
 import sneckomod.SneckoMod;
 import sneckomod.cards.unknowns.AbstractUnknownCard;
 
@@ -13,17 +14,19 @@ import java.util.ArrayList;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.cardRandomRng;
 
-public class UpgradedUnknownReward extends CustomReward {
-    public static final String ID = SneckoMod.makeID("UpgradedUnknownReward");
+public class UpgradedOffclassReward extends CustomReward {
+    public static final String ID = SneckoMod.makeID("UpgradedOffclassReward");
     public static final String[] TEXT = CardCrawlGame.languagePack.getUIString(ID).TEXT;
 
-    public UpgradedUnknownReward() {
-        super(TextureLoader.getTexture("downfallResources/images/rewards/placeholder.png"), TEXT[0], RewardItemTypeEnumPatch.UPGRADEDUNKNOWNCARD);
+    public UpgradedOffclassReward() {
+        super(TextureLoader.getTexture("downfallResources/images/rewards/placeholder.png"), TEXT[0], RewardItemTypeEnumPatch.UPGRADEDOFFCLASSCARD);
         cards.clear();
         cards.addAll(getCards());
     }
 
     public static ArrayList<AbstractCard> getCards() {
+        return OffclassHelper.getXRandomOffclassCards(3); //TODO Make a better version of this.
+        /*
         ArrayList<AbstractCard> cardsList = new ArrayList<>();
         while (cardsList.size() < 3) {
             AbstractCard q = getUnknownUpgradedCard();
@@ -34,9 +37,10 @@ public class UpgradedUnknownReward extends CustomReward {
             }
         }
         return cardsList;
+        */
     }
 
-
+/*
     public static AbstractCard getUnknownUpgradedCard() {
         ArrayList<AbstractCard> list = new ArrayList<>();
         for (AbstractCard c : AbstractDungeon.commonCardPool.group) {
@@ -71,6 +75,7 @@ public class UpgradedUnknownReward extends CustomReward {
         }
         return false;
     }
+ */
 
     @Override
     public boolean claimReward() {

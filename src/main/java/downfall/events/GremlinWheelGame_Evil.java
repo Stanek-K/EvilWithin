@@ -318,9 +318,11 @@ public class GremlinWheelGame_Evil extends AbstractImageEvent {
                         AbstractDungeon.getCurrRoom().monsters = monsters;
                         AbstractDungeon.getCurrRoom().rewards.clear();
                         AbstractDungeon.getCurrRoom().addRelicToRewards(new GremlinWheel());
-                        AbstractDungeon.getCurrRoom().addGoldToRewards(100);
+                        if (Settings.isDailyRun)
+                            AbstractDungeon.getCurrRoom().addGoldToRewards(AbstractDungeon.miscRng.random(30));
+                        else
+                            AbstractDungeon.getCurrRoom().addGoldToRewards(AbstractDungeon.miscRng.random(25, 35));
 
-                        AbstractDungeon.getCurrRoom().eliteTrigger = true;
                         this.imageEventText.clearRemainingOptions();
                         this.enterCombatFromImage();
                         break;

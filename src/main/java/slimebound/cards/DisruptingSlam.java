@@ -38,42 +38,29 @@ public class DisruptingSlam extends AbstractSlimeboundCard {
 
 
     public DisruptingSlam() {
-
         super(ID, NAME, SlimeboundMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.SLIMEBOUND, RARITY, TARGET);
-
-
         this.baseDamage = 6;
         this.isMultiDamage = true;
         this.magicNumber = this.baseMagicNumber = 2;
-
         SlimeboundMod.loadJokeCardImage(this, "DisruptingSlam.png");
-
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-
-
         AbstractDungeon.actionManager.addToBottom(new DamageAllEnemiesAction(p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_HEAVY));
         AbstractDungeon.actionManager.addToBottom(new ExhumeLickAction(magicNumber, false));
 
     }
 
     public AbstractCard makeCopy() {
-
         return new DisruptingSlam();
-
     }
 
     public void upgrade() {
-
         if (!this.upgraded) {
-
             upgradeName();
-            upgradeDamage(2);
+            upgradeDamage(1);
             upgradeMagicNumber(1);
-
         }
-
     }
 }
 

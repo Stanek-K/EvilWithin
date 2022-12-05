@@ -1,5 +1,6 @@
 package theHexaghost.cards;
 
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import sneckomod.SneckoMod;
@@ -16,26 +17,20 @@ public class FastForward extends AbstractHexaCard {
 
     public FastForward() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        isEthereal = true;
+        this.baseMagicNumber = this.magicNumber = 2;
         tags.add(HexaMod.GHOSTWHEELCARD);
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        atb(new ExtinguishCurrentFlameAction());
-        atb(new ChargeCurrentFlameAction());
+        atb(new DrawCardAction(magicNumber));
         atb(new AdvanceAction(false));
     }
 
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            //upgradeBaseCost(1);
-            this.isEthereal = false;
-            //this.exhaust = false;
-
-            rawDescription = UPGRADE_DESCRIPTION;
-            initializeDescription();
+            upgradeMagicNumber(1);
         }
     }
 }

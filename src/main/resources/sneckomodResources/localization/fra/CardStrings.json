@@ -39,7 +39,7 @@
   },
   "sneckomod:IronFang": {
     "NAME": "Crocs d'acier",
-    "DESCRIPTION": "Gagnez !M! - !B! d'Armure. NL Infligez !qqq! - !D! dégâts."
+    "DESCRIPTION": "Gagnez !M! - !B! d'Armure. NL Infligez !DM! - !D! dégâts."
   },
   "sneckomod:ImprovisedAttack": {
     "NAME": "Attaque improvisée",
@@ -99,7 +99,7 @@
   },
   "sneckomod:RainOfDice": {
     "NAME": "Pluie de dés",
-    "DESCRIPTION": "Infligez !qqq! - !D! dégâts à un ennemi aléatoire. NL sneckomod:Confondez cette carte et remettez-la dans votre main"
+    "DESCRIPTION": "Infligez !DM! - !D! dégâts à un ennemi aléatoire. NL sneckomod:Confondez cette carte et remettez-la dans votre main"
   },
   "sneckomod:Restock": {
     "NAME": "Réapprovisionnement",
@@ -125,7 +125,7 @@
   },
   "sneckomod:SnakeSap": {
     "NAME": "Sève de serpent",
-    "DESCRIPTION": "sneckomod:Gekoproof. NL Infligez !qqq! - !D! dégâts. NL Gagnez 1 - !M! [E] . NL Épuisement."
+    "DESCRIPTION": "sneckomod:Gekoproof. NL Infligez !DM! - !D! dégâts. NL Gagnez 1 - !M! [E] . NL Épuisement."
   },
   "sneckomod:SnekBeam": {
     "NAME": "Laser Geko",

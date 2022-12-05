@@ -10,21 +10,20 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import java.util.ArrayList;
 
 public class RapidStrikes extends AbstractChampCard {
-
     public final static String ID = makeID("RapidStrikes");
-
-    private static final int DAMAGE = 4;
 
     public RapidStrikes() {
         super(ID, 1, CardType.ATTACK, CardRarity.UNCOMMON, CardTarget.ENEMY);
-        baseDamage = DAMAGE;
+        baseDamage = 4;
         tags.add(CardTags.STRIKE);
         baseMagicNumber = magicNumber = 2;
-        postInit();
+    }
+
+    public void upp() {
+        upgradeDamage(2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //finisher();
             dmg(m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
         dmg(m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
 
@@ -56,9 +55,5 @@ public class RapidStrikes extends AbstractChampCard {
     public void onMoveToDiscard() {
         this.rawDescription = cardStrings.DESCRIPTION;
         this.initializeDescription();
-    }
-
-    public void upp() {
-        upgradeDamage(2);
     }
 }

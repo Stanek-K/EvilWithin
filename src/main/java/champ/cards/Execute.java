@@ -17,10 +17,13 @@ public class Execute extends AbstractChampCard {
     public Execute() {
         super(ID, 2, CardType.ATTACK, CardRarity.BASIC, CardTarget.ENEMY);
         baseDamage = 6;
-        baseCool = cool = 2;
+        baseMagicNumber = magicNumber = 2;
         tags.add(ChampMod.FINISHER);
         tags.add(SneckoMod.BANNEDFORSNECKO);
-        postInit();
+    }
+
+    public void upp() {
+        upgradeDamage(2);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -30,11 +33,5 @@ public class Execute extends AbstractChampCard {
         atb(new VFXAction(new GoldenSlashEffect(m.hb.cX - 30.0F * Settings.scale, m.hb.cY, true), 0.1F));
         dmg(m, AbstractGameAction.AttackEffect.NONE);
         finisher();
-    }
-
-    public void upp() {
-        upgradeDamage(3);
-        rawDescription = UPGRADE_DESCRIPTION;
-        initializeDescription();
     }
 }

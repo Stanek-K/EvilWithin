@@ -224,7 +224,6 @@ public abstract class AbstractGuardianCard extends CustomCard {
             AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new ModeShiftPower(AbstractDungeon.player, AbstractDungeon.player, 20), 20));
         }
         AbstractDungeon.actionManager.addToBottom(new BraceAction(modeShiftValue));
-
     }
 
     public void saveGemMisc() {

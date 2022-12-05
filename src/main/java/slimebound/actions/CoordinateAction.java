@@ -48,27 +48,21 @@ public class CoordinateAction extends AbstractGameAction {
             effect += 2;
             this.p.getRelic("Chemical X").flash();
         }
-        if (upgraded)
-            effect++;
 
         if (effect > 0) {
-
-
             if (!this.freeToPlayOnce) {
                 this.p.energy.use(EnergyPanel.totalCount);
             }
         }
 
-
         for (int i = 0; i < effect; i++) {
-            addToBot(new GainBlockAction(p, p, block));
+            addToTop(new GainBlockAction(p, p, block));
         }
-
-        //addToBot(new ApplyPowerAction(p, p, new PotencyPower(p, p, effect), effect));
-
         for (int i = 0; i < effect; ++i) {
-            addToBot(new CommandAction());
+            addToTop(new CommandAction());
         }
+        if (upgraded)
+            addToTop(new CommandAction());
 
         this.isDone = true;
     }

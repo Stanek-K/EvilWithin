@@ -12,24 +12,19 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import static champ.ChampMod.loadJokeCardImage;
 
 public class FanOfKnives extends AbstractChampCard {
-
     public final static String ID = makeID("FanOfKnives");
-
-    //stupid intellij stuff attack, enemy, common
-
-    private static final int DAMAGE = 5;
-    private static final int UPG_DAMAGE = 3;
 
     public FanOfKnives() {
         super(ID, 1, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL_ENEMY);
-        baseDamage = DAMAGE;
+        baseDamage = 5;
         isMultiDamage = true;
-      //  tags.add(ChampMod.OPENER);
-      //  tags.add(ChampMod.OPENERBERSERKER);
         tags.add(ChampMod.COMBO);
         tags.add(ChampMod.COMBOBERSERKER);
-        postInit();
         loadJokeCardImage(this, "FanOfKnives.png");
+    }
+
+    public void upp() {
+        upgradeDamage(3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -39,21 +34,11 @@ public class FanOfKnives extends AbstractChampCard {
         if (bcombo()) {
             atb(new VFXAction(new DaggerSprayAnyColorEffect(AbstractDungeon.getMonsters().shouldFlipVfx(), Color.RED), 0.0F));
             allDmg(AbstractGameAction.AttackEffect.NONE);
-//            if (upgraded) {
-//                atb(new VFXAction(new DaggerSprayAnyColorEffect(AbstractDungeon.getMonsters().shouldFlipVfx(), Color.SCARLET), 0.0F));
-//                allDmg(AbstractGameAction.AttackEffect.NONE);
-//            }
         }
-
-     //   berserkOpen();
     }
 
     @Override
     public void triggerOnGlowCheck() {
         glowColor = bcombo() ? GOLD_BORDER_GLOW_COLOR : BLUE_BORDER_GLOW_COLOR;
-    }
-
-    public void upp() {
-        upgradeDamage(UPG_DAMAGE);
     }
 }

@@ -39,7 +39,7 @@
   },
   "sneckomod:IronFang": {
     "NAME": "Iron Fang",
-    "DESCRIPTION": "Gain !M! - !B! Block. NL Deal !qqq! - !D! damage."
+    "DESCRIPTION": "Gain !M! - !B! Block. NL Deal !DM! - !D! damage."
   },
   "sneckomod:ImprovisedAttack": {
     "NAME": "Improvised Attack",
@@ -99,7 +99,7 @@
   },
   "sneckomod:RainOfDice": {
     "NAME": "Rain of Dice",
-    "DESCRIPTION": "Deal !qqq! - !D! damage to a random enemy. NL sneckomod:Muddle this, then return this to your hand."
+    "DESCRIPTION": "Deal !DM! - !D! damage to a random enemy. NL sneckomod:Muddle this, then return this to your hand."
   },
   "sneckomod:Restock": {
     "NAME": "Restock",

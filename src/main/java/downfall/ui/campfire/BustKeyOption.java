@@ -28,7 +28,7 @@ public class BustKeyOption extends AbstractCampfireOption {
     private boolean used;
     private boolean hacked;
     private float hackTime = 0F;
-    private int soulToCost = 100;
+    private int soulToCost = 50;
 
     public BustKeyOption() {
         this(Keys.RUBY);
@@ -62,9 +62,7 @@ public class BustKeyOption extends AbstractCampfireOption {
                     this.img = TextureLoader.getTexture(downfallMod.assetPath("images/ui/campfire/sapphireDisabled.png"));
                 }
                 if (!this.used) {
-                    if (this.usable) {
-                        this.description += TEXT[5];
-                    } else {
+                    if (!this.usable) {
                         this.description = TEXT[8] + soulToCost + TEXT[9];
                     }
                 } else {
@@ -79,9 +77,7 @@ public class BustKeyOption extends AbstractCampfireOption {
                     this.img = TextureLoader.getTexture(downfallMod.assetPath("images/ui/campfire/emeraldDisabled.png"));
                 }
                 if (!this.used) {
-                    if (this.usable) {
-                        this.description += TEXT[6];
-                    } else {
+                    if (!this.usable) {
                         this.description = TEXT[8] + soulToCost + TEXT[9];
                     }
                 } else {
@@ -96,9 +92,7 @@ public class BustKeyOption extends AbstractCampfireOption {
                     this.img = TextureLoader.getTexture(downfallMod.assetPath("images/ui/campfire/rubyDisabled.png"));
                 }
                 if (!this.used) {
-                    if (this.usable) {
-                        this.description += TEXT[4];
-                    } else {
+                    if (!this.usable) {
                         this.description = TEXT[8] + soulToCost + TEXT[9];
                     }
                 } else {
@@ -111,14 +105,11 @@ public class BustKeyOption extends AbstractCampfireOption {
         float hackScale = (float) ReflectionHacks.getPrivate(this, AbstractCampfireOption.class, "scale");
 
         if (this.hb.hovered) {
-
             if (!this.hb.clickStarted) {
                 ReflectionHacks.setPrivate(this, AbstractCampfireOption.class, "scale", MathHelper.scaleLerpSnap(hackScale, Settings.scale));
                 ReflectionHacks.setPrivate(this, AbstractCampfireOption.class, "scale", MathHelper.scaleLerpSnap(hackScale, Settings.scale));
-
             } else {
                 ReflectionHacks.setPrivate(this, AbstractCampfireOption.class, "scale", MathHelper.scaleLerpSnap(hackScale, 0.9F * Settings.scale));
-
             }
         } else {
             ReflectionHacks.setPrivate(this, AbstractCampfireOption.class, "scale", MathHelper.scaleLerpSnap(hackScale, 0.9F * Settings.scale));

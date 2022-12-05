@@ -11,19 +11,35 @@ import sneckomod.SneckoMod;
 import sneckomod.actions.NoApplyRandomDamageAction;
 
 public class WideSting extends AbstractSneckoCard {
-
     public final static String ID = makeID("WideSting");
-
-    //stupid intellij stuff ATTACK, ALL, COMMON
-
-    private static final int DAMAGE = 12;
-    private static final int MAGIC = 7;
 
     public WideSting() {
         super(ID, 2, CardType.ATTACK, CardRarity.COMMON, CardTarget.ALL);
-        baseDamage = DAMAGE;
-        baseMagicNumber = magicNumber = MAGIC;
+        baseMagicNumber = magicNumber = 7; //Min Damage
+        baseDamage = 12; //Max Damage
         SneckoMod.loadJokeCardImage(this, "WideSting.png");
+    }
+
+    public void upp() {
+        upgradeMagicNumber(4);
+        upgradeDamage(4);
+    }
+
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        for (AbstractMonster q : monsterList()) {
+            atb(new NoApplyRandomDamageAction(q, magicNumber, damage, 1, AbstractGameAction.AttackEffect.LIGHTNING, this, DamageInfo.DamageType.NORMAL));
+        }
+        atb(new AbstractGameAction() {
+            @Override
+            public void update() {
+                isDone = true;
+                for (AbstractCard q : p.hand.group) {
+                    if (q.color != AbstractDungeon.player.getCardColor()) {
+                        atb(new UpgradeSpecificCardAction(q));
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -54,30 +70,5 @@ public class WideSting extends AbstractSneckoCard {
         // repeat so damage holds the second condition's damage
         baseDamage = CURRENT_DMG;
         super.calculateCardDamage(mo);
-    }
-
-    public void use(AbstractPlayer p, AbstractMonster m) {
-        for (AbstractMonster q : monsterList()) {
-            atb(new NoApplyRandomDamageAction(q, magicNumber, damage, 1, AbstractGameAction.AttackEffect.LIGHTNING, this, DamageInfo.DamageType.NORMAL));
-        }
-        atb(new AbstractGameAction() {
-            @Override
-            public void update() {
-                isDone = true;
-                for (AbstractCard q : p.hand.group) {
-                    if (q.color != AbstractDungeon.player.getCardColor()) {
-                        atb(new UpgradeSpecificCardAction(q));
-                        //  atb(new MuddleAction(q));
-                    }
-                }
-            }
-        });
-    }
-
-    public void upgrade() {
-        if (!upgraded) {
-            upgradeName();
-            upgradeBaseCost(1);
-        }
     }
 }

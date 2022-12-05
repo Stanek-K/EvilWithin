@@ -2,6 +2,7 @@ package slimebound.cards;
 
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInHandAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -12,10 +13,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import slimebound.SlimeboundMod;
 import slimebound.actions.TackleSelfDamageAction;
 import slimebound.patches.AbstractCardEnum;
 import slimebound.powers.PreventTackleDamagePower;
+import slimebound.powers.SlimedPower;
 import slimebound.powers.TackleBuffPower;
 import slimebound.powers.TackleDebuffPower;
 
@@ -33,7 +36,7 @@ public class GoopTackle extends AbstractTackleCard {
     private static final CardRarity RARITY = CardRarity.COMMON;
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardStrings cardStrings;
-    private static final int COST = 2;
+    private static final int COST = 1;
     public static String UPGRADED_DESCRIPTION;
 
     static {
@@ -41,69 +44,39 @@ public class GoopTackle extends AbstractTackleCard {
         NAME = cardStrings.NAME;
         DESCRIPTION = cardStrings.DESCRIPTION;
         UPGRADED_DESCRIPTION = cardStrings.UPGRADE_DESCRIPTION;
-
     }
 
     public GoopTackle() {
-
         super(ID, NAME, SlimeboundMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.SLIMEBOUND, RARITY, TARGET);
+        this.baseDamage = 11;
+        this.baseSelfDamage = this.selfDamage = 3;
+        this.baseMagicNumber = this.magicNumber = 1;
         tags.add(SlimeboundMod.TACKLE);
-
-
-        this.baseDamage = 12;
-        baseSelfDamage = this.selfDamage = 3;
-
-
-    }
-
-    public void use(AbstractPlayer p, AbstractMonster m) {
-
-
-        AbstractDungeon.actionManager.addToBottom(new DamageAction(m, new com.megacrit.cardcrawl.cards.DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-        if (!AbstractDungeon.player.hasPower(PreventTackleDamagePower.POWER_ID))
-            addToBot(new TackleSelfDamageAction(new DamageInfo(p, selfDamage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SMASH));
-
-        ArrayList<AbstractCard> qCardList = new ArrayList<>();
-        for (AbstractCard q : CardLibrary.getAllCards()) {
-            if (q.hasTag(SlimeboundMod.TACKLE) && !(q instanceof GoopTackle)) {
-                qCardList.add(q.makeCopy());
-            }
-        }
-
-
-        AbstractCard cTackle = qCardList.get(AbstractDungeon.cardRng.random(0, qCardList.size() - 1));
-        if (upgraded) {
-            cTackle.upgrade();
-        }
-
-        cTackle.setCostForTurn(0);
-
-        AbstractDungeon.actionManager.addToBottom(new MakeTempCardInHandAction(cTackle));
-
-        //AbstractDungeon.actionManager.addToBottom(new RemoveSpecificPowerAction(p,p,TackleBuffPower.POWER_ID));
-
-
-    }
-
-    public AbstractCard makeCopy() {
-
-        return new GoopTackle();
-
     }
 
     public void upgrade() {
-
         if (!this.upgraded) {
-
             upgradeName();
-
-            upgradeDamage(3);
-
-            this.rawDescription = UPGRADED_DESCRIPTION;
-            this.initializeDescription();
-
+            upgradeDamage(2);
+            upgradeMagicNumber(1);
         }
+    }
 
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot(new DamageAction(m, new com.megacrit.cardcrawl.cards.DamageInfo(p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        if (!AbstractDungeon.player.hasPower(PreventTackleDamagePower.POWER_ID))
+            addToBot(new TackleSelfDamageAction(new DamageInfo(p, selfDamage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SMASH));
+        if (m.hasPower(SlimedPower.POWER_ID)) {
+            addToBot(new ApplyPowerAction(m, p, new WeakPower(m, this.magicNumber, false)));
+        }
+    }
+
+    public void triggerOnGlowCheck() {
+        slimedGlowCheck();
+    }
+
+    public AbstractCard makeCopy() {
+        return new GoopTackle();
     }
 }
 

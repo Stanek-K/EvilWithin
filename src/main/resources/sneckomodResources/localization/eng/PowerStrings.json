@@ -15,13 +15,12 @@
       " turns, cards that choose a random number for their effect choose the maximum possible number."
     ]
   },
-  "sneckomod:MuddleDrawnCardsPower": {
-    "NAME": "Muddle Drawn Cards",
+  "sneckomod:MastersEyePower": {
+    "NAME": "Master's Eye",
     "DESCRIPTIONS": [
-      "#yMuddle the next card you draw.",
-      "#yMuddle the first #b",
-      " cards drawn this turn. (",
-      " remaining)"
+      "At the start of the turn draw #b",
+      " additional card and #yMuddle it.",
+      " additional cards and #yMuddle them."
     ]
   },
   "sneckomod:MudshieldPower": {
@@ -46,18 +45,12 @@
       " random #yOffclass cards into your hand."
     ]
   },
-  "sneckomod:UnknownUpgradedPostCombatPower": {
-    "NAME": "Post-Combat Upgraded Unidentified",
+  "sneckomod:UpgradedOffclassPostCombatPower": {
+    "NAME": "Post-Combat Upgraded Offclass",
     "DESCRIPTIONS": [
       "At the end of combat, obtain #b",
-      " additional #yUpgraded #yUnidentified cards.",
-      " additional #yUpgraded #yUnidentified card."
-    ]
-  },
-  "sneckomod:UnlimitedRollsPower": {
-    "NAME": "Unlimited Rolls",
-    "DESCRIPTIONS": [
-      "At the start of your turn, gain a #ySoul #yRoll+ with #yEthereal and #yExhaust."
+      " additional #yUpgraded #yOffclass cards.",
+      " additional #yUpgraded #yOffclass card."
     ]
   },
   "sneckomod:Transmogrifying": {

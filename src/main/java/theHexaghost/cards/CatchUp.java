@@ -9,16 +9,14 @@ import theHexaghost.actions.ChargeAction;
 import theHexaghost.actions.ExtinguishAction;
 
 public class CatchUp extends AbstractHexaCard {
-
     public final static String ID = makeID("CatchUp");
-
-    //stupid intellij stuff SKILL, SELF, COMMON
 
     public CatchUp() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
+        baseMagicNumber = magicNumber = 2;
+        this.exhaust = true;
         tags.add(HexaMod.GHOSTWHEELCARD);
         this.tags.add(SneckoMod.BANNEDFORSNECKO);
-        baseMagicNumber = magicNumber = 2;
         HexaMod.loadJokeCardImage(this, "CatchUp.png");
     }
 
@@ -32,7 +30,9 @@ public class CatchUp extends AbstractHexaCard {
     public void upgrade() {
         if (!upgraded) {
             upgradeName();
-            upgradeMagicNumber(1);
+            this.exhaust = false;
+            this.rawDescription = UPGRADE_DESCRIPTION;
+            initializeDescription();
         }
     }
 }

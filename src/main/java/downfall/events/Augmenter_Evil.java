@@ -79,16 +79,15 @@ public class Augmenter_Evil extends AbstractImageEvent {
                         break;
                     case 2:
                         this.imageEventText.updateBodyText(DESCRIPTIONS[3]);
-                        Object r;
+                        AbstractRelic r;
                         if (!AbstractDungeon.player.hasRelic("MutagenicStrength")) {
                             r = new MutagenicStrength();
-                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, (AbstractRelic) r);
                         } else {
                             r = new Circlet();
-                            AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, (AbstractRelic) r);
                         }
+                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain(this.drawX, this.drawY, r);
 
-                        logMetricObtainRelic(ID, "Inject Mutagens", (AbstractRelic) r);
+                        logMetricObtainRelic(ID, "Inject Mutagens", r);
                         this.imageEventText.updateDialogOption(0, OPTIONS[3]);
                         this.imageEventText.clearRemainingOptions();
                         break;
@@ -98,12 +97,14 @@ public class Augmenter_Evil extends AbstractImageEvent {
 
                         AbstractDungeon.getCurrRoom().monsters = MonsterHelper.getEncounter("downfall:Augmenter");
                         AbstractDungeon.getCurrRoom().rewards.clear();
-                        AbstractDungeon.getCurrRoom().addGoldToRewards(100);
+                        if (Settings.isDailyRun)
+                            AbstractDungeon.getCurrRoom().addGoldToRewards(AbstractDungeon.miscRng.random(30));
+                        else
+                            AbstractDungeon.getCurrRoom().addGoldToRewards(AbstractDungeon.miscRng.random(25, 35));
                         AbstractDungeon.getCurrRoom().addRelicToRewards(new MutagenicStrength());
                         AbstractDungeon.getCurrRoom().rewards.add(new TransformCardReward());
                         AbstractDungeon.getCurrRoom().rewards.add(new TransformCardReward());
                         AbstractDungeon.getCurrRoom().rewards.add(new JaxReward());
-                        AbstractDungeon.getCurrRoom().eliteTrigger = true;
                         this.imageEventText.clearRemainingOptions();
                         this.enterCombatFromImage();
                         AbstractDungeon.lastCombatMetricKey = "downfall:Augmenter";
@@ -123,8 +124,8 @@ public class Augmenter_Evil extends AbstractImageEvent {
     public void update() {
         super.update();
         if (!this.cardsSelected) {
-            List<String> transformedCards = new ArrayList();
-            List<String> obtainedCards = new ArrayList();
+            List<String> transformedCards = new ArrayList<>();
+            List<String> obtainedCards = new ArrayList<>();
             if (AbstractDungeon.gridSelectScreen.selectedCards.size() == 2) {
                 this.cardsSelected = true;
                 float displayCount = 0.0F;

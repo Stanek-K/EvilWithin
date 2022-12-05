@@ -39,7 +39,7 @@
   },
   "sneckomod:IronFang": {
     "NAME": "강철 송곳니",
-    "DESCRIPTION": "방어도를 !M! - !B! 얻습니다. NL 피해를 !qqq! - !D! 줍니다."
+    "DESCRIPTION": "방어도를 !M! - !B! 얻습니다. NL 피해를 !DM! - !D! 줍니다."
   },
   "sneckomod:ImprovisedAttack": {
     "NAME": "변덕스러운 공격",
@@ -99,7 +99,7 @@
   },
   "sneckomod:RainOfDice": {
     "NAME": "주사위 비",
-    "DESCRIPTION": "무작위 적에게 피해를 !qqq! - !D! 줍니다. NL 이 카드를 sneckomod:뒤엉키게 하고 가져옵니다."
+    "DESCRIPTION": "무작위 적에게 피해를 !DM! - !D! 줍니다. NL 이 카드를 sneckomod:뒤엉키게 하고 가져옵니다."
   },
   "sneckomod:Restock": {
     "NAME": "재보급",
@@ -125,7 +125,7 @@
   },
   "sneckomod:SnakeSap": {
     "NAME": "뱀 수액",
-    "DESCRIPTION": "sneckomod:스네코항체. NL 피해를 !qqq! - !D! 줍니다. NL [E] 를 1 - !M! 얻습니다. NL 소멸."
+    "DESCRIPTION": "sneckomod:스네코항체. NL 피해를 !DM! - !D! 줍니다. NL [E] 를 1 - !M! 얻습니다. NL 소멸."
   },
   "sneckomod:SnekBeam": {
     "NAME": "스네코 광선",

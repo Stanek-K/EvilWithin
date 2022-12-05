@@ -33,17 +33,8 @@ public class CrystalBeam extends AbstractGuardianCard {
     private static final CardTarget TARGET = CardTarget.ENEMY;
     private static final CardStrings cardStrings;
     private static final int COST = 2;
-    private static final int DAMAGE = 10;
-
-    //TUNING CONSTANTS
-    private static final int UPGRADE_BONUS = 4;
-    private static final int DAMAGEPERGEM = 2;
-    private static final int SOCKETS = 0;
-    private static final boolean SOCKETSAREAFTER = true;
     public static String DESCRIPTION;
     public static String UPGRADED_DESCRIPTION;
-
-    //END TUNING CONSTANTS
 
     static {
         cardStrings = CardCrawlGame.languagePack.getCardStrings(ID);
@@ -54,19 +45,14 @@ public class CrystalBeam extends AbstractGuardianCard {
     }
 
     public CrystalBeam() {
-
         super(ID, NAME, GuardianMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.GUARDIAN, RARITY, TARGET);
-
-        this.baseDamage = DAMAGE;
-        this.baseMagicNumber = this.magicNumber = DAMAGEPERGEM;
+        this.baseDamage = 12;
+        this.baseMagicNumber = this.magicNumber = 2;
         this.tags.add(GuardianMod.BEAM);
-        this.socketCount = SOCKETS;
+        this.socketCount = 0;
         updateDescription();
         loadGemMisc();
-
-        this.tags.add(SneckoMod.BANNEDFORSNECKO);
         GuardianMod.loadJokeCardImage(this, makeBetaCardPath("CrystalBeam.png"));
-
     }
 
     public static ArrayList<GuardianMod.socketTypes> listGems() {
@@ -76,14 +62,7 @@ public class CrystalBeam extends AbstractGuardianCard {
                 sockets.addAll(((AbstractGuardianCard) c).sockets);
             }
         }
-        /*
-        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
-            if (c instanceof AbstractGuardianCard) {
-                sockets.addAll(((AbstractGuardianCard) c).sockets);
-            }
-        }
 
-         */
         for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
             if (c instanceof AbstractGuardianCard) {
                 sockets.addAll(((AbstractGuardianCard) c).sockets);
@@ -100,8 +79,7 @@ public class CrystalBeam extends AbstractGuardianCard {
     public float calculateModifiedCardDamage(AbstractPlayer player, AbstractMonster mo, float tmp) {
         int cards = listGems().size();
         int bonus = cards * this.magicNumber;
-        return tmp + bonus + calculateBeamDamage();
-
+        return tmp + bonus;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -114,20 +92,14 @@ public class CrystalBeam extends AbstractGuardianCard {
     }
 
     public AbstractCard makeCopy() {
-
         return new CrystalBeam();
-
     }
 
     public void upgrade() {
-
         if (!this.upgraded) {
-
             upgradeName();
-            upgradeDamage(UPGRADE_BONUS);
-
+            upgradeDamage(5);
         }
-
     }
 
     public void updateDescription() {

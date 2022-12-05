@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import guardian.characters.GuardianCharacter;
 
-
+@Deprecated
 public class zzzGuardianModePower extends AbstractGuardianPower {
     public static final String POWER_ID = "Guardian:GuardianModePowerOffense";
 

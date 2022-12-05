@@ -38,51 +38,34 @@ public class SlimeTap extends AbstractSlimeboundCard {
         EXTENDED_DESCRIPTION = cardStrings.EXTENDED_DESCRIPTION;
     }
 
-    private int numEaten = 0;
-
 
     public SlimeTap() {
-
         super(ID, NAME, SlimeboundMod.getResourcePath(IMG_PATH), COST, DESCRIPTION, TYPE, AbstractCardEnum.SLIMEBOUND, RARITY, TARGET);
-
-
-        this.exhaust = true;
         this.magicNumber = this.baseMagicNumber = 2;
+        this.exhaust = true;
         SlimeboundMod.loadJokeCardImage(this, "SlimeTap.png");
-
-        //this.tags.add(SneckoMod.BANNEDFORSNECKO);
-
     }
 
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
         boolean canUse = super.canUse(p, m);
         if (canUse) {
-
-            canUse = false;
-            for (AbstractOrb o : p.orbs) {
-                if (o instanceof SpawnedSlime) {
-                    canUse = true;
-                }
-            }
-            if (!canUse) this.cantUseMessage = EXTENDED_DESCRIPTION[0];
+            for (AbstractOrb o : p.orbs)
+                if (o instanceof SpawnedSlime) return true;
+            this.cantUseMessage = EXTENDED_DESCRIPTION[0];
         }
-        return canUse;
+        return false;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-
         AbstractOrb o = SlimeboundMod.getLeadingSlime();
         if (o != null) {
-            numEaten = numEaten + 1;
-            AbstractDungeon.actionManager.addToBottom(new EvokeSpecificOrbAction(o));
-            AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.DrawCardAction(AbstractDungeon.player, this.magicNumber));
+            addToBot(new EvokeSpecificOrbAction(o));
+            addToBot(new com.megacrit.cardcrawl.actions.common.DrawCardAction(AbstractDungeon.player, this.magicNumber));
             if (upgraded){
-                AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.GainEnergyAction(2));
+                addToBot(new com.megacrit.cardcrawl.actions.common.GainEnergyAction(2));
             } else {
-                AbstractDungeon.actionManager.addToBottom(new com.megacrit.cardcrawl.actions.common.GainEnergyAction(1));
+                addToBot(new com.megacrit.cardcrawl.actions.common.GainEnergyAction(1));
             }
-
-            return;
         }
     }
 
@@ -93,11 +76,8 @@ public class SlimeTap extends AbstractSlimeboundCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-
             rawDescription = UPGRADED_DESCRIPTION;
             initializeDescription();
-
-
         }
     }
 }

@@ -3,15 +3,14 @@ package sneckomod.actions;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import sneckomod.SneckoMod;
 
 import java.util.ArrayList;
 
 
 public class MuddleRandomCardAction extends AbstractGameAction {
-
-    private boolean onlyHighest = false;
-
-    private boolean modifiedCost = false;
+    private final boolean onlyHighest;
+    private boolean cannotCost3 = false;
 
     public MuddleRandomCardAction(int i) {
         this(i, false);
@@ -25,16 +24,16 @@ public class MuddleRandomCardAction extends AbstractGameAction {
     public MuddleRandomCardAction(int i, boolean highest, boolean no3s) {
         amount = i;
         onlyHighest = highest;
-        modifiedCost = no3s;
+        cannotCost3 = no3s;
     }
 
 
     public void update() {
         isDone = true;
         ArrayList<AbstractCard> myCardList = new ArrayList<>(AbstractDungeon.player.hand.group);
+        myCardList.removeIf(c -> c.hasTag(SneckoMod.SNEKPROOF));
 
-
-        for (int i = 0; i < this.amount; ++i) {// 101
+        for (int i = 0; i < this.amount; ++i) {
             if (!myCardList.isEmpty()) {
                 AbstractCard card = null;
                 if (onlyHighest) {
@@ -58,8 +57,7 @@ public class MuddleRandomCardAction extends AbstractGameAction {
                     card = myCardList.remove(AbstractDungeon.cardRandomRng.random(myCardList.size() - 1));
                 }
 
-                if (card != null)
-                    addToTop(new MuddleAction(card, modifiedCost));
+                if (card != null) SneckoMod.muddleACard(card, cannotCost3);
             }
         }
     }

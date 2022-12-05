@@ -7,18 +7,17 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 
 public class Backstep extends AbstractChampCard {
-
     public final static String ID = makeID("Backstep");
 
     public Backstep() {
         super(ID, 1, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF);
-        tags.add(ChampMod.OPENER);
-
         baseBlock = 6;
+        tags.add(ChampMod.OPENER);
         this.tags.add(ChampMod.OPENERDEFENSIVE);
-        //tags.add(ChampMod.COMBO);
-        //tags.add(ChampMod.COMBOBERSERKER);
-        postInit();
+    }
+
+    public void upp() {
+        upgradeBlock(3);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -35,9 +34,5 @@ public class Backstep extends AbstractChampCard {
         super.applyPowersToBlock();
         this.baseBlock = realBaseBlock;
         this.isBlockModified = block != baseBlock;
-    }
-
-    public void upp() {
-        upgradeBlock(3);
     }
 }
