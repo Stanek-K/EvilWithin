@@ -13,6 +13,7 @@ public class TripleStrike extends AbstractChampCard {
     public TripleStrike() {
         super(ID, 2, CardType.ATTACK, CardRarity.RARE, CardTarget.ENEMY);
         baseDamage = 6;
+        baseMagicNumber = magicNumber = 2;
         exhaust = true;
         AbstractCard r = new Strike();
         r.updateCost(-999);
@@ -30,6 +31,6 @@ public class TripleStrike extends AbstractChampCard {
         AbstractCard r = new Strike();
         r.updateCost(-999);
         CardModifierManager.addModifier(r, new TechniqueMod());
-        makeInHand(r, 2);
+        makeInHand(r, magicNumber);
     }
 }

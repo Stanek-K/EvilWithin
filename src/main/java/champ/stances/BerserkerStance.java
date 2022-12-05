@@ -23,15 +23,14 @@ import static champ.ChampMod.fatigue;
 import static champ.ChampMod.vigor;
 
 public class BerserkerStance extends AbstractChampStance {
-
     public static final String STANCE_ID = "champ:BerserkerStance";
     private static long sfxId = -1L;
 
     public BerserkerStance() {
-        this.ID = STANCE_ID;// 21
+        this.ID = STANCE_ID;
         this.name = ChampChar.characterStrings.TEXT[3];
-        this.updateDescription();// 23
-    }// 24
+        this.updateDescription();
+    }
 
     @Override
     public String getName() {
@@ -91,8 +90,7 @@ public class BerserkerStance extends AbstractChampStance {
 
     @Override
     public void finisher() {
-        AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new StrengthPower(AbstractDungeon.player, 1), 1));
-
+        ChampMod.vigor(6);
     }
 
     @Override
@@ -111,7 +109,7 @@ public class BerserkerStance extends AbstractChampStance {
             this.particleTimer2 -= Gdx.graphics.getDeltaTime();
             if (this.particleTimer2 < 0.0F) {
                 this.particleTimer2 = MathUtils.random(0.45F, 0.55F);
-                AbstractDungeon.effectsQueue.add(new StanceAuraEffect(this.STANCE_ID));
+                AbstractDungeon.effectsQueue.add(new StanceAuraEffect(STANCE_ID));
             }
         }
     }

@@ -48,7 +48,7 @@
   },
   "champ:Circumvent": {
     "NAME": "Circumvent",
-    "DESCRIPTION": "Gain !B! Block. NL *Any *Stance champ:Combo: Draw !M! cards.",
+    "DESCRIPTION": "Gain !B! Block. NL Draw !M! cards. NL Discard !M! cards.",
     "UPGRADE_DESCRIPTION": "Gain !M! champ:Counter. NL Gain !B! Block. NL *Defensive champ:Combo: Gain Block equal to your champ:Counter."
   },
   "champ:CrookedStrike": {
@@ -170,7 +170,7 @@
   },
   "champ:GladiatorStyle": {
     "NAME": "Good Clean Fight",
-    "DESCRIPTION": "Gain !M! Strength. NL ALL enemies gain 1 Strength."
+    "DESCRIPTION": "Gain !M! Strength. NL Gain !DM! Dexterity."
   },
   "champ:GutPunch": {
     "NAME": "Gut Punch",
@@ -353,7 +353,7 @@
   "champ:Taunt": {
     "NAME": "Taunt",
     "DESCRIPTION": "Apply !M! Vulnerable. NL Gain !DM! champ:Counter",
-    "UPGRADE_DESCRIPTION": "Apply !M! Vulnerable to ALL enemies. NL Gain !M! champ:Counter"
+    "UPGRADE_DESCRIPTION": "Apply !M! Vulnerable to ALL enemies. NL Gain !DM! champ:Counter"
   },
   "champ:TornadoPunch": {
     "NAME": "Tornado Punch",
@@ -362,8 +362,8 @@
   },
   "champ:TripleStrike": {
     "NAME": "Triple Strike",
-    "DESCRIPTION": "Deal !D! damage. NL Gain 2 *Strikes. They cost 0 and trigger *Skill *Bonuses. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain 2 Upgraded *Strikes. They cost 0 and trigger *Skill *Bonuses. NL Exhaust."
+    "DESCRIPTION": "Deal !D! damage. NL Gain !M! *Strikes. They cost 0 and trigger *Skill *Bonuses. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Gain !M! Upgraded *Strikes. They cost 0 and trigger *Skill *Bonuses. NL Exhaust."
   },
   "champ:UltimateStance": {
     "NAME": "Ultimate Stance",
@@ -380,10 +380,7 @@
   "champ:ViciousMockery": {
     "NAME": "Vicious Mockery",
     "DESCRIPTION": "Apply !M! Weak. NL Gain !DM! Vigor.",
-    "EXTENDED_DESCRIPTION": [
-      "Berserker champ:Combo: Gain !M! temporary Strength. NL ",
-      "Defensive champ:Combo: Gain !M! temporary Dexterity."
-    ]
+    "UPGRADE_DESCRIPTION": "Apply !M! Weak to ALL enemies. NL Gain !DM! Vigor."
   },
   "champ:WindUp": {
     "NAME": "Wind Up",

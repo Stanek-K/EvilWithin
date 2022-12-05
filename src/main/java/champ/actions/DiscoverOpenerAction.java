@@ -23,8 +23,7 @@ public class DiscoverOpenerAction extends AbstractGameAction {
     }// 23
 
     public void update() {
-        ArrayList generatedCards;
-        generatedCards = this.generateColorlessCardChoices();// 43
+        ArrayList<AbstractCard> generatedCards = this.generateColorlessCardChoices();// 43
 
         if (this.duration == Settings.ACTION_DUR_FAST) {// 48
             AbstractDungeon.cardRewardScreen.customCombatOpen(generatedCards, CardRewardScreen.TEXT[1], false);// 49

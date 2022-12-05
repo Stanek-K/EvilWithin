@@ -4,6 +4,7 @@ import champ.ChampMod;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.city.Champ;
@@ -21,15 +22,22 @@ public class ViciousMockery extends AbstractChampCard {
     public ViciousMockery() {
         super(ID, 0, CardType.SKILL, CardRarity.COMMON, CardTarget.SELF_AND_ENEMY);
         baseMagicNumber = magicNumber = 1;
-        baseDownfallMagic = downfallMagic = 2;
+        baseDownfallMagic = downfallMagic = 3;
     }
 
     public void upp() {
-        upgradeDownfall(2);
+        upgradeDownfall(1);
+        target = CardTarget.ALL;
+        this.rawDescription = UPGRADE_DESCRIPTION;
+        initializeDescription();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        applyToEnemy(m, autoWeak(m, magicNumber));
+        if (this.upgraded)
+            for (AbstractMonster mo : monsterList())
+                applyToEnemy(mo, autoWeak(m, magicNumber));
+        else
+            applyToEnemy(m, autoWeak(m, magicNumber));
         ChampMod.vigor(downfallMagic);
         atb(new SFXAction("VO_CHAMP_2A"));
         atb(new TalkAction(true, getTaunt(), 2.0F, 2.0F));

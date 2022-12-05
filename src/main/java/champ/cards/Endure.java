@@ -13,12 +13,12 @@ public class Endure extends AbstractChampCard {
 
     public Endure() {
         super(ID, 1, CardType.SKILL, CardRarity.UNCOMMON, CardTarget.SELF);
-        baseBlock = block = 7;
+        baseBlock = block = 9;
         loadJokeCardImage(this, "Endure.png");
     }
 
     public void upp() {
-        upgradeBlock(3);
+        upgradeBlock(2);
         rawDescription = UPGRADE_DESCRIPTION;
         initializeDescription();
     }
